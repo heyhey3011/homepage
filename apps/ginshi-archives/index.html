@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>詩吟の実演・動画アーカイブス</title>
+<!--
+  ============================================================
+  詩吟の実演・動画アーカイブス
+  ------------------------------------------------------------
+  ・このファイル（index.html）をダブルクリックすると開きます。
+  ・表示される動画やプロフィールの中身は「data.js」に入っています。
+    追加・修正したいときは data.js を編集してください（README.md参照）。
+  ・このファイル自体は基本さわらなくて大丈夫です。
+
+  [設計メモ / 将来の管理者編集機能について（TODO・未実装）]
+  ・現状、吟士名・所属・吟題・YouTube URL・説明文などの追加/修正/削除（CRUD）は、
+    このHTMLからは行えません（管理者ログインや画面上の編集モードは、β公開では
+    あえて実装していません）。
+  ・data.js の items[]（動画）・performers[]（吟士）を直接編集し、
+    このファイルを保存し直すことで内容を更新する運用とします。
+  ・将来、管理者向けの編集UIを作る場合も、パスワードをこのファイルに直書きしたり、
+    公開ページ上で誰でも編集できる状態にはしないこと。
+    （例: 別リポジトリ／ローカル環境で data.js を編集・生成 → 本番へデプロイ、
+    という運用を想定。教室マップ（kyoshitsu-map）の方針と揃える）
+  ============================================================
+-->
+<style>
+  :root{
+    --sumi:#22201d;        /* 墨色（背景の濃い色） */
+    --sumi-soft:#33302b;   /* 少し明るい墨 */
+    --kinari:#f4efe6;      /* 生成り（紙の色） */
+    --kinari-2:#ede6d8;    /* 生成りの濃いめ */
+    --shu:#b4402f;         /* 朱色（アクセント） */
+    --shu-dark:#96341f;
+    --kincha:#8a7a5c;      /* 金茶 */
+    --line:#d8cfbd;        /* 罫線 */
+    --text:#2b2823;        /* 本文 */
+    --text-soft:#6b6357;   /* うすい文字 */
+    --card-bg:#fbf8f1;
+    --shadow:0 2px 10px rgba(40,32,20,.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","MS PMincho",serif;
+    background:var(--kinari);
+    color:var(--text);
+    font-size:17px;
+    line-height:1.7;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--shu-dark);}
+
+  /* ===== ヘッダー ===== */
+  header.site{
+    background:var(--sumi);
+    color:var(--kinari);
+    padding:22px 18px 18px;
+    border-bottom:4px solid var(--shu);
+  }
+  .site-inner{max-width:1160px;margin:0 auto;}
+  header.site h1{
+    margin:0;
+    font-size:27px;
+    letter-spacing:.08em;
+    font-weight:600;
+  }
+  header.site .lead{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#cfc6b4;
+    letter-spacing:.04em;
+  }
+  .portal-back-link{
+    display:inline-block;
+    margin:0 0 8px;
+    font-size:12px;
+    color:#a89d89;
+    text-decoration:none;
+  }
+  .portal-back-link:hover{color:var(--kinari);text-decoration:underline;}
+  .count{
+    margin-top:12px;
+    font-size:15px;
+    color:#e7dcc6;
+  }
+  .count b{color:#fff;font-size:18px;}
+
+  /* ===== タブ ===== */
+  .tabs{
+    display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;
+  }
+  .tab-btn{
+    background:transparent;
+    color:#e7dcc6;
+    border:1px solid #5d564b;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:15px;
+    cursor:pointer;
+    font-family:inherit;
+    letter-spacing:.05em;
+  }
+  .tab-btn.active{
+    background:var(--shu);
+    color:#fff;
+    border-color:var(--shu);
+    font-weight:600;
+  }
+
+  /* ===== コンテンツ枠 ===== */
+  main{max-width:1160px;margin:0 auto;padding:20px 18px 60px;}
+
+  /* ===== 検索・フィルタ ===== */
+  .controls{margin-bottom:22px;}
+  .search-box{position:relative;margin-bottom:16px;}
+  .search-box input{
+    width:100%;
+    padding:14px 16px 14px 46px;
+    font-size:17px;
+    font-family:inherit;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--card-bg);
+    color:var(--text);
+  }
+  .search-box input:focus{outline:none;border-color:var(--shu);}
+  .search-box::before{
+    content:"\2315";
+    position:absolute;left:16px;top:50%;transform:translateY(-50%);
+    color:var(--kincha);font-size:20px;
+  }
+  .filter-label{
+    font-size:14px;color:var(--text-soft);margin:0 0 8px;letter-spacing:.04em;
+  }
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .chip{
+    background:var(--card-bg);
+    border:1.5px solid var(--line);
+    color:var(--text);
+    padding:7px 15px;
+    border-radius:999px;
+    font-size:15px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .chip:hover{border-color:var(--kincha);}
+  .chip.on{
+    background:var(--sumi);
+    color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .chip.clear{
+    color:var(--shu-dark);
+    border-color:var(--shu);
+    background:transparent;
+  }
+
+  /* ===== カードグリッド ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    display:flex;flex-direction:column;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(40,32,20,.18);}
+  .thumb{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+    overflow:hidden;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb .play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  }
+  .thumb .play span{
+    width:54px;height:54px;border-radius:50%;
+    background:rgba(180,64,47,.9);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thumb .play span::after{
+    content:"";
+    border-style:solid;
+    border-width:11px 0 11px 18px;
+    border-color:transparent transparent transparent #fff;
+    margin-left:4px;
+  }
+  .card-body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .card-title{font-size:19px;font-weight:600;line-height:1.4;margin:0;}
+  .card-meta{font-size:14.5px;color:var(--text-soft);}
+  .card-meta .poet{color:var(--text);}
+  .performer-link{
+    color:var(--shu-dark);
+    text-decoration:underline;
+    text-underline-offset:2px;
+    cursor:pointer;
+  }
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+  .badge{
+    font-size:12.5px;
+    background:var(--kinari-2);
+    border:1px solid var(--line);
+    color:var(--text-soft);
+    padding:2px 9px;border-radius:6px;
+    letter-spacing:.02em;
+  }
+  .card-note{
+    font-size:13.5px;color:var(--text-soft);line-height:1.6;margin-top:4px;
+  }
+  .empty{
+    text-align:center;color:var(--text-soft);padding:60px 20px;font-size:17px;
+  }
+
+  /* ===== 吟題一覧 ===== */
+  .title-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
+  }
+  .title-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--kincha);
+    border-radius:10px;
+    padding:16px 18px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .title-card:hover{border-left-color:var(--sumi);}
+  .title-card .tname{font-size:20px;font-weight:600;margin:0;}
+  .title-card .tpoet{font-size:14px;color:var(--text-soft);margin-top:4px;}
+  .title-card .tcounts{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .count-badge{
+    background:var(--kinari-2);border:1px solid var(--line);color:var(--text-soft);
+    font-size:12.5px;padding:2px 9px;border-radius:6px;letter-spacing:.02em;
+  }
+  .count-badge.multi{background:var(--shu);color:#fff;border-color:var(--shu);font-weight:600;}
+
+  /* ===== 吟士名鑑 ===== */
+  .performer-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
+  }
+  .performer-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--shu);
+    border-radius:10px;
+    padding:16px 18px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .performer-card:hover{border-left-color:var(--sumi);}
+  .performer-card .pname{font-size:20px;font-weight:600;margin:0;}
+  .performer-card .pkana{font-size:13px;color:var(--text-soft);}
+  .performer-card .pschool{font-size:14px;color:var(--text-soft);margin-top:6px;}
+  .performer-card .ptitles{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;}
+  .pmeta{margin-top:7px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .term-badge{
+    background:var(--shu);color:#fff;font-size:12.5px;
+    padding:2px 10px;border-radius:6px;letter-spacing:.02em;font-weight:600;
+  }
+  .ppref{font-size:13.5px;color:var(--text-soft);}
+
+  /* ===== 名鑑の検索・並び替え ===== */
+  .sort-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .sort-row .filter-label{margin:0;}
+  .sort-select{
+    font-family:inherit;font-size:15px;padding:8px 12px;
+    border:1.5px solid var(--line);border-radius:8px;
+    background:var(--card-bg);color:var(--text);cursor:pointer;
+  }
+  .sort-select:focus{outline:none;border-color:var(--shu);}
+  .pcount{font-size:14.5px;color:var(--text-soft);margin-left:auto;}
+  .pcount b{color:var(--text);}
+
+  /* ===== プロフィール詳細 ===== */
+  .back-btn{
+    background:transparent;border:none;color:var(--shu-dark);
+    font-size:16px;cursor:pointer;font-family:inherit;padding:6px 0;margin-bottom:8px;
+  }
+  .profile-head{
+    background:var(--card-bg);border:1px solid var(--line);border-radius:12px;
+    padding:22px 22px;margin-bottom:24px;box-shadow:var(--shadow);
+  }
+  .profile-head h2{margin:0;font-size:26px;}
+  .profile-head .pkana{color:var(--text-soft);font-size:14px;}
+  .profile-head .pschool{margin-top:8px;color:var(--text);font-size:16px;}
+  .profile-head .ptitles{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;}
+  .profile-head .pprofile{margin-top:14px;line-height:1.85;font-size:16px;}
+  .profile-head .plinks{margin-top:14px;display:flex;flex-direction:column;gap:6px;}
+  .profile-head .plinks a{font-size:15px;}
+  .section-title{
+    font-size:19px;margin:0 0 14px;padding-left:12px;
+    border-left:4px solid var(--shu);letter-spacing:.04em;
+  }
+
+  /* ===== モーダル ===== */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(20,16,12,.78);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:100;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--kinari);
+    border-radius:14px;
+    max-width:900px;width:100%;
+    max-height:92vh;overflow-y:auto;
+    box-shadow:0 10px 40px rgba(0,0,0,.5);
+  }
+  .modal-video{
+    position:relative;width:100%;aspect-ratio:16/9;background:#000;
+    border-radius:14px 14px 0 0;overflow:hidden;
+  }
+  .modal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .modal-video img.modal-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .modal-play-btn{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    background:var(--shu);color:#fff;text-decoration:none;
+    padding:15px 28px;border-radius:10px;font-size:18px;font-weight:600;
+    letter-spacing:.03em;box-shadow:0 4px 16px rgba(0,0,0,.45);white-space:nowrap;
+  }
+  .modal-play-btn:hover{background:var(--shu-dark);}
+  .play-fallback{
+    margin:0 0 12px;font-size:14.5px;color:var(--text-soft);
+  }
+  .play-fallback a{color:var(--shu-dark);}
+  .modal-body{padding:20px 24px 26px;}
+  .modal-body h2{margin:0 0 6px;font-size:24px;}
+  .modal-meta{font-size:16px;line-height:1.9;}
+  .modal-meta .row{margin:2px 0;}
+  .modal-meta .k{color:var(--text-soft);display:inline-block;min-width:4.5em;}
+  .modal-badges{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px;}
+  .modal-note{
+    margin-top:12px;background:var(--card-bg);border:1px solid var(--line);
+    border-radius:8px;padding:12px 14px;font-size:15px;color:var(--text-soft);line-height:1.7;
+  }
+  .modal-actions{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .btn-yt{
+    background:var(--shu);color:#fff;text-decoration:none;
+    padding:10px 20px;border-radius:8px;font-size:16px;display:inline-block;
+  }
+  .btn-yt:hover{background:var(--shu-dark);}
+  .modal-close{
+    position:absolute;top:12px;right:12px;z-index:2;
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(20,16,12,.6);color:#fff;border:none;
+    font-size:24px;line-height:1;cursor:pointer;
+  }
+  .modal-close:hover{background:rgba(20,16,12,.85);}
+
+  /* ===== file:// 案内バナー ===== */
+  .file-banner{
+    background:#f6ecdd;
+    border-bottom:1px solid var(--line);
+    color:var(--text);
+    font-size:14px;line-height:1.7;
+  }
+  .file-banner .fb-inner{
+    max-width:1160px;margin:0 auto;
+    position:relative;
+    padding:12px 46px 12px 18px;
+  }
+  .file-banner .fb-inner::before{
+    content:"\1F4A1";
+    margin-right:6px;
+  }
+  .fb-close{
+    position:absolute;top:8px;right:10px;
+    background:transparent;border:none;color:var(--text-soft);
+    font-size:22px;line-height:1;cursor:pointer;font-family:inherit;
+  }
+  .fb-close:hover{color:var(--text);}
+
+  /* ===== フッター ===== */
+  footer.site{
+    background:var(--sumi);color:#c3baa8;
+    text-align:center;font-size:13.5px;line-height:1.8;
+    padding:22px 18px;letter-spacing:.02em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width:520px){
+    body{font-size:16px;}
+    header.site h1{font-size:22px;}
+    .grid{grid-template-columns:1fr;}
+    .performer-grid{grid-template-columns:1fr;}
+    main{padding:16px 14px 50px;}
+    .modal-body{padding:16px 16px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- file:// で開いたときだけ表示される案内 -->
+<div class="file-banner" id="file-banner" style="display:none;">
+  <div class="fb-inner">
+    ダブルクリック起動では、YouTubeの仕様により動画をこの画面内で再生できません。「アーカイブスを開く.bat」から起動すると、その場で再生できます。
+    <button class="fb-close" id="fb-close" type="button" aria-label="閉じる">×</button>
+  </div>
+</div>
+
+<header class="site">
+  <div class="site-inner">
+    <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+    <h1>詩吟の実演・動画アーカイブス</h1>
+    <p class="lead">公開されている詩吟の実演動画を、吟題・吟士・括りから探せます</p>
+    <div class="count" id="count"></div>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-videos" type="button">動画一覧</button>
+      <button class="tab-btn" id="tab-titles" type="button">吟題一覧</button>
+      <button class="tab-btn" id="tab-performers" type="button">吟士名鑑</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 動画一覧ビュー -->
+  <section id="view-videos">
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="吟題・作者・吟士・動画名などで検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+      </div>
+      <p class="filter-label">括りでしぼりこむ（いくつでも選べます）</p>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">
+      該当する動画が見つかりませんでした。<br>検索の言葉を変えるか、「すべて解除」を押してみてください。
+    </div>
+  </section>
+
+  <!-- 吟題一覧ビュー: 同じ吟題（漢詩のタイトル）を吟じている複数の吟士の動画をまとめて見られる -->
+  <section id="view-titles" style="display:none;">
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="title-search" placeholder="吟題名・作者で検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+      </div>
+      <div class="sort-row">
+        <label class="filter-label" for="title-sort">並び順</label>
+        <select class="sort-select" id="title-sort">
+          <option value="count">吟士が多い順</option>
+          <option value="name">吟題名（50音）順</option>
+        </select>
+        <span class="pcount" id="title-count"></span>
+      </div>
+    </div>
+    <div class="title-grid" id="title-grid"></div>
+    <div class="empty" id="title-empty" style="display:none;">
+      該当する吟題が見つかりませんでした。<br>検索の言葉を変えてみてください。
+    </div>
+  </section>
+
+  <!-- 吟題の詳細ビュー: その吟題を吟じている吟士ごとの動画一覧 -->
+  <section id="view-title-detail" style="display:none;">
+    <button class="back-btn" id="title-detail-back" type="button">← 吟題一覧へ戻る</button>
+    <div id="title-detail-content"></div>
+  </section>
+
+  <!-- 吟士名鑑ビュー -->
+  <section id="view-performers" style="display:none;">
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="performer-search" placeholder="名前・よみ・流派・称号・都道府県で検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+      </div>
+      <div class="sort-row">
+        <label class="filter-label" for="performer-sort">並び順</label>
+        <select class="sort-select" id="performer-sort">
+          <option value="term">少壮吟士 期順</option>
+          <option value="name">名前順</option>
+          <option value="school">流派順</option>
+        </select>
+        <span class="pcount" id="performer-count"></span>
+      </div>
+    </div>
+    <div class="performer-grid" id="performer-grid"></div>
+    <div class="empty" id="performer-empty" style="display:none;">
+      該当する吟士が見つかりませんでした。<br>検索の言葉を変えてみてください。
+    </div>
+  </section>
+
+  <!-- 吟士プロフィール詳細ビュー -->
+  <section id="view-profile" style="display:none;">
+    <button class="back-btn" id="profile-back" type="button">← 吟士名鑑へ戻る</button>
+    <div id="profile-content"></div>
+  </section>
+</main>
+
+<footer class="site">
+  本アーカイブは各公式チャンネル等で公開されている動画へのリンク集です。<br>
+  動画の著作権は各権利者に帰属します。
+</footer>
+
+<!-- 再生モーダル -->
+<div class="modal-overlay" id="modal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
+    <div class="modal-video" id="modal-video"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- データは data.js を編集してください -->
+<script src="data.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var DATA = (window.ARCHIVE_DATA) || {};
+  var ITEMS = DATA.items || [];
+  var PERFORMERS = DATA.performers || [];
+  var CATEGORIES = DATA.categoriesFound || [];
+
+  // ---- 吟題（漢詩のタイトル）ごとのグルーピング ----
+  // ITEMS の title が同じものをまとめ、「この吟題を吟じている吟士」を横断的に見られるようにする。
+  // data.js 自体には手を加えず、画面表示のときだけ動的に組み立てる。
+  function buildTitleGroups(){
+    var map = {};
+    var order = [];
+    ITEMS.forEach(function(it){
+      var t = (it.title || "").trim() || "（タイトル未登録）";
+      if(!map[t]){ map[t] = { title:t, items:[], poets:{}, performers:{} }; order.push(t); }
+      map[t].items.push(it);
+      if(it.poet) map[t].poets[it.poet] = true;
+      if(it.performer) map[t].performers[it.performer] = true;
+    });
+    return order.map(function(t){
+      var g = map[t];
+      return {
+        title: g.title,
+        poets: Object.keys(g.poets),
+        performerCount: Object.keys(g.performers).length,
+        items: g.items
+      };
+    });
+  }
+  var TITLE_GROUPS = buildTitleGroups();
+
+  // ---- 文字の正規化（ひらがな⇔カタカナ同一視・大文字小文字・空白除去）----
+  function normalize(s){
+    if(!s) return "";
+    s = String(s).toLowerCase();
+    // カタカナ→ひらがな
+    s = s.replace(/[ァ-ヶ]/g, function(ch){
+      return String.fromCharCode(ch.charCodeAt(0) - 0x60);
+    });
+    // 空白除去
+    s = s.replace(/[\s　]/g, "");
+    return s;
+  }
+
+  var IS_FILE = (location.protocol === "file:");
+
+  // ---- 状態 ----
+  var state = {
+    query: "",
+    selectedCats: [],
+    view: "videos",  // videos / titles / titleDetail / performers / profile
+    performerQuery: "",
+    performerSort: "term",  // term / name / school
+    titleQuery: "",
+    titleSort: "count"  // count / name
+  };
+
+  // ---- 要素 ----
+  var el = {
+    count: document.getElementById("count"),
+    search: document.getElementById("search"),
+    filters: document.getElementById("filters"),
+    grid: document.getElementById("grid"),
+    empty: document.getElementById("empty"),
+    viewVideos: document.getElementById("view-videos"),
+    viewTitles: document.getElementById("view-titles"),
+    viewTitleDetail: document.getElementById("view-title-detail"),
+    viewPerformers: document.getElementById("view-performers"),
+    viewProfile: document.getElementById("view-profile"),
+    titleSearch: document.getElementById("title-search"),
+    titleSort: document.getElementById("title-sort"),
+    titleCount: document.getElementById("title-count"),
+    titleGrid: document.getElementById("title-grid"),
+    titleEmpty: document.getElementById("title-empty"),
+    titleDetailContent: document.getElementById("title-detail-content"),
+    titleDetailBack: document.getElementById("title-detail-back"),
+    tabTitles: document.getElementById("tab-titles"),
+    performerGrid: document.getElementById("performer-grid"),
+    performerSearch: document.getElementById("performer-search"),
+    performerSort: document.getElementById("performer-sort"),
+    performerCount: document.getElementById("performer-count"),
+    performerEmpty: document.getElementById("performer-empty"),
+    fileBanner: document.getElementById("file-banner"),
+    fbClose: document.getElementById("fb-close"),
+    profileContent: document.getElementById("profile-content"),
+    tabVideos: document.getElementById("tab-videos"),
+    tabPerformers: document.getElementById("tab-performers"),
+    profileBack: document.getElementById("profile-back"),
+    modal: document.getElementById("modal"),
+    modalVideo: document.getElementById("modal-video"),
+    modalBody: document.getElementById("modal-body"),
+    modalClose: document.getElementById("modal-close")
+  };
+
+  // ---- HTMLエスケープ ----
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+
+  // ---- 検索・フィルタ適用 ----
+  function filterItems(){
+    var q = normalize(state.query);
+    var cats = state.selectedCats;
+    return ITEMS.filter(function(it){
+      // 括り（OR条件）
+      if(cats.length){
+        var hit = (it.categories||[]).some(function(c){ return cats.indexOf(c) !== -1; });
+        if(!hit) return false;
+      }
+      // 検索（横断・部分一致）
+      if(q){
+        var hay = normalize(
+          (it.title||"") + " " + (it.poet||"") + " " +
+          (it.performer||"") + " " + (it.youtubeTitle||"") + " " + (it.note||"")
+        );
+        if(hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  // ---- カードHTML ----
+  function cardHTML(it){
+    var thumb = "https://img.youtube.com/vi/" + esc(it.youtubeId) + "/mqdefault.jpg";
+    var poet = it.poet ? '<span class="poet">作：' + esc(it.poet) + '</span>' : '';
+    var perf = "";
+    if(it.performer){
+      perf = '<div class="card-meta">吟：<span class="performer-link" data-perf="' +
+             esc(it.performer) + '" data-perfid="' + esc(it.performerId||"") +
+             '">' + esc(it.performer) + '</span></div>';
+    }
+    var badges = (it.categories||[]).map(function(c){
+      return '<span class="badge">' + esc(c) + '</span>';
+    }).join("");
+    var meta = poet ? '<div class="card-meta">' + poet + '</div>' : '';
+    var note = it.note ? '<div class="card-note">' + esc(it.note) + '</div>' : '';
+    return '' +
+      '<div class="card" data-id="' + esc(it.id) + '">' +
+        '<div class="thumb">' +
+          '<img src="' + thumb + '" alt="' + esc(it.title) + '" loading="lazy">' +
+          '<div class="play"><span></span></div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<h3 class="card-title">' + esc(it.title) + '</h3>' +
+          meta + perf +
+          '<div class="badges">' + badges + '</div>' +
+          note +
+        '</div>' +
+      '</div>';
+  }
+
+  // ---- 一覧描画 ----
+  function renderGrid(){
+    var list = filterItems();
+    el.count.innerHTML = '全<b>' + ITEMS.length + '</b>件中 <b>' + list.length + '</b>件を表示中';
+    if(list.length === 0){
+      el.grid.innerHTML = "";
+      el.empty.style.display = "block";
+      return;
+    }
+    el.empty.style.display = "none";
+    el.grid.innerHTML = list.map(cardHTML).join("");
+  }
+
+  // ---- フィルタボタン描画 ----
+  function renderFilters(){
+    var html = CATEGORIES.map(function(c){
+      var on = state.selectedCats.indexOf(c) !== -1 ? " on" : "";
+      return '<button type="button" class="chip' + on + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+    }).join("");
+    html += '<button type="button" class="chip clear" id="clear-cats">すべて解除</button>';
+    el.filters.innerHTML = html;
+  }
+
+  // ---- モーダル ----
+  function findItem(id){
+    for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id === id) return ITEMS[i]; }
+    return null;
+  }
+
+  function openModal(it){
+    if(IS_FILE){
+      // file:// では YouTube が画面内再生を拒否するため、サムネイル＋再生ボタンに切替
+      var thumb = "https://img.youtube.com/vi/" + encodeURIComponent(it.youtubeId) + "/hqdefault.jpg";
+      el.modalVideo.innerHTML =
+        '<img class="modal-thumb" src="' + thumb + '" alt="' + esc(it.title) + '">' +
+        '<a class="modal-play-btn" href="' + esc(it.url) + '" target="_blank" rel="noopener">▶ YouTubeで再生する</a>';
+    }else{
+      var src = "https://www.youtube.com/embed/" + encodeURIComponent(it.youtubeId) + "?autoplay=1&rel=0";
+      el.modalVideo.innerHTML = '<iframe src="' + src + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+
+    var rows = "";
+    rows += '<div class="row"><span class="k">吟題</span>' + esc(it.title) + '</div>';
+    if(it.poet)      rows += '<div class="row"><span class="k">作者</span>' + esc(it.poet) + '</div>';
+    if(it.performer) rows += '<div class="row"><span class="k">吟士</span><span class="performer-link" data-perf="' + esc(it.performer) + '" data-perfid="' + esc(it.performerId||"") + '">' + esc(it.performer) + '</span></div>';
+    var badges = (it.categories||[]).map(function(c){ return '<span class="badge">'+esc(c)+'</span>'; }).join("");
+
+    var fallback = IS_FILE ? "" :
+      '<p class="play-fallback">▶ 再生されない場合は <a href="' + esc(it.url) + '" target="_blank" rel="noopener">YouTubeで開く</a></p>';
+
+    el.modalBody.innerHTML =
+      fallback +
+      '<h2>' + esc(it.title) + '</h2>' +
+      '<div class="modal-badges">' + badges + '</div>' +
+      '<div class="modal-meta">' + rows + '</div>' +
+      (it.note ? '<div class="modal-note">' + esc(it.note) + '</div>' : '') +
+      '<div class="modal-actions">' +
+        '<a class="btn-yt" href="' + esc(it.url) + '" target="_blank" rel="noopener">YouTubeで開く</a>' +
+      '</div>';
+
+    el.modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(){
+    el.modal.classList.remove("open");
+    el.modalVideo.innerHTML = "";   // iframe破棄で音を止める
+    document.body.style.overflow = "";
+  }
+
+  // ---- 吟士名鑑 ----
+  function metaRowHTML(p){
+    var termBadge = (p.shosoTerm != null) ? '<span class="term-badge">第' + esc(p.shosoTerm) + '期</span>' : '';
+    var pref = p.prefecture ? '<span class="ppref">' + esc(p.prefecture) + '</span>' : '';
+    return (termBadge || pref) ? '<div class="pmeta">' + termBadge + pref + '</div>' : '';
+  }
+
+  function performerCardHTML(p){
+    var titles = (p.titles||[]).map(function(t){ return '<span class="badge">'+esc(t)+'</span>'; }).join("");
+    var kana = p.kana ? '<span class="pkana">（' + esc(p.kana) + '）</span>' : '';
+    var school = p.school ? '<div class="pschool">' + esc(p.school) + '</div>' : '';
+    return '' +
+      '<div class="performer-card" data-pid="' + esc(p.id) + '">' +
+        '<h3 class="pname">' + esc(p.name) + ' ' + kana + '</h3>' +
+        metaRowHTML(p) +
+        school +
+        '<div class="ptitles">' + titles + '</div>' +
+      '</div>';
+  }
+
+  // 名鑑の検索（名前・かな・流派・称号・都道府県を横断部分一致）
+  function filterPerformers(){
+    var q = normalize(state.performerQuery);
+    if(!q) return PERFORMERS.slice();
+    return PERFORMERS.filter(function(p){
+      var hay = normalize(
+        (p.name||"") + " " + (p.kana||"") + " " + (p.school||"") + " " +
+        (p.prefecture||"") + " " + ((p.titles||[]).join(" "))
+      );
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function nameKey(p){ return normalize(p.kana ? p.kana : p.name); }
+  function cmpName(a,b){ return nameKey(a).localeCompare(nameKey(b), "ja"); }
+
+  function sortPerformers(list){
+    var arr = list.slice();
+    if(state.performerSort === "name"){
+      arr.sort(cmpName);
+    }else if(state.performerSort === "school"){
+      arr.sort(function(a,b){
+        var s = normalize(a.school||"").localeCompare(normalize(b.school||""), "ja");
+        return s !== 0 ? s : cmpName(a,b);
+      });
+    }else{ // term: 期の昇順、無い人は末尾へ、同順は名前かな順
+      arr.sort(function(a,b){
+        var at = (a.shosoTerm == null) ? Infinity : a.shosoTerm;
+        var bt = (b.shosoTerm == null) ? Infinity : b.shosoTerm;
+        if(at !== bt) return at - bt;
+        return cmpName(a,b);
+      });
+    }
+    return arr;
+  }
+
+  function renderPerformers(){
+    var list = sortPerformers(filterPerformers());
+    el.performerCount.innerHTML = '全<b>' + PERFORMERS.length + '</b>名中 <b>' + list.length + '</b>名を表示中';
+    if(list.length === 0){
+      el.performerGrid.innerHTML = "";
+      el.performerEmpty.style.display = "block";
+      return;
+    }
+    el.performerEmpty.style.display = "none";
+    el.performerGrid.innerHTML = list.map(performerCardHTML).join("");
+  }
+
+  // その吟士の出演動画を抽出（performerIdがあればそれ優先、無ければ名前の部分一致）
+  function itemsOfPerformer(p){
+    return ITEMS.filter(function(it){
+      if(p.id && it.performerId && it.performerId === p.id) return true;
+      if(p.name && it.performer && it.performer.indexOf(p.name) !== -1) return true;
+      return false;
+    });
+  }
+
+  function findPerformerById(pid){
+    for(var i=0;i<PERFORMERS.length;i++){ if(PERFORMERS[i].id === pid) return PERFORMERS[i]; }
+    return null;
+  }
+  function findPerformerByName(name){
+    for(var i=0;i<PERFORMERS.length;i++){
+      if(name && name.indexOf(PERFORMERS[i].name) !== -1) return PERFORMERS[i];
+    }
+    return null;
+  }
+
+  function renderProfile(p){
+    var titles = (p.titles||[]).map(function(t){ return '<span class="badge">'+esc(t)+'</span>'; }).join("");
+    var kana = p.kana ? '<span class="pkana">（' + esc(p.kana) + '）</span>' : '';
+    var school = p.school ? '<div class="pschool">流派・所属：' + esc(p.school) + '</div>' : '';
+    var links = (p.links||[]).map(function(l){
+      return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label||l.url) + '</a>';
+    }).join("");
+    var linksBlock = links ? '<div class="plinks">' + links + '</div>' : '';
+
+    var vids = itemsOfPerformer(p);
+    var vidsBlock;
+    if(vids.length){
+      vidsBlock = '<h3 class="section-title">この吟士が出演する動画（' + vids.length + '件）</h3>' +
+                  '<div class="grid">' + vids.map(cardHTML).join("") + '</div>';
+    }else{
+      vidsBlock = '<h3 class="section-title">この吟士が出演する動画</h3>' +
+                  '<p class="card-note">現在、登録されている動画はありません。</p>';
+    }
+
+    el.profileContent.innerHTML =
+      '<div class="profile-head">' +
+        '<h2>' + esc(p.name) + ' ' + kana + '</h2>' +
+        metaRowHTML(p) +
+        school +
+        '<div class="ptitles">' + titles + '</div>' +
+        (p.profile ? '<p class="pprofile">' + esc(p.profile) + '</p>' : '') +
+        linksBlock +
+      '</div>' +
+      vidsBlock;
+  }
+
+  // ---- 吟題一覧 ----
+  function titleCardHTML(g){
+    var poet = g.poets.length ? '<div class="tpoet">作：' + esc(g.poets.join("／")) + '</div>' : '';
+    var perfBadge = g.performerCount > 1
+      ? '<span class="count-badge multi">' + g.performerCount + '人の吟士が吟じています</span>'
+      : (g.performerCount === 1 ? '<span class="count-badge">' + g.performerCount + '人の吟士</span>' : '');
+    return '' +
+      '<div class="title-card" data-title="' + esc(g.title) + '">' +
+        '<h3 class="tname">' + esc(g.title) + '</h3>' +
+        poet +
+        '<div class="tcounts">' +
+          '<span class="count-badge">動画 ' + g.items.length + '本</span>' +
+          perfBadge +
+        '</div>' +
+      '</div>';
+  }
+
+  function filterTitleGroups(){
+    var q = normalize(state.titleQuery);
+    if(!q) return TITLE_GROUPS.slice();
+    return TITLE_GROUPS.filter(function(g){
+      var hay = normalize(g.title + " " + g.poets.join(" "));
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function sortTitleGroups(list){
+    var arr = list.slice();
+    if(state.titleSort === "name"){
+      arr.sort(function(a,b){ return normalize(a.title).localeCompare(normalize(b.title), "ja"); });
+    }else{ // count: 吟士が多い順、同数なら動画数、それも同じなら吟題名
+      arr.sort(function(a,b){
+        if(b.performerCount !== a.performerCount) return b.performerCount - a.performerCount;
+        if(b.items.length !== a.items.length) return b.items.length - a.items.length;
+        return normalize(a.title).localeCompare(normalize(b.title), "ja");
+      });
+    }
+    return arr;
+  }
+
+  function renderTitles(){
+    var list = sortTitleGroups(filterTitleGroups());
+    el.titleCount.innerHTML = '全<b>' + TITLE_GROUPS.length + '</b>吟題中 <b>' + list.length + '</b>吟題を表示中';
+    if(list.length === 0){
+      el.titleGrid.innerHTML = "";
+      el.titleEmpty.style.display = "block";
+      return;
+    }
+    el.titleEmpty.style.display = "none";
+    el.titleGrid.innerHTML = list.map(titleCardHTML).join("");
+  }
+
+  function findTitleGroup(title){
+    for(var i=0;i<TITLE_GROUPS.length;i++){ if(TITLE_GROUPS[i].title === title) return TITLE_GROUPS[i]; }
+    return null;
+  }
+
+  function renderTitleDetail(g){
+    var poet = g.poets.length ? '<p class="pschool">作：' + esc(g.poets.join("／")) + '</p>' : '';
+    var perfNote = g.performerCount > 1
+      ? '<p class="card-note">' + g.performerCount + '人の吟士による吟詠を聞き比べられます。</p>'
+      : '';
+    el.titleDetailContent.innerHTML =
+      '<div class="profile-head">' +
+        '<h2>' + esc(g.title) + '</h2>' +
+        poet +
+        perfNote +
+      '</div>' +
+      '<h3 class="section-title">この吟題の動画（' + g.items.length + '件）</h3>' +
+      '<div class="grid">' + g.items.map(cardHTML).join("") + '</div>';
+  }
+
+  function gotoTitleDetail(title){
+    var g = findTitleGroup(title);
+    if(!g) return;
+    renderTitleDetail(g);
+    showView("titleDetail");
+  }
+
+  // ---- ビュー切り替え ----
+  function showView(v){
+    state.view = v;
+    el.viewVideos.style.display      = (v === "videos") ? "" : "none";
+    el.viewTitles.style.display      = (v === "titles") ? "" : "none";
+    el.viewTitleDetail.style.display = (v === "titleDetail") ? "" : "none";
+    el.viewPerformers.style.display  = (v === "performers") ? "" : "none";
+    el.viewProfile.style.display     = (v === "profile") ? "" : "none";
+    el.tabVideos.classList.toggle("active", v === "videos");
+    el.tabTitles.classList.toggle("active", v === "titles" || v === "titleDetail");
+    el.tabPerformers.classList.toggle("active", v === "performers" || v === "profile");
+    window.scrollTo(0,0);
+  }
+
+  function gotoProfileByPerformer(pid, name){
+    var p = null;
+    if(pid) p = findPerformerById(pid);
+    if(!p && name) p = findPerformerByName(name);
+    if(!p){
+      // 名鑑に無い吟士でも簡易プロフィールを作って表示
+      p = { id:"", name:name||"", kana:"", titles:[], school:"", profile:"", links:[] };
+    }
+    renderProfile(p);
+    showView("profile");
+  }
+
+  // ---- イベント ----
+  el.search.addEventListener("input", function(e){
+    state.query = e.target.value;
+    renderGrid();
+  });
+
+  el.filters.addEventListener("click", function(e){
+    var t = e.target;
+    if(t.id === "clear-cats"){
+      state.selectedCats = [];
+      renderFilters(); renderGrid();
+      return;
+    }
+    var cat = t.getAttribute("data-cat");
+    if(cat){
+      var i = state.selectedCats.indexOf(cat);
+      if(i === -1) state.selectedCats.push(cat);
+      else state.selectedCats.splice(i,1);
+      renderFilters(); renderGrid();
+    }
+  });
+
+  // カードクリック（吟士リンクとカード本体を区別）
+  el.grid.addEventListener("click", function(e){
+    var pl = e.target.closest(".performer-link");
+    if(pl){
+      e.stopPropagation();
+      gotoProfileByPerformer(pl.getAttribute("data-perfid"), pl.getAttribute("data-perf"));
+      return;
+    }
+    var card = e.target.closest(".card");
+    if(card){
+      var it = findItem(card.getAttribute("data-id"));
+      if(it) openModal(it);
+    }
+  });
+
+  // プロフィール内の動画カードクリック
+  el.profileContent.addEventListener("click", function(e){
+    var pl = e.target.closest(".performer-link");
+    if(pl){
+      e.stopPropagation();
+      gotoProfileByPerformer(pl.getAttribute("data-perfid"), pl.getAttribute("data-perf"));
+      return;
+    }
+    var card = e.target.closest(".card");
+    if(card){
+      var it = findItem(card.getAttribute("data-id"));
+      if(it) openModal(it);
+    }
+  });
+
+  el.performerGrid.addEventListener("click", function(e){
+    var pc = e.target.closest(".performer-card");
+    if(pc){
+      var p = findPerformerById(pc.getAttribute("data-pid"));
+      if(p){ renderProfile(p); showView("profile"); }
+    }
+  });
+
+  // 吟題カードのクリック
+  el.titleGrid.addEventListener("click", function(e){
+    var tc = e.target.closest(".title-card");
+    if(tc) gotoTitleDetail(tc.getAttribute("data-title"));
+  });
+
+  // 吟題詳細の中の動画カード・吟士リンク
+  el.titleDetailContent.addEventListener("click", function(e){
+    var pl = e.target.closest(".performer-link");
+    if(pl){
+      e.stopPropagation();
+      gotoProfileByPerformer(pl.getAttribute("data-perfid"), pl.getAttribute("data-perf"));
+      return;
+    }
+    var card = e.target.closest(".card");
+    if(card){
+      var it = findItem(card.getAttribute("data-id"));
+      if(it) openModal(it);
+    }
+  });
+
+  el.tabVideos.addEventListener("click", function(){ showView("videos"); });
+  el.tabTitles.addEventListener("click", function(){ renderTitles(); showView("titles"); });
+  el.tabPerformers.addEventListener("click", function(){ renderPerformers(); showView("performers"); });
+  el.profileBack.addEventListener("click", function(){ showView("performers"); });
+  el.titleDetailBack.addEventListener("click", function(){ renderTitles(); showView("titles"); });
+
+  // 吟題一覧の検索・並び替え
+  el.titleSearch.addEventListener("input", function(e){
+    state.titleQuery = e.target.value;
+    renderTitles();
+  });
+  el.titleSort.addEventListener("change", function(e){
+    state.titleSort = e.target.value;
+    renderTitles();
+  });
+
+  // 名鑑の検索・並び替え
+  el.performerSearch.addEventListener("input", function(e){
+    state.performerQuery = e.target.value;
+    renderPerformers();
+  });
+  el.performerSort.addEventListener("change", function(e){
+    state.performerSort = e.target.value;
+    renderPerformers();
+  });
+
+  // file:// バナー
+  if(IS_FILE){ el.fileBanner.style.display = ""; }
+  el.fbClose.addEventListener("click", function(){ el.fileBanner.style.display = "none"; });
+
+  // モーダルの閉じる
+  el.modalClose.addEventListener("click", closeModal);
+  el.modal.addEventListener("click", function(e){
+    if(e.target === el.modal) closeModal();  // 背景クリック
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && el.modal.classList.contains("open")) closeModal();
+  });
+
+  // ---- 初期描画 ----
+  renderFilters();
+  renderGrid();
+  renderPerformers();
+})();
+</script>
+</body>
+</html>

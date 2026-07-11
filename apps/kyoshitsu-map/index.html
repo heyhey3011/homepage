@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>全国 詩吟教室マップ｜近くの教室をさがす</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- ポータルへの戻り導線（控えめな細いバー） -->
+  <div class="portal-back-bar">
+    <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+  </div>
+
+  <!-- ヘッダー: PCは1行、スマホは2行（タイトル+ボタン / 検索欄） -->
+  <header class="app-header">
+    <h1 class="app-title" title="全国の詩吟教室を地図と一覧で探せます">全国 詩吟教室マップ</h1>
+    <div class="search-shell">
+      <input id="searchInput" type="search" autocomplete="off" inputmode="search"
+        placeholder="例: 横浜市、○○会 など">
+    </div>
+    <button id="locateButton" class="locate-button" type="button">
+      <span class="locate-icon" aria-hidden="true">📍</span>
+      <span class="label-long">近くの教室を探す</span>
+      <span class="label-short">近く</span>
+    </button>
+    <button id="resetButton" class="reset-button" type="button">
+      <span class="label-long">条件をリセット</span>
+      <span class="label-short">リセット</span>
+    </button>
+    <button id="aboutLink" class="about-link" type="button" title="出典・データについて">
+      <span class="label-long">このマップについて</span>
+      <span class="label-short" aria-hidden="true">ⓘ</span>
+    </button>
+    <button id="editModeButton" class="edit-mode-button" type="button"
+      title="編集モード（教室情報を手動で編集できます）" aria-pressed="false">✏️</button>
+  </header>
+
+  <!-- 編集モード中だけ表示されるバー -->
+  <div id="editBar" class="edit-bar" hidden>
+    <span class="edit-bar-label">✏️ 編集モード中</span>
+    <button id="addClassroomButton" class="edit-bar-button" type="button">＋ 教室を追加</button>
+    <button id="manageEditsButton" class="edit-bar-button" type="button">
+      編集内容の管理 <span id="editCountBadge" class="filter-badge" hidden>0</span>
+    </button>
+  </div>
+
+  <main class="app-main" data-view="list">
+    <!-- 細い情報バー: 件数＋（モバイルのみ）絞り込みトグル・表示切替 -->
+    <div class="count-bar">
+      <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="false" aria-controls="filtersBar">
+        <span aria-hidden="true">🔍</span>
+        <span>絞り込み</span>
+        <span id="filterBadge" class="filter-badge" hidden>0</span>
+        <span class="filters-toggle-caret" aria-hidden="true">▾</span>
+      </button>
+      <strong id="resultLabel">0件</strong>
+      <div class="view-switch" role="tablist" aria-label="表示切り替え">
+        <button id="tabList" class="view-tab active" type="button" role="tab" aria-selected="true">一覧</button>
+        <button id="tabMap" class="view-tab" type="button" role="tab" aria-selected="false">地図</button>
+      </div>
+    </div>
+
+    <div id="filtersBar" class="filters-bar" aria-label="絞り込み">
+      <div class="filter-block">
+        <div class="filter-title">お住まいの地域</div>
+        <div id="regionFilters" class="chip-grid"></div>
+      </div>
+      <div id="prefBlock" class="filter-block" hidden>
+        <div class="filter-title">都道府県</div>
+        <div id="prefectureFilters" class="chip-grid compact"></div>
+      </div>
+      <div id="cityBlock" class="filter-block" hidden>
+        <div class="filter-title">市区町村</div>
+        <div id="cityFilters" class="chip-grid compact"></div>
+      </div>
+      <div class="filter-block">
+        <div class="filter-title">流派（複数えらべます）</div>
+        <div id="styleFilters" class="chip-grid compact"></div>
+      </div>
+      <div class="filter-block">
+        <div class="filter-title">通える曜日（複数えらべます）</div>
+        <div id="dayFilters" class="chip-grid compact"></div>
+      </div>
+    </div>
+
+    <section id="listPanel" class="list-panel" aria-label="教室一覧">
+      <div id="resultList" class="result-list"></div>
+    </section>
+
+    <section class="map-panel">
+      <div id="map" aria-label="詩吟教室マップ"></div>
+      <div id="mapNotice" class="map-notice"></div>
+    </section>
+  </main>
+
+  <!-- 詳細ボトムシート／パネル -->
+  <div id="detailOverlay" class="detail-overlay" hidden></div>
+  <aside id="detailPanel" class="detail-panel" aria-label="教室の詳細" hidden>
+    <div class="detail-handle" aria-hidden="true"></div>
+    <button id="detailClose" class="detail-close" type="button" aria-label="閉じる">×</button>
+    <div id="detailBody" class="detail-body"></div>
+  </aside>
+
+  <!-- このマップについて（出典・ライセンス） -->
+  <div id="aboutOverlay" class="detail-overlay" hidden></div>
+  <div id="aboutModal" class="about-modal" role="dialog" aria-modal="true" aria-label="このマップについて" hidden>
+    <button id="aboutClose" class="detail-close" type="button" aria-label="閉じる">×</button>
+    <h2 class="detail-title">このマップについて</h2>
+    <p>全国の詩吟教室 6団体の公開情報をもとに作成した地図です。
+      教室の情報は <strong>2026年7月10日</strong> に各団体の公式サイトから取得しました。
+      最新の情報は各団体・教室へ直接ご確認ください。</p>
+
+    <h3 class="about-heading">教室データの出典（6団体）</h3>
+    <ul class="about-list">
+      <li>岳風流: <a href="https://www.gakufukai.or.jp/classroom-search/" target="_blank" rel="noopener">日本詩吟学院 岳風会 教室検索</a></li>
+      <li>関西吟詩: <a href="http://www.kangin.or.jp/contact/index.html?id=class" target="_blank" rel="noopener">関西吟詩文化協会 教室案内</a>（同協会の掲載情報をもとに、出典と取得日を明記のうえ掲載しています）</li>
+      <li>岳精流: <a href="https://www.gakuseiryu-gin.jp/school" target="_blank" rel="noopener">岳精流日本吟院 教室案内</a></li>
+      <li>吟道学院: <a href="https://www.gindoh.jp/school.html" target="_blank" rel="noopener">日本吟道学院 教室案内</a></li>
+      <li>吟道館流: <a href="https://www.gindoukan.com/member.html" target="_blank" rel="noopener">吟道館流 会員案内</a></li>
+      <li>哲山流: <a href="https://tetsuzan.com/school" target="_blank" rel="noopener">吟道哲山流興風吟詠会 教室案内</a></li>
+    </ul>
+
+    <h3 class="about-heading">各本部の連絡先</h3>
+    <p>掲載の連絡先は各団体が公式サイトで公開している情報です（取得時点）。
+      変更・削除のご希望は各団体の窓口、または本マップ管理者までご連絡ください。</p>
+    <ul id="aboutContacts" class="about-list"></ul>
+
+    <h3 class="about-heading">利用しているデータ・サービス</h3>
+    <ul class="about-list">
+      <li>住所の位置情報（ジオコーディング）: <a href="https://msearch.gsi.go.jp/address-search/AddressSearch" target="_blank" rel="noopener">国土地理院 住所検索API</a></li>
+      <li>郵便番号から住所への変換: <a href="http://zipcloud.ibsnet.co.jp/" target="_blank" rel="noopener">zipcloud</a>（日本郵便の郵便番号データを利用）</li>
+      <li>市区町村の読み仮名: <a href="https://github.com/geolonia/japanese-addresses" target="_blank" rel="noopener">Geolonia japanese-addresses</a>（ライセンス: CC BY 4.0）</li>
+      <li>地図: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢献者</li>
+    </ul>
+
+    <p class="about-note">掲載内容に問題がある場合は、お手数ですが運営者までご連絡ください。すみやかに対応いたします。</p>
+  </div>
+
+  <!-- 教室の編集・追加フォーム -->
+  <div id="editOverlay" class="detail-overlay" hidden></div>
+  <div id="editModal" class="edit-modal" role="dialog" aria-modal="true" aria-labelledby="editFormTitle" hidden>
+    <button id="editClose" class="detail-close" type="button" aria-label="閉じる">×</button>
+    <h2 id="editFormTitle" class="detail-title">教室を編集</h2>
+    <form id="editForm" class="edit-form">
+      <label class="edit-field">教室名 <span class="req-mark">必須</span>
+        <input id="ef_name" type="text" autocomplete="off">
+      </label>
+      <label class="edit-field">流派
+        <input id="ef_style" type="text" list="styleOptions" autocomplete="off" placeholder="例: 岳風流（自由に入力できます）">
+      </label>
+      <datalist id="styleOptions"></datalist>
+      <label class="edit-field">団体名
+        <input id="ef_org" type="text" autocomplete="off">
+      </label>
+      <label class="edit-field">代表者
+        <input id="ef_rep" type="text" autocomplete="off">
+      </label>
+      <div class="edit-field-grid">
+        <label class="edit-field">都道府県
+          <select id="ef_pref"></select>
+        </label>
+        <label class="edit-field">市区町村
+          <input id="ef_city" type="text" autocomplete="off" placeholder="例: 横浜市西区">
+        </label>
+      </div>
+      <label class="edit-field">住所
+        <input id="ef_address" type="text" autocomplete="off" placeholder="例: 東京都台東区根岸3-3-4">
+      </label>
+      <div class="edit-form-row">
+        <button id="ef_geocode" type="button" class="ghost-button small">住所から場所を探す</button>
+        <button id="ef_mapPick" type="button" class="ghost-button small">地図をクリックして位置を指定</button>
+      </div>
+      <div class="edit-field-grid">
+        <label class="edit-field">緯度
+          <input id="ef_lat" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 35.68">
+        </label>
+        <label class="edit-field">経度
+          <input id="ef_lng" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 139.76">
+        </label>
+      </div>
+      <label class="edit-field">稽古日
+        <input id="ef_day" type="text" autocomplete="off" placeholder="例: 第１・第３ 土曜日">
+      </label>
+      <label class="edit-field">時間
+        <input id="ef_time" type="text" autocomplete="off" placeholder="例: 13:00-15:00">
+      </label>
+      <label class="edit-field">電話
+        <input id="ef_phone" type="tel" autocomplete="off" placeholder="例: 03-1234-5678">
+      </label>
+      <label class="edit-field">メール
+        <input id="ef_email" type="email" autocomplete="off">
+      </label>
+      <label class="edit-field">備考
+        <textarea id="ef_note" rows="3"></textarea>
+      </label>
+      <div class="edit-form-actions">
+        <button type="submit" class="primary-button save-button">保存する</button>
+        <button id="ef_cancel" type="button" class="ghost-button">キャンセル</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 編集内容の管理 -->
+  <div id="manageOverlay" class="detail-overlay" hidden></div>
+  <div id="manageModal" class="edit-modal" role="dialog" aria-modal="true" aria-label="編集内容の管理" hidden>
+    <button id="manageClose" class="detail-close" type="button" aria-label="閉じる">×</button>
+    <h2 class="detail-title">編集内容の管理</h2>
+    <p class="manage-note">編集内容はこのブラウザの中に保存されています。
+      別のパソコンに移すときは「書き出し」→「読み込み」を使ってください。</p>
+    <p id="manageSummary" class="manage-summary"></p>
+    <div id="manageList" class="manage-list"></div>
+    <div class="edit-form-actions manage-actions">
+      <button id="manageExport" class="ghost-button" type="button">書き出し（ファイル保存）</button>
+      <button id="manageImportButton" class="ghost-button" type="button">読み込み</button>
+      <input id="manageImportFile" type="file" accept=".json,application/json" hidden>
+      <button id="manageClearAll" class="danger-button" type="button">全て取り消す</button>
+    </div>
+  </div>
+
+  <!-- 地図クリックで位置指定中のヒント -->
+  <div id="mapPickHint" class="map-pick-hint" hidden>
+    <span>地図をタップ／クリックして位置を指定してください</span>
+    <button id="mapPickCancel" type="button">やめる</button>
+  </div>
+
+  <!-- コピー完了などの通知 -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

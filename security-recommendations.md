@@ -77,7 +77,7 @@ YOUTUBE_API_KEY=your_new_api_key_here
 ## 🚨 緊急対応リマインダー
 
 ### すぐに実行してください:
-1. **Google Cloud Console** でAPIキー `AIzaSyD7b29NcCKuF3bqbBv-yxKhgCSsWSBBFf4` を削除
+1. **Google Cloud Console** でAPIキー `[REDACTED-LEAKED-KEY]` を削除
 2. 新しいAPIキーを作成し、適切な制限を設定
 3. 環境変数 `YOUTUBE_API_KEY` を設定
 

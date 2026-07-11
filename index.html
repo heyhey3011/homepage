@@ -1,366 +1,647 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.googleapis.com; frame-src https://www.youtube.com; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.googleapis.com; frame-src https://www.youtube.com; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <title>heyhey - 公式ポートフォリオサイト</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-green': '#B4D455',
-                        'kimono-black': '#1A1A1A',
-                        'pure-white': '#FFFFFF',
-                        'accent-gold': '#D8B25F',
-                        'accent-pink': '#F4A7B9'
-                    },
-                    fontFamily: {
-                        'zen': ['Zen Kaku Gothic Antique', 'sans-serif'],
-                        'noto': ['Noto Sans JP', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+
+    <title>heyhey 詩吟ポータル｜詩吟を、もっと探しやすく、学びやすく、続けやすく。</title>
+    <meta name="description" content="全国5,000件の詩吟教室マップを中心に、詩吟の始め方ガイド、漢詩辞典、吟の分析ツール、学習動画までまとめた詩吟ポータル。詩吟を始めたい人・深く学びたい人・教室を探す人のための総合サイトです。">
+    <link rel="canonical" href="https://heyhey3011.github.io/homepage/">
+
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="heyhey 詩吟ポータル">
+    <meta property="og:title" content="heyhey 詩吟ポータル｜詩吟を、もっと探しやすく、学びやすく、続けやすく。">
+    <meta property="og:description" content="全国5,000件の詩吟教室マップを中心に、詩吟を始めたい人・深く学びたい人のための学習ツールをまとめています。">
+    <meta property="og:url" content="https://heyhey3011.github.io/homepage/">
+    <meta property="og:image" content="https://heyhey3011.github.io/homepage/assets/img/ogp.jpg">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- フォント: Shippori Mincho B1（見出し）+ Zen Kaku Gothic New（本文） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('必要画像/washi-texture.png');
-            background-repeat: repeat;
-            background-color: #F8F5EF; /* 生成りのような色を背景色として指定 */
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- デザインシステム -->
+    <link rel="stylesheet" href="assets/css/site.css">
+
+    <!-- three.js（ローカル同梱 v0.182.0）の importmap
+         ※サブページでヒーロー演出を使う場合はパスに ../ を付けること -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "./assets/vendor/three/three.webgpu.js",
+            "three/webgpu": "./assets/vendor/three/three.webgpu.js",
+            "three/tsl": "./assets/vendor/three/three.tsl.js"
         }
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-    </style>
+    }
+    </script>
+
+    <!-- 構造化データ: WebSite -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "heyhey 詩吟ポータル",
+        "url": "https://heyhey3011.github.io/homepage/",
+        "description": "全国5,000件の詩吟教室マップを中心に、詩吟を始めたい人・深く学びたい人のための学習ツールをまとめた詩吟ポータルサイト。",
+        "inLanguage": "ja"
+    }
+    </script>
+
+    <!-- 構造化データ: FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "詩吟とは何ですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "詩吟とは、漢詩や和歌などに独特の節をつけて声高らかに吟じる、日本の伝統芸能です。おなかの底から声を出すため、健康や姿勢にも良いと言われています。年齢を問わず始められ、全国に多くの教室があります。まずは当サイトの始め方ガイドをご覧ください。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "詩吟初心者は何から始めればいいですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "まずは詩吟がどんなものかを知り、実際に声に出してみるのがおすすめです。当サイトの「詩吟を始める完全ガイド」では、教室の探し方から練習の続け方までを順番に紹介しています。あわせて初心者向けの7日間講座では、詩吟の始め方を毎日1通ずつメールでお届けしています。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "近くの詩吟教室はどう探せますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "当サイトの「全国詩吟教室マップ」をご利用ください。全国約5,000件の詩吟教室を、地域・流派・連絡先から探せます。お住まいの地域名で調べるだけで、近くの教室が見つかります。気になる教室が見つかったら、まずは見学のご連絡をしてみましょう。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "詩吟の流派とは何ですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "流派とは、詩吟の節回しや発声の型を受け継ぐグループのことです。全国には多くの流派があり、同じ漢詩でも流派によって節の付け方が少しずつ異なります。教室を選ぶときには、流派の違いもひとつの目安になります。詩吟大辞典でも流派について順次解説していきます。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "詩吟でよく使われる漢詩には何がありますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。漢詩辞典では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "自分の吟を上達させるにはどうすればいいですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "自分の吟を録音して聴き返すことがいちばんの近道です。吟猫ピッチマップを使うと、録音した吟の音の動きを目で確かめられます。YouTubeの解説動画やおすすめ動画も参考になります。さらに深く学びたい方は、オンライン教室の吟猫道場もご利用ください。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "掲載情報の修正や削除は依頼できますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "はい、受け付けています。詩吟教室マップや各種アーカイブに掲載している情報について、教室や吟士など関係者の方からの修正・削除依頼に対応しています。修正・削除依頼ページのフォームから、該当する掲載内容とご希望をお知らせください。確認のうえ順次対応いたします。"
+                }
+            }
+        ]
+    }
+    </script>
 </head>
-<body class="font-noto">
-    <!-- ヘッダー -->
-    <header class="bg-pure-white fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center">
-                        <img src="必要画像/吟ねこ.jpg" alt="heyhey Logo" class="h-8 w-8 rounded-full object-cover">
-                        <span class="font-zen font-bold text-kimono-black ml-3">heyheyのホームページ</span>
-                    </a>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="about.html" class="text-kimono-black hover:text-brand-green transition-colors">詳細プロフィール</a>
-                    <a href="blog.html" class="text-kimono-black hover:text-brand-green transition-colors">個人ブログ</a>
-                    <a href="contact.html" class="text-kimono-black hover:text-brand-green transition-colors">お問い合わせ</a>
-                </nav>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-kimono-black focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+<body>
+
+    <!-- SHARED-HEADER-START -->
+    <!-- ============================================================
+         共通ヘッダー（サブページ担当の方へ）
+         このコメントブロックごとコピーして使ってください。
+         サブディレクトリ（map/ beginner/ など）に置く場合の直し方:
+           - href="index.html" → href="../index.html"
+           - href="map/" → href="../map/"（他のサブページも同様に ../ を付ける）
+           - href="#videos" → href="../index.html#videos"
+           - 画像は assets/img/legacy/ のASCIIファイル名を使用（例: "assets/img/legacy/ginneko.jpg" → "../assets/img/legacy/ginneko.jpg"）
+           - dojo-details.html 等のルート直下ページも ../ を付ける
+         ============================================================ -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a href="index.html" class="site-header__brand">
+                <img src="assets/img/legacy/ginneko.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
+                <span>heyhey 詩吟ポータル</span>
+            </a>
+            <nav class="site-nav" aria-label="メインメニュー">
+                <a href="map/">教室マップ</a>
+                <a href="beginner/">始め方ガイド</a>
+                <a href="tools/">学習ツール</a>
+                <a href="#videos">動画で学ぶ</a>
+                <a href="community/">コミュニティ</a>
+                <a href="profile/">プロフィール</a>
+                <a href="contact/">お問い合わせ</a>
+                <a href="newsletter/" class="btn btn-primary">7日間講座</a>
+            </nav>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開閉する">
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-pure-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="about.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">詳細プロフィール</a>
-                <a href="blog.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">個人ブログ</a>
-                <a href="contact.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">お問い合わせ</a>
-            </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-menu__list">
+                <li><a href="map/">教室マップ</a></li>
+                <li><a href="beginner/">始め方ガイド</a></li>
+                <li><a href="tools/">学習ツール</a></li>
+                <li><a href="#videos">動画で学ぶ</a></li>
+                <li><a href="community/">コミュニティ</a></li>
+                <li><a href="profile/">プロフィール</a></li>
+                <li><a href="contact/">お問い合わせ</a></li>
+                <li class="mobile-menu__cta"><a href="newsletter/" class="btn btn-primary btn--small">7日間講座</a></li>
+            </ul>
         </div>
     </header>
+    <!-- SHARED-HEADER-END -->
 
-    <!-- ヒーローセクション -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 pt-32 pb-16">
-        <!-- キャッチコピー -->
-        <div class="lg:col-span-2 text-center mb-12">
-            <h1 class="font-zen text-4xl md:text-5xl font-black text-kimono-black leading-tight animate-on-scroll">
-                詩吟を、もっと気軽に、<br class="sm:hidden">もっと楽しく
-            </h1>
-        </div>
-        <!-- YouTube側 -->
-        <div class="bg-brand-green flex items-center justify-center py-16 lg:py-0 group shadow-2xl">
-            <div class="flex flex-col justify-center items-center w-full max-w-md mx-auto px-8 space-y-6">
-                <h2 class="font-zen text-3xl md:text-4xl font-black text-kimono-black text-center">YouTube発信</h2>
-                
-                <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-lg shadow-xl">
-                    <img src="必要画像/詩吟ちゃんねる2.png" alt="詩吟ちゃんねる" class="w-80 h-48 mx-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </a>
-                
-                <p class="text-kimono-black/80 text-lg max-w-md mx-auto text-center">
-                    詩吟をどこよりも分かりやすく解説
-                </p>
-                
-                <div class="flex justify-center space-x-4">
-                    <div class="bg-kimono-black/10 rounded-lg p-3 text-center w-40">
-                        <div class="flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                            <span class="font-zen text-xs text-kimono-black font-medium">チャンネル登録者数</span>
-                        </div>
-                        <div class="mt-1">
-                            <span id="subscriber-count" class="font-zen text-2xl font-bold text-kimono-black">0</span>
-                            <span class="text-kimono-black/60 text-sm ml-1">人</span>
-                        </div>
-                    </div>
-                    <div class="bg-kimono-black/10 rounded-lg p-3 text-center w-40">
-                        <div class="flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5 text-kimono-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span class="font-zen text-xs text-kimono-black font-medium">総動画本数</span>
-                        </div>
-                        <div class="mt-1">
-                            <span id="video-count" class="font-zen text-2xl font-bold text-kimono-black">0</span>
-                            <span class="text-kimono-black/60 text-sm ml-1">本</span>
-                        </div>
-                    </div>
+    <main>
+
+        <!-- ============ ファーストビュー（three.js ヒーロー） ============ -->
+        <section class="hero">
+            <div class="hero__canvas" id="hero-canvas" aria-hidden="true"></div>
+            <div class="container hero__inner">
+                <h1 class="hero__title">詩吟を、もっと探しやすく、<br>学びやすく、続けやすく。</h1>
+                <p class="hero__lead">全国5,000件の詩吟教室マップを中心に、詩吟を始めたい人・深く学びたい人のための学習ツールをまとめています。</p>
+                <div class="btn-group">
+                    <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="btn btn-primary btn--large">近くの詩吟教室を探す</a>
+                    <a href="beginner/" class="btn btn-secondary btn--large">詩吟を始める完全ガイドを見る</a>
+                    <a href="newsletter/" class="btn btn-secondary btn--large">詩吟の始め方を7日間で学ぶ</a>
                 </div>
+            </div>
+        </section>
 
-                <div class="space-y-4">
-                    <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="inline-block bg-kimono-black text-pure-white px-10 py-3 rounded-full hover:bg-opacity-80 transition-all transform hover:scale-105 font-bold">
-                        YouTubeへ
+        <!-- ============ 導入文（ファーストビュー直下・初心者の不安に寄り添う） ============ -->
+        <section class="section intro-section" id="intro">
+            <div class="container">
+                <div class="intro-lead reveal">
+                    <p>詩吟に興味はあるけれど、何から始めればいいかわからない。</p>
+                    <p>近くに教室があるのか、どんな先生がいるのか、どの流派を選べばいいのかもわからない。</p>
+                    <p>このサイトでは、そんな方が最初の一歩を踏み出せるように、全国の詩吟教室情報と学習ツールをまとめています。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ セクション1: 入口選択 ============ -->
+        <section class="section" id="entrance">
+            <div class="container">
+                <h2 class="section-title reveal">あなたに合う入口を選んでください</h2>
+                <p class="section__lead reveal">目的に合わせて、ぴったりのページへご案内します。</p>
+                <div class="grid grid--3 mt-3">
+                    <a href="beginner/" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-start.webp" alt="詩吟を始めたい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">詩吟を始めたい</h3>
+                            <p class="card__text">はじめての方へ。詩吟の魅力と始め方を、順を追ってご案内します。</p>
+                            <span class="card__arrow">始め方ガイドへ →</span>
+                        </div>
                     </a>
-                    <a href="recommended-videos.html" class="inline-block bg-transparent border-2 border-kimono-black text-kimono-black px-10 py-3 rounded-full hover:bg-kimono-black hover:text-pure-white transition-all transform hover:scale-105 font-bold">
-                        おすすめ動画一覧
+                    <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-classroom.webp" alt="近くの詩吟教室を探したい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">近くの教室を探したい</h3>
+                            <p class="card__text">全国5,000件の教室マップから、地域や流派で探せます。</p>
+                            <span class="card__arrow">教室マップへ →</span>
+                        </div>
+                    </a>
+                    <a href="apps/ginshi-archives/" data-link="tools.ginshiArchives" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-listen.webp" alt="よい吟を聴きたい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">よい吟を聴きたい</h3>
+                            <p class="card__text">実力派吟士の動画を、吟士別・漢詩別に整理したアーカイブスへ。</p>
+                            <span class="card__arrow">吟士アーカイブスへ →</span>
+                        </div>
+                    </a>
+                    <a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-kanshi.webp" alt="漢詩を学びたい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">漢詩を学びたい</h3>
+                            <p class="card__text">作者や時代背景、豆知識まで。詩吟でよく使われる漢詩の辞典へ。</p>
+                            <span class="card__arrow">漢詩辞典へ →</span>
+                        </div>
+                    </a>
+                    <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-analyze.webp" alt="自分の吟を分析したい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">自分の吟を分析したい</h3>
+                            <p class="card__text">録音した吟の音の動きを可視化して、練習に役立てられます。</p>
+                            <span class="card__arrow">吟猫ピッチマップへ →</span>
+                        </div>
+                    </a>
+                    <a href="community/" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-teach.webp" alt="指導に使いたい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">指導に使いたい</h3>
+                            <p class="card__text">吟猫道場や指導向けツールのご案内。教室運営にもお役立てください。</p>
+                            <span class="card__arrow">コミュニティ・指導向け案内へ →</span>
+                        </div>
                     </a>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 吟猫道場側 -->
-        <div class="bg-gray-800 flex items-center justify-center py-16 lg:py-0 group shadow-2xl">
-            <div class="flex flex-col justify-center items-center w-full max-w-md mx-auto px-8 space-y-6">
-                <h2 class="font-zen text-3xl md:text-4xl font-black text-pure-white text-center">オンライン詩吟教室</h2>
-                
-                <a href="dojo-details.html" class="block overflow-hidden rounded-lg shadow-xl">
-                    <img src="必要画像/吟猫道場2.png" alt="吟猫道場" class="w-80 h-48 mx-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </a>
-                
-                <p class="text-pure-white/80 text-lg max-w-md mx-auto text-center">
-                    いつでも、どこでも。自分のペースで<br>詩吟の奥深い世界を学ぶ。
-                </p>
-                
-                <a href="dojo-details.html" class="inline-block bg-accent-gold text-kimono-black px-10 py-3 rounded-full hover:bg-opacity-80 transition-all transform hover:scale-105 font-bold">
-                    吟猫道場の詳細・入会方法
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kindle書籍セクション -->
-    <section class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-zen text-4xl font-bold text-kimono-black animate-on-scroll">Kindle書籍</h2>
-            </div>
-            
-            <div class="flex space-x-6 md:space-x-0 md:grid md:grid-cols-3 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
-                <!-- 書籍カード1 -->
-                <div class="relative flex flex-col flex-none w-10/12 md:w-auto snap-center bg-white border rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-                    <div class="absolute top-2 left-2 transform -rotate-12 bg-accent-pink/90 text-white font-bold text-xs px-3 py-1 rounded-md shadow-lg">腹式呼吸の話</div>
-                    <a href="https://amzn.to/3uMn6QC" target="_blank" rel="noopener noreferrer">
-                        <img src="必要画像/kindle表紙「本当の腹式呼吸」.jpg" alt="書籍1" class="w-full h-64 object-contain bg-gray-50">
-                    </a>
-                    <div class="p-6 flex-grow">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">自分の声に自信が持てる!!本当の腹式呼吸</h3>
-                        <p class="text-gray-600 mb-4">声に自信が持てないあなたへ。腹式呼吸をマスターして、美しい声を手に入れよう。</p>
-                        <div class="space-y-2 mt-auto">
-                            <a href="https://amzn.to/3uMn6QC" target="_blank" rel="noopener noreferrer" class="block w-full bg-accent-gold text-kimono-black text-center py-2 rounded-md hover:bg-opacity-90 transition-colors font-medium">
-                                読んでみる（Amazon）
-                            </a>
-                            <a href="https://amzn.to/3pJyB8H" target="_blank" rel="noopener noreferrer" class="block w-full bg-accent-pink text-kimono-black text-center py-2 rounded-md hover:bg-opacity-90 transition-colors font-medium">
-                                聴いてみる（Audible）
-                            </a>
-                        </div>
+        <!-- ============ セクション2: 全国詩吟教室マップ ============ -->
+        <section class="section section--alt" id="map-section">
+            <div class="container">
+                <div class="split">
+                    <div class="split__media reveal">
+                        <img src="assets/img/map-section.webp" alt="全国詩吟教室マップのイメージ" width="1200" height="750" loading="lazy">
                     </div>
-                </div>
-
-                <!-- 書籍カード2 -->
-                <div class="relative flex flex-col flex-none w-10/12 md:w-auto snap-center bg-white border rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-                    <div class="absolute top-2 left-2 transform -rotate-12 bg-accent-pink/90 text-white font-bold text-xs px-3 py-1 rounded-md shadow-lg">詩吟歴1～10年目向け</div>
-                    <a href="https://amzn.to/3Mkz5Oe" target="_blank" rel="noopener noreferrer">
-                        <img src="必要画像/kindle表紙「初心者編」.jpg" alt="書籍2" class="w-full h-64 object-contain bg-gray-50">
-                    </a>
-                    <div class="p-6 flex-grow">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">詩吟の教科書－初心者編－</h3>
-                        <p class="text-gray-600 mb-4 h-16">詩吟を始めたい人のための完全ガイド。基本から丁寧に解説しています。</p>
-                        <div class="space-y-2 mt-auto">
-                            <a href="https://amzn.to/3Mkz5Oe" target="_blank" rel="noopener noreferrer" class="block w-full bg-accent-gold text-kimono-black text-center py-2 rounded-md hover:bg-opacity-90 transition-colors font-medium">
-                                読んでみる（Amazon）
-                            </a>
-                            <a href="https://amzn.to/4bE7i4b" target="_blank" rel="noopener noreferrer" class="block w-full bg-accent-pink text-kimono-black text-center py-2 rounded-md hover:bg-opacity-90 transition-colors font-medium">
-                                聴いてみる（Audible）
-                            </a>
+                    <div class="reveal">
+                        <h2>全国5,000件の詩吟教室を探せます。</h2>
+                        <p>全国の詩吟教室情報を、地域・流派・連絡先などから探せるマップです。詩吟を始めたい方、近くの教室を探したい方は、まずこちらをご利用ください。</p>
+                        <div class="mt-2">
+                            <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="btn btn-primary btn--large">詩吟教室マップを開く</a>
                         </div>
-                    </div>
-                </div>
-
-                <!-- 書籍カード3 -->
-                <div class="relative flex flex-col flex-none w-10/12 md:w-auto snap-center bg-white border rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-                    <div class="absolute top-2 left-2 transform -rotate-12 bg-accent-pink/90 text-white font-bold text-xs px-3 py-1 rounded-md shadow-lg">詩吟に興味ある人向け</div>
-                    <a href="https://amzn.to/43hkDP6" target="_blank" rel="noopener noreferrer">
-                        <img src="必要画像/kindle表紙「入門編」.jpg" alt="書籍3" class="w-full h-64 object-contain bg-gray-50">
-                    </a>
-                    <div class="p-6 flex-grow">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">詩吟の教科書－入門編－</h3>
-                        <p class="text-gray-600 mb-4 h-16">詩吟の世界をもっと深く知りたい方へ。実践的な内容で上達を目指しましょう。</p>
-                        <a href="https://amzn.to/43hkDP6" target="_blank" rel="noopener noreferrer" class="block w-full bg-accent-gold text-kimono-black text-center py-2 rounded-md hover:bg-opacity-90 transition-colors font-medium mt-auto">
-                            読んでみる（Amazon）
-                        </a>
+                        <p class="mt-2 note-link"><a href="request/">掲載情報の修正・削除依頼はこちら</a></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- その他の活動セクション -->
-    <section class="py-24 border-t">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-zen text-4xl font-bold text-kimono-black animate-on-scroll">その他の活動</h2>
+        <!-- ============ セクション3: 詩吟学習ツール一覧 ============ -->
+        <section class="section" id="tools-list">
+            <div class="container">
+                <h2 class="section-title reveal">詩吟学習ツール一覧</h2>
+                <p class="section__lead reveal">詩吟の学習を助ける無料ツールを開発・公開しています。</p>
+                <div class="grid grid--3 mt-3">
+                    <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-map.webp" alt="全国詩吟教室マップ" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">全国詩吟教室マップ <span class="badge" data-link-status="tools.classroomMap"></span></h3>
+                            <p class="card__text">全国5,000件の詩吟教室を、地域・流派・連絡先から探せます。</p>
+                        </div>
+                    </a>
+                    <a href="apps/ginshi-archives/" data-link="tools.ginshiArchives" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-archives.webp" alt="実力派吟士アーカイブス" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">実力派吟士アーカイブス <span class="badge" data-link-status="tools.ginshiArchives"></span></h3>
+                            <p class="card__text">YouTubeなどにある実力派吟士の動画を、吟士別・所属別・漢詩別に整理していきます。</p>
+                        </div>
+                    </a>
+                    <a href="apps/shigin-jiten/" data-link="tools.shiginDictionary" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-shigin-dict.webp" alt="詩吟大辞典" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">詩吟大辞典 <span class="badge" data-link-status="tools.shiginDictionary"></span></h3>
+                            <p class="card__text">詩吟に関する用語、流派、技巧、歴史、素朴な疑問を調べられる統合辞典です。</p>
+                        </div>
+                    </a>
+                    <a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-kanshi-dict.webp" alt="漢詩辞典" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">漢詩辞典 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
+                            <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
+                        </div>
+                    </a>
+                    <a href="https://ginneko-conductor.netlify.app/" data-link="tools.ginnekoConductor" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
+                            <p class="card__text">詩吟学習をサポートするツールです。</p>
+                        </div>
+                    </a>
+                    <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-pitchmap.webp" alt="吟猫ピッチマップ" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">吟猫ピッチマップ <span class="badge" data-link-status="tools.ginnekoPitchmap"></span></h3>
+                            <p class="card__text">録音データを読み込み、音の動きを可視化するツールです。自分の吟の分析や、指導時の説明に使えます。</p>
+                        </div>
+                    </a>
+                </div>
+                <p class="text-center mt-3 reveal"><a href="tools/" class="btn btn-ghost">学習ツールの詳しい紹介を見る</a></p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <a href="https://x.com/heyhey3011" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 block group animate-on-scroll">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-kimono-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-gold transition-colors">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2 group-hover:text-accent-gold transition-colors">X (旧Twitter)</h3>
-                        <p class="text-gray-600 mb-4 h-24">詩吟に関する情報や日々の活動をリアルタイムで発信中。</p>
-                        <span class="text-accent-gold hover:text-kimono-black transition-colors font-medium">
-                            詳細を見る →
-                        </span>
-                    </div>
-                </a>
+        </section>
 
-                <a href="https://stand.fm/channels/5f18a737907968e29d7a6b68" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 block group animate-on-scroll">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-kimono-black transition-colors">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9v7c0 1.1.9 2 2 2h4v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-4v8h4c1.1 0 2-.9 2-2v-7c0-4.97-4.03-9-9-9z"/></svg>
-                        </div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2 group-hover:text-accent-gold transition-colors">音声配信</h3>
-                        <p class="text-gray-600 mb-4 h-24">詩吟や日常の話題をstand.fmで音声配信しています。</p>
-                        <span class="text-accent-gold hover:text-kimono-black transition-colors font-medium">
-                            詳細を見る →
-                        </span>
+        <!-- ============ セクション4: 動画で詩吟を学ぶ ============ -->
+        <section class="section section--alt" id="videos">
+            <div class="container">
+                <h2 class="section-title reveal">動画で詩吟を学ぶ</h2>
+                <p class="section__lead reveal">heyheyのYouTubeでは、詩吟をわかりやすく学べる動画を発信しています。初心者向けのおすすめ動画や、吟猫道場への入り方もこちらから確認できます。</p>
+                <div class="stats-row mt-3 reveal">
+                    <div class="stat-box">
+                        <span class="stat-box__label">チャンネル登録者数</span>
+                        <span class="stat-box__value" id="subscriber-count">-</span><span class="stat-box__unit">人</span>
                     </div>
-                </a>
-
-                <a href="https://open.spotify.com/show/6GtLnXezwhCTmwDuKNBraE?si=jAoPXuPaSVeaXnkvivDxlQ" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 block group animate-on-scroll">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-kimono-black transition-colors">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
-                        </div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2 group-hover:text-accent-gold transition-colors">ビデオPodcast</h3>
-                        <p class="text-gray-600 mb-4 h-24">詩吟を知らない人に映像付きで分かりやすく解説してます（全9本）</p>
-                        <span class="text-accent-gold hover:text-kimono-black transition-colors font-medium">
-                            詳細を見る →
-                        </span>
+                    <div class="stat-box">
+                        <span class="stat-box__label">総動画本数</span>
+                        <span class="stat-box__value" id="video-count">-</span><span class="stat-box__unit">本</span>
                     </div>
-                </a>
-
-                <a href="https://suno.com/me" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 block group animate-on-scroll">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-accent-pink rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-kimono-black transition-colors">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-                        </div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2 group-hover:text-accent-gold transition-colors">Suno</h3>
-                        <p class="text-gray-600 mb-4 h-24">AIを使った詩吟楽曲を制作。代表作「富士山」などを発信しています。</p>
-                        <span class="text-accent-gold hover:text-kimono-black transition-colors font-medium">
-                            詳細を見る →
-                        </span>
-                    </div>
-                </a>
-                
-                <a href="https://shigin.net/p/r/cbWMf1ve" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 block group animate-on-scroll">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-kimono-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-gold transition-colors">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        </div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2 group-hover:text-accent-gold transition-colors">詩吟メルマガ</h3>
-                        <p class="text-gray-600 mb-4 h-24">詩吟の学習に役立つ情報やコツを定期的にお届けしています。</p>
-                        <span class="text-accent-gold hover:text-kimono-black transition-colors font-medium">
-                            詳細を見る →
-                        </span>
-                    </div>
-                </a>
+                </div>
+                <div class="btn-group mt-3 reveal">
+                    <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">YouTube『詩吟ちゃんねる』を見る</a>
+                    <a href="recommended-videos.html" class="btn btn-secondary">おすすめ動画を見る</a>
+                    <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- ============ セクション5: 7日間講座・更新通知 ============ -->
+        <section class="section" id="course">
+            <div class="container">
+                <div class="split split--reverse">
+                    <div class="split__media reveal">
+                        <img src="assets/img/course-7days.webp" alt="初心者向け7日間講座のイメージ" width="1200" height="750" loading="lazy">
+                    </div>
+                    <div class="reveal">
+                        <h2>詩吟の始め方を7日間で学べます。</h2>
+                        <p>詩吟を始めたい方に向けて、教室の探し方、良い吟の聴き方、漢詩の学び方、練習の続け方を7日間でお届けします。あわせて、詩吟教室マップや吟猫ツールの更新情報もお知らせします。</p>
+                        <ol class="day-list mt-2">
+                            <li><span class="day-list__day">Day1</span><span class="day-list__text">詩吟とは何か</span></li>
+                            <li><span class="day-list__day">Day2</span><span class="day-list__text">良い吟の聴き方</span></li>
+                            <li><span class="day-list__day">Day3</span><span class="day-list__text">近くの教室の探し方</span></li>
+                            <li><span class="day-list__day">Day4</span><span class="day-list__text">流派との付き合い方</span></li>
+                            <li><span class="day-list__day">Day5</span><span class="day-list__text">漢詩を味わう方法</span></li>
+                            <li><span class="day-list__day">Day6</span><span class="day-list__text">自分の吟を録音して練習する方法</span></li>
+                            <li><span class="day-list__day">Day7</span><span class="day-list__text">継続するための次の一歩</span></li>
+                        </ol>
+                        <div class="mt-2 mb-2">
+                            <a data-link="newsletter.beginner" class="btn btn-primary btn--large">7日間講座を無料で受け取る</a>
+                        </div>
+                        <p class="mb-2">あなたに合った入口からどうぞ:</p>
+                        <div class="btn-group" style="justify-content: flex-start;">
+                            <a data-link="newsletter.beginner" class="btn btn-secondary btn--small">詩吟初心者の方</a>
+                            <a data-link="newsletter.learner" class="btn btn-secondary btn--small">学習者・ツール利用者の方</a>
+                            <a data-link="newsletter.teacher" class="btn btn-secondary btn--small">教室・指導者の方</a>
+                        </div>
+                        <p class="mt-2 note-link"><a href="newsletter/">7日間講座について詳しく見る</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- フッター -->
-    <footer class="bg-kimono-black text-pure-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center">
-                <p class="text-center text-gray-400">© 2025 heyhey. All rights reserved.</p>
+        <!-- ============ セクション6: もっと深く学びたい方へ ============ -->
+        <section class="section section--alt" id="community-section">
+            <div class="container">
+                <div class="split">
+                    <div class="split__media reveal">
+                        <img src="assets/img/community.webp" alt="詩吟コミュニティのイメージ" width="1200" height="750" loading="lazy">
+                    </div>
+                    <div class="reveal">
+                        <h2>もっと深く学びたい方へ</h2>
+                        <p>無料ツールや動画で学んだあと、継続して学びたい方は、オープンチャットや吟猫道場をご利用ください。</p>
+                        <div class="btn-group mt-2" style="justify-content: flex-start;">
+                            <a data-link="community.openChat" href="https://line.me/ti/g2/dQ7kQC3l9VKQwCiWqvT3qB20hVzkjw0LmVQmhg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer" class="btn btn-primary">オープンチャットに参加する</a>
+                            <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ セクション7: 書籍・音声・その他の活動 ============ -->
+        <section class="section" id="books">
+            <div class="container">
+                <h2 class="section-title reveal">書籍・音声・その他の活動</h2>
+                <div class="grid grid--3 mt-3">
+                    <div class="card book-card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/legacy/kindle-fukushiki.jpg" alt="Kindle書籍『自分の声に自信が持てる!!本当の腹式呼吸』の表紙" width="400" height="560" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">自分の声に自信が持てる!!本当の腹式呼吸</h3>
+                            <p class="card__text">声に自信が持てないあなたへ。腹式呼吸をマスターして、美しい声を手に入れよう。</p>
+                            <div class="book-card__links">
+                                <a href="https://amzn.to/3uMn6QC" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">読んでみる（Amazon）</a>
+                                <a href="https://amzn.to/3pJyB8H" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn--small">聴いてみる（Audible）</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card book-card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/legacy/kindle-shoshinsya.jpg" alt="Kindle書籍『詩吟の教科書－初心者編－』の表紙" width="400" height="560" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">詩吟の教科書－初心者編－</h3>
+                            <p class="card__text">詩吟を始めたい人のための完全ガイド。基本から丁寧に解説しています。</p>
+                            <div class="book-card__links">
+                                <a href="https://amzn.to/3Mkz5Oe" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">読んでみる（Amazon）</a>
+                                <a href="https://amzn.to/4bE7i4b" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn--small">聴いてみる（Audible）</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card book-card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/legacy/kindle-nyumon.jpg" alt="Kindle書籍『詩吟の教科書－入門編－』の表紙" width="400" height="560" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">詩吟の教科書－入門編－</h3>
+                            <p class="card__text">詩吟の世界をもっと深く知りたい方へ。実践的な内容で上達を目指しましょう。</p>
+                            <div class="book-card__links">
+                                <a href="https://amzn.to/43hkDP6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">読んでみる（Amazon）</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pill-links mt-3 reveal">
+                    <a href="https://x.com/heyhey3011" target="_blank" rel="noopener noreferrer">X（旧Twitter）</a>
+                    <a href="https://stand.fm/channels/5f18a737907968e29d7a6b68" target="_blank" rel="noopener noreferrer">stand.fm（音声配信）</a>
+                    <a href="https://open.spotify.com/show/6GtLnXezwhCTmwDuKNBraE?si=jAoPXuPaSVeaXnkvivDxlQ" target="_blank" rel="noopener noreferrer">Spotify（ビデオPodcast）</a>
+                    <a href="https://suno.com/me" target="_blank" rel="noopener noreferrer">Suno（AI詩吟楽曲）</a>
+                    <a href="https://note.com/shigispel" target="_blank" rel="noopener noreferrer">note</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ セクション8: 掲載情報の修正・削除依頼 ============ -->
+        <section class="section section--dark" id="request-info">
+            <div class="container text-center">
+                <h2 class="section-title reveal">掲載情報の修正・削除依頼について</h2>
+                <p class="section__lead reveal">詩吟教室マップや各種アーカイブに掲載している情報について、関係者からの修正・削除依頼を受け付けています。</p>
+                <div class="btn-group mt-3 reveal">
+                    <a href="request/" class="btn btn-primary">修正・削除依頼を送る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title reveal">よくある質問</h2>
+                <div class="faq mt-3 reveal">
+                    <details>
+                        <summary>詩吟とは何ですか？</summary>
+                        <div class="faq__answer">
+                            <p>詩吟とは、漢詩や和歌などに独特の節をつけて声高らかに吟じる、日本の伝統芸能です。おなかの底から声を出すため、健康や姿勢にも良いと言われています。年齢を問わず始められ、全国に多くの教室があります。まずは<a href="beginner/">始め方ガイド</a>をご覧ください。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>詩吟初心者は何から始めればいいですか？</summary>
+                        <div class="faq__answer">
+                            <p>まずは詩吟がどんなものかを知り、実際に声に出してみるのがおすすめです。<a href="beginner/">詩吟を始める完全ガイド</a>では、教室の探し方から練習の続け方までを順番に紹介しています。あわせて<a href="newsletter/">初心者向けの7日間講座</a>では、詩吟の始め方を毎日1通ずつメールでお届けしています。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>近くの詩吟教室はどう探せますか？</summary>
+                        <div class="faq__answer">
+                            <p>当サイトの<a href="apps/kyoshitsu-map/" data-link="tools.classroomMap">全国詩吟教室マップ</a>をご利用ください。全国約5,000件の詩吟教室を、地域・流派・連絡先から探せます。お住まいの地域名で調べるだけで、近くの教室が見つかります。気になる教室が見つかったら、まずは見学のご連絡をしてみましょう。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>詩吟の流派とは何ですか？</summary>
+                        <div class="faq__answer">
+                            <p>流派とは、詩吟の節回しや発声の型を受け継ぐグループのことです。全国には多くの流派があり、同じ漢詩でも流派によって節の付け方が少しずつ異なります。教室を選ぶときには、流派の違いもひとつの目安になります。<a href="apps/shigin-jiten/" data-link="tools.shiginDictionary">詩吟大辞典</a>でも流派について順次解説していきます。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>詩吟でよく使われる漢詩には何がありますか？</summary>
+                        <div class="faq__answer">
+                            <p>石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。<a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary">漢詩辞典</a>では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>自分の吟を上達させるにはどうすればいいですか？</summary>
+                        <div class="faq__answer">
+                            <p>自分の吟を録音して聴き返すことがいちばんの近道です。<a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap">吟猫ピッチマップ</a>を使うと、録音した吟の音の動きを目で確かめられます。<a href="recommended-videos.html">YouTubeのおすすめ動画</a>も参考になります。さらに深く学びたい方は、オンライン教室の<a href="dojo-details.html">吟猫道場</a>もご利用ください。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>掲載情報の修正や削除は依頼できますか？</summary>
+                        <div class="faq__answer">
+                            <p>はい、受け付けています。詩吟教室マップや各種アーカイブに掲載している情報について、教室や吟士など関係者の方からの修正・削除依頼に対応しています。<a href="request/">修正・削除依頼ページ</a>のフォームから、該当する掲載内容とご希望をお知らせください。確認のうえ順次対応いたします。</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ このサイトについて ============ -->
+        <section class="section section--alt" id="about-site">
+            <div class="container">
+                <div class="about-site reveal">
+                    <h2 class="section-title">このサイトについて</h2>
+                    <p>heyhey 詩吟ポータルは、詩吟を始めたい方、学びを深めたい方、教室を探している方のための個人運営サイトです。</p>
+                    <p>掲載情報は正確性に配慮して整理していますが、内容に誤りがある場合があります。</p>
+                    <p>関係者の方からの修正・削除依頼を受け付けています。</p>
+                    <p class="mt-2 note-link"><a href="request/">掲載情報の修正・削除依頼はこちら</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SHARED-FOOTER-START -->
+    <!-- ============================================================
+         共通フッター（サブページ担当の方へ）
+         このコメントブロックごとコピーして使ってください。
+         サブディレクトリに置く場合は、サイト内リンクすべてに ../ を
+         付けてください（例: href="map/" → href="../map/"、
+         href="index.html#faq" → href="../index.html#faq"）。
+         ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div>
+                    <h2 class="site-footer__heading">heyhey 詩吟ポータル</h2>
+                    <p>詩吟を、もっと探しやすく、学びやすく、続けやすく。</p>
+                    <p>運営: heyhey<br>
+                    YouTube「詩吟ちゃんねる」運営・詩吟歴25年以上・2018年全国コンクール優勝</p>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">探す・始める</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="map/">全国詩吟教室マップ</a></li>
+                        <li><a href="beginner/">詩吟の始め方ガイド</a></li>
+                        <li><a href="newsletter/">初心者向け7日間講座</a></li>
+                        <li><a href="index.html#faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">学ぶ・楽しむ</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="tools/">詩吟学習ツール</a></li>
+                        <li><a href="recommended-videos.html">おすすめ動画</a></li>
+                        <li><a href="dojo-details.html">吟猫道場（オンライン教室）</a></li>
+                        <li><a href="community/">コミュニティ</a></li>
+                        <li><a href="how-to-record.html">録音のしかた</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">サイト情報</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="profile/">プロフィール</a></li>
+                        <li><a data-link="note" href="https://note.com/shigispel" target="_blank" rel="noopener noreferrer">note（個人ブログ）</a></li>
+                        <li><a href="contact/">お問い合わせ</a></li>
+                        <li><a href="request/">掲載情報の修正・削除依頼</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__meta">
+                <ul class="site-footer__legal">
+                    <li><a href="privacy/">プライバシーポリシー</a></li>
+                    <li><a href="legal/">特定電子メール法に基づく表記</a></li>
+                    <li><a href="unsubscribe/">配信停止について</a></li>
+                </ul>
+                <p>最終更新日: 2026年7月11日</p>
+                <p>&copy; 2026 heyhey. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- 設定ファイルを読み込み -->
+    <!-- SHARED-FOOTER-END -->
+
+    <!-- 共通スクリプト（全ページで読み込む。サブページからは ../assets/js/... ） -->
+    <script src="assets/js/links.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
+
+    <!-- YouTube統計（config.local.js は任意。無い場合はフォールバック値で表示） -->
     <script src="config.local.js"></script>
     <script src="config.js"></script>
-    
     <script>
-        // モバイルメニューの切り替え
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // スクロール時のヘッダー効果
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.classList.add('shadow-lg', 'bg-white/90', 'backdrop-blur-md');
-            } else {
-                header.classList.remove('shadow-lg', 'bg-white/90', 'backdrop-blur-md');
-            }
-        });
-
-        // スクロールアニメーションの設定
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // --- YouTube API連携 ---
+        // --- YouTube API連携（チャンネル登録者数・動画本数の表示） ---
+        // 旧index.htmlの仕組みをそのまま移植
         document.addEventListener('DOMContentLoaded', () => {
             // config.jsが読み込まれるのを少し待つ
             setTimeout(() => {
-                // APIキーとチャンネルIDの設定チェック
-                if (typeof CONFIG === 'undefined' || !CONFIG.YOUTUBE || !CONFIG.YOUTUBE.API_KEY || !CONFIG.YOUTUBE.CHANNEL_ID) {
-                    console.error('CRITICAL: CONFIG object or API Key/Channel ID is not defined.');
+                if (typeof CONFIG === 'undefined' || !CONFIG.YOUTUBE || !CONFIG.YOUTUBE.CHANNEL_ID) {
+                    console.info('YouTube統計: CONFIG未設定のため取得をスキップします。');
                     return;
                 }
 
                 const { API_KEY, CHANNEL_ID } = CONFIG.YOUTUBE;
 
-                // ----- index.html用の関数 -----
+                // APIキーが未設定・空・プレースホルダー（例: __YOUTUBE_API_KEY__）の場合はfetchせずスキップ
+                if (!API_KEY || API_KEY.startsWith('__')) {
+                    console.info('YouTube統計: APIキーが未設定のため取得をスキップします（表示はデフォルト文言のままです）。');
+                    return;
+                }
+
                 async function fetchChannelStats() {
                     const subscriberElement = document.getElementById('subscriber-count');
                     const videoElement = document.getElementById('video-count');
@@ -379,16 +660,19 @@
                             videoElement.textContent = parseInt(stats.videoCount, 10).toLocaleString();
                         }
                     } catch (error) {
-                        console.error('Failed to fetch channel stats:', error);
+                        console.warn('YouTube統計の取得に失敗しました:', error);
                         subscriberElement.textContent = CONFIG.SECURITY.FALLBACK_SUBSCRIBER_COUNT.toLocaleString();
-                        videoElement.textContent = `${CONFIG.SECURITY.FALLBACK_VIDEO_COUNT}+`;
+                        videoElement.textContent = `${CONFIG.SECURITY.FALLBACK_VIDEO_COUNT || 100}+`;
                     }
                 }
 
-                // ページに応じて必要な関数を実行
-                fetchChannelStats(); // for index.html
-            }, 100); // 100ミリ秒待機
+                fetchChannelStats();
+            }, 100);
         });
     </script>
+
+    <!-- ヒーロー3D演出（three.js / WebGPU。非対応環境は自動でWebGL2、
+         それも無理なら静的背景のまま表示） -->
+    <script type="module" src="assets/js/hero.js"></script>
 </body>
 </html>
