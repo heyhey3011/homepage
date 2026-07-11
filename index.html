@@ -34,9 +34,9 @@
     <script type="importmap">
     {
         "imports": {
-            "three": "assets/vendor/three/three.webgpu.js",
-            "three/webgpu": "assets/vendor/three/three.webgpu.js",
-            "three/tsl": "assets/vendor/three/three.tsl.js"
+            "three": "./assets/vendor/three/three.webgpu.js",
+            "three/webgpu": "./assets/vendor/three/three.webgpu.js",
+            "three/tsl": "./assets/vendor/three/three.tsl.js"
         }
     }
     </script>
@@ -592,12 +592,18 @@
         document.addEventListener('DOMContentLoaded', () => {
             // config.jsが読み込まれるのを少し待つ
             setTimeout(() => {
-                if (typeof CONFIG === 'undefined' || !CONFIG.YOUTUBE || !CONFIG.YOUTUBE.API_KEY || !CONFIG.YOUTUBE.CHANNEL_ID) {
-                    console.error('CRITICAL: CONFIG object or API Key/Channel ID is not defined.');
+                if (typeof CONFIG === 'undefined' || !CONFIG.YOUTUBE || !CONFIG.YOUTUBE.CHANNEL_ID) {
+                    console.info('YouTube統計: CONFIG未設定のため取得をスキップします。');
                     return;
                 }
 
                 const { API_KEY, CHANNEL_ID } = CONFIG.YOUTUBE;
+
+                // APIキーが未設定・空・プレースホルダー（例: __YOUTUBE_API_KEY__）の場合はfetchせずスキップ
+                if (!API_KEY || API_KEY.startsWith('__')) {
+                    console.info('YouTube統計: APIキーが未設定のため取得をスキップします（表示はデフォルト文言のままです）。');
+                    return;
+                }
 
                 async function fetchChannelStats() {
                     const subscriberElement = document.getElementById('subscriber-count');
@@ -617,7 +623,7 @@
                             videoElement.textContent = parseInt(stats.videoCount, 10).toLocaleString();
                         }
                     } catch (error) {
-                        console.error('Failed to fetch channel stats:', error);
+                        console.warn('YouTube統計の取得に失敗しました:', error);
                         subscriberElement.textContent = CONFIG.SECURITY.FALLBACK_SUBSCRIBER_COUNT.toLocaleString();
                         videoElement.textContent = `${CONFIG.SECURITY.FALLBACK_VIDEO_COUNT || 100}+`;
                     }
