@@ -756,6 +756,13 @@ a:focus-visible {
   text-decoration: underline;
 }
 
+/* 「フォーム準備中」の案内（既存の修正・削除リンクの下に小さく添える） */
+.report-edit-note {
+  color: var(--muted);
+  opacity: 0.85;
+}
+.report-edit-note a { color: var(--indigo); }
+
 /* 海外チップは控えめに */
 .chip-minor { opacity: 0.75; font-size: 13px; }
 
@@ -792,6 +799,9 @@ a:focus-visible {
   z-index: 650;
   flex-wrap: wrap;
 }
+/* display:flex は hidden 属性より優先度で勝ってしまうため、
+   非表示にする場合は明示的に display:none を指定する（β公開でのADMIN_MODE=false対応） */
+.edit-bar[hidden] { display: none; }
 
 .edit-bar-label {
   font-size: 14px;

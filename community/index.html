@@ -99,7 +99,7 @@
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="../index.html" class="site-header__brand">
-                <img src="../必要画像/吟ねこ.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
+                <img src="../assets/img/legacy/ginneko.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
                 <span>heyhey 詩吟ポータル</span>
             </a>
             <nav class="site-nav" aria-label="メインメニュー">
@@ -153,10 +153,16 @@
         <!-- ============ オープンチャット紹介 ============ -->
         <section class="section section--alt" id="open-chat">
             <div class="container">
-                <h2 class="section-title reveal">オープンチャットで気軽に交流</h2>
-                <p class="section__lead reveal">詩吟についてちょっと聞いてみたいことがあるとき、練習の悩みを誰かに話したいとき。オープンチャットなら、気軽に質問したり、同じ詩吟を楽しむ仲間と交流したりできます。教室に通う前の一歩としてもおすすめです。</p>
+                <h2 class="section-title reveal">オープンチャット「吟ねこコミュニティ」</h2>
+                <p class="section__lead reveal">詩吟ちゃんねるの裏話や、吟猫コンダクターの使い方・更新情報、詩吟に関するちょっとした話題を共有する場所です。見るだけでも、詩吟の交流をしてもOK。みなさんにとって心地よい場所になるよう運営しています。</p>
+                <div class="safety-badges reveal">
+                    <span class="safety-badge">見るだけ参加OK</span>
+                    <span class="safety-badge">匿名参加OK</span>
+                    <span class="safety-badge">詩吟初心者も歓迎</span>
+                </div>
+                <p class="reveal" style="margin-top:1.25rem;">参加のときにニックネームとアイコンを設定する画面が開きます。本名を入れなければ匿名のままご参加いただけますので、安心してのぞいてみてください。</p>
                 <div class="btn-group mt-3 reveal">
-                    <a data-link="community.openChat" class="btn btn-primary btn--large">オープンチャットに参加する</a>
+                    <a data-link="community.openChat" href="https://line.me/ti/g2/dQ7kQC3l9VKQwCiWqvT3qB20hVzkjw0LmVQmhg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">オープンチャットに参加する</a>
                 </div>
             </div>
         </section>
@@ -166,7 +172,7 @@
             <div class="container">
                 <div class="split split--reverse">
                     <div class="split__media reveal">
-                        <img src="../必要画像/吟猫道場2.png" alt="吟猫道場のイメージ" width="1200" height="750" loading="lazy">
+                        <img src="../assets/img/legacy/ginneko-dojo.png" alt="吟猫道場のイメージ" width="1200" height="750" loading="lazy">
                     </div>
                     <div class="reveal">
                         <h2>吟歴・流派・場所を問わない、オンライン詩吟教室「吟猫道場」</h2>
@@ -304,8 +310,7 @@
                     <h2 class="site-footer__heading">サイト情報</h2>
                     <ul class="site-footer__list">
                         <li><a href="../profile/">プロフィール</a></li>
-                        <li><a href="../about.html">詳細プロフィール</a></li>
-                        <li><a href="../blog.html">個人ブログ</a></li>
+                        <li><a data-link="note" href="https://note.com/shigispel" target="_blank" rel="noopener noreferrer">note（個人ブログ）</a></li>
                         <li><a href="../contact/">お問い合わせ</a></li>
                         <li><a href="../request/">掲載情報の修正・削除依頼</a></li>
                     </ul>
@@ -325,6 +330,31 @@
     <!-- SHARED-FOOTER-END -->
 
     <style>
+        /* 安心材料バッジ（オープンチャット） */
+        .safety-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .safety-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            padding: 0.55em 1.1em;
+            border-radius: 999px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            background-color: var(--color-matcha-soft);
+            color: var(--color-deep-green-dark);
+            border: 2px solid var(--color-deep-green);
+            box-shadow: var(--shadow-card);
+        }
+        .safety-badge::before {
+            content: "✓";
+            font-weight: 800;
+        }
         .steps-table-wrap {
             overflow-x: auto;
         }

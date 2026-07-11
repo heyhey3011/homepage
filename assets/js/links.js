@@ -2,6 +2,13 @@
  * ============================================================
  *  サイト全体のリンク管理ファイル
  * ------------------------------------------------------------
+ *  【公開先について（Cloudflare Pages 移行メモ）】
+ *  - 本サイトは相対パスのみで構成しており、ルート絶対パス（/...）は使用していません。
+ *    そのため GitHub Pages / Cloudflare Pages のどちらでもそのまま動作します。
+ *  - 各HTMLの <link rel="canonical"> と og:url は現在 GitHub Pages のURL
+ *    （https://heyhey3011.github.io/homepage/）を指しています。
+ *    独自ドメインが確定したら、全ページのこの2箇所を一括置換してください。
+ * ------------------------------------------------------------
  *  このファイルだけを編集すれば、サイト全体のリンクが差し替わります。
  *  各ページのHTMLには URL を直接書かず、
  *    <a data-link="tools.classroomMap">...</a>
@@ -87,7 +94,9 @@ window.SITE_LINKS = {
     // url が空の場合は /contact ページへフォールバック
     // ------------------------------------------------------------
     requestForm: {
-        url: ""
+        // 修正・削除依頼フォーム（ダミー）
+        // TODO: 後で実URL（Googleフォーム等）に差し替える
+        url: "https://forms.gle/DUMMY-request-form"
     },
 
     // requestForm.url が空のときのフォールバック先
@@ -97,12 +106,31 @@ window.SITE_LINKS = {
     requestFormFallbackUrl: "contact/",
 
     // ------------------------------------------------------------
+    // お問い合わせフォーム（種別ごと）
+    // contact/ ページのボタンから使用します。
+    // ※現在はすべてダミーURLです。Googleフォームが用意できたら、
+    //   下記の各 url を実際の https://forms.gle/... に差し替えてください。
+    // ------------------------------------------------------------
+    contactForms: {
+        // 講演依頼
+        koen:   { url: "https://forms.gle/DUMMY-contact-koen" },   // TODO: 後で実URLに差し替える
+        // 取材依頼
+        shuzai: { url: "https://forms.gle/DUMMY-contact-shuzai" }, // TODO: 後で実URLに差し替える
+        // 吟猫道場について
+        dojo:   { url: "https://forms.gle/DUMMY-contact-dojo" },   // TODO: 後で実URLに差し替える
+        // 掲載情報について
+        keisai: { url: "https://forms.gle/DUMMY-contact-keisai" }, // TODO: 後で実URLに差し替える
+        // その他のお問い合わせ
+        other:  { url: "https://forms.gle/DUMMY-contact-other" }   // TODO: 後で実URLに差し替える
+    },
+
+    // ------------------------------------------------------------
     // コミュニティ
     // ------------------------------------------------------------
     community: {
-        // LINEオープンチャット（未着）
+        // LINEオープンチャット「吟ねこコミュニティ」
         openChat: {
-            url: ""
+            url: "https://line.me/ti/g2/dQ7kQC3l9VKQwCiWqvT3qB20hVzkjw0LmVQmhg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
         },
         // 吟猫道場の詳細ページ（既存ページ）
         dojo: {
@@ -131,7 +159,7 @@ window.SITE_LINKS = {
     note: {
         url: "https://note.com/shigispel"
     },
-    // Kindle書籍（3冊）
+    // Kindle書籍（個別リンク・data-link 互換のため従来キーを維持）
     kindle1: {
         url: "https://amzn.to/3uMn6QC" // 自分の声に自信が持てる!!本当の腹式呼吸
     },
@@ -147,6 +175,36 @@ window.SITE_LINKS = {
     },
     audible2: {
         url: "https://amzn.to/4bE7i4b" // 詩吟の教科書－初心者編－（Audible）
+    },
+
+    // ------------------------------------------------------------
+    // 詩吟の教科書シリーズ（3冊まとめ・カード導線用）
+    // beginner/ の「最初の練習」とトップのセクション7で使用します。
+    // status: "live"（公開中） | "coming-soon"（準備中）
+    // ------------------------------------------------------------
+    books: {
+        // 入門編：詩吟をこれから知りたい方向け
+        nyumon: {
+            url: "https://amzn.to/43hkDP6",
+            status: "live",
+            label: "公開中"
+        },
+        // 初心者編：実際に練習を始めたい方向け
+        shoshinsya: {
+            url: "https://amzn.to/3Mkz5Oe",
+            status: "live",
+            label: "公開中"
+        },
+        // 中級編：さらに表現や技術を深めたい方向け
+        // ※書籍自体は実在を確認済みですが、確定した Amazon URL が未取得のため
+        //   現在は「準備中」（url 空）扱いにしています。
+        //   URL が判明したら、下記コメントのダミーを実URLに差し替えて url に設定してください。
+        //   ダミー: https://www.amazon.co.jp/DUMMY-chukyu  // TODO: 後で実URLに差し替える
+        chukyu: {
+            url: "",
+            status: "coming-soon",
+            label: "準備中"
+        }
     }
 };
 

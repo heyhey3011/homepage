@@ -2,6 +2,21 @@
 // data.js の window.CLASSROOM_DATA / window.CITY_YOMI を <script> で読み込む前提。
 // fetch は使いません（ダブルクリック＝file:// でそのまま動きます）。
 
+// ---------- 公開設定（β公開向け） ----------
+// 管理者向けの編集モード（✏️編集モード／＋教室を追加／編集内容の管理）を
+// 公開ページで見せるかどうかのスイッチ。β公開では必ず false にする。
+// TODO: 将来、教室情報を安全に更新する方法を用意する場合は、
+//       このファイルに直接ON/OFFを書くのではなく、
+//       別リポジトリ／ローカル環境で data.js を編集・再生成してから
+//       本番へデプロイする運用（管理者ログインやDB連携は導入しない）を想定。
+const ADMIN_MODE = false;
+
+// このマップからの「修正・削除」導線のURL設定（一元管理）
+// TODO: 下記は仮のダミーURLです。Googleフォームを用意でき次第、本番URLに差し替えてください。
+const FORM_URLS = {
+  requestForm: "https://forms.gle/DUMMY-request-form",
+};
+
 // 地方ブロック → 都道府県 のドリルダウン定義
 const REGIONS = [
   { name: "北海道・東北", prefs: ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"] },
@@ -75,6 +90,7 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
   cacheElements();
+  applyAdminModeVisibility();
   initMap();
   bindEvents();
 
@@ -99,6 +115,14 @@ function init() {
   updateEditCountBadge();
   restoreFromHash();
   applyFilters();
+  maybeAutoLocateOnFirstVisit();
+}
+
+// 公開ページでは編集モード関連のUIを丸ごと非表示にする（β公開向け）
+function applyAdminModeVisibility() {
+  if (ADMIN_MODE) return;
+  if (elements.editModeButton) elements.editModeButton.hidden = true;
+  if (elements.editBar) elements.editBar.hidden = true;
 }
 
 // データに実在する流派・地方を確定する
@@ -817,7 +841,8 @@ function detailHtml(record) {
     </div>
     ${sourceHtml}
     <p class="report-edit-line">
-      <a class="report-edit-link" href="../../request/" target="_blank" rel="noopener">この教室情報を修正・削除する</a>
+      <a class="report-edit-link" href="${escapeHtml(FORM_URLS.requestForm)}" target="_blank" rel="noopener">この教室情報を修正・削除する</a><br>
+      <span class="report-edit-note">（フォーム準備中。それまでは <a href="../../request/">こちら</a> から）</span>
     </p>
   `;
 }
@@ -1031,33 +1056,7 @@ function locateUser() {
     pos => {
       elements.locateButton.disabled = false;
       elements.locateButton.classList.remove("loading");
-
-      const { latitude, longitude } = pos.coords;
-      state.userLocation = { lat: latitude, lng: longitude };
-      state.sortByDistance = true;
-
-      // 各教室の距離を計算
-      state.records.forEach(r => {
-        r.distance = hasCoordinates(r)
-          ? haversine(latitude, longitude, r.latitudeNumber, r.longitudeNumber)
-          : null;
-      });
-
-      // 現在地マーカー
-      if (userMarker) map.removeLayer(userMarker);
-      userMarker = L.marker([latitude, longitude], {
-        icon: L.divIcon({
-          className: "",
-          html: '<div class="user-dot"></div>',
-          iconSize: [26, 26],
-          iconAnchor: [13, 13],
-        }),
-        zIndexOffset: 1000,
-      }).addTo(map);
-
-      map.flyTo([latitude, longitude], 12, { duration: 0.8 });
-      state.listLimit = LIST_STEP;
-      applyFilters();
+      applyUserLocation(pos.coords.latitude, pos.coords.longitude);
       showToast("近い順に並べ替えました");
     },
     err => {
@@ -1072,6 +1071,74 @@ function locateUser() {
       showToast(message);
     },
     { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 },
+  );
+}
+
+// 現在地の座標を受け取り、地図の移動・マーカー表示・距離順の並べ替えを行う
+// （手動の「現在地へ移動」ボタンと、初回訪問時の自動表示の両方から呼ばれる共通処理）
+function applyUserLocation(latitude, longitude) {
+  state.userLocation = { lat: latitude, lng: longitude };
+  state.sortByDistance = true;
+
+  // 各教室の距離を計算
+  state.records.forEach(r => {
+    r.distance = hasCoordinates(r)
+      ? haversine(latitude, longitude, r.latitudeNumber, r.longitudeNumber)
+      : null;
+  });
+
+  // 現在地マーカー
+  if (userMarker) map.removeLayer(userMarker);
+  userMarker = L.marker([latitude, longitude], {
+    icon: L.divIcon({
+      className: "",
+      html: '<div class="user-dot"></div>',
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+    }),
+    zIndexOffset: 1000,
+  }).addTo(map);
+
+  map.flyTo([latitude, longitude], 12, { duration: 0.8 });
+  state.listLimit = LIST_STEP;
+  applyFilters();
+}
+
+// ---------- 初回訪問時の現在地表示 ----------
+// 初めてこのページを開いたときだけ、そっと現在地の取得を試みる。
+// 許可されたら現在地周辺を初期表示。拒否・非対応・タイムアウトのときは
+// 何も表示せず（メッセージも出さず）、従来どおり全国表示のままにする。
+// 一度試した後は（許可・拒否どちらでも）このフラグが立つため、
+// 次回以降は自動では位置情報を尋ねない（ボタンからはいつでも手動で使える）。
+const FIRST_VISIT_LOCATE_KEY = "shiginMapFirstVisitLocate_v1";
+
+function maybeAutoLocateOnFirstVisit() {
+  let alreadyTried = true;
+  try {
+    alreadyTried = window.localStorage.getItem(FIRST_VISIT_LOCATE_KEY) === "1";
+  } catch (e) {
+    // localStorageが使えない環境では毎回は聞かず、自動表示はしない
+    return;
+  }
+  if (alreadyTried) return;
+
+  try {
+    window.localStorage.setItem(FIRST_VISIT_LOCATE_KEY, "1");
+  } catch (e) {
+    // 保存できない場合でも、今回だけは通常どおり試みる
+  }
+
+  if (!("geolocation" in navigator)) return;
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      applyUserLocation(pos.coords.latitude, pos.coords.longitude);
+      showToast("現在地の近くを表示しました");
+    },
+    () => {
+      // 拒否・タイムアウト等: 何も知らせず、全国表示のまま
+    },
+    { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 },
   );
 }
 
@@ -1268,6 +1335,7 @@ function mergeRecords() {
 /* ---------- 編集モード ---------- */
 
 function toggleEditMode() {
+  if (!ADMIN_MODE) return; // 公開ページでは編集モードは無効（β公開向け）
   if (!state.editMode && !storageAvailable()) {
     showToast("この環境では編集内容を保存できないため、編集モードを使えません");
     return;

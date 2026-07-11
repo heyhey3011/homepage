@@ -129,13 +129,13 @@
            - href="index.html" → href="../index.html"
            - href="map/" → href="../map/"（他のサブページも同様に ../ を付ける）
            - href="#videos" → href="../index.html#videos"
-           - src="必要画像/..." → src="../必要画像/..."
+           - 画像は assets/img/legacy/ のASCIIファイル名を使用（例: "assets/img/legacy/ginneko.jpg" → "../assets/img/legacy/ginneko.jpg"）
            - dojo-details.html 等のルート直下ページも ../ を付ける
          ============================================================ -->
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="index.html" class="site-header__brand">
-                <img src="必要画像/吟ねこ.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
+                <img src="assets/img/legacy/ginneko.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
                 <span>heyhey 詩吟ポータル</span>
             </a>
             <nav class="site-nav" aria-label="メインメニュー">
@@ -366,7 +366,7 @@
                     </div>
                 </div>
                 <div class="btn-group mt-3 reveal">
-                    <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">YouTubeを見る</a>
+                    <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">YouTube『詩吟ちゃんねる』を見る</a>
                     <a href="recommended-videos.html" class="btn btn-secondary">おすすめ動画を見る</a>
                     <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
                 </div>
@@ -418,7 +418,7 @@
                         <h2>もっと深く学びたい方へ</h2>
                         <p>無料ツールや動画で学んだあと、継続して学びたい方は、オープンチャットや吟猫道場をご利用ください。</p>
                         <div class="btn-group mt-2" style="justify-content: flex-start;">
-                            <a data-link="community.openChat" class="btn btn-primary">オープンチャットに参加する</a>
+                            <a data-link="community.openChat" href="https://line.me/ti/g2/dQ7kQC3l9VKQwCiWqvT3qB20hVzkjw0LmVQmhg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer" class="btn btn-primary">オープンチャットに参加する</a>
                             <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
                         </div>
                     </div>
@@ -433,7 +433,7 @@
                 <div class="grid grid--3 mt-3">
                     <div class="card book-card reveal">
                         <div class="card__media">
-                            <img src="必要画像/kindle表紙「本当の腹式呼吸」.jpg" alt="Kindle書籍『自分の声に自信が持てる!!本当の腹式呼吸』の表紙" width="400" height="560" loading="lazy">
+                            <img src="assets/img/legacy/kindle-fukushiki.jpg" alt="Kindle書籍『自分の声に自信が持てる!!本当の腹式呼吸』の表紙" width="400" height="560" loading="lazy">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">自分の声に自信が持てる!!本当の腹式呼吸</h3>
@@ -446,7 +446,7 @@
                     </div>
                     <div class="card book-card reveal">
                         <div class="card__media">
-                            <img src="必要画像/kindle表紙「初心者編」.jpg" alt="Kindle書籍『詩吟の教科書－初心者編－』の表紙" width="400" height="560" loading="lazy">
+                            <img src="assets/img/legacy/kindle-shoshinsya.jpg" alt="Kindle書籍『詩吟の教科書－初心者編－』の表紙" width="400" height="560" loading="lazy">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">詩吟の教科書－初心者編－</h3>
@@ -459,7 +459,7 @@
                     </div>
                     <div class="card book-card reveal">
                         <div class="card__media">
-                            <img src="必要画像/kindle表紙「入門編」.jpg" alt="Kindle書籍『詩吟の教科書－入門編－』の表紙" width="400" height="560" loading="lazy">
+                            <img src="assets/img/legacy/kindle-nyumon.jpg" alt="Kindle書籍『詩吟の教科書－入門編－』の表紙" width="400" height="560" loading="lazy">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">詩吟の教科書－入門編－</h3>
@@ -597,8 +597,7 @@
                     <h2 class="site-footer__heading">サイト情報</h2>
                     <ul class="site-footer__list">
                         <li><a href="profile/">プロフィール</a></li>
-                        <li><a href="about.html">詳細プロフィール</a></li>
-                        <li><a href="blog.html">個人ブログ</a></li>
+                        <li><a data-link="note" href="https://note.com/shigispel" target="_blank" rel="noopener noreferrer">note（個人ブログ）</a></li>
                         <li><a href="contact/">お問い合わせ</a></li>
                         <li><a href="request/">掲載情報の修正・削除依頼</a></li>
                     </ul>

@@ -12,6 +12,17 @@
   ・表示される動画やプロフィールの中身は「data.js」に入っています。
     追加・修正したいときは data.js を編集してください（README.md参照）。
   ・このファイル自体は基本さわらなくて大丈夫です。
+
+  [設計メモ / 将来の管理者編集機能について（TODO・未実装）]
+  ・現状、吟士名・所属・吟題・YouTube URL・説明文などの追加/修正/削除（CRUD）は、
+    このHTMLからは行えません（管理者ログインや画面上の編集モードは、β公開では
+    あえて実装していません）。
+  ・data.js の items[]（動画）・performers[]（吟士）を直接編集し、
+    このファイルを保存し直すことで内容を更新する運用とします。
+  ・将来、管理者向けの編集UIを作る場合も、パスワードをこのファイルに直書きしたり、
+    公開ページ上で誰でも編集できる状態にはしないこと。
+    （例: 別リポジトリ／ローカル環境で data.js を編集・生成 → 本番へデプロイ、
+    という運用を想定。教室マップ（kyoshitsu-map）の方針と揃える）
   ============================================================
 -->
 <style>
@@ -212,6 +223,29 @@
     text-align:center;color:var(--text-soft);padding:60px 20px;font-size:17px;
   }
 
+  /* ===== 吟題一覧 ===== */
+  .title-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
+  }
+  .title-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--kincha);
+    border-radius:10px;
+    padding:16px 18px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .title-card:hover{border-left-color:var(--sumi);}
+  .title-card .tname{font-size:20px;font-weight:600;margin:0;}
+  .title-card .tpoet{font-size:14px;color:var(--text-soft);margin-top:4px;}
+  .title-card .tcounts{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .count-badge{
+    background:var(--kinari-2);border:1px solid var(--line);color:var(--text-soft);
+    font-size:12.5px;padding:2px 9px;border-radius:6px;letter-spacing:.02em;
+  }
+  .count-badge.multi{background:var(--shu);color:#fff;border-color:var(--shu);font-weight:600;}
+
   /* ===== 吟士名鑑 ===== */
   .performer-grid{
     display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
@@ -384,6 +418,7 @@
     <div class="count" id="count"></div>
     <div class="tabs">
       <button class="tab-btn active" id="tab-videos" type="button">動画一覧</button>
+      <button class="tab-btn" id="tab-titles" type="button">吟題一覧</button>
       <button class="tab-btn" id="tab-performers" type="button">吟士名鑑</button>
     </div>
   </div>
@@ -403,6 +438,33 @@
     <div class="empty" id="empty" style="display:none;">
       該当する動画が見つかりませんでした。<br>検索の言葉を変えるか、「すべて解除」を押してみてください。
     </div>
+  </section>
+
+  <!-- 吟題一覧ビュー: 同じ吟題（漢詩のタイトル）を吟じている複数の吟士の動画をまとめて見られる -->
+  <section id="view-titles" style="display:none;">
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="title-search" placeholder="吟題名・作者で検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+      </div>
+      <div class="sort-row">
+        <label class="filter-label" for="title-sort">並び順</label>
+        <select class="sort-select" id="title-sort">
+          <option value="count">吟士が多い順</option>
+          <option value="name">吟題名（50音）順</option>
+        </select>
+        <span class="pcount" id="title-count"></span>
+      </div>
+    </div>
+    <div class="title-grid" id="title-grid"></div>
+    <div class="empty" id="title-empty" style="display:none;">
+      該当する吟題が見つかりませんでした。<br>検索の言葉を変えてみてください。
+    </div>
+  </section>
+
+  <!-- 吟題の詳細ビュー: その吟題を吟じている吟士ごとの動画一覧 -->
+  <section id="view-title-detail" style="display:none;">
+    <button class="back-btn" id="title-detail-back" type="button">← 吟題一覧へ戻る</button>
+    <div id="title-detail-content"></div>
   </section>
 
   <!-- 吟士名鑑ビュー -->
@@ -459,6 +521,31 @@
   var PERFORMERS = DATA.performers || [];
   var CATEGORIES = DATA.categoriesFound || [];
 
+  // ---- 吟題（漢詩のタイトル）ごとのグルーピング ----
+  // ITEMS の title が同じものをまとめ、「この吟題を吟じている吟士」を横断的に見られるようにする。
+  // data.js 自体には手を加えず、画面表示のときだけ動的に組み立てる。
+  function buildTitleGroups(){
+    var map = {};
+    var order = [];
+    ITEMS.forEach(function(it){
+      var t = (it.title || "").trim() || "（タイトル未登録）";
+      if(!map[t]){ map[t] = { title:t, items:[], poets:{}, performers:{} }; order.push(t); }
+      map[t].items.push(it);
+      if(it.poet) map[t].poets[it.poet] = true;
+      if(it.performer) map[t].performers[it.performer] = true;
+    });
+    return order.map(function(t){
+      var g = map[t];
+      return {
+        title: g.title,
+        poets: Object.keys(g.poets),
+        performerCount: Object.keys(g.performers).length,
+        items: g.items
+      };
+    });
+  }
+  var TITLE_GROUPS = buildTitleGroups();
+
   // ---- 文字の正規化（ひらがな⇔カタカナ同一視・大文字小文字・空白除去）----
   function normalize(s){
     if(!s) return "";
@@ -478,9 +565,11 @@
   var state = {
     query: "",
     selectedCats: [],
-    view: "videos",  // videos / performers / profile
+    view: "videos",  // videos / titles / titleDetail / performers / profile
     performerQuery: "",
-    performerSort: "term"  // term / name / school
+    performerSort: "term",  // term / name / school
+    titleQuery: "",
+    titleSort: "count"  // count / name
   };
 
   // ---- 要素 ----
@@ -491,8 +580,18 @@
     grid: document.getElementById("grid"),
     empty: document.getElementById("empty"),
     viewVideos: document.getElementById("view-videos"),
+    viewTitles: document.getElementById("view-titles"),
+    viewTitleDetail: document.getElementById("view-title-detail"),
     viewPerformers: document.getElementById("view-performers"),
     viewProfile: document.getElementById("view-profile"),
+    titleSearch: document.getElementById("title-search"),
+    titleSort: document.getElementById("title-sort"),
+    titleCount: document.getElementById("title-count"),
+    titleGrid: document.getElementById("title-grid"),
+    titleEmpty: document.getElementById("title-empty"),
+    titleDetailContent: document.getElementById("title-detail-content"),
+    titleDetailBack: document.getElementById("title-detail-back"),
+    tabTitles: document.getElementById("tab-titles"),
     performerGrid: document.getElementById("performer-grid"),
     performerSearch: document.getElementById("performer-search"),
     performerSort: document.getElementById("performer-sort"),
@@ -758,13 +857,95 @@
       vidsBlock;
   }
 
+  // ---- 吟題一覧 ----
+  function titleCardHTML(g){
+    var poet = g.poets.length ? '<div class="tpoet">作：' + esc(g.poets.join("／")) + '</div>' : '';
+    var perfBadge = g.performerCount > 1
+      ? '<span class="count-badge multi">' + g.performerCount + '人の吟士が吟じています</span>'
+      : (g.performerCount === 1 ? '<span class="count-badge">' + g.performerCount + '人の吟士</span>' : '');
+    return '' +
+      '<div class="title-card" data-title="' + esc(g.title) + '">' +
+        '<h3 class="tname">' + esc(g.title) + '</h3>' +
+        poet +
+        '<div class="tcounts">' +
+          '<span class="count-badge">動画 ' + g.items.length + '本</span>' +
+          perfBadge +
+        '</div>' +
+      '</div>';
+  }
+
+  function filterTitleGroups(){
+    var q = normalize(state.titleQuery);
+    if(!q) return TITLE_GROUPS.slice();
+    return TITLE_GROUPS.filter(function(g){
+      var hay = normalize(g.title + " " + g.poets.join(" "));
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function sortTitleGroups(list){
+    var arr = list.slice();
+    if(state.titleSort === "name"){
+      arr.sort(function(a,b){ return normalize(a.title).localeCompare(normalize(b.title), "ja"); });
+    }else{ // count: 吟士が多い順、同数なら動画数、それも同じなら吟題名
+      arr.sort(function(a,b){
+        if(b.performerCount !== a.performerCount) return b.performerCount - a.performerCount;
+        if(b.items.length !== a.items.length) return b.items.length - a.items.length;
+        return normalize(a.title).localeCompare(normalize(b.title), "ja");
+      });
+    }
+    return arr;
+  }
+
+  function renderTitles(){
+    var list = sortTitleGroups(filterTitleGroups());
+    el.titleCount.innerHTML = '全<b>' + TITLE_GROUPS.length + '</b>吟題中 <b>' + list.length + '</b>吟題を表示中';
+    if(list.length === 0){
+      el.titleGrid.innerHTML = "";
+      el.titleEmpty.style.display = "block";
+      return;
+    }
+    el.titleEmpty.style.display = "none";
+    el.titleGrid.innerHTML = list.map(titleCardHTML).join("");
+  }
+
+  function findTitleGroup(title){
+    for(var i=0;i<TITLE_GROUPS.length;i++){ if(TITLE_GROUPS[i].title === title) return TITLE_GROUPS[i]; }
+    return null;
+  }
+
+  function renderTitleDetail(g){
+    var poet = g.poets.length ? '<p class="pschool">作：' + esc(g.poets.join("／")) + '</p>' : '';
+    var perfNote = g.performerCount > 1
+      ? '<p class="card-note">' + g.performerCount + '人の吟士による吟詠を聞き比べられます。</p>'
+      : '';
+    el.titleDetailContent.innerHTML =
+      '<div class="profile-head">' +
+        '<h2>' + esc(g.title) + '</h2>' +
+        poet +
+        perfNote +
+      '</div>' +
+      '<h3 class="section-title">この吟題の動画（' + g.items.length + '件）</h3>' +
+      '<div class="grid">' + g.items.map(cardHTML).join("") + '</div>';
+  }
+
+  function gotoTitleDetail(title){
+    var g = findTitleGroup(title);
+    if(!g) return;
+    renderTitleDetail(g);
+    showView("titleDetail");
+  }
+
   // ---- ビュー切り替え ----
   function showView(v){
     state.view = v;
-    el.viewVideos.style.display    = (v === "videos") ? "" : "none";
-    el.viewPerformers.style.display= (v === "performers") ? "" : "none";
-    el.viewProfile.style.display   = (v === "profile") ? "" : "none";
+    el.viewVideos.style.display      = (v === "videos") ? "" : "none";
+    el.viewTitles.style.display      = (v === "titles") ? "" : "none";
+    el.viewTitleDetail.style.display = (v === "titleDetail") ? "" : "none";
+    el.viewPerformers.style.display  = (v === "performers") ? "" : "none";
+    el.viewProfile.style.display     = (v === "profile") ? "" : "none";
     el.tabVideos.classList.toggle("active", v === "videos");
+    el.tabTitles.classList.toggle("active", v === "titles" || v === "titleDetail");
     el.tabPerformers.classList.toggle("active", v === "performers" || v === "profile");
     window.scrollTo(0,0);
   }
@@ -841,9 +1022,42 @@
     }
   });
 
+  // 吟題カードのクリック
+  el.titleGrid.addEventListener("click", function(e){
+    var tc = e.target.closest(".title-card");
+    if(tc) gotoTitleDetail(tc.getAttribute("data-title"));
+  });
+
+  // 吟題詳細の中の動画カード・吟士リンク
+  el.titleDetailContent.addEventListener("click", function(e){
+    var pl = e.target.closest(".performer-link");
+    if(pl){
+      e.stopPropagation();
+      gotoProfileByPerformer(pl.getAttribute("data-perfid"), pl.getAttribute("data-perf"));
+      return;
+    }
+    var card = e.target.closest(".card");
+    if(card){
+      var it = findItem(card.getAttribute("data-id"));
+      if(it) openModal(it);
+    }
+  });
+
   el.tabVideos.addEventListener("click", function(){ showView("videos"); });
+  el.tabTitles.addEventListener("click", function(){ renderTitles(); showView("titles"); });
   el.tabPerformers.addEventListener("click", function(){ renderPerformers(); showView("performers"); });
   el.profileBack.addEventListener("click", function(){ showView("performers"); });
+  el.titleDetailBack.addEventListener("click", function(){ renderTitles(); showView("titles"); });
+
+  // 吟題一覧の検索・並び替え
+  el.titleSearch.addEventListener("input", function(e){
+    state.titleQuery = e.target.value;
+    renderTitles();
+  });
+  el.titleSort.addEventListener("change", function(e){
+    state.titleSort = e.target.value;
+    renderTitles();
+  });
 
   // 名鑑の検索・並び替え
   el.performerSearch.addEventListener("input", function(e){

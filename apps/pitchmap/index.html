@@ -117,6 +117,27 @@ header .subtitle {
     text-decoration: underline;
 }
 
+/* はじめての使い方ガイドへの導線ボタン */
+.guide-link {
+    flex: 0 0 auto;
+    padding: 7px 16px;
+    background: rgba(99, 102, 241, 0.18);
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    color: var(--text-primary);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.guide-link:hover {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: var(--accent-indigo);
+}
+
+.guide-label-short { display: none; }
+
 .privacy-badge {
     padding: 6px 12px;
     background: rgba(13, 240, 164, 0.08);
@@ -570,6 +591,14 @@ select option { background: var(--bg-dark); }
         display: none; /* スマホでは狭いため非表示（ヘッダーの混雑を避ける） */
     }
 
+    /* はじめての使い方ボタンはスマホでも残すが、短いラベルに切り替える */
+    .guide-link {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+    }
+    .guide-label-long { display: none; }
+    .guide-label-short { display: inline; }
+
     .audio-badge {
         font-size: 0.75rem;
         padding: 4px 8px;
@@ -581,9 +610,21 @@ select option { background: var(--bg-dark); }
 
     header h1 {
         font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
     }
     header .subtitle {
         display: none; /* スマホではタイトルを短く */
+    }
+    .logo-area {
+        min-width: 0;
+        flex: 1 1 auto;
+        overflow: hidden;
+    }
+    .header-right {
+        flex: 0 0 auto;
     }
 
     header {
@@ -744,6 +785,10 @@ select option { background: var(--bg-dark); }
                 <h1>吟猫ピッチマップ <span class="subtitle">v4</span></h1>
             </div>
             <div class="header-right">
+                <a class="guide-link" href="./guide.html" title="はじめての方向けの使い方ガイドを開きます">
+                    <span class="guide-label-long">📖 はじめての使い方を見る</span>
+                    <span class="guide-label-short" aria-hidden="true">📖 使い方</span>
+                </a>
                 <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
                 <span class="privacy-badge" title="音声ファイルはサーバーへ送信されず、すべてブラウザ内で処理されます">🔒 音声はブラウザ内でのみ処理</span>
                 <div class="audio-badge" id="audio-filename">音源: 未選択</div>
