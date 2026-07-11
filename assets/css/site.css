@@ -574,10 +574,10 @@ a.card.is-coming-soon::after {
     min-height: min(88vh, 720px);
     display: flex;
     align-items: center;
-    /* 画像が無くても成立するグラデーション。hero-main.webp があれば重なる */
+    /* 画像が無くても成立するグラデーション。hero-main-v2.webp があれば重なる */
     background:
         linear-gradient(160deg, rgba(248, 245, 239, 0.9) 0%, rgba(234, 243, 210, 0.55) 55%, rgba(243, 232, 205, 0.65) 100%),
-        url("../img/hero-main.webp") center / cover no-repeat,
+        url("../img/hero-main-v2.webp") center / cover no-repeat,
         linear-gradient(180deg, #F8F5EF 0%, #EFE9DC 100%);
 }
 
