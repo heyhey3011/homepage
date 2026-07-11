@@ -30,20 +30,20 @@ window.SITE_LINKS = {
         // 実力派吟士アーカイブス
         ginshiArchives: {
             url: "",
-            status: "coming-soon",
-            label: "準備中"
+            status: "growing",
+            label: "随時追加中"
         },
         // 詩吟大辞典
         shiginDictionary: {
             url: "",
-            status: "coming-soon",
-            label: "準備中"
+            status: "growing",
+            label: "随時追加中"
         },
         // 漢詩辞典
         kanshiDictionary: {
             url: "",
-            status: "coming-soon",
-            label: "準備中"
+            status: "growing",
+            label: "随時追加中"
         },
         // 吟猫コンダクター
         ginnekoConductor: {
@@ -90,8 +90,11 @@ window.SITE_LINKS = {
         url: ""
     },
 
-    // requestForm.url が空のときのフォールバック先（サイト内の相対パス）
-    requestFormFallbackUrl: "/contact/",
+    // requestForm.url が空のときのフォールバック先
+    // ※GitHub Pagesのプロジェクトサイトのため、先頭に / を付けず
+    //   「サイトルートからの相対パス」で書くこと。
+    //   ページ階層に応じた ../ は applySiteLinks() が自動補正します。
+    requestFormFallbackUrl: "contact/",
 
     // ------------------------------------------------------------
     // コミュニティ
@@ -124,6 +127,9 @@ window.SITE_LINKS = {
     },
     suno: {
         url: "https://suno.com/me"
+    },
+    note: {
+        url: "https://note.com/shigispel"
     },
     // Kindle書籍（3冊）
     kindle1: {
@@ -168,6 +174,32 @@ function getSiteLinkByPath(path) {
 }
 
 /**
+ * サイトルートへの相対パス接頭辞を求める
+ * （例: ルート直下ページ → ""、map/ 配下のページ → "../"）
+ * links.js 自身の <script src="..."> から逆算するので、
+ * 各ページは自分の階層に合わせた相対パスで links.js を読み込むだけでよい。
+ */
+function getSiteRootPrefix() {
+    const script = document.querySelector('script[src$="links.js"]');
+    if (!script) return "";
+    const src = script.getAttribute("src") || "";
+    // ".../assets/js/links.js" より前の部分が接頭辞（"../" など）
+    return src.replace(/assets\/js\/links\.js$/, "");
+}
+
+/**
+ * サイト内リンク（http等で始まらないURL）に階層接頭辞を付ける
+ */
+function resolveSiteUrl(url) {
+    if (!url) return url;
+    // 外部URL・アンカー・特殊スキームはそのまま
+    if (/^(https?:|mailto:|tel:|#|javascript:|\/)/.test(url)) return url;
+    // すでに ../ で始まる場合もそのまま（手書き相対パスを尊重）
+    if (url.startsWith("../") || url.startsWith("./")) return url;
+    return getSiteRootPrefix() + url;
+}
+
+/**
  * data-link / data-link-status 属性を持つ要素にリンクとステータスを反映する
  */
 window.applySiteLinks = function applySiteLinks() {
@@ -193,7 +225,7 @@ window.applySiteLinks = function applySiteLinks() {
         }
 
         if (url) {
-            el.setAttribute("href", url);
+            el.setAttribute("href", resolveSiteUrl(url));
             el.classList.remove("is-coming-soon");
             el.removeAttribute("aria-disabled");
             el.removeAttribute("role");
