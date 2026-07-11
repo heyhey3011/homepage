@@ -23,39 +23,39 @@ window.SITE_LINKS = {
     tools: {
         // 全国詩吟教室マップ
         classroomMap: {
-            url: "",
-            status: "coming-soon",
-            label: "準備中"
+            url: "apps/kyoshitsu-map/",
+            status: "live",
+            label: "公開中"
         },
         // 実力派吟士アーカイブス
         ginshiArchives: {
-            url: "",
+            url: "apps/ginshi-archives/",
             status: "growing",
             label: "随時追加中"
         },
         // 詩吟大辞典
         shiginDictionary: {
-            url: "",
+            url: "apps/shigin-jiten/",
             status: "growing",
             label: "随時追加中"
         },
         // 漢詩辞典
         kanshiDictionary: {
-            url: "",
+            url: "apps/kanshi-jiten/",
             status: "growing",
             label: "随時追加中"
         },
         // 吟猫コンダクター
         ginnekoConductor: {
-            url: "",
-            status: "coming-soon",
-            label: "準備中"
+            url: "https://ginneko-conductor.netlify.app/",
+            status: "live",
+            label: "公開中"
         },
         // 吟猫ピッチマップ
         ginnekoPitchmap: {
-            url: "",
-            status: "coming-soon",
-            label: "準備中"
+            url: "apps/pitchmap/",
+            status: "live",
+            label: "公開中"
         }
     },
 

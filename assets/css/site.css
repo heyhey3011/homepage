@@ -465,12 +465,14 @@ a.card.is-coming-soon::after {
     display: none;
     align-items: center;
     gap: 1.1rem;
+    flex-wrap: nowrap;
 }
 
 .site-nav a {
     color: var(--color-ink);
     font-size: 0.92rem;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .site-nav a:hover {
@@ -483,9 +485,8 @@ a.card.is-coming-soon::after {
     padding: 0.5em 1.2em;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1120px) {
     .site-nav { display: flex; }
-    .nav-toggle { display: none; }
 }
 
 /* ハンバーガーボタン */
@@ -563,7 +564,8 @@ a.card.is-coming-soon::after {
     margin-top: 0.75rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1120px) {
+    .nav-toggle { display: none; }
     .mobile-menu { display: none !important; }
 }
 
@@ -574,10 +576,10 @@ a.card.is-coming-soon::after {
     min-height: min(88vh, 720px);
     display: flex;
     align-items: center;
-    /* 画像が無くても成立するグラデーション。hero-main-v2.webp があれば重なる */
+    /* 画像が無くても成立するグラデーション。hero-main.webp があれば重なる */
     background:
         linear-gradient(160deg, rgba(248, 245, 239, 0.9) 0%, rgba(234, 243, 210, 0.55) 55%, rgba(243, 232, 205, 0.65) 100%),
-        url("../img/hero-main-v2.webp") center / cover no-repeat,
+        url("../img/hero-main.webp") center / cover no-repeat,
         linear-gradient(180deg, #F8F5EF 0%, #EFE9DC 100%);
 }
 
@@ -732,6 +734,26 @@ a.card.is-coming-soon::after {
     color: #A6A29A;
 }
 
+.site-footer__legal {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+}
+
+.site-footer__legal a {
+    color: #C9C5BC;
+    font-size: 0.82rem;
+}
+
+.site-footer__legal a:hover {
+    color: #F8F5EF;
+    text-decoration: underline;
+}
+
 /* ---------- 12. スクロールフェードイン ---------- */
 .reveal {
     opacity: 0;
@@ -858,6 +880,85 @@ a.card.is-coming-soon::after {
     transform: translateY(-2px);
     box-shadow: var(--shadow-card-hover);
     color: var(--color-deep-green);
+}
+
+/* 導入文（ファーストビュー直下） */
+.intro-section {
+    padding-block: 3.25rem;
+}
+
+.intro-lead {
+    max-width: 40em;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.intro-lead p {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--color-ink-soft);
+    margin-bottom: 0.9rem;
+}
+
+.intro-lead p:last-child {
+    font-family: var(--font-heading);
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--color-ink-strong);
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+/* 7日間講座「届く内容」リスト */
+.day-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.day-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    box-shadow: var(--shadow-card);
+}
+
+.day-list__day {
+    flex: 0 0 auto;
+    min-width: 3.2em;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-deep-green);
+}
+
+.day-list__text {
+    color: var(--color-ink);
+}
+
+@media (min-width: 640px) {
+    .day-list--full {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+}
+
+/* このサイトについて */
+.about-site {
+    max-width: 46em;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.about-site p {
+    color: var(--color-ink-soft);
+    margin-bottom: 0.75rem;
 }
 
 /* ---------- 14. アニメーション抑制設定への対応 ---------- */

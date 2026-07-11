@@ -1,0 +1,1375 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>詩吟大辞典</title>
+<!--
+  ============================================================
+  詩吟大辞典
+  ------------------------------------------------------------
+  ・このファイル（index.html）をダブルクリックすると開きます。
+  ・表示される項目の中身は「data」フォルダの中のファイルに入っています。
+    追加・修正したいときは data/ の各ファイルを編集してください。
+    - data/gihou.js     … 技法・発声・上達
+    - data/ryuha.js     … 流派・団体
+    - data/taikai.js    … 大会・審査
+    - data/yougo.js     … 歴史・用語
+    - data/kyoshitsu.js … 教室の探し方
+    - data/hikaku.js    … 流派比較（トピックごとに複数流派を並べます）
+  ・このファイル自体は基本さわらなくて大丈夫です。
+  ============================================================
+-->
+<style>
+  :root{
+    --sumi:#22201d;        /* 墨色（背景の濃い色） */
+    --sumi-soft:#33302b;   /* 少し明るい墨 */
+    --kinari:#f4efe6;      /* 生成り（紙の色） */
+    --kinari-2:#ede6d8;    /* 生成りの濃いめ */
+    --shu:#b4402f;         /* 朱色（アクセント） */
+    --shu-dark:#96341f;
+    --kincha:#8a7a5c;      /* 金茶 */
+    --line:#d8cfbd;        /* 罫線 */
+    --text:#2b2823;        /* 本文 */
+    --text-soft:#6b6357;   /* うすい文字 */
+    --card-bg:#fbf8f1;
+    --shadow:0 2px 10px rgba(40,32,20,.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","MS PMincho",serif;
+    background:var(--kinari);
+    color:var(--text);
+    font-size:17px;
+    line-height:1.7;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--shu-dark);}
+
+  /* ===== ヘッダー ===== */
+  header.site{
+    background:var(--sumi);
+    color:var(--kinari);
+    padding:22px 18px 18px;
+    border-bottom:4px solid var(--shu);
+  }
+  .site-inner{max-width:1160px;margin:0 auto;}
+  header.site h1{
+    margin:0;
+    font-size:27px;
+    letter-spacing:.08em;
+    font-weight:600;
+    cursor:pointer;
+  }
+  header.site .lead{
+    margin:6px 0 0;
+    font-size:14px;
+    color:#cfc6b4;
+    letter-spacing:.04em;
+  }
+  .portal-back-link{
+    display:inline-block;
+    margin:0 0 8px;
+    font-size:12px;
+    color:#a89d89;
+    text-decoration:none;
+  }
+  .portal-back-link:hover{color:var(--kinari);text-decoration:underline;}
+  .count{
+    margin-top:12px;
+    font-size:15px;
+    color:#e7dcc6;
+  }
+  .count b{color:#fff;font-size:18px;}
+
+  /* ===== タブ ===== */
+  .tabs{
+    display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;
+  }
+  .tab-btn{
+    background:transparent;
+    color:#e7dcc6;
+    border:1px solid #5d564b;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:15px;
+    cursor:pointer;
+    font-family:inherit;
+    letter-spacing:.05em;
+  }
+  .tab-btn.active{
+    background:var(--shu);
+    color:#fff;
+    border-color:var(--shu);
+    font-weight:600;
+  }
+
+  /* ===== コンテンツ枠 ===== */
+  main{max-width:1160px;margin:0 auto;padding:20px 18px 60px;}
+
+  /* ===== 検索・フィルタ ===== */
+  .controls{margin-bottom:22px;}
+  .search-box{position:relative;margin-bottom:16px;}
+  .search-box input{
+    width:100%;
+    padding:14px 16px 14px 46px;
+    font-size:17px;
+    font-family:inherit;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--card-bg);
+    color:var(--text);
+  }
+  .search-box input:focus{outline:none;border-color:var(--shu);}
+  .search-box::before{
+    content:"\2315";
+    position:absolute;left:16px;top:50%;transform:translateY(-50%);
+    color:var(--kincha);font-size:20px;
+  }
+  .filter-label{
+    font-size:14px;color:var(--text-soft);margin:0 0 8px;letter-spacing:.04em;
+  }
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .chip{
+    background:var(--card-bg);
+    border:1.5px solid var(--line);
+    color:var(--text);
+    padding:7px 15px;
+    border-radius:999px;
+    font-size:15px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .chip:hover{border-color:var(--kincha);}
+  .chip.on{
+    background:var(--sumi);
+    color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .chip.clear{
+    color:var(--shu-dark);
+    border-color:var(--shu);
+    background:transparent;
+  }
+
+  /* ===== ホーム ===== */
+  .home-lead{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--shu);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:22px;
+    font-size:15.5px;
+    line-height:1.85;
+    color:var(--text);
+  }
+  .home-search{margin-bottom:26px;}
+  .home-search .search-box input{
+    padding:16px 18px 16px 50px;
+    font-size:18px;
+  }
+  .home-cats-title{
+    font-size:16px;color:var(--text-soft);margin:0 0 12px;letter-spacing:.05em;
+  }
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:18px;
+  }
+  .cat-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:22px 20px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:16px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cat-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(40,32,20,.18);}
+  .cat-emblem{
+    flex:0 0 auto;
+    width:54px;height:54px;border-radius:10px;
+    background:var(--sumi);color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:600;
+    border:2px solid var(--shu);
+  }
+  .cat-card .cat-info{display:flex;flex-direction:column;gap:3px;}
+  .cat-card .cat-label{font-size:19px;font-weight:600;}
+  .cat-card .cat-count{font-size:14px;color:var(--text-soft);}
+
+  /* ===== カードグリッド（一覧・検索結果） ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--shu);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    display:flex;flex-direction:column;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(40,32,20,.18);}
+  .card-body{padding:16px 17px 18px;display:flex;flex-direction:column;gap:7px;flex:1;}
+  .card-title{font-size:20px;font-weight:600;line-height:1.4;margin:0;}
+  .card-reading{font-size:13px;color:var(--text-soft);letter-spacing:.03em;}
+  .card-summary{
+    font-size:14.5px;color:var(--text-soft);line-height:1.65;margin-top:2px;
+  }
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .badge{
+    font-size:12.5px;
+    background:var(--kinari-2);
+    border:1px solid var(--line);
+    color:var(--text-soft);
+    padding:2px 9px;border-radius:6px;
+    letter-spacing:.02em;
+  }
+  .empty{
+    text-align:center;color:var(--text-soft);padding:60px 20px;font-size:17px;
+  }
+
+  /* ===== 横断検索の結果グルーピング ===== */
+  .result-group{margin-bottom:30px;}
+  .result-group-head{
+    display:flex;align-items:baseline;gap:10px;
+    margin:0 0 14px;padding-left:12px;
+    border-left:4px solid var(--shu);
+  }
+  .result-group-head h3{margin:0;font-size:19px;letter-spacing:.04em;}
+  .result-group-head .g-count{font-size:14px;color:var(--text-soft);}
+
+  /* ===== 詳細画面 ===== */
+  .back-btn{
+    background:transparent;border:none;color:var(--shu-dark);
+    font-size:16px;cursor:pointer;font-family:inherit;padding:6px 0;margin-bottom:8px;
+  }
+  .detail-head{
+    background:var(--card-bg);border:1px solid var(--line);border-radius:12px;
+    padding:22px 22px;margin-bottom:24px;box-shadow:var(--shadow);
+    border-left:5px solid var(--shu);
+  }
+  .detail-head h2{margin:0;font-size:27px;}
+  .detail-head .d-reading{color:var(--text-soft);font-size:14px;margin-top:4px;}
+  .detail-head .d-aliases{color:var(--text-soft);font-size:14px;margin-top:6px;}
+  .detail-head .d-badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;}
+  .detail-head .d-summary{margin-top:14px;font-size:16.5px;line-height:1.85;}
+  .detail-cat-tag{
+    display:inline-block;font-size:13px;color:var(--kinari);
+    background:var(--sumi);border-radius:6px;padding:3px 11px;margin-bottom:6px;
+    letter-spacing:.04em;
+  }
+
+  .section{
+    margin-bottom:26px;
+  }
+  .section-title{
+    font-size:19px;margin:0 0 14px;padding-left:12px;
+    border-left:4px solid var(--shu);letter-spacing:.04em;
+  }
+  .body-section{margin-bottom:16px;}
+  .body-section h4{
+    margin:0 0 4px;font-size:16.5px;color:var(--text);font-weight:600;
+  }
+  .body-section p{margin:0;font-size:16px;line-height:1.85;}
+
+  /* fields 表 */
+  .field-table{
+    width:100%;border-collapse:collapse;
+    background:var(--card-bg);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;
+  }
+  .field-table th,.field-table td{
+    text-align:left;padding:11px 14px;font-size:15.5px;
+    border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7;
+  }
+  .field-table tr:last-child th,.field-table tr:last-child td{border-bottom:none;}
+  .field-table th{
+    width:34%;color:var(--text-soft);font-weight:600;
+    background:var(--kinari-2);white-space:nowrap;
+  }
+  .field-table td ul{margin:0;padding-left:1.2em;}
+  .field-table td ol{margin:0;padding-left:1.4em;}
+  .field-table td li{margin:2px 0;}
+
+  /* 関連項目 */
+  .related-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .related-link{
+    background:var(--card-bg);border:1.5px solid var(--line);
+    color:var(--shu-dark);border-radius:999px;padding:8px 16px;
+    font-size:15px;cursor:pointer;font-family:inherit;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .related-link:hover{border-color:var(--shu);}
+  .related-link .r-cat{font-size:12px;color:var(--text-soft);}
+
+  /* 出典 */
+  .source-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .source-item{
+    background:var(--card-bg);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  }
+  .source-item a{font-size:15.5px;text-underline-offset:2px;word-break:break-all;}
+  .source-item .accessed{font-size:13px;color:var(--text-soft);}
+  .rel-badge{
+    font-size:12.5px;font-weight:600;border-radius:6px;padding:3px 10px;
+    letter-spacing:.02em;white-space:nowrap;border:1px solid transparent;
+  }
+  .rel-official{background:#1f5c3d;color:#fff;}
+  .rel-press{background:#2f5aa8;color:#fff;}
+  .rel-community{background:var(--kinari-2);color:var(--text-soft);border-color:var(--line);}
+  .rel-uncertain{background:#8a6d1f;color:#fff;}
+  .rel-note{font-size:12.5px;color:var(--text-soft);}
+  .sample-note{
+    margin-top:10px;font-size:13px;color:var(--text-soft);
+    background:var(--kinari-2);border-radius:8px;padding:9px 12px;line-height:1.6;
+  }
+
+  /* ===== 流派比較：ホームのカード ===== */
+  .cat-card.cmp-card{
+    border:1px solid var(--line);
+    border-left:5px solid var(--kincha);
+  }
+  .cat-card.cmp-card .cat-emblem{
+    background:var(--kinari);color:var(--sumi);
+    border:2px solid var(--kincha);
+  }
+
+  /* ===== 流派比較：一覧カード ===== */
+  .card.cmp{border-left-color:var(--kincha);}
+
+  /* ===== 流派比較：詳細 ===== */
+  .detail-head.cmp{border-left-color:var(--kincha);}
+  .detail-cat-tag.cmp{background:var(--kincha);}
+  .cmp-intro{margin-top:14px;font-size:16px;line-height:1.85;color:var(--text);}
+
+  .cmp-table{
+    width:100%;border-collapse:collapse;
+    background:var(--card-bg);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;
+  }
+  .cmp-table th,.cmp-table td{
+    text-align:left;padding:12px 14px;font-size:15px;
+    border-bottom:1px solid var(--line);vertical-align:top;line-height:1.78;
+  }
+  .cmp-table thead th{
+    background:var(--kinari-2);color:var(--text-soft);font-weight:600;
+    font-size:14px;white-space:nowrap;
+  }
+  .cmp-table tbody tr:last-child td{border-bottom:none;}
+  .cmp-table td.cmp-school{width:24%;font-weight:600;font-size:15.5px;}
+  .cmp-table td.cmp-src{width:30%;}
+  .cmp-school-link{
+    background:transparent;border:none;padding:0;margin:0;
+    color:var(--shu-dark);font-family:inherit;font-size:15.5px;font-weight:600;
+    cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:2px;
+  }
+  .cmp-school-plain{font-weight:600;font-size:15.5px;}
+  .cmp-src-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .cmp-src-item{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+  .cmp-src-item a{font-size:14px;text-underline-offset:2px;word-break:break-all;}
+  .cmp-src-item .accessed{font-size:12px;color:var(--text-soft);}
+
+  /* 共通点・補足 */
+  .cmp-common{
+    background:var(--kinari-2);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;font-size:15.5px;line-height:1.8;
+  }
+
+  /* 逆リンク（エントリ詳細→比較） */
+  .cmp-backlink-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .cmp-backlink{
+    background:var(--card-bg);border:1.5px solid var(--kincha);
+    color:var(--sumi);border-radius:999px;padding:8px 16px;
+    font-size:15px;cursor:pointer;font-family:inherit;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .cmp-backlink:hover{background:var(--kinari-2);}
+
+  /* ===== フッター ===== */
+  footer.site{
+    background:var(--sumi);color:#c3baa8;
+    text-align:center;font-size:13.5px;line-height:1.8;
+    padding:22px 18px;letter-spacing:.02em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width:520px){
+    body{font-size:16px;}
+    header.site h1{font-size:22px;}
+    .grid{grid-template-columns:1fr;}
+    .cat-grid{grid-template-columns:1fr;}
+    main{padding:16px 14px 50px;}
+    .tab-btn{padding:9px 16px;}       /* タップ領域確保 */
+    .chip{padding:9px 15px;}
+    .related-link{padding:10px 16px;}
+    .detail-head h2{font-size:23px;}
+    /* fields表を縦積みに */
+    .field-table,.field-table tbody,.field-table tr,.field-table th,.field-table td{
+      display:block;width:100%;
+    }
+    .field-table tr{border-bottom:1px solid var(--line);}
+    .field-table tr:last-child{border-bottom:none;}
+    .field-table th{
+      background:var(--kinari-2);white-space:normal;border-bottom:none;
+      padding-bottom:4px;
+    }
+    .field-table td{padding-top:4px;border-bottom:none;}
+
+    /* 比較テーブルを流派ごとのカード縦積みに */
+    .cmp-table{border:none;border-radius:0;background:transparent;overflow:visible;}
+    .cmp-table thead{display:none;}
+    .cmp-table,.cmp-table tbody,.cmp-table tr,.cmp-table td{
+      display:block;width:100%;
+    }
+    .cmp-table tr{
+      border:1px solid var(--line);border-left:4px solid var(--kincha);
+      border-radius:10px;margin-bottom:14px;background:var(--card-bg);overflow:hidden;
+    }
+    .cmp-table tbody tr:last-child{margin-bottom:0;}
+    .cmp-table td{
+      border-bottom:1px solid var(--line);padding:11px 14px;width:100%;
+    }
+    .cmp-table tr td:last-child{border-bottom:none;}
+    .cmp-table td::before{
+      content:attr(data-label);display:block;
+      font-size:12px;color:var(--text-soft);font-weight:600;margin-bottom:4px;
+      letter-spacing:.03em;
+    }
+    .cmp-table td.cmp-school,.cmp-table td.cmp-src{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+    <h1 id="home-link">詩吟大辞典</h1>
+    <p class="lead">詩吟の技法・流派・大会・用語・教室の探し方を、やさしく調べられる辞典です</p>
+    <div class="count" id="count"></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+
+<main>
+  <!-- ホームビュー -->
+  <section id="view-home">
+    <p class="home-lead">
+      「詩吟大辞典」は、詩吟にまつわる言葉やしくみを5つのジャンルにまとめた辞典です。<br>
+      下の検索ボックスにひらがな・カタカナ・漢字のどれかを入れると、すべてのジャンルをまとめて探せます。ジャンルのカードから一覧を見ることもできます。
+    </p>
+    <div class="home-search">
+      <div class="search-box">
+        <input type="text" id="home-search" placeholder="調べたい言葉を入力（例：ゆり／流派／こうれい）" autocomplete="off">
+      </div>
+    </div>
+    <p class="home-cats-title">ジャンルからさがす</p>
+    <div class="cat-grid" id="cat-grid"></div>
+  </section>
+
+  <!-- カテゴリ一覧ビュー -->
+  <section id="view-list" style="display:none;">
+    <div class="controls">
+      <p class="filter-label">タグでしぼりこむ（いくつでも選べます・OR）</p>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">
+      該当する項目が見つかりませんでした。<br>「すべて解除」を押すか、ホームの検索をお試しください。
+    </div>
+  </section>
+
+  <!-- 横断検索ビュー -->
+  <section id="view-search" style="display:none;">
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="全ジャンルを横断して検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+      </div>
+    </div>
+    <div id="search-results"></div>
+    <div class="empty" id="search-empty" style="display:none;">
+      該当する項目が見つかりませんでした。<br>言葉を変えてお試しください。
+    </div>
+  </section>
+
+  <!-- 流派比較ビュー -->
+  <section id="view-hikaku" style="display:none;">
+    <p class="home-lead">
+      同じ「詩吟」でも、段位・称号のしくみ、節調の学び方、教本や伴奏、審査のやり方は流派によって異なります。<br>
+      ここでは話題（トピック）ごとに複数の流派の立場を<b>対等に並べて</b>見比べられます。どれが優れているという意味ではなく、それぞれの流儀の違いを知るためのものです。
+    </p>
+    <div class="controls">
+      <p class="filter-label">観点でしぼりこむ（いくつでも選べます・OR）</p>
+      <div class="filters" id="hikaku-filters"></div>
+    </div>
+    <div class="grid" id="hikaku-grid"></div>
+    <div class="empty" id="hikaku-empty" style="display:none;">
+      該当する比較トピックが見つかりませんでした。<br>「すべて解除」を押してください。
+    </div>
+  </section>
+
+  <!-- 詳細ビュー -->
+  <section id="view-detail" style="display:none;">
+    <button class="back-btn" id="detail-back" type="button">← 戻る</button>
+    <div id="detail-content"></div>
+  </section>
+</main>
+
+<footer class="site">
+  詩吟大辞典 v1（雛形）<br>
+  出典は各項目に記載しています。情報の確度をバッジで表示していますので、ご参照ください。
+</footer>
+
+<!-- データは data フォルダの各ファイルを編集してください（_schema.js を最初に読み込みます） -->
+<script src="data/_schema.js"></script>
+<script src="data/gihou.js"></script>
+<script src="data/ryuha.js"></script>
+<script src="data/taikai.js"></script>
+<script src="data/yougo.js"></script>
+<script src="data/kyoshitsu.js"></script>
+<script src="data/hikaku.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var DB = window.SHIGIN_DAIJITEN || { entries: [], categories: [], reliabilityLevels: {}, comparisons: [] };
+  var ENTRIES = DB.entries || [];
+  var CATEGORIES = DB.categories || [];
+  var RELIABILITY = DB.reliabilityLevels || {};
+  var COMPARISONS = DB.comparisons || [];   // 流派比較トピック
+
+  // カテゴリkey → 定義 の索引
+  var CAT_BY_KEY = {};
+  CATEGORIES.forEach(function(c){ CAT_BY_KEY[c.key] = c; });
+
+  // id → entry の索引
+  var BY_ID = {};
+  ENTRIES.forEach(function(e){ BY_ID[e.id] = e; });
+
+  // id → comparison の索引
+  var CMP_BY_ID = {};
+  COMPARISONS.forEach(function(h){ CMP_BY_ID[h.id] = h; });
+
+  // entry id → その id を related_entry_ids に含む comparison 群（逆リンク用）
+  var CMP_BY_ENTRY = {};
+  COMPARISONS.forEach(function(h){
+    (h.related_entry_ids || []).forEach(function(id){
+      (CMP_BY_ENTRY[id] = CMP_BY_ENTRY[id] || []).push(h);
+    });
+  });
+
+  // entry id → その流派（schools[].school_id）が登場する comparison 群（逆リンク用）
+  var CMP_BY_SCHOOL = {};
+  COMPARISONS.forEach(function(h){
+    (h.schools || []).forEach(function(s){
+      if(!s.school_id) return;
+      var list = (CMP_BY_SCHOOL[s.school_id] = CMP_BY_SCHOOL[s.school_id] || []);
+      if(list.indexOf(h) === -1) list.push(h);
+    });
+  });
+
+  // 比較の観点（aspect）を出現順で集める
+  var CMP_ASPECTS = [];
+  COMPARISONS.forEach(function(h){
+    if(h.aspect && CMP_ASPECTS.indexOf(h.aspect) === -1) CMP_ASPECTS.push(h.aspect);
+  });
+
+  // fields のキー → 日本語ラベル
+  var FIELD_LABELS = {
+    // ryuha
+    founded_year:    "設立年",
+    founded_label:   "設立（和暦など）",
+    founder:         "創始者",
+    headquarters:    "本部所在地",
+    official_url:    "公式サイト",
+    region:          "活動地域",
+    lineage:         "系統",
+    umbrella:        "傘下・関連",
+    // taikai
+    organizer:       "主催",
+    held_period:     "開催時期",
+    venue:           "会場",
+    eligibility:     "参加資格",
+    divisions:       "部門",
+    judging_criteria:"審査の観点",
+    // yougo
+    definition:      "定義",
+    term_type:       "用語の種類",
+    school_variations:"流派による違い",
+    era:             "時代",
+    year:            "年",
+    // gihou
+    difficulty:      "難易度",
+    skill_type:      "種類",
+    practice_steps:  "練習の手順",
+    // kyoshitsu
+    guide_type:      "ガイドの種類",
+    checklist:       "チェックリスト"
+  };
+  // fields の表示順（キーが存在するものだけ出す）
+  var FIELD_ORDER = [
+    "definition","term_type","difficulty","skill_type","guide_type",
+    "founded_year","founded_label","founder","headquarters","official_url",
+    "region","lineage","umbrella",
+    "organizer","held_period","venue","eligibility","divisions","judging_criteria",
+    "era","year","school_variations","practice_steps","checklist"
+  ];
+
+  // ---- 状態 ----
+  var state = {
+    view: "home",       // home / list / search / hikaku / detail
+    listCat: null,      // 一覧表示中のカテゴリkey
+    selectedTags: [],   // 一覧のタグ絞り込み
+    searchQuery: "",
+    cmpAspects: [],     // 流派比較一覧の観点絞り込み
+    detailKind: "entry",// detail表示中の種類：entry / comparison
+    detailId: null,     // detail表示中のid
+    back: { t: "home" } // 詳細から戻る先（1階層）
+  };
+
+  // ---- 要素 ----
+  var el = {
+    count:        document.getElementById("count"),
+    tabs:         document.getElementById("tabs"),
+    homeLink:     document.getElementById("home-link"),
+    viewHome:     document.getElementById("view-home"),
+    viewList:     document.getElementById("view-list"),
+    viewSearch:   document.getElementById("view-search"),
+    viewHikaku:   document.getElementById("view-hikaku"),
+    viewDetail:   document.getElementById("view-detail"),
+    hikakuFilters:document.getElementById("hikaku-filters"),
+    hikakuGrid:   document.getElementById("hikaku-grid"),
+    hikakuEmpty:  document.getElementById("hikaku-empty"),
+    homeSearch:   document.getElementById("home-search"),
+    catGrid:      document.getElementById("cat-grid"),
+    filters:      document.getElementById("filters"),
+    grid:         document.getElementById("grid"),
+    empty:        document.getElementById("empty"),
+    search:       document.getElementById("search"),
+    searchResults:document.getElementById("search-results"),
+    searchEmpty:  document.getElementById("search-empty"),
+    detailContent:document.getElementById("detail-content"),
+    detailBack:   document.getElementById("detail-back")
+  };
+
+  // ---- HTMLエスケープ ----
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  // 改行を <br> に（先にエスケープしてから変換）
+  function escMultiline(s){
+    return esc(s).replace(/\n/g,"<br>");
+  }
+
+  // ---- 文字の正規化（ひらがな⇔カタカナ同一視・大文字小文字・空白除去）----
+  function normalize(s){
+    if(!s) return "";
+    s = String(s).toLowerCase();
+    s = s.replace(/[ァ-ヶ]/g, function(ch){
+      return String.fromCharCode(ch.charCodeAt(0) - 0x60);
+    });
+    s = s.replace(/[\s　]/g, "");
+    return s;
+  }
+
+  // ---- 検索用テキストを1本にまとめる ----
+  function haystackOf(e){
+    var parts = [];
+    parts.push(e.title || "");
+    parts.push(e.reading || "");
+    (e.aliases || []).forEach(function(a){ parts.push(a); });
+    (e.tags || []).forEach(function(t){ parts.push(t); });
+    parts.push(e.summary || "");
+    (e.body || []).forEach(function(b){
+      parts.push(b.heading || "");
+      parts.push(b.text || "");
+    });
+    if(e.fields && e.fields.definition) parts.push(e.fields.definition);
+    return normalize(parts.join(" "));
+  }
+
+  function matchesQuery(e, q){
+    if(!q) return true;
+    return haystackOf(e).indexOf(q) !== -1;
+  }
+
+  // ---- カードHTML ----
+  function cardHTML(e){
+    var reading = e.reading ? '<div class="card-reading">' + esc(e.reading) + '</div>' : '';
+    var summary = e.summary ? '<div class="card-summary">' + esc(e.summary) + '</div>' : '';
+    var badges = (e.tags || []).map(function(t){
+      return '<span class="badge">' + esc(t) + '</span>';
+    }).join("");
+    return '' +
+      '<div class="card" data-id="' + esc(e.id) + '">' +
+        '<div class="card-body">' +
+          '<h3 class="card-title">' + esc(e.title) + '</h3>' +
+          reading +
+          summary +
+          '<div class="badges">' + badges + '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // ================= ホーム =================
+  function homeCountHTML(){
+    return '辞典項目 全<b>' + ENTRIES.length + '</b>件　／　流派比較 <b>' + COMPARISONS.length + '</b>トピック';
+  }
+
+  function renderHome(){
+    el.count.innerHTML = homeCountHTML();
+
+    var html = CATEGORIES.map(function(c){
+      var n = ENTRIES.filter(function(e){ return e.category === c.key; }).length;
+      return '' +
+        '<div class="cat-card" data-cat="' + esc(c.key) + '">' +
+          '<div class="cat-emblem">' + esc(c.icon) + '</div>' +
+          '<div class="cat-info">' +
+            '<span class="cat-label">' + esc(c.label) + '</span>' +
+            '<span class="cat-count">' + n + '件</span>' +
+          '</div>' +
+        '</div>';
+    }).join("");
+    // 流派比較カード（件数付き）
+    if(COMPARISONS.length){
+      html += '' +
+        '<div class="cat-card cmp-card" data-cmp="1">' +
+          '<div class="cat-emblem">比</div>' +
+          '<div class="cat-info">' +
+            '<span class="cat-label">流派比較</span>' +
+            '<span class="cat-count">' + COMPARISONS.length + 'トピック</span>' +
+          '</div>' +
+        '</div>';
+    }
+    el.catGrid.innerHTML = html;
+  }
+
+  // ---- タブ描画 ----
+  function renderTabs(){
+    var html = '<button type="button" class="tab-btn" data-tab="home">ホーム</button>';
+    CATEGORIES.forEach(function(c){
+      html += '<button type="button" class="tab-btn" data-tab="cat" data-cat="' + esc(c.key) + '">' + esc(c.label) + '</button>';
+    });
+    if(COMPARISONS.length){
+      html += '<button type="button" class="tab-btn" data-tab="hikaku">流派比較</button>';
+    }
+    html += '<button type="button" class="tab-btn" data-tab="search">横断検索</button>';
+    el.tabs.innerHTML = html;
+  }
+
+  function setActiveTab(){
+    var btns = el.tabs.querySelectorAll(".tab-btn");
+    btns.forEach(function(b){
+      var tab = b.getAttribute("data-tab");
+      var on = false;
+      if(tab === "home"   && state.view === "home") on = true;
+      if(tab === "search" && state.view === "search") on = true;
+      if(tab === "hikaku" && state.view === "hikaku") on = true;
+      if(tab === "cat"    && state.view === "list" && b.getAttribute("data-cat") === state.listCat) on = true;
+      b.classList.toggle("active", on);
+    });
+  }
+
+  // ================= カテゴリ一覧 =================
+  function tagsOfCategory(catKey){
+    var set = {};
+    ENTRIES.forEach(function(e){
+      if(e.category !== catKey) return;
+      (e.tags || []).forEach(function(t){ set[t] = true; });
+    });
+    return Object.keys(set);
+  }
+
+  function renderFilters(){
+    var tags = tagsOfCategory(state.listCat);
+    var html = tags.map(function(t){
+      var on = state.selectedTags.indexOf(t) !== -1 ? " on" : "";
+      return '<button type="button" class="chip' + on + '" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
+    }).join("");
+    if(tags.length){
+      html += '<button type="button" class="chip clear" id="clear-tags">すべて解除</button>';
+    }
+    el.filters.innerHTML = html;
+  }
+
+  function renderList(){
+    var cat = CAT_BY_KEY[state.listCat];
+    var list = ENTRIES.filter(function(e){
+      if(e.category !== state.listCat) return false;
+      if(state.selectedTags.length){
+        var hit = (e.tags || []).some(function(t){ return state.selectedTags.indexOf(t) !== -1; });
+        if(!hit) return false;
+      }
+      return true;
+    });
+    var totalInCat = ENTRIES.filter(function(e){ return e.category === state.listCat; }).length;
+    el.count.innerHTML = (cat ? esc(cat.label) + '　' : '') +
+      '全<b>' + totalInCat + '</b>件中 <b>' + list.length + '</b>件を表示中';
+
+    if(list.length === 0){
+      el.grid.innerHTML = "";
+      el.empty.style.display = "block";
+      return;
+    }
+    el.empty.style.display = "none";
+    el.grid.innerHTML = list.map(cardHTML).join("");
+  }
+
+  // ================= 横断検索 =================
+  function renderSearch(){
+    var q = normalize(state.searchQuery);
+    if(!q){
+      el.searchResults.innerHTML = '<p class="empty">調べたい言葉を入力してください。全ジャンルと流派比較をまとめて検索します。</p>';
+      el.searchEmpty.style.display = "none";
+      el.count.innerHTML = homeCountHTML();
+      return;
+    }
+    var hits = ENTRIES.filter(function(e){ return matchesQuery(e, q); });
+    var cmpHits = COMPARISONS.filter(function(h){ return cmpMatchesQuery(h, q); });
+    var totalHits = hits.length + cmpHits.length;
+    el.count.innerHTML = '検索結果 <b>' + totalHits + '</b>件';
+
+    if(totalHits === 0){
+      el.searchResults.innerHTML = "";
+      el.searchEmpty.style.display = "block";
+      return;
+    }
+    el.searchEmpty.style.display = "none";
+
+    // カテゴリ別にグルーピング
+    var html = "";
+    CATEGORIES.forEach(function(c){
+      var group = hits.filter(function(e){ return e.category === c.key; });
+      if(!group.length) return;
+      html += '' +
+        '<div class="result-group">' +
+          '<div class="result-group-head">' +
+            '<h3>' + esc(c.label) + '</h3>' +
+            '<span class="g-count">' + group.length + '件</span>' +
+          '</div>' +
+          '<div class="grid">' + group.map(cardHTML).join("") + '</div>' +
+        '</div>';
+    });
+    // 流派比較グループ（末尾に表示）
+    if(cmpHits.length){
+      html += '' +
+        '<div class="result-group">' +
+          '<div class="result-group-head">' +
+            '<h3>流派比較</h3>' +
+            '<span class="g-count">' + cmpHits.length + '件</span>' +
+          '</div>' +
+          '<div class="grid">' + cmpHits.map(cmpCardHTML).join("") + '</div>' +
+        '</div>';
+    }
+    el.searchResults.innerHTML = html;
+  }
+
+  // ================= 流派比較 =================
+  // 比較トピックの検索用テキスト
+  function cmpHaystackOf(h){
+    var parts = [];
+    parts.push(h.topic || "");
+    parts.push(h.reading || "");
+    parts.push(h.summary || "");
+    parts.push(h.intro || "");
+    (h.schools || []).forEach(function(s){
+      parts.push(s.school || "");
+      parts.push(s.position || "");
+    });
+    return normalize(parts.join(" "));
+  }
+  function cmpMatchesQuery(h, q){
+    if(!q) return true;
+    return cmpHaystackOf(h).indexOf(q) !== -1;
+  }
+
+  // 比較トピックのカード
+  function cmpCardHTML(h){
+    var reading = h.reading ? '<div class="card-reading">' + esc(h.reading) + '</div>' : '';
+    var summary = h.summary ? '<div class="card-summary">' + esc(h.summary) + '</div>' : '';
+    var n = (h.schools || []).length;
+    var badges =
+      '<span class="badge">' + esc(h.aspect) + '</span>' +
+      '<span class="badge">' + n + '流派を比較</span>';
+    return '' +
+      '<div class="card cmp" data-cmp-id="' + esc(h.id) + '">' +
+        '<div class="card-body">' +
+          '<h3 class="card-title">' + esc(h.topic) + '</h3>' +
+          reading +
+          summary +
+          '<div class="badges">' + badges + '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function renderHikakuFilters(){
+    var html = CMP_ASPECTS.map(function(a){
+      var on = state.cmpAspects.indexOf(a) !== -1 ? " on" : "";
+      return '<button type="button" class="chip' + on + '" data-aspect="' + esc(a) + '">' + esc(a) + '</button>';
+    }).join("");
+    if(CMP_ASPECTS.length){
+      html += '<button type="button" class="chip clear" id="clear-aspects">すべて解除</button>';
+    }
+    el.hikakuFilters.innerHTML = html;
+  }
+
+  function renderHikaku(){
+    var list = COMPARISONS.filter(function(h){
+      if(state.cmpAspects.length){
+        return state.cmpAspects.indexOf(h.aspect) !== -1;
+      }
+      return true;
+    });
+    el.count.innerHTML = '流派比較　全<b>' + COMPARISONS.length + '</b>トピック中 <b>' + list.length + '</b>件を表示中';
+    if(list.length === 0){
+      el.hikakuGrid.innerHTML = "";
+      el.hikakuEmpty.style.display = "block";
+      return;
+    }
+    el.hikakuEmpty.style.display = "none";
+    el.hikakuGrid.innerHTML = list.map(cmpCardHTML).join("");
+  }
+
+  // 1つの流派の出典リスト（比較テーブル内）
+  function cmpSchoolSourcesHTML(sources){
+    if(!sources || !sources.length) return '<span class="rel-note">（出典なし）</span>';
+    var items = sources.map(function(s){
+      var link = '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title || s.url) + '</a>';
+      var accessed = s.accessed ? '<span class="accessed">（確認日：' + esc(s.accessed) + '）</span>' : '';
+      return '<li class="cmp-src-item">' + reliabilityBadge(s.reliability) + link + accessed + '</li>';
+    }).join("");
+    return '<ul class="cmp-src-list">' + items + '</ul>';
+  }
+
+  function renderCmpDetail(h){
+    var n = (h.schools || []).length;
+    var badges =
+      '<span class="badge">' + esc(h.aspect) + '</span>' +
+      '<span class="badge">' + n + '流派を比較</span>';
+    var reading = h.reading ? '<div class="d-reading">よみ：' + esc(h.reading) + '</div>' : '';
+    var summary = h.summary ? '<div class="d-summary">' + esc(h.summary) + '</div>' : '';
+    var intro = h.intro ? '<div class="cmp-intro">' + escMultiline(h.intro) + '</div>' : '';
+
+    var head = '' +
+      '<div class="detail-head cmp">' +
+        '<span class="detail-cat-tag cmp">⚖　流派比較</span>' +
+        '<h2>' + esc(h.topic) + '</h2>' +
+        reading +
+        '<div class="d-badges">' + badges + '</div>' +
+        summary +
+        intro +
+      '</div>';
+
+    // 比較テーブル（流派を縦に並べる）
+    var rows = (h.schools || []).map(function(s){
+      var schoolCell;
+      if(s.school_id && BY_ID[s.school_id]){
+        schoolCell = '<button type="button" class="cmp-school-link" data-id="' + esc(s.school_id) + '">' +
+                       esc(s.school) + '</button>';
+      } else {
+        schoolCell = '<span class="cmp-school-plain">' + esc(s.school) + '</span>';
+      }
+      return '' +
+        '<tr>' +
+          '<td class="cmp-school" data-label="流派">' + schoolCell + '</td>' +
+          '<td class="cmp-position" data-label="立場・特徴">' + escMultiline(s.position || "") + '</td>' +
+          '<td class="cmp-src" data-label="出典">' + cmpSchoolSourcesHTML(s.sources) + '</td>' +
+        '</tr>';
+    }).join("");
+
+    var tableHtml = '' +
+      '<div class="section">' +
+        '<h3 class="section-title">流派ごとの違い</h3>' +
+        '<table class="cmp-table">' +
+          '<thead><tr><th>流派</th><th>立場・特徴</th><th>出典</th></tr></thead>' +
+          '<tbody>' + rows + '</tbody>' +
+        '</table>' +
+      '</div>';
+
+    // 共通点・補足
+    var commonHtml = "";
+    if(h.common_note){
+      commonHtml = '' +
+        '<div class="section">' +
+          '<h3 class="section-title">共通点・補足</h3>' +
+          '<div class="cmp-common">' + escMultiline(h.common_note) + '</div>' +
+        '</div>';
+    }
+
+    el.detailContent.innerHTML =
+      head +
+      tableHtml +
+      commonHtml +
+      relatedHTML(h.related_entry_ids);
+  }
+
+  // ================= 詳細 =================
+  function fieldValueHTML(key, val){
+    // 配列
+    if(Array.isArray(val)){
+      if(val.length === 0) return null;
+      // school_variations は [{school, note}]
+      if(key === "school_variations"){
+        var items = val.map(function(v){
+          var s = esc(v.school || "");
+          var n = v.note ? '：' + esc(v.note) : '';
+          return '<li><b>' + s + '</b>' + n + '</li>';
+        }).join("");
+        return '<ul>' + items + '</ul>';
+      }
+      if(key === "practice_steps"){
+        return '<ol>' + val.map(function(v){ return '<li>' + escMultiline(v) + '</li>'; }).join("") + '</ol>';
+      }
+      // その他の文字列配列
+      return '<ul>' + val.map(function(v){ return '<li>' + escMultiline(v) + '</li>'; }).join("") + '</ul>';
+    }
+    // URL
+    if(key === "official_url"){
+      if(!val) return null;
+      return '<a href="' + esc(val) + '" target="_blank" rel="noopener">' + esc(val) + '</a>';
+    }
+    // 空値は出さない
+    if(val === "" || val === null || val === undefined) return null;
+    return escMultiline(val);
+  }
+
+  function fieldsTableHTML(fields){
+    if(!fields) return "";
+    var rows = "";
+    FIELD_ORDER.forEach(function(key){
+      if(!(key in fields)) return;
+      var html = fieldValueHTML(key, fields[key]);
+      if(html === null) return;   // 空はスキップ
+      var label = FIELD_LABELS[key] || key;
+      rows += '<tr><th>' + esc(label) + '</th><td>' + html + '</td></tr>';
+    });
+    if(!rows) return "";
+    return '' +
+      '<div class="section">' +
+        '<h3 class="section-title">くわしい情報</h3>' +
+        '<table class="field-table"><tbody>' + rows + '</tbody></table>' +
+      '</div>';
+  }
+
+  function reliabilityBadge(rel){
+    var info = RELIABILITY[rel];
+    var label = info ? info.label : (rel || "");
+    var note  = info ? info.note : "";
+    var cls = "rel-community";
+    if(rel === "official")  cls = "rel-official";
+    if(rel === "press")     cls = "rel-press";
+    if(rel === "community") cls = "rel-community";
+    if(rel === "uncertain") cls = "rel-uncertain";
+    var html = '<span class="rel-badge ' + cls + '">' + esc(label) + '</span>';
+    if(note) html += '<span class="rel-note">' + esc(note) + '</span>';
+    return html;
+  }
+
+  function sourcesHTML(sources){
+    if(!sources || !sources.length) return "";
+    var hasSample = false;
+    var items = sources.map(function(s){
+      if(s.url === "https://example.com/sample" || s.title === "（サンプル出典）") hasSample = true;
+      var link = '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title || s.url) + '</a>';
+      var accessed = s.accessed ? '<span class="accessed">（確認日：' + esc(s.accessed) + '）</span>' : '';
+      return '<li class="source-item">' + reliabilityBadge(s.reliability) + link + accessed + '</li>';
+    }).join("");
+    var note = hasSample
+      ? '<div class="sample-note">※ これはサンプルの出典です。今後、実際に確認した出典に置き換えられます。</div>'
+      : '';
+    return '' +
+      '<div class="section">' +
+        '<h3 class="section-title">出典</h3>' +
+        '<ul class="source-list">' + items + '</ul>' +
+        note +
+      '</div>';
+  }
+
+  function relatedHTML(ids){
+    if(!ids || !ids.length) return "";
+    var items = ids.map(function(id){
+      var r = BY_ID[id];
+      if(!r) return "";   // 未収録のidは表示しない
+      var cat = CAT_BY_KEY[r.category];
+      var catLabel = cat ? '<span class="r-cat">' + esc(cat.label) + '</span>' : '';
+      return '<button type="button" class="related-link" data-id="' + esc(r.id) + '">' +
+               esc(r.title) + catLabel +
+             '</button>';
+    }).join("");
+    if(!items.replace(/\s/g,"")) return "";
+    return '' +
+      '<div class="section">' +
+        '<h3 class="section-title">関連する項目</h3>' +
+        '<div class="related-list">' + items + '</div>' +
+      '</div>';
+  }
+
+  // 逆リンク：このエントリを扱う流派比較トピックへ
+  // ・related_entry_ids に含まれる場合 →「この話題の流派比較を見る」
+  // ・schools[].school_id に登場する流派の場合 →「この流派が登場する比較を見る」
+  // 同じトピックが両方に該当するときは1つ（話題側の文言）だけ出す。
+  function cmpBacklinkHTML(entryId){
+    var seen = {};
+    var items = [];
+    (CMP_BY_ENTRY[entryId] || []).forEach(function(h){
+      if(seen[h.id]) return;
+      seen[h.id] = true;
+      items.push('<button type="button" class="cmp-backlink" data-cmp-id="' + esc(h.id) + '">' +
+                   '⚖ この話題の流派比較を見る：' + esc(h.topic) +
+                 '</button>');
+    });
+    (CMP_BY_SCHOOL[entryId] || []).forEach(function(h){
+      if(seen[h.id]) return;
+      seen[h.id] = true;
+      items.push('<button type="button" class="cmp-backlink" data-cmp-id="' + esc(h.id) + '">' +
+                   '⚖ この流派が登場する比較を見る：' + esc(h.topic) +
+                 '</button>');
+    });
+    if(!items.length) return "";
+    return '' +
+      '<div class="section">' +
+        '<h3 class="section-title">流派で見くらべる</h3>' +
+        '<div class="cmp-backlink-list">' + items.join("") + '</div>' +
+      '</div>';
+  }
+
+  function renderDetail(e){
+    var cat = CAT_BY_KEY[e.category];
+    var catTag = cat ? '<span class="detail-cat-tag">' + esc(cat.icon) + '　' + esc(cat.label) + '</span>' : '';
+    var reading = e.reading ? '<div class="d-reading">よみ：' + esc(e.reading) + '</div>' : '';
+    var aliases = (e.aliases && e.aliases.length)
+      ? '<div class="d-aliases">別名：' + e.aliases.map(esc).join("、") + '</div>' : '';
+    var badges = (e.tags || []).map(function(t){
+      return '<span class="badge">' + esc(t) + '</span>';
+    }).join("");
+    var summary = e.summary ? '<div class="d-summary">' + esc(e.summary) + '</div>' : '';
+
+    var head = '' +
+      '<div class="detail-head">' +
+        catTag +
+        '<h2>' + esc(e.title) + '</h2>' +
+        reading + aliases +
+        (badges ? '<div class="d-badges">' + badges + '</div>' : '') +
+        summary +
+      '</div>';
+
+    // 本文セクション
+    var bodyHtml = "";
+    if(e.body && e.body.length){
+      var secs = e.body.map(function(b){
+        return '<div class="body-section">' +
+                 (b.heading ? '<h4>' + esc(b.heading) + '</h4>' : '') +
+                 '<p>' + escMultiline(b.text || "") + '</p>' +
+               '</div>';
+      }).join("");
+      bodyHtml = '<div class="section">' + secs + '</div>';
+    }
+
+    el.detailContent.innerHTML =
+      head +
+      bodyHtml +
+      fieldsTableHTML(e.fields) +
+      relatedHTML(e.related_ids) +
+      cmpBacklinkHTML(e.id) +
+      sourcesHTML(e.sources);
+  }
+
+  // ================= ビュー切替 =================
+  function showView(v){
+    state.view = v;
+    el.viewHome.style.display   = (v === "home")   ? "" : "none";
+    el.viewList.style.display   = (v === "list")   ? "" : "none";
+    el.viewSearch.style.display = (v === "search") ? "" : "none";
+    el.viewHikaku.style.display = (v === "hikaku") ? "" : "none";
+    el.viewDetail.style.display = (v === "detail") ? "" : "none";
+    setActiveTab();
+    window.scrollTo(0,0);
+  }
+
+  // 現在地を「戻る先」の記述子として得る（1階層の戻り用）
+  function currentDescriptor(){
+    if(state.view === "detail"){
+      return { t: state.detailKind === "comparison" ? "cmpdetail" : "entrydetail", id: state.detailId };
+    }
+    if(state.view === "list")   return { t: "list" };
+    if(state.view === "search") return { t: "search" };
+    if(state.view === "hikaku") return { t: "hikaku" };
+    return { t: "home" };
+  }
+
+  function gotoHome(){
+    renderHome();
+    showView("home");
+  }
+  function gotoList(catKey){
+    state.listCat = catKey;
+    state.selectedTags = [];
+    renderFilters();
+    renderList();
+    showView("list");
+  }
+  function gotoSearch(query){
+    if(typeof query === "string"){
+      state.searchQuery = query;
+      el.search.value = query;
+    }
+    renderSearch();
+    showView("search");
+  }
+  function gotoHikaku(){
+    renderHikakuFilters();
+    renderHikaku();
+    showView("hikaku");
+  }
+  function gotoDetail(id, back){
+    var e = BY_ID[id];
+    if(!e) return;
+    state.back = back || currentDescriptor();
+    state.detailKind = "entry";
+    state.detailId = id;
+    renderDetail(e);
+    showView("detail");
+  }
+  function gotoCmpDetail(id, back){
+    var h = CMP_BY_ID[id];
+    if(!h) return;
+    state.back = back || currentDescriptor();
+    state.detailKind = "comparison";
+    state.detailId = id;
+    renderCmpDetail(h);
+    showView("detail");
+  }
+  function goBack(){
+    var b = state.back || { t: "home" };
+    if(b.t === "list")            showView("list");
+    else if(b.t === "search")     showView("search");
+    else if(b.t === "hikaku")     showView("hikaku");
+    else if(b.t === "cmpdetail")  gotoCmpDetail(b.id, { t: "hikaku" });
+    else if(b.t === "entrydetail")gotoDetail(b.id, { t: "home" });
+    else gotoHome();
+  }
+
+  // ================= イベント =================
+  // ホーム：カテゴリカード
+  el.catGrid.addEventListener("click", function(ev){
+    var card = ev.target.closest(".cat-card");
+    if(!card) return;
+    if(card.getAttribute("data-cmp")){ gotoHikaku(); return; }
+    gotoList(card.getAttribute("data-cat"));
+  });
+
+  // ホーム検索：入力したら横断検索ビューへ
+  el.homeSearch.addEventListener("input", function(ev){
+    gotoSearch(ev.target.value);
+    el.search.focus();
+    // カーソルを末尾へ
+    var v = el.search.value; el.search.value = ""; el.search.value = v;
+  });
+
+  // 横断検索：入力
+  el.search.addEventListener("input", function(ev){
+    state.searchQuery = ev.target.value;
+    renderSearch();
+  });
+
+  // タブ
+  el.tabs.addEventListener("click", function(ev){
+    var b = ev.target.closest(".tab-btn");
+    if(!b) return;
+    var tab = b.getAttribute("data-tab");
+    if(tab === "home")   gotoHome();
+    else if(tab === "search") gotoSearch();
+    else if(tab === "hikaku") gotoHikaku();
+    else if(tab === "cat")    gotoList(b.getAttribute("data-cat"));
+  });
+
+  // ヘッダのタイトルでホームへ
+  el.homeLink.addEventListener("click", gotoHome);
+
+  // タグ絞り込み
+  el.filters.addEventListener("click", function(ev){
+    var t = ev.target;
+    if(t.id === "clear-tags"){
+      state.selectedTags = [];
+      renderFilters(); renderList();
+      return;
+    }
+    var tag = t.getAttribute("data-tag");
+    if(tag){
+      var i = state.selectedTags.indexOf(tag);
+      if(i === -1) state.selectedTags.push(tag);
+      else state.selectedTags.splice(i,1);
+      renderFilters(); renderList();
+    }
+  });
+
+  // 一覧カードクリック → 詳細
+  el.grid.addEventListener("click", function(ev){
+    var card = ev.target.closest(".card");
+    if(card) gotoDetail(card.getAttribute("data-id"), { t: "list" });
+  });
+
+  // 検索結果カードクリック → 詳細（エントリ／比較の両方）
+  el.searchResults.addEventListener("click", function(ev){
+    var card = ev.target.closest(".card");
+    if(!card) return;
+    var cmpId = card.getAttribute("data-cmp-id");
+    if(cmpId){ gotoCmpDetail(cmpId, { t: "search" }); return; }
+    gotoDetail(card.getAttribute("data-id"), { t: "search" });
+  });
+
+  // 流派比較：観点フィルタ
+  el.hikakuFilters.addEventListener("click", function(ev){
+    var t = ev.target;
+    if(t.id === "clear-aspects"){
+      state.cmpAspects = [];
+      renderHikakuFilters(); renderHikaku();
+      return;
+    }
+    var aspect = t.getAttribute("data-aspect");
+    if(aspect){
+      var i = state.cmpAspects.indexOf(aspect);
+      if(i === -1) state.cmpAspects.push(aspect);
+      else state.cmpAspects.splice(i,1);
+      renderHikakuFilters(); renderHikaku();
+    }
+  });
+
+  // 流派比較：一覧カード → 比較詳細
+  el.hikakuGrid.addEventListener("click", function(ev){
+    var card = ev.target.closest(".card");
+    if(card) gotoCmpDetail(card.getAttribute("data-cmp-id"), { t: "hikaku" });
+  });
+
+  // 詳細内：関連リンク／流派リンク／比較逆リンク
+  el.detailContent.addEventListener("click", function(ev){
+    var backlink = ev.target.closest(".cmp-backlink");
+    if(backlink){ gotoCmpDetail(backlink.getAttribute("data-cmp-id")); return; }
+    var schoolLink = ev.target.closest(".cmp-school-link");
+    if(schoolLink){ gotoDetail(schoolLink.getAttribute("data-id")); return; }
+    var link = ev.target.closest(".related-link");
+    if(link){ gotoDetail(link.getAttribute("data-id")); return; }
+  });
+
+  // 詳細の戻る
+  el.detailBack.addEventListener("click", goBack);
+
+  // ================= 初期描画 =================
+  renderTabs();
+  gotoHome();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吟猫ピッチマップ - 詩吟絶対音階ピッチ検出ツール</title>
+<meta name="description" content="詩吟の音源をブラウザ内だけで解析し、ピアノロール上にピッチ（音高）を可視化するツールです。音声はサーバーへ送信されません。単体のHTMLファイルとして完結しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   吟猫ピッチマップ CSS (単体HTML版)
+   Aesthetics: Rich Cyberpunk-Neumorphic Dark Theme (WOW, Premium, Dynamic)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0b0f19;
+    --panel-bg: rgba(22, 28, 45, 0.7);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --accent-emerald: #0df0a4;
+    --accent-cyan: #0bdbeb;
+    --accent-indigo: #6366f1;
+    --accent-magenta: #f43f5e;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --font-heading: 'Montserrat', 'Noto Sans JP', sans-serif;
+    --font-body: 'Noto Sans JP', 'Montserrat', sans-serif;
+    --glass-blur: blur(16px);
+    --shadow-glow: 0 0 15px rgba(11, 219, 235, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-image:
+        radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+        radial-gradient(at 90% 90%, rgba(13, 240, 164, 0.05) 0px, transparent 50%);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 12px;
+    gap: 12px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    backdrop-filter: var(--glass-blur);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo-area { display: flex; align-items: center; gap: 10px; }
+
+.cat-icon { font-size: 24px; animation: pulse-cat 2s infinite ease-in-out; }
+
+@keyframes pulse-cat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+header .subtitle {
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    background: rgba(11, 219, 235, 0.1);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(11, 219, 235, 0.2);
+    border-radius: 6px;
+}
+
+.header-right { display: flex; align-items: center; gap: 12px; }
+
+.portal-back-link {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.portal-back-link:hover {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+}
+
+.privacy-badge {
+    padding: 6px 12px;
+    background: rgba(13, 240, 164, 0.08);
+    border: 1px solid rgba(13, 240, 164, 0.25);
+    color: var(--accent-emerald);
+    border-radius: 20px;
+    font-size: 0.78rem;
+}
+
+.audio-badge {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.main-layout {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+    height: calc(100vh - 84px);
+    overflow: hidden;
+}
+
+.control-panel {
+    width: 340px;
+    min-width: 340px;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    backdrop-filter: var(--glass-blur);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.panel-section {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.panel-section h2 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--accent-cyan);
+    border-left: 3px solid var(--accent-cyan);
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.audio-player-wrapper { display: flex; flex-direction: column; gap: 8px; }
+
+.upload-area.drag-over .btn {
+    outline: 2px dashed var(--accent-cyan);
+    outline-offset: 2px;
+}
+
+.play-controls { display: flex; gap: 10px; }
+
+.time-display {
+    text-align: center;
+    font-family: monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.3);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
+    color: var(--bg-dark);
+    flex: 2;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(11, 219, 235, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 1;
+}
+
+.btn-secondary:hover:not(:disabled) { background: rgba(255, 255, 255, 0.15); }
+
+.btn-small { padding: 4px 10px; font-size: 0.8rem; flex: none; }
+
+.btn-action {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+    color: #000;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.btn-action:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+/* === v4: 伴奏を削除してみる 関連スタイル === */
+.btn-extract {
+    background: linear-gradient(135deg, var(--accent-indigo), var(--accent-magenta));
+    color: #fff;
+    width: 100%;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
+}
+
+.btn-extract:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+.btn-extract:disabled {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+.extract-progress {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 6px;
+}
+
+.extract-progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    margin-bottom: 6px;
+}
+
+.extract-bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.extract-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.extract-error {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: #fca5b5;
+    line-height: 1.5;
+}
+
+.extract-download {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    text-align: center;
+    background: rgba(13, 240, 164, 0.08);
+    border: 1px solid rgba(13, 240, 164, 0.3);
+    border-radius: 6px;
+    color: var(--accent-emerald);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.extract-download:hover {
+    background: rgba(13, 240, 164, 0.15);
+}
+
+.parameter-group { margin-bottom: 14px; }
+
+.param-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.param-value { color: var(--accent-emerald); font-family: monospace; font-weight: 600; }
+
+.param-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.25;
+}
+
+.param-example {
+    font-size: 0.75rem;
+    color: var(--accent-emerald);
+    background: rgba(13, 240, 164, 0.06);
+    border-left: 2px solid rgba(13, 240, 164, 0.4);
+    margin-top: 6px;
+    padding: 5px 8px;
+    line-height: 1.35;
+    border-radius: 0 4px 4px 0;
+}
+
+.param-example b {
+    color: var(--accent-emerald);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(11, 219, 235, 0.6);
+    transition: all 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--accent-emerald);
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+    border-radius: 6px;
+    outline: none;
+    font-family: var(--font-body);
+}
+
+select option { background: var(--bg-dark); }
+
+.spinner-hidden { display: none; }
+
+.spinner-visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid rgba(11, 219, 235, 0.1);
+    border-top: 2.5px solid var(--accent-cyan);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.shigin-legend {
+    margin-top: 10px;
+    padding: 8px;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 6px;
+}
+
+.legend-title {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--accent-indigo);
+    margin-bottom: 6px;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 4px;
+    font-size: 0.75rem;
+}
+
+.legend-grid span { color: var(--text-secondary); }
+.legend-grid strong { font-family: monospace; color: var(--text-primary); }
+
+.plot-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.plot-header-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.header-audio-controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-audio-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.header-audio-controls .btn-small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    height: 32px;
+}
+
+.header-seek-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.header-seek-row input[type="range"] {
+    flex: 1;
+}
+
+.canvas-container {
+    flex: 1;
+    position: relative;
+    background: #04060b;
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+#pitch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.empty-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+.empty-state p { font-size: 1rem; }
+.empty-state-sub { font-size: 0.8rem !important; color: var(--text-muted); }
+.empty-state.hidden { display: none; }
+
+.status-bar {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+#status-current-note { color: var(--accent-cyan); }
+#status-current-offset { color: var(--accent-emerald); }
+
+/* モバイル対応クラス */
+.mobile-only { display: none; }
+.mobile-only-btn { display: none; }
+
+@media (max-width: 900px) {
+    .mobile-only { display: flex; }
+    .mobile-only-btn { display: flex; }
+
+    /* ヘッダーのバッジ類をスマホ向けにコンパクト化 */
+    .privacy-badge {
+        display: none; /* スマホでは非表示にしてすっきりさせる */
+    }
+
+    .portal-back-link {
+        display: none; /* スマホでは狭いため非表示（ヘッダーの混雑を避ける） */
+    }
+
+    .audio-badge {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+    header .subtitle {
+        display: none; /* スマホではタイトルを短く */
+    }
+
+    header {
+        padding: 8px 12px;
+        gap: 6px;
+    }
+
+    .app-container {
+        padding: 6px;
+        gap: 6px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .main-layout {
+        height: calc(100vh - 65px); /* ヘッダー縮小分調整 */
+        gap: 6px;
+    }
+
+    /* コントロールパネルを右スライドのドロワーに変更 */
+    .control-panel {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 360px;
+        height: 100vh;
+        z-index: 1000;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px 0 0 16px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 20px 16px 40px 16px; /* 下部に少し余白を */
+        min-width: 0;
+    }
+
+    .control-panel.open {
+        right: 0;
+    }
+
+    /* 背景マスク */
+    .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* ドロワーヘッダー */
+    .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 12px;
+    }
+
+    .drawer-header h3 {
+        font-size: 1.1rem;
+        color: var(--accent-cyan);
+        font-family: var(--font-heading);
+        font-weight: 600;
+    }
+
+    .btn-close {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s;
+    }
+
+    .btn-close:hover {
+        color: var(--accent-magenta);
+    }
+
+    .canvas-container {
+        min-height: 0; /* 固定の高さを解除 */
+        flex: 1;
+    }
+
+    /* 音源ファイルアップロードエリアのスマホ調整 */
+    .upload-area label {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .status-bar {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .plot-header-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .header-audio-controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-audio-controls {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        width: 100%;
+    }
+
+    .header-audio-controls .btn-small {
+        padding: 6px 2px;
+        font-size: 0.75rem;
+        justify-content: center;
+    }
+
+    .header-seek-row {
+        gap: 8px;
+    }
+
+    .header-seek-row .time-display {
+        font-size: 0.75rem;
+        padding: 4px;
+        min-width: 80px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ヘッダー -->
+        <header>
+            <div class="logo-area">
+                <span class="cat-icon">🐱</span>
+                <h1>吟猫ピッチマップ <span class="subtitle">v4</span></h1>
+            </div>
+            <div class="header-right">
+                <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+                <span class="privacy-badge" title="音声ファイルはサーバーへ送信されず、すべてブラウザ内で処理されます">🔒 音声はブラウザ内でのみ処理</span>
+                <div class="audio-badge" id="audio-filename">音源: 未選択</div>
+                <button id="btn-toggle-settings" class="btn btn-secondary btn-small mobile-only-btn" title="設定を開く">⚙️ 設定</button>
+            </div>
+        </header>
+
+        <!-- メイングリッド -->
+        <div class="main-layout">
+            <!-- 設定ドロワーの背景マスク (スマホ用) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+            <!-- サイドコントロールパネル -->
+            <aside class="control-panel" id="control-panel">
+                <div class="drawer-header mobile-only">
+                    <h3>⚙️ 解析・表示設定</h3>
+                    <button id="btn-close-settings" class="btn-close">✕</button>
+                </div>
+                <div class="panel-section">
+                    <h2>🎵 オーディオ・再生コントロール</h2>
+                    <div class="audio-player-wrapper">
+                        <div class="upload-area" id="drop-zone">
+                            <label for="audio-upload" class="btn btn-secondary" style="width: 100%; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                                📤 音源ファイルを選択
+                            </label>
+                            <input type="file" id="audio-upload" accept="audio/*, .mp3, .m4a, .wav, .aac, .flac, .ogg, .caf, audio/mpeg, audio/mp4, audio/x-m4a, audio/wav, audio/x-wav, audio/3gpp" style="display: none;">
+                        </div>
+
+                        <button id="btn-analyze" class="btn btn-action" disabled>
+                            ⚡ ピッチ再解析を実行 ⚡
+                        </button>
+                        <div id="loading-spinner" class="spinner-hidden">
+                            <div class="spinner"></div>
+                            <span id="spinner-text">音源を解析中...</span>
+                        </div>
+
+                        <!-- === v4: 伴奏を削除してみる（ローカルサーバー連携） ===
+                             公開用ビルドではローカルサーバー(127.0.0.1:8765)が使えないため、
+                             この関連UIは非表示にしています（JS側のDOM取得・イベント登録は
+                             そのまま残していますが、要素が display:none のためユーザーが
+                             クリックする手段はなく、外部通信も発生しません）。 -->
+                        <div class="extract-area" id="extract-area" style="margin-top: 8px; display: none;">
+                            <button id="btn-extract" class="btn btn-extract" disabled
+                                title="先に音源ファイルを読み込んでください">
+                                🎼 伴奏を削除してみる
+                            </button>
+                            <div class="param-desc" style="margin-top: 6px; font-size: 0.72rem; color: var(--text-muted); line-height: 1.4;">
+                                伴奏付きの録音から、吟の声だけを取り出してから解析します。<br>
+                                処理には数分かかります。そのままお待ちください🐱
+                            </div>
+
+                            <!-- 進捗表示 -->
+                            <div id="extract-progress" class="extract-progress" style="display: none;">
+                                <div class="extract-progress-label">
+                                    <span id="extract-message">準備中...</span>
+                                    <span id="extract-percent" class="param-value">0%</span>
+                                </div>
+                                <div class="extract-bar-track">
+                                    <div id="extract-bar-fill" class="extract-bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <div class="param-desc" style="margin-top: 6px; font-size: 0.7rem; color: var(--text-muted);">
+                                    処理には数分かかります。そのままお待ちください🐱
+                                </div>
+                            </div>
+
+                            <!-- エラー / 案内表示 -->
+                            <div id="extract-error" class="extract-error" style="display: none;"></div>
+
+                            <!-- 抽出済みwavのダウンロードリンク -->
+                            <a id="extract-download" class="extract-download" style="display: none;" download>
+                                ⬇ 抽出した声を保存
+                            </a>
+                        </div>
+
+                        <div class="parameter-group" style="margin-top: 15px; margin-bottom: 5px;">
+                            <div class="param-header">
+                                <label for="param-hon" style="font-weight: bold; font-size: 0.85rem; color: var(--text-secondary);">本数（基準音）の選択</label>
+                            </div>
+                            <select id="param-hon" style="width: 100%; padding: 8px; border-radius: 6px; background: #0c0f16; border: 1px solid var(--panel-border); color: var(--text-primary); font-size: 0.85rem; margin-top: 6px; cursor: pointer;">
+                                <option value="0">なし</option>
+                                <option value="67">水2本 (G4)</option>
+                                <option value="68">水1本 (G#4)</option>
+                                <option value="69">1本 (A4)</option>
+                                <option value="70">2本 (A#4)</option>
+                                <option value="71">3本 (B4)</option>
+                                <option value="72">4本 (C5)</option>
+                                <option value="73">5本 (C#5)</option>
+                                <option value="74" selected>6本 (D5) - ※本音源推奨</option>
+                                <option value="75">7本 (D#5)</option>
+                                <option value="76">8本 (E5)</option>
+                                <option value="77">9本 (F5)</option>
+                                <option value="78">10本 (F#5)</option>
+                            </select>
+                            <div class="param-desc" style="margin-top: 6px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">ご自身の声の高さや、吟ずる調子に合わせて本数を選択してください。ピッチマップ上に主音（中）の位置が太線で表示されます。</div>
+                        </div>
+
+                        <audio id="audio-player" preload="auto"></audio>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2>⚙️ ピッチ検出パラメータ</h2>
+
+                    <div class="parameter-group">
+                        <div class="param-header">
+                            <label for="param-fmin">🔉 拾う声の下限 (最低音ライン)</label>
+                            <span class="param-value" id="val-fmin">80 Hz</span>
+                        </div>
+                        <input type="range" id="param-fmin" min="50" max="250" step="5" value="80">
+                        <div class="param-desc">これより低い音は「声ではない」として無視します。目安: 男性70〜100Hz／女性150Hz前後。</div>
+                        <div class="param-example">💡 例: 低いうなり声や物音を声と誤検出してしまうときは、この値を<b>上げる</b>と改善します。</div>
+                    </div>
+
+                    <div class="parameter-group">
+                        <div class="param-header">
+                            <label for="param-fmax">🔊 拾う声の上限 (最高音ライン)</label>
+                            <span class="param-value" id="val-fmax">600 Hz</span>
+                        </div>
+                        <input type="range" id="param-fmax" min="300" max="1200" step="10" value="600">
+                        <div class="param-desc">これより高い音は「倍音やノイズ」として無視します。</div>
+                        <div class="param-example">💡 例: 高音の裏声が途切れてしまうときは<b>上げる</b>。逆にキーンとした高音ノイズを誤って拾うときは<b>下げる</b>。</div>
+                    </div>
+
+                    <div class="parameter-group">
+                        <div class="param-header">
+                            <label for="param-hop">📏 解析の細かさ (時間の刻み幅)</label>
+                            <span class="param-value" id="val-hop">512 (約32ms)</span>
+                        </div>
+                        <select id="param-hop">
+                            <option value="128">128 (最も細かい・低速)</option>
+                            <option value="256">256 (細かい)</option>
+                            <option value="512" selected>512 (標準)</option>
+                            <option value="1024">1024 (粗い)</option>
+                            <option value="2048">2048 (最も粗い・高速)</option>
+                        </select>
+                        <div class="param-desc">音の高さを何ミリ秒ごとに計算するか。数値が小さいほど線が滑らかで詳細になりますが、解析に時間がかかります。</div>
+                        <div class="param-example">💡 例: こぶしやビブラートの細かい動きまで見たいときは<b>128〜256</b>。曲全体の大まかな音の流れだけ見たいときは<b>1024〜2048</b>で素早く解析。</div>
+                    </div>
+
+                    <div class="parameter-group">
+                        <div class="param-header">
+                            <label for="param-threshold">🎚️ 声とノイズの境界線</label>
+                            <span class="param-value" id="val-threshold">0.10</span>
+                        </div>
+                        <input type="range" id="param-threshold" min="0.01" max="0.50" step="0.01" value="0.10">
+                        <div class="param-desc">数値が大きいほど「はっきり声を出している部分」だけを表示し、息継ぎや小さな雑音を無音として除外します。</div>
+                        <div class="param-example">💡 例: 録音にノイズが多く線がガタガタに乱れるときは<b>上げる</b>。小さい声や息継ぎ直後の音も拾いたいときは<b>下げる</b>。</div>
+                    </div>
+
+                    <div class="parameter-group">
+                        <div class="param-header">
+                            <label for="param-smooth">〰️ 線の滑らかさ (ゆらぎ補正)</label>
+                            <span class="param-value" id="val-smooth">5 点</span>
+                        </div>
+                        <input type="range" id="param-smooth" min="1" max="21" step="2" value="5">
+                        <div class="param-desc">数値が大きいほど、細かい音程のブレを均して滑らかな線にします。1にすると補正なし（生の検出結果そのまま）。</div>
+                        <div class="param-example">💡 例: 線がギザギザで見づらいときは<b>大きく</b>する。こぶしや細かい節回しもそのまま忠実に見たいときは<b>小さく（1〜3）</b>する。</div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2>📊 表示設定</h2>
+                    <div class="parameter-group" style="margin-bottom: 0;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem;">
+                            <input type="checkbox" id="chk-grid" checked style="accent-color: var(--accent-cyan); cursor: pointer;">
+                            鍵盤グリッド表示
+                        </label>
+                        <div style="margin-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px;">
+                            <button id="btn-export" class="btn btn-secondary" style="width: 100%; padding: 8px 16px; font-size: 0.9rem;" title="現在の表示をPNG画像として保存">🖼 画像保存</button>
+                            <div class="param-desc" style="margin-top: 6px; text-align: center; color: var(--text-muted);">※現在表示しているピッチマップを保存</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- メインプロットエリア -->
+            <main class="plot-area">
+                <div class="plot-header-controls">
+                    <div class="header-audio-controls-row">
+                        <div class="header-audio-controls">
+                            <button id="btn-play" class="btn btn-primary btn-small" title="再生/一時停止" disabled>
+                                <span class="play-icon">▶</span> 再生
+                            </button>
+                            <button id="btn-stop" class="btn btn-secondary btn-small" title="停止" disabled>
+                                ⏹ 停止
+                            </button>
+                            <button id="btn-rewind" class="btn btn-secondary btn-small" title="3秒前" disabled>
+                                ⏪ 3秒前
+                            </button>
+                            <button id="btn-forward" class="btn btn-secondary btn-small" title="3秒後" disabled>
+                                ⏩ 3秒後
+                            </button>
+                        </div>
+                    </div>
+                    <div class="header-seek-row">
+                        <input type="range" id="audio-seek" min="0" max="100" step="0.05" value="0" style="flex: 1; accent-color: var(--accent-cyan);" disabled>
+                        <div class="time-display" style="min-width: 100px; flex-shrink: 0; background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; text-align: center;">
+                            <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-container" id="canvas-container">
+                    <canvas id="pitch-canvas"></canvas>
+                    <div class="empty-state" id="empty-state">
+                        <p>🎤 まずは左のパネルから音源ファイルを選択してください</p>
+                        <p class="empty-state-sub">m4a / mp3 / wav / ogg など、ブラウザが再生できる形式に対応しています</p>
+                    </div>
+                </div>
+
+                <div class="status-bar">
+                    <span id="status-current-note">現在音高: -- Hz (---)</span>
+                    <span id="status-current-offset">基準音階からのズレ: -- cent</span>
+                    <span id="status-analysed-info">データ件数: -- 件</span>
+                </div>
+            </main>
+        </div>
+    </div>
+
+<script>
+/**
+ * 吟猫ピッチマップ - ピッチ検出ロジック
+ * file:// で直接開いても動作するよう、Web Worker(Blob URL)は使わずメインスレッド上で
+ * chunk分割 + setTimeoutによる譲歩を行いながら解析する（UIの応答性を保つため）。
+ */
+function detectPitchYin(frame, sr, fmin, fmax, threshold) {
+    const tauMin = Math.max(2, Math.floor(sr / fmax));
+    const tauMax = Math.min(frame.length - 1, Math.ceil(sr / fmin));
+
+    if (tauMax <= tauMin) {
+        return { hz: 0, confidence: 0 };
+    }
+
+    const d = new Float64Array(tauMax + 1);
+    for (let tau = tauMin; tau <= tauMax; tau++) {
+        let sum = 0;
+        const limit = frame.length - tau;
+        for (let j = 0; j < limit; j++) {
+            const diff = frame[j] - frame[j + tau];
+            sum += diff * diff;
+        }
+        d[tau] = sum;
+    }
+
+    const cmnd = new Float64Array(tauMax + 1);
+    cmnd[tauMin] = 1;
+    let runningSum = 0;
+    for (let tau = tauMin; tau <= tauMax; tau++) {
+        runningSum += d[tau];
+        const meanVal = runningSum / (tau - tauMin + 1);
+        cmnd[tau] = meanVal > 0 ? d[tau] / meanVal : 1;
+    }
+
+    let bestTau = -1;
+    for (let tau = tauMin + 1; tau < tauMax; tau++) {
+        if (cmnd[tau] < threshold) {
+            let t = tau;
+            while (t + 1 < tauMax && cmnd[t + 1] < cmnd[t]) {
+                t++;
+            }
+            bestTau = t;
+            break;
+        }
+    }
+
+    let minVal = Infinity;
+    let minTau = tauMin;
+    for (let tau = tauMin; tau <= tauMax; tau++) {
+        if (cmnd[tau] < minVal) {
+            minVal = cmnd[tau];
+            minTau = tau;
+        }
+    }
+    if (bestTau === -1) {
+        bestTau = minTau;
+    }
+
+    let betterTau = bestTau;
+    if (bestTau > tauMin && bestTau < tauMax) {
+        const s0 = cmnd[bestTau - 1];
+        const s1 = cmnd[bestTau];
+        const s2 = cmnd[bestTau + 1];
+        const denom = 2 * s1 - s2 - s0;
+        if (Math.abs(denom) > 1e-12) {
+            betterTau = bestTau + (s2 - s0) / (2 * denom);
+        }
+    }
+
+    const confidence = Math.max(0, 1 - cmnd[bestTau]);
+    const hz = betterTau > 0 ? sr / betterTau : 0;
+
+    return { hz, confidence };
+}
+
+const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+function hzToMidi(hz) {
+    return 69 + 12 * Math.log2(hz / 440);
+}
+
+function midiToNoteName(midiRound) {
+    const name = NOTE_NAMES[((midiRound % 12) + 12) % 12];
+    const octave = Math.floor(midiRound / 12) - 1;
+    return name + octave;
+}
+
+function medianFilterWithNanInterp(values, voicedFlags, windowSize) {
+    const n = values.length;
+    if (windowSize <= 1) return values.slice();
+
+    const filled = values.slice();
+    let lastValidIdx = -1;
+    for (let i = 0; i < n; i++) {
+        if (voicedFlags[i]) {
+            if (lastValidIdx >= 0 && lastValidIdx < i - 1) {
+                const startVal = filled[lastValidIdx];
+                const endVal = filled[i];
+                const span = i - lastValidIdx;
+                for (let k = 1; k < span; k++) {
+                    filled[lastValidIdx + k] = startVal + (endVal - startVal) * (k / span);
+                }
+            }
+            lastValidIdx = i;
+        }
+    }
+
+    const half = Math.floor(windowSize / 2);
+    const result = new Array(n);
+    const buf = new Float64Array(windowSize);
+    for (let i = 0; i < n; i++) {
+        let count = 0;
+        for (let k = -half; k <= half; k++) {
+            const idx = i + k;
+            if (idx >= 0 && idx < n) {
+                buf[count++] = filled[idx];
+            }
+        }
+        const slice = Array.from(buf.slice(0, count)).sort((a, b) => a - b);
+        result[i] = slice[Math.floor(slice.length / 2)];
+    }
+    return result;
+}
+
+// メインスレッド上でチャンク分割しながら解析する（UIをブロックしないよう定期的に制御を返す）
+async function runPitchAnalysis(samples, sr, params, onProgress) {
+    const fmin = params.fmin, fmax = params.fmax, hopLength = params.hopLength,
+          voicingThreshold = params.voicingThreshold, smoothWindow = params.smoothWindow;
+
+    let frameLength = 2048;
+    const minRequired = Math.ceil((sr / fmin) * 2);
+    if (minRequired > frameLength) {
+        frameLength = Math.pow(2, Math.ceil(Math.log2(minRequired)));
+    }
+
+    const numFrames = Math.max(0, Math.floor((samples.length - frameLength) / hopLength) + 1);
+    const times = new Float64Array(numFrames);
+    const hzArr = new Float64Array(numFrames);
+    const confArr = new Float64Array(numFrames);
+    const voicedArr = new Uint8Array(numFrames);
+
+    const yinInternalThreshold = 0.20;
+    const CHUNK_SIZE = 100; // このフレーム数ごとにUIへ制御を返す
+
+    for (let i = 0; i < numFrames; i++) {
+        const start = i * hopLength;
+        const frame = samples.subarray(start, start + frameLength);
+        const res = detectPitchYin(frame, sr, fmin, fmax, yinInternalThreshold);
+
+        times[i] = start / sr;
+        confArr[i] = res.confidence;
+
+        const isVoiced = res.confidence >= voicingThreshold && res.hz >= fmin && res.hz <= fmax;
+        voicedArr[i] = isVoiced ? 1 : 0;
+        hzArr[i] = isVoiced ? res.hz : NaN;
+
+        if (i % CHUNK_SIZE === 0 || i === numFrames - 1) {
+            if (onProgress) onProgress((i + 1) / numFrames);
+            // eslint-disable-next-line no-await-in-loop
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
+    }
+
+    let finalHz = Array.from(hzArr);
+    if (smoothWindow > 1) {
+        const win = smoothWindow % 2 === 0 ? smoothWindow + 1 : smoothWindow;
+        const voicedBool = Array.from(voicedArr).map(v => v === 1);
+        finalHz = medianFilterWithNanInterp(Array.from(hzArr), voicedBool, win);
+        for (let i = 0; i < numFrames; i++) {
+            if (!voicedArr[i]) finalHz[i] = NaN;
+        }
+    }
+
+    const result = new Array(numFrames);
+    for (let i = 0; i < numFrames; i++) {
+        const hz = finalHz[i];
+        if (!voicedArr[i] || !isFinite(hz) || hz <= 0) {
+            result[i] = { time: times[i], hz: null, midi: null, note: null, cents: null, confidence: confArr[i] };
+        } else {
+            const midiVal = hzToMidi(hz);
+            const midiRound = Math.round(midiVal);
+            const cents = (midiVal - midiRound) * 100;
+            result[i] = {
+                time: times[i],
+                hz: hz,
+                midi: midiVal,
+                note: midiToNoteName(midiRound),
+                cents: cents,
+                confidence: confArr[i]
+            };
+        }
+    }
+
+    return {
+        parameters: { fmin, fmax, hopLength, voicingThreshold, smoothWindow, frameLength, sr },
+        data: result
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const KEYBOARD_WIDTH = 40;
+
+    // === DOM 要素の取得 ===
+    const audioPlayer = document.getElementById('audio-player');
+    const btnPlay = document.getElementById('btn-play');
+    const btnStop = document.getElementById('btn-stop');
+    const btnRewind = document.getElementById('btn-rewind');
+    const btnForward = document.getElementById('btn-forward');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalTimeEl = document.getElementById('total-time');
+    const audioUpload = document.getElementById('audio-upload');
+    const dropZone = document.getElementById('drop-zone');
+    const audioSeek = document.getElementById('audio-seek');
+
+    const paramFmin = document.getElementById('param-fmin');
+    const paramFmax = document.getElementById('param-fmax');
+    const paramHop = document.getElementById('param-hop');
+    const paramThreshold = document.getElementById('param-threshold');
+    const paramSmooth = document.getElementById('param-smooth');
+    const btnAnalyze = document.getElementById('btn-analyze');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const spinnerText = document.getElementById('spinner-text');
+
+    const valFmin = document.getElementById('val-fmin');
+    const valFmax = document.getElementById('val-fmax');
+    const valHop = document.getElementById('val-hop');
+    const valThreshold = document.getElementById('val-threshold');
+    const valSmooth = document.getElementById('val-smooth');
+
+    const paramHon = document.getElementById('param-hon');
+
+    const chkGrid = document.getElementById('chk-grid');
+    const btnExport = document.getElementById('btn-export');
+
+    const canvasContainer = document.getElementById('canvas-container');
+    const canvas = document.getElementById('pitch-canvas');
+    const ctx = canvas.getContext('2d');
+    const emptyState = document.getElementById('empty-state');
+
+    const statusNote = document.getElementById('status-current-note');
+    const statusOffset = document.getElementById('status-current-offset');
+    const statusAnalysed = document.getElementById('status-analysed-info');
+    const audioFilenameBadge = document.getElementById('audio-filename');
+
+    // === v4: 伴奏を削除してみる 用の要素 ===
+    const btnExtract = document.getElementById('btn-extract');
+    const extractProgress = document.getElementById('extract-progress');
+    const extractMessage = document.getElementById('extract-message');
+    const extractPercent = document.getElementById('extract-percent');
+    const extractBarFill = document.getElementById('extract-bar-fill');
+    const extractError = document.getElementById('extract-error');
+    const extractDownload = document.getElementById('extract-download');
+
+    // === モバイルドロワー用要素 ===
+    const btnToggleSettings = document.getElementById('btn-toggle-settings');
+    const btnCloseSettings = document.getElementById('btn-close-settings');
+    const controlPanel = document.getElementById('control-panel');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+
+    const ANALYSIS_SR = 16000;
+    const SETTINGS_KEY = 'ginneko-pitchmap-settings-standalone';
+
+    let pitchData = [];
+    let audioDuration = 0;
+    let isAnalyzing = false;
+    let analysisSamples = null;
+    let objectUrl = null;
+
+    // === v4: 伴奏削除 用の状態 ===
+    const EXTRACT_SERVER = 'http://127.0.0.1:8765';
+    let originalFileForExtract = null; // ユーザーが読み込んだ「元ファイル」（伴奏付き）
+    let isExtracting = false;          // 二重クリック防止
+    let extractDownloadUrl = null;     // 生成したダウンロード用 Blob URL
+
+    let scaleX = 80;
+    let offsetX = 0;
+    let midiMin = 40;
+    let midiMax = 80;
+    const midiRangeMargin = 4;
+
+    let isSeekingBar = false;
+
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartOffsetX = 0;
+    let dragStartMidiMin = 40;
+    let dragStartMidiMax = 80;
+
+    // タッチ操作用変数
+    let touchStartDist = 0;
+    let touchStartScaleX = 80;
+    let touchStartOffsetX = 0;
+    let touchStartMidiMin = 40;
+    let touchStartMidiMax = 80;
+    let touchHasMoved = false;
+    let touchStartClientX = 0;
+    let touchStartClientY = 0;
+
+    let closeDrawer = () => {};
+
+    const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+    // Hz値をピアノロールの目盛り（音名）付きで表示するためのヘルパー
+    // 例: 80 -> "80 Hz (D#2)" のように、スライダーの値がピアノロールのどの鍵盤に対応するか一目で分かるようにする
+    const formatHzWithNote = (hz) => {
+        const midiVal = hzToMidi(parseFloat(hz));
+        const midiRound = Math.round(midiVal);
+        return `${hz} Hz (${midiToNoteName(midiRound)})`;
+    };
+
+    const getShiginScale = (honMidi) => {
+        if (honMidi <= 0) return null;
+        return {
+            chu: honMidi,
+            jo: honMidi + 5,
+            ge: honMidi - 5,
+            jojo: honMidi + 8
+        };
+    };
+
+    const init = () => {
+        restoreSettings();
+        setupEventListeners();
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        new ResizeObserver(() => resizeCanvas()).observe(canvasContainer);
+        updateShiginLegend();
+        draw();
+    };
+
+    const restoreSettings = () => {
+        try {
+            const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+            if (saved.fmin !== undefined) paramFmin.value = saved.fmin;
+            if (saved.fmax !== undefined) paramFmax.value = saved.fmax;
+            if (saved.hop !== undefined) paramHop.value = saved.hop;
+            if (saved.threshold !== undefined) paramThreshold.value = saved.threshold;
+            if (saved.smooth !== undefined) paramSmooth.value = saved.smooth;
+            if (saved.hon !== undefined) paramHon.value = saved.hon;
+        } catch (e) {
+            // 設定の復元に失敗しても致命的ではないため無視
+        }
+        valFmin.textContent = formatHzWithNote(paramFmin.value);
+        valFmax.textContent = formatHzWithNote(paramFmax.value);
+        const ms = Math.round((parseInt(paramHop.value) / ANALYSIS_SR) * 1000);
+        valHop.textContent = `${paramHop.value} (約${ms}ms)`;
+        valThreshold.textContent = parseFloat(paramThreshold.value).toFixed(2);
+        valSmooth.textContent = `${paramSmooth.value} 点`;
+    };
+
+    const persistSettings = () => {
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+            fmin: paramFmin.value,
+            fmax: paramFmax.value,
+            hop: paramHop.value,
+            threshold: paramThreshold.value,
+            smooth: paramSmooth.value,
+            hon: paramHon.value
+        }));
+    };
+
+    const formatTime = (secs) => {
+        const m = Math.floor(secs / 60);
+        const s = Math.floor(secs % 60);
+        const ms = Math.floor((secs % 1) * 10);
+        return `${m}:${s.toString().padStart(2, '0')}.${ms}`;
+    };
+
+    const setupEventListeners = () => {
+        paramFmin.addEventListener('input', () => { valFmin.textContent = formatHzWithNote(paramFmin.value); draw(); });
+        paramFmax.addEventListener('input', () => { valFmax.textContent = formatHzWithNote(paramFmax.value); draw(); });
+        paramHop.addEventListener('change', () => {
+            const ms = Math.round((parseInt(paramHop.value) / ANALYSIS_SR) * 1000);
+            valHop.textContent = `${paramHop.value} (約${ms}ms)`;
+        });
+        paramThreshold.addEventListener('input', () => valThreshold.textContent = parseFloat(paramThreshold.value).toFixed(2));
+        paramSmooth.addEventListener('input', () => valSmooth.textContent = `${paramSmooth.value} 点`);
+
+        btnAnalyze.addEventListener('click', () => runAnalysis());
+
+        paramHon.addEventListener('change', updateShiginLegend);
+
+        audioUpload.addEventListener('change', (e) => {
+            if (e.target.files[0]) handleAudioFile(e.target.files[0]);
+        });
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file) handleAudioFile(file);
+        });
+
+        btnPlay.addEventListener('click', togglePlay);
+        btnStop.addEventListener('click', stopAudio);
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+            updateStatusAtTime(audioPlayer.currentTime);
+            if (!isSeekingBar) {
+                audioSeek.value = audioPlayer.currentTime;
+            }
+        });
+
+        audioSeek.addEventListener('input', () => {
+            isSeekingBar = true;
+            audioPlayer.currentTime = audioSeek.value;
+            currentTimeEl.textContent = formatTime(audioSeek.value);
+            updateStatusAtTime(audioSeek.value);
+            draw();
+        });
+
+        audioSeek.addEventListener('change', () => {
+            isSeekingBar = false;
+        });
+
+        audioPlayer.addEventListener('play', () => draw());
+        audioPlayer.addEventListener('seeking', () => draw());
+        audioPlayer.addEventListener('ended', () => {
+            btnPlay.innerHTML = '<span class="play-icon">▶</span> 再生';
+        });
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            audioDuration = audioPlayer.duration;
+            totalTimeEl.textContent = formatTime(audioDuration);
+            audioSeek.max = audioDuration;
+        });
+
+        chkGrid.addEventListener('change', draw);
+
+        btnRewind.addEventListener('click', () => {
+            if (audioDuration > 0) {
+                audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 3);
+                updateStatusAtTime(audioPlayer.currentTime);
+                draw();
+            }
+        });
+
+        btnForward.addEventListener('click', () => {
+            if (audioDuration > 0) {
+                audioPlayer.currentTime = Math.min(audioDuration, audioPlayer.currentTime + 3);
+                updateStatusAtTime(audioPlayer.currentTime);
+                draw();
+            }
+        });
+
+        btnExport.addEventListener('click', exportCanvasAsImage);
+
+        // v4: 伴奏を削除してみる
+        if (btnExtract) btnExtract.addEventListener('click', runExtract);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
+                if (!btnPlay.disabled) {
+                    e.preventDefault();
+                    togglePlay();
+                }
+            }
+        });
+
+        let mouseHasMoved = false;
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return; // 左ボタンクリックのみ対象
+
+            const rect = canvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+
+            if (clickX < KEYBOARD_WIDTH) return;
+
+            isDragging = true;
+            mouseHasMoved = false;
+            dragStartX = e.clientX;
+            dragStartY = e.clientY;
+            dragStartOffsetX = offsetX;
+            dragStartMidiMin = midiMin;
+            dragStartMidiMax = midiMax;
+            canvas.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const dx = e.clientX - dragStartX;
+                const dy = e.clientY - dragStartY;
+
+                if (!mouseHasMoved && Math.hypot(dx, dy) > 4) {
+                    mouseHasMoved = true;
+                }
+
+                if (mouseHasMoved) {
+                    const rect = canvas.getBoundingClientRect();
+                    const height = rect.height;
+
+                    offsetX = Math.max(0, dragStartOffsetX - (dx / scaleX));
+
+                    const midiRange = dragStartMidiMax - dragStartMidiMin;
+                    const dMidi = (dy / height) * midiRange;
+
+                    let newMin = dragStartMidiMin + dMidi;
+                    let newMax = dragStartMidiMax + dMidi;
+                    if (newMin < 0) {
+                        newMin = 0;
+                        newMax = midiRange;
+                    }
+                    if (newMax > 127) {
+                        newMax = 127;
+                        newMin = 127 - midiRange;
+                    }
+
+                    midiMin = newMin;
+                    midiMax = newMax;
+
+                    draw();
+                }
+            } else {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                if (mouseX >= KEYBOARD_WIDTH && mouseX <= canvas.width && audioDuration > 0) {
+                    const time = screenXToTime(mouseX);
+                    updateStatusAtTime(time);
+                }
+            }
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (isDragging) {
+                isDragging = false;
+                canvas.style.cursor = 'crosshair';
+
+                if (!mouseHasMoved && e.button === 0) {
+                    const rect = canvas.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    if (clickX >= KEYBOARD_WIDTH && audioDuration > 0) {
+                        const timeAtClick = screenXToTime(clickX);
+                        if (timeAtClick >= 0 && timeAtClick <= audioDuration) {
+                            audioPlayer.currentTime = timeAtClick;
+                            updateStatusAtTime(timeAtClick);
+                            draw();
+                        }
+                    }
+                }
+            }
+        });
+
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+
+            // 鍵盤エリアの上でスクロール、または Ctrl + Shift + ホイール の場合は縦ズーム（音高軸の拡大縮小）
+            if (mouseX < KEYBOARD_WIDTH || (isCtrl && isShift)) {
+                const mouseMidi = screenYToMidi(mouseY);
+                const zoomFactor = e.deltaY < 0 ? 0.85 : 1.15; // 上ホイールで拡大、下ホイールで縮小
+
+                const currentRange = midiMax - midiMin;
+                const newRange = Math.max(6, Math.min(84, currentRange * zoomFactor));
+
+                const canvasHeight = rect.height;
+                const ratio = 1 - (mouseY / canvasHeight);
+
+                midiMin = Math.max(0, mouseMidi - ratio * newRange);
+                midiMax = Math.min(127, midiMin + newRange);
+
+                if (midiMax === 127) midiMin = 127 - newRange;
+                if (midiMin === 0) midiMax = newRange;
+
+            } else if (isCtrl) {
+                // Ctrl + ホイール：横ズーム
+                const mouseTime = screenXToTime(mouseX);
+                const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+                const newScaleX = Math.max(20, Math.min(500, scaleX * zoomFactor));
+
+                offsetX = Math.max(0, mouseTime - (mouseX - KEYBOARD_WIDTH) / newScaleX);
+                scaleX = newScaleX;
+
+            } else if (isShift) {
+                // Shift + ホイール：横スクロール
+                const viewWidth = rect.width - KEYBOARD_WIDTH;
+                const scrollStep = (e.deltaY > 0 ? 1 : -1) * (viewWidth / scaleX) * 0.15;
+                offsetX = Math.max(0, offsetX + scrollStep);
+
+            } else {
+                // 通常ホイール：縦スクロール
+                const scrollStep = (e.deltaY > 0 ? 1 : -1) * (midiMax - midiMin) * 0.15;
+                let newMin = midiMin + scrollStep;
+                let newMax = midiMax + scrollStep;
+
+                if (newMin < 0) {
+                    newMin = 0;
+                    newMax = midiMax - midiMin;
+                }
+                if (newMax > 127) {
+                    newMax = 127;
+                    newMin = 127 - (midiMax - midiMin);
+                }
+
+                midiMin = newMin;
+                midiMax = newMax;
+            }
+
+            draw();
+        });
+
+        // === モバイルドロワーの開閉制御 ===
+        const openDrawer = () => {
+            if (controlPanel && drawerOverlay) {
+                controlPanel.classList.add('open');
+                drawerOverlay.classList.add('open');
+            }
+        };
+
+        closeDrawer = () => {
+            if (controlPanel && drawerOverlay) {
+                controlPanel.classList.remove('open');
+                drawerOverlay.classList.remove('open');
+            }
+        };
+
+        if (btnToggleSettings) btnToggleSettings.addEventListener('click', openDrawer);
+        if (btnCloseSettings) btnCloseSettings.addEventListener('click', closeDrawer);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+        // === タッチ操作のサポート (スマホ向け) ===
+        canvas.addEventListener('touchstart', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            
+            if (e.touches.length === 1) {
+                // 1本指でのスワイプ開始 または タップ開始
+                const touch = e.touches[0];
+                const clickX = touch.clientX - rect.left;
+                
+                if (clickX < KEYBOARD_WIDTH) return; // 鍵盤エリアはタッチ操作無効
+
+                isDragging = true;
+                dragStartX = touch.clientX;
+                dragStartY = touch.clientY;
+                dragStartOffsetX = offsetX;
+                dragStartMidiMin = midiMin;
+                dragStartMidiMax = midiMax;
+                
+                touchHasMoved = false;
+                touchStartClientX = touch.clientX;
+                touchStartClientY = touch.clientY;
+                
+            } else if (e.touches.length === 2) {
+                // 2本指でのピンチ操作開始
+                isDragging = false; // 1本指のドラッグをキャンセル
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                
+                touchStartDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                touchStartScaleX = scaleX;
+                touchStartOffsetX = offsetX;
+                touchStartMidiMin = midiMin;
+                touchStartMidiMax = midiMax;
+                
+                // ピンチの中心点を計算
+                const centerX = (t1.clientX + t2.clientX) / 2 - rect.left;
+                if (centerX >= KEYBOARD_WIDTH) {
+                    canvas.dataset.pinchCenterX = centerX;
+                    canvas.dataset.pinchCenterTime = screenXToTime(centerX);
+                } else {
+                    canvas.dataset.pinchCenterX = KEYBOARD_WIDTH;
+                    canvas.dataset.pinchCenterTime = offsetX;
+                }
+                
+                const centerY = (t1.clientY + t2.clientY) / 2 - rect.top;
+                canvas.dataset.pinchCenterY = centerY;
+                canvas.dataset.pinchCenterMidi = screenYToMidi(centerY);
+            }
+            e.preventDefault();
+        }, { passive: false });
+
+        canvas.addEventListener('touchmove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            
+            if (e.touches.length === 1 && isDragging) {
+                const touch = e.touches[0];
+                const dx = touch.clientX - dragStartX;
+                const dy = touch.clientY - dragStartY;
+                
+                // 移動量が一定以上ならドラッグとみなす
+                if (!touchHasMoved && Math.hypot(touch.clientX - touchStartClientX, touch.clientY - touchStartClientY) > 8) {
+                    touchHasMoved = true;
+                }
+                
+                if (touchHasMoved) {
+                    // 指の動きに合わせてスクロールする（指を右に動かすと、時間は巻き戻るので offsetX が減る）
+                    offsetX = Math.max(0, dragStartOffsetX - (dx / scaleX));
+                    
+                    const height = rect.height;
+                    const midiRange = dragStartMidiMax - dragStartMidiMin;
+                    const dMidi = (dy / height) * midiRange;
+                    
+                    let newMin = dragStartMidiMin + dMidi;
+                    let newMax = dragStartMidiMax + dMidi;
+                    if (newMin < 0) {
+                        newMin = 0;
+                        newMax = midiRange;
+                    }
+                    if (newMax > 127) {
+                        newMax = 127;
+                        newMin = 127 - midiRange;
+                    }
+                    
+                    midiMin = newMin;
+                    midiMax = newMax;
+                    
+                    draw();
+                }
+            } else if (e.touches.length === 2 && touchStartDist > 0) {
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                
+                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const ratio = dist / touchStartDist;
+                
+                // 時間軸のズーム
+                const newScaleX = Math.max(20, Math.min(500, touchStartScaleX * ratio));
+                
+                const pinchCenterX = parseFloat(canvas.dataset.pinchCenterX || KEYBOARD_WIDTH);
+                const pinchCenterTime = parseFloat(canvas.dataset.pinchCenterTime || offsetX);
+                
+                offsetX = Math.max(0, pinchCenterTime - (pinchCenterX - KEYBOARD_WIDTH) / newScaleX);
+                scaleX = newScaleX;
+                
+                // 2本指での音高軸（鍵盤）のズーム
+                const startMidiRange = touchStartMidiMax - touchStartMidiMin;
+                const newMidiRange = Math.max(6, Math.min(84, startMidiRange / ratio));
+                
+                const pinchCenterY = parseFloat(canvas.dataset.pinchCenterY || (rect.height / 2));
+                const pinchCenterMidi = parseFloat(canvas.dataset.pinchCenterMidi || ((midiMin + midiMax) / 2));
+                
+                const ratioY = 1 - (pinchCenterY / rect.height);
+                
+                midiMin = Math.max(0, pinchCenterMidi - ratioY * newMidiRange);
+                midiMax = Math.min(127, midiMin + newMidiRange);
+                
+                if (midiMax === 127) midiMin = 127 - newMidiRange;
+                if (midiMin === 0) midiMax = newMidiRange;
+                
+                draw();
+            }
+            e.preventDefault();
+        }, { passive: false });
+
+        canvas.addEventListener('touchend', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            
+            if (isDragging) {
+                isDragging = false;
+                if (!touchHasMoved && e.changedTouches.length > 0) {
+                    // タップ判定
+                    const touch = e.changedTouches[0];
+                    const clickX = touch.clientX - rect.left;
+                    
+                    if (clickX >= KEYBOARD_WIDTH && audioDuration > 0) {
+                        const timeAtClick = screenXToTime(clickX);
+                        if (timeAtClick >= 0 && timeAtClick <= audioDuration) {
+                            audioPlayer.currentTime = timeAtClick;
+                            updateStatusAtTime(timeAtClick);
+                            draw();
+                        }
+                    }
+                }
+            }
+            
+            if (e.touches.length < 2) {
+                touchStartDist = 0;
+            }
+            e.preventDefault();
+        }, { passive: false });
+    };
+
+    const togglePlay = () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play()
+                .then(() => { btnPlay.innerHTML = '⏸ 一時停止'; })
+                .catch(err => console.error("Playback failed:", err));
+        } else {
+            audioPlayer.pause();
+            btnPlay.innerHTML = '<span class="play-icon">▶</span> 再生';
+        }
+    };
+
+    const stopAudio = () => {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        btnPlay.innerHTML = '<span class="play-icon">▶</span> 再生';
+        offsetX = 0;
+        draw();
+    };
+
+    const honNames = {
+        67: "水2本: G調",
+        68: "水1本: G#調",
+        69: "1本: A調",
+        70: "2本: A#調",
+        71: "3本: B調",
+        72: "4本: C調",
+        73: "5本: C#調",
+        74: "6本: D調",
+        75: "7本: D#調",
+        76: "8本: E調",
+        77: "9本: F調",
+        78: "10本: F#調"
+    };
+
+    const updateShiginLegend = () => {
+        persistSettings();
+        draw();
+    };
+
+    // opts.isExtracted: 伴奏削除済みの結果を読み込むときに true。
+    //   true のときは「元ファイル」を上書きせず、バッジ表示も専用のものにする。
+    // opts.displayName: バッジに表示するファイル名（省略時は file.name）。
+    const handleAudioFile = async (file, opts = {}) => {
+        // isAnalyzing は runAnalysis() 側だけで管理する（ここで先に true にすると
+        // runAnalysis() 冒頭の多重起動ガードに引っかかり、解析が無言でスキップされてしまう）
+        btnAnalyze.disabled = true;
+        loadingSpinner.className = 'spinner-visible';
+        spinnerText.textContent = '音源を読み込み中...';
+
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+
+            const decodeCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await decodeCtx.decodeAudioData(arrayBuffer.slice(0));
+            await decodeCtx.close();
+
+            spinnerText.textContent = 'リサンプリング中...';
+            analysisSamples = await resampleToMono(audioBuffer, ANALYSIS_SR);
+
+            if (objectUrl) URL.revokeObjectURL(objectUrl);
+            objectUrl = URL.createObjectURL(file);
+            audioPlayer.src = objectUrl;
+
+            audioFilenameBadge.textContent = `音源: ${opts.displayName || file.name}`;
+            emptyState.classList.add('hidden');
+            btnPlay.disabled = false;
+            btnStop.disabled = false;
+            btnRewind.disabled = false;
+            btnForward.disabled = false;
+            audioSeek.disabled = false;
+
+            // v4: 伴奏削除の対象となる「元ファイル」を記憶する。
+            // 抽出結果を読み込んだ場合は元ファイルを上書きしない（再抽出を防ぐ）。
+            if (!opts.isExtracted) {
+                originalFileForExtract = file;
+                // 抽出済み表示（ダウンロードリンク等）は新しい元ファイルではリセット
+                resetExtractUI();
+            }
+            updateExtractButtonState();
+
+            await runAnalysis();
+        } catch (err) {
+            console.error("Audio load failed:", err);
+            alert("音声ファイルの読み込みに失敗しました。対応形式のファイルか確認してください。\n詳細: " + (err.message || err));
+            btnAnalyze.disabled = false;
+            loadingSpinner.className = 'spinner-hidden';
+        }
+    };
+
+    // === v4: 伴奏を削除してみる ロジック ===
+
+    // ボタンの有効/無効を、ファイル読み込み状態と処理中フラグから決める
+    const updateExtractButtonState = () => {
+        if (isExtracting) {
+            btnExtract.disabled = true;
+            btnExtract.title = '処理中です。しばらくお待ちください。';
+        } else if (originalFileForExtract) {
+            btnExtract.disabled = false;
+            btnExtract.title = '伴奏付きの録音から吟の声だけを取り出します。';
+        } else {
+            btnExtract.disabled = true;
+            btnExtract.title = '先に音源ファイルを読み込んでください。';
+        }
+    };
+
+    // 進捗・エラー・ダウンロード表示を初期状態に戻す
+    const resetExtractUI = () => {
+        extractProgress.style.display = 'none';
+        extractError.style.display = 'none';
+        extractDownload.style.display = 'none';
+        extractBarFill.style.width = '0%';
+        extractPercent.textContent = '0%';
+        extractMessage.textContent = '準備中...';
+        if (extractDownloadUrl) {
+            URL.revokeObjectURL(extractDownloadUrl);
+            extractDownloadUrl = null;
+        }
+    };
+
+    const showExtractError = (html) => {
+        extractProgress.style.display = 'none';
+        extractError.style.display = 'block';
+        extractError.innerHTML = html;
+    };
+
+    const setExtractProgress = (percent, message) => {
+        extractProgress.style.display = 'block';
+        const p = Math.max(0, Math.min(100, Math.round(percent)));
+        extractBarFill.style.width = `${p}%`;
+        extractPercent.textContent = `${p}%`;
+        if (message) extractMessage.textContent = message;
+    };
+
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const runExtract = async () => {
+        if (isExtracting) return;
+        if (!originalFileForExtract) {
+            showExtractError('先に音源ファイルを読み込んでください。');
+            return;
+        }
+
+        isExtracting = true;
+        updateExtractButtonState();
+        extractError.style.display = 'none';
+        extractDownload.style.display = 'none';
+        setExtractProgress(0, 'サーバーに接続中... 🐱');
+
+        const srcFile = originalFileForExtract;
+        const srcName = srcFile.name;
+        const baseName = srcName.replace(/\.[^/.]+$/, '');
+
+        try {
+            // --- 1) 抽出リクエスト送信 ---
+            const formData = new FormData();
+            formData.append('file', srcFile, srcName);
+
+            let startRes;
+            try {
+                startRes = await fetch(`${EXTRACT_SERVER}/api/extract`, {
+                    method: 'POST',
+                    body: formData,
+                });
+            } catch (netErr) {
+                // サーバーに接続できない（起動していない）ケース
+                showServerOfflineNotice();
+                return;
+            }
+
+            if (!startRes.ok) {
+                const errData = await startRes.json().catch(() => ({}));
+                throw new Error(errData.error || `サーバーがエラーを返しました (${startRes.status})`);
+            }
+
+            const { jobId } = await startRes.json();
+            if (!jobId) throw new Error('ジョブIDを受け取れませんでした。');
+
+            // --- 2) ステータスをポーリング ---
+            let done = false;
+            while (!done) {
+                await sleep(1500);
+                let statusRes;
+                try {
+                    statusRes = await fetch(`${EXTRACT_SERVER}/api/status/${jobId}`);
+                } catch (netErr) {
+                    showServerOfflineNotice();
+                    return;
+                }
+                if (!statusRes.ok) {
+                    throw new Error(`状態の取得に失敗しました (${statusRes.status})`);
+                }
+                const status = await statusRes.json();
+                setExtractProgress(status.progress || 0, status.message || '処理中... 🐱');
+
+                if (status.state === 'done') {
+                    done = true;
+                } else if (status.state === 'error') {
+                    throw new Error(status.message || '抽出処理でエラーが発生しました。');
+                }
+            }
+
+            // --- 3) 結果wavを取得 ---
+            setExtractProgress(100, '抽出した声を読み込み中... 🐱');
+            const resultRes = await fetch(`${EXTRACT_SERVER}/api/result/${jobId}`);
+            if (!resultRes.ok) {
+                throw new Error(`結果の取得に失敗しました (${resultRes.status})`);
+            }
+            const wavBlob = await resultRes.blob();
+
+            // --- 4) ダウンロードリンクを用意 ---
+            if (extractDownloadUrl) URL.revokeObjectURL(extractDownloadUrl);
+            extractDownloadUrl = URL.createObjectURL(wavBlob);
+            extractDownload.href = extractDownloadUrl;
+            extractDownload.download = `${baseName}_吟だけ.wav`;
+            extractDownload.style.display = 'block';
+
+            // --- 5) 通常の読み込みパイプラインへ（解析・表示） ---
+            const displayName = `${baseName}（伴奏削除済み）`;
+            const wavFile = new File([wavBlob], `${baseName}_vocal.wav`, { type: 'audio/wav' });
+
+            // 進捗表示は残したまま、通常の読み込み処理へ渡す
+            setExtractProgress(100, '完了しました 🐱');
+            await handleAudioFile(wavFile, { isExtracted: true, displayName });
+
+        } catch (err) {
+            console.error('Extract failed:', err);
+            showExtractError(
+                'うまく処理できませんでした。<br>' +
+                (err.message ? `詳細: ${err.message}<br>` : '') +
+                'もう一度「🎼 伴奏を削除してみる」を押すとやり直せます。'
+            );
+        } finally {
+            isExtracting = false;
+            updateExtractButtonState();
+        }
+    };
+
+    // サーバーが起動していないときのやさしい案内
+    const showServerOfflineNotice = () => {
+        isExtracting = false;
+        updateExtractButtonState();
+        showExtractError(
+            '伴奏削除機能を使うには、フォルダ内の<br>' +
+            '<b>「吟猫ピッチマップv4_起動.bat」</b><br>' +
+            'をダブルクリックして起動してください。<br>' +
+            'その後、もう一度このボタンを押してください🐱'
+        );
+    };
+
+    const resampleToMono = async (audioBuffer, targetSr) => {
+        const duration = audioBuffer.duration;
+        const targetLength = Math.ceil(duration * targetSr);
+        const offlineCtx = new OfflineAudioContext(1, targetLength, targetSr);
+
+        const source = offlineCtx.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(offlineCtx.destination);
+        source.start(0);
+
+        const rendered = await offlineCtx.startRendering();
+        return rendered.getChannelData(0).slice();
+    };
+
+    async function runAnalysis() {
+        if (isAnalyzing) return;
+        if (!analysisSamples) {
+            alert("先に音源ファイルを選択してください。");
+            return;
+        }
+
+        isAnalyzing = true;
+        btnAnalyze.disabled = true;
+        loadingSpinner.className = 'spinner-visible';
+        spinnerText.textContent = '音源を解析中... 0%';
+
+        const params = {
+            fmin: parseFloat(paramFmin.value),
+            fmax: parseFloat(paramFmax.value),
+            hopLength: parseInt(paramHop.value),
+            voicingThreshold: parseFloat(paramThreshold.value),
+            smoothWindow: parseInt(paramSmooth.value)
+        };
+        persistSettings();
+
+        try {
+            const result = await runPitchAnalysis(analysisSamples, ANALYSIS_SR, params, (progress) => {
+                spinnerText.textContent = `音源を解析中... ${Math.round(progress * 100)}%`;
+            });
+            pitchData = result.data;
+            statusAnalysed.textContent = `データ件数: ${pitchData.length} 件`;
+            fitMidiRange();
+            draw();
+            closeDrawer();
+        } catch (err) {
+            console.error("Analysis error:", err);
+            alert(`解析中にエラーが発生しました: ${err.message || err}`);
+        } finally {
+            finishAnalysis();
+        }
+    }
+
+    const finishAnalysis = () => {
+        isAnalyzing = false;
+        btnAnalyze.disabled = false;
+        loadingSpinner.className = 'spinner-hidden';
+    };
+
+    const fitMidiRange = () => {
+        const validMidiVals = pitchData
+            .filter(d => d.midi !== null)
+            .map(d => d.midi);
+
+        if (validMidiVals.length > 0) {
+            const min = Math.min(...validMidiVals);
+            const max = Math.max(...validMidiVals);
+
+            midiMin = Math.max(12, Math.floor(min) - midiRangeMargin);
+            midiMax = Math.min(127, Math.ceil(max) + midiRangeMargin);
+        } else {
+            midiMin = 40;
+            midiMax = 80;
+        }
+    };
+
+    const resizeCanvas = () => {
+        const rect = canvasContainer.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+
+        draw();
+    };
+
+    const timeToScreenX = (time) => KEYBOARD_WIDTH + (time - offsetX) * scaleX;
+    const screenXToTime = (x) => ((x - KEYBOARD_WIDTH) / scaleX) + offsetX;
+
+    const midiToScreenY = (midi) => {
+        const canvasHeight = canvas.height / (window.devicePixelRatio || 1);
+        const ratio = (midi - midiMin) / (midiMax - midiMin);
+        return canvasHeight * (1 - ratio);
+    };
+
+    const screenYToMidi = (y) => {
+        const canvasHeight = canvas.height / (window.devicePixelRatio || 1);
+        const ratio = 1 - (y / canvasHeight);
+        return midiMin + ratio * (midiMax - midiMin);
+    };
+
+    const updateStatusAtTime = (time) => {
+        if (pitchData.length === 0) return;
+
+        let bestFrame = null;
+        let minDiff = Infinity;
+
+        for (const frame of pitchData) {
+            const diff = Math.abs(frame.time - time);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestFrame = frame;
+            }
+        }
+
+        if (bestFrame && minDiff < 0.1) {
+            if (bestFrame.hz !== null) {
+                statusNote.textContent = `現在音高: ${bestFrame.hz.toFixed(1)} Hz (${bestFrame.note})`;
+                const sign = bestFrame.cents >= 0 ? '+' : '';
+                statusOffset.textContent = `基準音階からのズレ: ${sign}${bestFrame.cents.toFixed(0)} cent`;
+            } else {
+                statusNote.textContent = `現在音高: 無音/子音 (--)`;
+                statusOffset.textContent = `基準音階からのズレ: -- cent`;
+            }
+        }
+    };
+
+    const exportCanvasAsImage = () => {
+        if (pitchData.length === 0) {
+            alert("エクスポートするデータがありません。先に音源を解析してください。");
+            return;
+        }
+        const link = document.createElement('a');
+        const filename = (audioFilenameBadge.textContent.replace('音源: ', '') || 'pitchmap').replace(/\.[^/.]+$/, '');
+        link.download = `${filename}_pitchmap.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    };
+
+    function draw() {
+        const width = canvas.width / (window.devicePixelRatio || 1);
+        const height = canvas.height / (window.devicePixelRatio || 1);
+
+        if (!audioPlayer.paused && !isDragging) {
+            const viewWidth = width - KEYBOARD_WIDTH;
+            const playTime = audioPlayer.currentTime;
+            const keepPercent = 0.35;
+            const timeInView = viewWidth / scaleX;
+            offsetX = Math.max(0, playTime - timeInView * keepPercent);
+        }
+
+        ctx.fillStyle = '#04060b';
+        ctx.fillRect(0, 0, width, height);
+
+        const showGrid = chkGrid.checked;
+        const hon = parseInt(paramHon.value);
+        const scale = getShiginScale(hon);
+
+        if (showGrid) {
+            drawPianoRollGrid(width, height, scale);
+        }
+
+        drawFreqRangeOverlay(width, height);
+
+        if (pitchData && pitchData.length > 0) {
+            drawPitchGraph(width, height);
+        }
+
+        drawPianoKeyboard(height);
+        drawPlayhead(height);
+
+        if (!audioPlayer.paused) {
+            requestAnimationFrame(draw);
+        }
+    }
+
+    // === 検出範囲(fmin〜fmax)をピアノロールの目盛りに重ねて表示 ===
+    // スライダーのHz値がどの鍵盤（音名）に対応するかを視覚的に一致させ、設定しやすくする
+    const drawFreqRangeOverlay = (width, height) => {
+        const fmin = parseFloat(paramFmin.value);
+        const fmax = parseFloat(paramFmax.value);
+        const midiFmin = hzToMidi(fmin);
+        const midiFmax = hzToMidi(fmax);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(KEYBOARD_WIDTH, 0, width - KEYBOARD_WIDTH, height);
+        ctx.clip();
+
+        // 検出範囲より下（fminより低い音域）を暗くグレーアウト
+        if (midiFmin > midiMin) {
+            const yFmin = midiToScreenY(midiFmin);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+            ctx.fillRect(KEYBOARD_WIDTH, yFmin, width - KEYBOARD_WIDTH, height - yFmin);
+        }
+        // 検出範囲より上（fmaxより高い音域）を暗くグレーアウト
+        if (midiFmax < midiMax) {
+            const yFmax = midiToScreenY(midiFmax);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+            ctx.fillRect(KEYBOARD_WIDTH, 0, width - KEYBOARD_WIDTH, yFmax);
+        }
+
+        // 境界線とラベル
+        const drawBoundaryLine = (midiVal, label, hz) => {
+            if (midiVal < midiMin || midiVal > midiMax) return;
+            const y = midiToScreenY(midiVal);
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.9)';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([2, 3]);
+            ctx.beginPath();
+            ctx.moveTo(KEYBOARD_WIDTH, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.95)';
+            ctx.font = 'bold 10px sans-serif';
+            ctx.fillText(`${label} ${hz}Hz (${midiToNoteName(Math.round(midiVal))})`, KEYBOARD_WIDTH + 6, y - 4 < 10 ? y + 12 : y - 4);
+        };
+
+        drawBoundaryLine(midiFmin, 'fmin', fmin);
+        drawBoundaryLine(midiFmax, 'fmax', fmax);
+
+        ctx.restore();
+    };
+
+    const drawPianoRollGrid = (width, height, scale) => {
+        const startMidi = Math.floor(midiMin);
+        const endMidi = Math.ceil(midiMax);
+
+        for (let m = startMidi; m <= endMidi; m++) {
+            const y1 = midiToScreenY(m);
+            const y2 = midiToScreenY(m + 1);
+            const rowHeight = y1 - y2;
+
+            const isBlackKey = [1, 3, 6, 8, 10].includes(m % 12);
+
+            ctx.fillStyle = isBlackKey ? '#0c0f16' : '#141824';
+            ctx.fillRect(KEYBOARD_WIDTH, y2, width - KEYBOARD_WIDTH, rowHeight);
+
+            ctx.strokeStyle = '#1e2538';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(KEYBOARD_WIDTH, y1);
+            ctx.lineTo(width, y1);
+            ctx.stroke();
+
+            if (m % 12 === 0) {
+                ctx.strokeStyle = '#3b4b72';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(KEYBOARD_WIDTH, y1);
+                ctx.lineTo(width, y1);
+                ctx.stroke();
+            }
+        }
+
+        // 主音 (中音) のみを目立たせて太いラインで描画する (オクターブ違い含む)
+        if (scale) {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.8)'; // オレンジ色
+            ctx.lineWidth = 2.5;
+
+            const chuMidiClass = scale.chu % 12;
+            for (let m = startMidi; m <= endMidi; m++) {
+                if (m % 12 === chuMidiClass) {
+                    const y = midiToScreenY(m);
+                    ctx.beginPath();
+                    ctx.moveTo(KEYBOARD_WIDTH, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+
+                    ctx.fillStyle = 'rgba(245, 158, 11, 0.95)';
+                    ctx.font = 'bold 9px sans-serif';
+                    ctx.fillText('主音 (中)', width - 60, y - 4);
+                }
+            }
+            ctx.restore();
+        }
+    };
+
+    const drawPianoKeyboard = (height) => {
+        const startMidi = Math.floor(midiMin);
+        const endMidi = Math.ceil(midiMax);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, 0, KEYBOARD_WIDTH, height);
+        ctx.clip();
+
+        for (let m = startMidi; m <= endMidi; m++) {
+            const isBlack = [1, 3, 6, 8, 10].includes(m % 12);
+            if (!isBlack) {
+                const y1 = midiToScreenY(m);
+                const y2 = midiToScreenY(m + 1);
+                const rowHeight = y1 - y2;
+
+                ctx.fillStyle = '#1e2433';
+                ctx.fillRect(0, y2, KEYBOARD_WIDTH, rowHeight - 1);
+
+                if (rowHeight >= 12) {
+                    const isC = (m % 12 === 0);
+                    ctx.fillStyle = isC ? '#ffffff' : '#a0aec0';
+                    ctx.font = isC ? 'bold 8px Montserrat' : '8px Montserrat';
+                    const name = noteNames[m % 12];
+                    ctx.fillText(name, 4, y1 - (rowHeight - 8) / 2 - 1);
+                }
+            }
+        }
+
+        for (let m = startMidi; m <= endMidi; m++) {
+            const isBlack = [1, 3, 6, 8, 10].includes(m % 12);
+            if (isBlack) {
+                const y1 = midiToScreenY(m);
+                const y2 = midiToScreenY(m + 1);
+                const rowHeight = y1 - y2;
+
+                ctx.fillStyle = '#080a0f';
+                ctx.fillRect(0, y2 + rowHeight * 0.15, 25, rowHeight * 0.7);
+                ctx.strokeStyle = '#2d3748';
+                ctx.strokeRect(0, y2 + rowHeight * 0.15, 25, rowHeight * 0.7);
+            }
+        }
+
+        ctx.strokeStyle = '#3b4b72';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(KEYBOARD_WIDTH, 0);
+        ctx.lineTo(KEYBOARD_WIDTH, height);
+        ctx.stroke();
+
+        ctx.restore();
+    };
+
+    const drawPitchGraph = (width, height) => {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(KEYBOARD_WIDTH, 0, width - KEYBOARD_WIDTH, height);
+        ctx.clip();
+
+        const hop = parseInt(paramHop.value) || 512;
+        const dt = hop / ANALYSIS_SR;
+        const barWidth = Math.max(1.5, dt * scaleX);
+
+        for (let i = 0; i < pitchData.length; i++) {
+            const d = pitchData[i];
+
+            if (d.midi === null || d.midi < midiMin || d.midi > midiMax) continue;
+
+            const x = timeToScreenX(d.time);
+
+            if (x + barWidth < KEYBOARD_WIDTH) continue;
+            if (x > width) break;
+
+            const y = midiToScreenY(d.midi);
+
+            const conf = d.confidence || 0.1;
+            const alpha = Math.min(1.0, Math.max(0.15, conf * 1.5));
+
+            const centsFraction = d.midi % 1.0;
+            let strokeColor = '';
+
+            if (Math.abs(centsFraction - 0.5) < 0.1) {
+                strokeColor = `rgba(244, 63, 94, ${alpha})`;
+            } else {
+                strokeColor = `rgba(11, 219, 235, ${alpha})`;
+            }
+
+            const barHeight = 4.0;
+
+            ctx.fillStyle = strokeColor;
+            ctx.fillRect(x - barWidth / 2, y - barHeight / 2, barWidth, barHeight);
+
+            if (conf > 0.4) {
+                ctx.fillStyle = `rgba(13, 240, 164, ${alpha * 0.15})`;
+                ctx.fillRect(x - barWidth / 2, y - 6, barWidth, 12);
+            }
+        }
+
+        ctx.restore();
+    };
+
+    const drawPlayhead = (height) => {
+        const playTime = audioPlayer.currentTime;
+        const px = timeToScreenX(playTime);
+
+        const width = canvas.width / (window.devicePixelRatio || 1);
+        if (px >= KEYBOARD_WIDTH && px <= width) {
+            ctx.save();
+
+            ctx.fillStyle = 'rgba(11, 219, 235, 0.02)';
+            ctx.fillRect(KEYBOARD_WIDTH, 0, px - KEYBOARD_WIDTH, height);
+
+            ctx.strokeStyle = '#f43f5e';
+            ctx.lineWidth = 2.0;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#f43f5e';
+
+            ctx.beginPath();
+            ctx.moveTo(px, 0);
+            ctx.lineTo(px, height);
+            ctx.stroke();
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#f43f5e';
+            ctx.beginPath();
+            ctx.moveTo(px - 7, 0);
+            ctx.lineTo(px + 7, 0);
+            ctx.lineTo(px, 9);
+            ctx.fill();
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.font = '9px monospace';
+            ctx.fillText(formatTime(playTime), px + 6, 14);
+
+            ctx.restore();
+        }
+    };
+
+    init();
+});
+</script>
+</body>
+</html>
