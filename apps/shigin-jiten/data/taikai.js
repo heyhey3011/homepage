@@ -828,5 +828,336 @@ window.SHIGIN_DAIJITEN.entries.push(
   "video_ids": [],
   "performer_ids": [],
   "updated": "2026-07-11"
+},
+{
+  "id": "taikai-nissikyo-shigin-senshuken",
+  "category": "taikai",
+  "title": "日本詩吟選手権",
+  "reading": "にほんしぎんせんしゅけん",
+  "aliases": [
+    "日本詩吟選手権大会"
+  ],
+  "tags": [
+    "全国大会",
+    "コンクール",
+    "日本詩吟協会"
+  ],
+  "summary": "日本詩吟協会が1988年から続ける、吟歴・所属を問わず参加できる個人吟詠のコンクール。地区予選会・各本部決選大会・全国決選大会の段階で行われる。",
+  "body": [
+    {
+      "heading": "概要",
+      "text": "昭和62年(1987)創立の流派横断的な連絡協議組織である日本詩吟協会が主催する個人吟詠のコンクール。吟詠の普及・発展と吟詠技術の向上を目的に、昭和63年(1988)から毎年続けられており、2026年時点では第38回の参加受付が案内されている。選考は地区予選会→各本部決選大会→全国決選大会という段階で進む。審査は音程別・男女別で行われ、吟題は絶句のほか新体詩・短歌・俳句なども選べる（吟詠時間は絶句の長さ＝おおむね2分前後）。吟歴・所属を問わず参加できるが、所属する会の代表者の認可が必要とされる。開催概要・部門は年度により変更があるため、最新は日本詩吟協会公式サイトを参照のこと。"
+    },
+    {
+      "heading": "関連する事業",
+      "text": "日本詩吟協会は日本詩吟選手権と称するコンクール（地区予選会・各本部決選大会・全国決選大会）のほか、2年ごとに「日詩協芸術祭典」と称する舞台公演（有料）を主催している。"
+    }
+  ],
+  "fields": {
+    "organizer": "日本詩吟協会",
+    "held_period": "毎年（地区予選会・各本部決選大会・全国決選大会）。年度により変更あり",
+    "eligibility": "吟歴・所属を問わず参加可（所属する会の代表者の認可が必要）"
+  },
+  "related_ids": [
+    "ryuha-nissikyo",
+    "taikai-bumon-nenrei-kubun"
+  ],
+  "sources": [
+    {
+      "title": "日本詩吟選手権 – 日本詩吟協会",
+      "url": "https://nissikyo.jp/siginsensyuken/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "協会概要 – 日本詩吟協会",
+      "url": "https://nissikyo.jp/about/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "taikai-todofuken-chiku-yosen-kaisou",
+  "category": "taikai",
+  "title": "都道府県予選・地区（ブロック）大会",
+  "reading": "とどうふけんよせん・ちくぶろっくたいかい",
+  "aliases": [
+    "地区大会",
+    "ブロック予選",
+    "県予選大会"
+  ],
+  "tags": [
+    "都道府県大会",
+    "地区大会",
+    "予選",
+    "全国大会",
+    "日本吟剣詩舞振興会"
+  ],
+  "summary": "全国吟詠コンクール等は「都道府県予選→地区（ブロック）大会→全国決勝大会」の階層で行われる。全国は8地区・都道府県総連盟で組織される。",
+  "body": [
+    {
+      "heading": "概要",
+      "text": "公益財団法人日本吟剣詩舞振興会が主催する全国吟詠コンクール・全国剣詩舞コンクールは、いきなり全国大会が開かれるのではなく、各地の予選を勝ち上がる階層構造をとる。財団は全国を8地区の地区連絡協議会と、都道府県単位の吟剣詩舞道総連盟（北海道を5地区に分けるため計51総連盟）で組織しており、まず都道府県ごとの予選大会が開かれ、その通過者が地区（ブロック）大会に進み、地区代表として全国決勝大会に出場する仕組みになっている。"
+    },
+    {
+      "heading": "具体例と注意点",
+      "text": "例えば中国地区では、広島県吟剣詩舞道総連盟が「全国吟詠コンクール広島県予選大会」「全国剣詩舞コンクール広島県予選大会」を開催し、その上位大会として日本吟剣詩舞振興会・中国地区連絡協議会が主催する「全国吟詠コンクール中国地区大会」（令和7年は7月6日開催）「全国剣詩舞コンクール中国地区大会」（同7月20日開催）が置かれる。このような都道府県大会・地区大会は全国大会の予選として全国各地で数多く開催されており、名称・開催時期・会場は地域や年度によって異なる。正確な日程は、各都道府県吟剣詩舞道総連盟や地区連絡協議会の案内で確認する必要がある。"
+    }
+  ],
+  "fields": {
+    "organizer": "各都道府県吟剣詩舞道総連盟・地区連絡協議会（日本吟剣詩舞振興会公認）",
+    "held_period": "全国大会に先立ち各地で開催（多くは春〜夏）。地域により異なる"
+  },
+  "related_ids": [
+    "taikai-zenkoku-ginei-concours",
+    "taikai-zenkoku-kenshibu-concours",
+    "taikai-shukketsu-yosen-nagare",
+    "ryuha-ginken-shinkokai"
+  ],
+  "sources": [
+    {
+      "title": "大会・コンクール | 広島県吟剣詩舞道総連盟",
+      "url": "https://hiroshima-ginken.jp/category/news/event-info/event/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "日本吟剣詩舞振興会とは（組織・8地区・都道府県総連盟）",
+      "url": "https://www.ginken.or.jp/index.php/about-nippon-ginkenshibu-foundation/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "taikai-kokubunsai-ginkenshibu",
+  "category": "taikai",
+  "title": "国民文化祭 全国吟詠剣詩舞道祭",
+  "reading": "こくみんぶんかさいぜんこくぎんえいけんしぶどうさい",
+  "aliases": [
+    "全国吟詠剣詩舞道祭",
+    "国民文化祭 吟剣詩舞"
+  ],
+  "tags": [
+    "全国大会",
+    "国民文化祭",
+    "吟剣詩舞",
+    "文化庁"
+  ],
+  "summary": "文化庁・開催都道府県などが主催する国民文化祭の一部門として、開催地を毎年移して行われる吟剣詩舞の全国的な祭典・交流事業。",
+  "body": [
+    {
+      "heading": "概要",
+      "text": "国民文化祭は、文化庁や開催都道府県などが主催し、全国各地の文化活動を発表する祭典で、その中の一部門（邦楽の祭典）として吟詠・剣舞・詩舞を扱う「全国吟詠剣詩舞道祭」が位置づけられている。開催地は毎年各都道府県を巡り、全国の吟剣詩舞道家が集う分野別の全国大会・交流事業として行われる。個人の順位を競うコンクールとは性格が異なり、全国レベルの発表・交流の場という色合いが強い。"
+    },
+    {
+      "heading": "開催例",
+      "text": "令和7年(2025)の「ながさきピース文化祭2025」では、11月16日に諫早文化会館大ホールで「全国吟剣詩舞道祭ながさき」が開催され、全国第一線で活躍する吟剣詩舞道家・少壮吟士・若手トップクラスで編成された出演チームの舞台と、県内愛好者の発表が行われた。開催名称・出演内容・主催体制は開催年や開催地により異なるため、詳細は各年の国民文化祭公式情報で確認する必要がある（各回の主催・共催団体の詳細は要確認）。"
+    }
+  ],
+  "fields": {
+    "organizer": "文化庁・開催都道府県ほか（開催年により異なる。要確認）",
+    "held_period": "毎年（開催地は都道府県を巡回）",
+    "venue": "開催地の文化会館等（年度により異なる）"
+  },
+  "related_ids": [
+    "taikai-zenkoku-ginkenshibudo-taikai",
+    "taikai-soubunsai-ginei-kenshibu",
+    "ryuha-ginken-shinkokai"
+  ],
+  "sources": [
+    {
+      "title": "全国吟剣詩舞道祭ながさき（ながさきピース文化祭2025・諫早市）",
+      "url": "https://www.city.isahaya.nagasaki.jp/site/2025peace/24803.html",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "国民文化祭 | 文化庁",
+      "url": "https://www.bunka.go.jp/seisaku/geijutsubunka/chiiki/kokubunsai/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "taikai-soubunsai-ginei-kenshibu",
+  "category": "taikai",
+  "title": "全国高等学校総合文化祭 吟詠剣詩舞部門",
+  "reading": "ぜんこくこうとうがっこうそうごうぶんかさいぎんえいけんしぶぶもん",
+  "aliases": [
+    "総文祭 吟詠剣詩舞",
+    "高総文祭 吟詠剣詩舞"
+  ],
+  "tags": [
+    "全国大会",
+    "高校生",
+    "吟詠剣詩舞",
+    "文化庁"
+  ],
+  "summary": "各都道府県代表の高校生が集う全国高等学校総合文化祭（総文祭）の一部門。毎年8月上旬に開催地を移して行われる、高校生の吟詠・剣舞・詩舞の全国的な発表・交流の場。",
+  "body": [
+    {
+      "heading": "概要",
+      "text": "全国高等学校総合文化祭（略称・総文祭／高総文祭）は、文部科学省・文化庁・全国高等学校文化連盟・開催地の実行委員会などが関わり、昭和52年(1977)から毎年8月上旬に開催されてきた、各都道府県代表の高校生による芸術文化活動の祭典である。その部門の一つに「吟詠剣詩舞」があり、漢詩・和歌などの詩文を独特の節で吟じる吟詠、吟詠に合わせ日本刀を用いて舞う剣舞、扇子を用いて詩情を表現する詩舞の発表が行われる。書道・華道・茶道とのコラボレーションなど多彩な表現も取り入れられる。"
+    },
+    {
+      "heading": "位置づけ",
+      "text": "大人の吟剣詩舞大会とは別に、高校生世代の全国的な発表・交流の場として位置づけられる。開催地は毎年移動し、第50回は令和8年(2026)に秋田県で開催され、吟詠剣詩舞部門は8月1日に実施される。コンクール形式かどうかなど具体的な実施形態は開催年の実施要領により異なるため、詳細は各年の総文祭公式情報で確認する必要がある。"
+    }
+  ],
+  "fields": {
+    "organizer": "文部科学省・文化庁・全国高等学校文化連盟・開催地実行委員会ほか",
+    "held_period": "毎年8月上旬（開催地は都道府県を巡回）"
+  },
+  "related_ids": [
+    "taikai-kokubunsai-ginkenshibu",
+    "taikai-bumon-nenrei-kubun"
+  ],
+  "sources": [
+    {
+      "title": "全国高等学校総合文化祭 | 文化庁",
+      "url": "https://www.bunka.go.jp/seisaku/geijutsubunka/sobunsai/1392538.html",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "あきた総文2026（第50回全国高等学校総合文化祭）吟詠剣詩舞",
+      "url": "https://akita-soubun2026.pref.akita.lg.jp/department/gineikenshibu/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "taikai-zenkoku-kenshibu-gunbu-concours",
+  "category": "taikai",
+  "title": "全国剣詩舞群舞コンクール",
+  "reading": "ぜんこくけんしぶぐんぶこんくーる",
+  "aliases": [],
+  "tags": [
+    "全国大会",
+    "コンクール",
+    "剣舞",
+    "詩舞",
+    "群舞",
+    "日本吟剣詩舞振興会"
+  ],
+  "summary": "日本吟剣詩舞振興会が主催するとされる、団体（群舞）で剣詩舞を競う全国コンクール。2年に1度開催との情報があるが、詳細は要確認。",
+  "body": [
+    {
+      "heading": "概要",
+      "text": "個人・少人数で競う全国剣詩舞コンクールに対し、複数人がそろって舞う「群舞」を対象とする団体戦形式の全国コンクールとされる。Wikipediaの日本吟剣詩舞振興会の記事では、同財団の主催行事の一つとして「全国剣詩舞群舞コンクール（2年に1度開催）」が挙げられている。ただし、開催時期・部門・出場資格などを明記した公式の一次資料は今回の調査では確認できず、直近の公式行事一覧にも記載を確認できなかったため、開催の有無を含め詳細は要確認である。最新の実施状況は日本吟剣詩舞振興会公式サイトで確認する必要がある。なお、吟詠の団体戦にあたる「全国吟詠合吟コンクール」は別に存在する。"
+    }
+  ],
+  "fields": {
+    "organizer": "公益財団法人日本吟剣詩舞振興会（要確認）"
+  },
+  "related_ids": [
+    "taikai-zenkoku-kenshibu-concours",
+    "taikai-zenkoku-ginei-gogin-concours"
+  ],
+  "sources": [
+    {
+      "title": "日本吟剣詩舞振興会 - Wikipedia",
+      "url": "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E5%90%9F%E5%89%A3%E8%A9%A9%E8%88%9E%E6%8C%AF%E8%88%88%E4%BC%9A",
+      "accessed": "2026-07-12",
+      "reliability": "community"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "taikai-overview-kaisou-kouzou",
+  "category": "taikai",
+  "title": "詩吟の大会・コンクールの全体像（見取り図）",
+  "reading": "しぎんのたいかいこんくーるのぜんたいぞう",
+  "aliases": [
+    "大会の全体像",
+    "大会一覧",
+    "大会の見取り図"
+  ],
+  "tags": [
+    "大会一覧",
+    "全体像",
+    "見取り図",
+    "大会",
+    "コンクール"
+  ],
+  "summary": "詩吟の大会は「全国大会」「都道府県・地区大会」「各流派・各支部独自の大会」という重層構造。全国規模の主要団体と、情報提供のお願いをまとめた入口記事。",
+  "body": [
+    {
+      "heading": "大会は大きく三つの層に分かれる",
+      "text": "詩吟の大会・コンクールは、規模と主催者によって大きく三つの層に整理できる。(1) 全国規模の大会…複数の流派・団体が参加する、または全国組織が主催する大会（例：日本吟剣詩舞振興会の全国吟詠コンクール・全国剣詩舞コンクール・全国吟剣詩舞道大会、日本コロムビア全国吟詠コンクール、日本詩吟協会の日本詩吟選手権、国民文化祭や高校総合文化祭の吟剣詩舞部門など）。(2) 都道府県・地区（ブロック）大会…全国大会の予選を兼ねるものが多く、都道府県吟剣詩舞道総連盟や地区連絡協議会が主催する（→「都道府県予選・地区（ブロック）大会」参照）。(3) 各流派・各支部独自の大会…岳風会・関西吟詩・錦城会・岳精流などの各流派や、その支部・教室が独自に開く発表会・コンクール。"
+    },
+    {
+      "heading": "全国規模で大会を主催する主な団体",
+      "text": "全国レベルで大会・コンクールを主催する主な団体として、公益財団法人日本吟剣詩舞振興会（流派を横断する統括団体）、公益社団法人日本詩吟学院（岳風会）、公益社団法人関西吟詩文化協会、公益社団法人日本吟道学院、日本詩吟協会、株式会社日本コロムビアなどがある。それぞれが独自の大会・認定制度を運営しており、加えて国民文化祭（文化庁など）や全国高等学校総合文化祭にも吟剣詩舞の部門がある。各団体・各大会の詳しい内容は、この記事末尾の「関連する項目」から辿ることができる。"
+    },
+    {
+      "heading": "支部・流派独自の大会について（情報提供のお願い）",
+      "text": "詩吟の流派は全国に数百あるとされ、その支部・教室が開く大会・発表会は数が非常に多く、開催時期や名称も流動的である。これらを一元的にまとめた名簿は存在せず、当辞典でもそのすべてを把握・網羅することは難しい。そこで詩吟大辞典では、まず全国規模の大会情報を中心に掲載し、都道府県大会・支部大会・各流派独自の大会については、利用者のみなさまからの情報提供を受けながら少しずつ充実させていく方針をとっている。お近くの大会や所属流派の大会をご存じの方は、「掲載情報の追加・修正・削除依頼」フォームからぜひお知らせいただきたい。"
+    }
+  ],
+  "fields": {},
+  "related_ids": [
+    "taikai-todofuken-chiku-yosen-kaisou",
+    "taikai-zenkoku-ginei-concours",
+    "taikai-zenkoku-kenshibu-concours",
+    "taikai-zenkoku-ginkenshibudo-taikai",
+    "taikai-nihon-columbia-zenkoku-ginei-concours",
+    "taikai-nissikyo-shigin-senshuken",
+    "taikai-kokubunsai-ginkenshibu",
+    "taikai-soubunsai-ginei-kenshibu",
+    "taikai-gakufukai-zenkoku-gindo-taikai",
+    "taikai-kangin-shidosha-ginshiken-taikai",
+    "ryuha-ginken-shinkokai",
+    "ryuha-gakufukai",
+    "ryuha-nissikyo"
+  ],
+  "sources": [
+    {
+      "title": "日本吟剣詩舞振興会とは（組織・8地区・都道府県総連盟）",
+      "url": "https://www.ginken.or.jp/index.php/about-nippon-ginkenshibu-foundation/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "近代吟詠の祖 木村岳風（流派が全国に数百あるとされる背景）",
+      "url": "https://www.gakufukai.or.jp/know/founder/",
+      "accessed": "2026-07-12",
+      "reliability": "official"
+    },
+    {
+      "title": "詩吟 - Wikipedia（詩吟の流派）",
+      "url": "https://ja.wikipedia.org/wiki/%E8%A9%A9%E5%90%9F",
+      "accessed": "2026-07-12",
+      "reliability": "community"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
 }
 );
