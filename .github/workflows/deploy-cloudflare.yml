@@ -1,0 +1,28 @@
+name: Cloudflare Pagesへの自動デプロイ
+
+on:
+  push:
+    branches:
+      - main  # mainブランチにプッシュされたら自動で実行
+
+jobs:
+  deploy-to-cloudflare:
+    name: Cloudflare Pagesへデプロイ
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト 🛎️
+        uses: actions/checkout@v4
+
+      - name: 追跡ファイルのみのクリーンなコピーを作成 🧹
+        # .git履歴や.github配下の作業用ファイルなどを含めず、
+        # Gitで正式にコミットされているファイルだけをdist/に取り出す
+        run: |
+          mkdir -p dist
+          git archive HEAD | tar -x -C dist
+
+      - name: Cloudflare Pagesへデプロイ 🚀
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=heyhey-shigin-portal --branch=main
