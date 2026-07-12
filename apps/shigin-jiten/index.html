@@ -15,6 +15,9 @@
     - data/ryuha.js     … 流派・団体
     - data/taikai.js    … 大会・審査
     - data/yougo.js     … 歴史・用語
+    - data/dougu.js     … 装束・道具
+    - data/bansou.js    … 伴奏・楽器
+    - data/dani.js      … 段位・資格
     - data/kyoshitsu.js … 教室の探し方
     - data/hikaku.js    … 流派比較（トピックごとに複数流派を並べます）
   ・このファイル自体は基本さわらなくて大丈夫です。
@@ -426,6 +429,28 @@
   }
   .newsletter-band-button:hover{background:var(--shu-dark);}
 
+  /* ===== 大会情報の情報提供のお願いブロック ===== */
+  .contrib-block{
+    margin:26px 0 8px;padding:18px 20px;
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:5px solid var(--kincha);
+    border-radius:8px;
+  }
+  .contrib-block h3{
+    margin:0 0 8px;font-size:17px;color:var(--text);
+  }
+  .contrib-block p{
+    margin:0 0 14px;font-size:14.5px;line-height:1.85;color:var(--text-soft);
+  }
+  .contrib-block .contrib-cta{
+    display:inline-block;
+    background:var(--shu);color:#fff;
+    padding:9px 20px;border-radius:999px;
+    font-size:14px;font-weight:600;text-decoration:none;
+  }
+  .contrib-block .contrib-cta:hover{background:var(--shu-dark);}
+
   /* ===== スマホ ===== */
   @media (max-width:520px){
     body{font-size:16px;}
@@ -512,6 +537,7 @@
     <div class="empty" id="empty" style="display:none;">
       該当する項目が見つかりませんでした。<br>「すべて解除」を押すか、ホームの検索をお試しください。
     </div>
+    <div id="list-contrib"></div>
   </section>
 
   <!-- 横断検索ビュー -->
@@ -567,6 +593,9 @@
 <script src="data/ryuha.js"></script>
 <script src="data/taikai.js"></script>
 <script src="data/yougo.js"></script>
+<script src="data/dougu.js"></script>
+<script src="data/bansou.js"></script>
+<script src="data/dani.js"></script>
 <script src="data/kyoshitsu.js"></script>
 <script src="data/hikaku.js"></script>
 <script>
@@ -694,6 +723,7 @@
     filters:      document.getElementById("filters"),
     grid:         document.getElementById("grid"),
     empty:        document.getElementById("empty"),
+    listContrib:  document.getElementById("list-contrib"),
     search:       document.getElementById("search"),
     searchResults:document.getElementById("search-results"),
     searchEmpty:  document.getElementById("search-empty"),
@@ -862,6 +892,11 @@
     var totalInCat = ENTRIES.filter(function(e){ return e.category === state.listCat; }).length;
     el.count.innerHTML = (cat ? esc(cat.label) + '　' : '') +
       '全<b>' + totalInCat + '</b>件中 <b>' + list.length + '</b>件を表示中';
+
+    // 大会カテゴリの一覧では、末尾に支部大会の情報提供の案内を表示する
+    if(el.listContrib){
+      el.listContrib.innerHTML = (state.listCat === "taikai") ? taikaiContribHTML() : "";
+    }
 
     if(list.length === 0){
       el.grid.innerHTML = "";
@@ -1190,6 +1225,19 @@
       '</div>';
   }
 
+  // 支部大会・流派独自の大会の情報提供をお願いする案内ブロック（大会カテゴリで表示）
+  var TAIKAI_OVERVIEW_ID = "taikai-overview-kaisou-kouzou";
+  function taikaiContribHTML(){
+    return '' +
+      '<div class="contrib-block">' +
+        '<h3>お近くの支部大会・流派独自の大会をご存じですか？</h3>' +
+        '<p>詩吟大辞典では、全国規模の大会情報を中心に掲載しています。' +
+          '都道府県大会・支部大会・各流派独自の大会は数が多く、随時情報を募集しています。' +
+          'ご存じの大会があれば、ぜひ教えてください。</p>' +
+        '<a class="contrib-cta" href="' + esc(FORM_URLS.requestForm) + '" target="_blank" rel="noopener">大会情報を教える</a>' +
+      '</div>';
+  }
+
   function renderDetail(e){
     var cat = CAT_BY_KEY[e.category];
     var catTag = cat ? '<span class="detail-cat-tag">' + esc(cat.icon) + '　' + esc(cat.label) + '</span>' : '';
@@ -1222,13 +1270,17 @@
       bodyHtml = '<div class="section">' + secs + '</div>';
     }
 
+    // 大会・コンクールの全体像（見取り図）記事では、末尾に情報提供の案内を出す
+    var contrib = (e.id === TAIKAI_OVERVIEW_ID) ? taikaiContribHTML() : "";
+
     el.detailContent.innerHTML =
       head +
       bodyHtml +
       fieldsTableHTML(e.fields) +
       relatedHTML(e.related_ids) +
       cmpBacklinkHTML(e.id) +
-      sourcesHTML(e.sources);
+      sourcesHTML(e.sources) +
+      contrib;
   }
 
   // ================= ビュー切替 =================

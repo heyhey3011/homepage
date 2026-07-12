@@ -1612,5 +1612,109 @@ window.SHIGIN_DAIJITEN.entries.push(
   "video_ids": [],
   "performer_ids": [],
   "updated": "2026-07-11"
+},
+{
+  "id": "gihou-fukushiki-kenko",
+  "category": "gihou",
+  "title": "腹式呼吸の健康効果",
+  "reading": "ふくしきこきゅうのけんこうこうか",
+  "aliases": [],
+  "tags": [
+    "呼吸",
+    "健康"
+  ],
+  "summary": "詩吟の土台となる腹式呼吸は、一般に副交感神経を優位にしてリラックスをもたらすとされ、その健康効果は医療機関・研究でも紹介されている。",
+  "body": [
+    {
+      "heading": "一般的に言われる効果",
+      "text": "腹式呼吸は横隔膜を大きく動かして息を取り込む呼吸法で、医療機関の健康情報では、ゆっくり息を吐き出すことで身体をリラックスさせる副交感神経が優位になり、緊張がほぐれやすくなると説明されている。副交感神経が優位になると心臓の働きがゆるやかになるとされ、ストレスの緩和に役立つ呼吸法として紹介されている。"
+    },
+    {
+      "heading": "研究での知見",
+      "text": "自律神経への影響を調べた研究（坂木佳壽美「腹式呼吸が自律神経機能に与える影響」体力科学、2001年）では、吐く息を吸う息より長くとる意識的な腹式呼吸によって副交感神経の活動を高め、その状態を持続させることが可能であり、これは日常のストレスを自分で処理していく「ストレス・マネジメント」の一方法として活用できると結論づけられている。"
+    },
+    {
+      "heading": "詩吟との関係（留意点）",
+      "text": "詩吟は臍下丹田を使う腹式呼吸を基礎とするため、これらの一般的な効果が期待されると考えられる。ただし、これは腹式呼吸そのものについての知見であり、「詩吟を行うこと」自体の健康効果を対象にした研究ではない点に留意したい。効果には個人差があり、持病がある場合などは無理をせず専門家に相談することが望ましい。"
+    }
+  ],
+  "fields": {
+    "difficulty": "初級",
+    "skill_type": "呼吸",
+    "practice_steps": []
+  },
+  "related_ids": [
+    "gihou-fukushiki-kokyu",
+    "gihou-tanden",
+    "gihou-kokyu-jiritsu"
+  ],
+  "sources": [
+    {
+      "title": "正しい腹式呼吸をすることで得られるメリットとは｜セコム医療システム",
+      "url": "https://medical.secom.co.jp/prevent/kenko/column/kenko_c20.html",
+      "accessed": "2026-07-12",
+      "reliability": "press"
+    },
+    {
+      "title": "坂木佳壽美「腹式呼吸が自律神経機能に与える影響」体力科学 50巻1号（2001年） - J-STAGE",
+      "url": "https://www.jstage.jst.go.jp/article/jspfsm1949/50/1/50_1_105/_article/-char/ja/",
+      "accessed": "2026-07-12",
+      "reliability": "press"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
+},
+{
+  "id": "gihou-kokyu-jiritsu",
+  "category": "gihou",
+  "title": "呼吸と自律神経・ストレスマネジメント",
+  "reading": "こきゅうとじりつしんけい・すとれすまねじめんと",
+  "aliases": [],
+  "tags": [
+    "呼吸",
+    "健康"
+  ],
+  "summary": "吐く息を長くゆっくりとる深い呼吸は自律神経のバランスを整える一助になるとされ、自分でできるストレス対処法として紹介されている。",
+  "body": [
+    {
+      "heading": "吐く息を長くとる",
+      "text": "自律神経は、活動時に働く交感神経と、休息時に働く副交感神経からなる。医療機関の健康情報や研究によれば、吸う息よりも吐く息を長く、ゆっくりとる腹式呼吸を意識的に行うと、副交感神経の働きが高まりやすいとされる。緊張・不安を感じたときに、まず長い呼気を意識するだけでも気持ちが落ち着きやすいと説明されている。"
+    },
+    {
+      "heading": "自分でできる対処法として",
+      "text": "呼吸法は、道具も場所も選ばずに自分で行えるストレス対処法として、医療・心療内科の情報でも紹介されている。詩吟の稽古で行う腹式呼吸や発声は、こうした深い呼吸を自然と取り入れる機会になり得る。ただし効果の感じ方には個人差があり、詩吟が特定の病気の治療になるといった医学的な主張ではない点に注意したい。"
+    }
+  ],
+  "fields": {
+    "difficulty": "初級",
+    "skill_type": "呼吸",
+    "practice_steps": []
+  },
+  "related_ids": [
+    "gihou-fukushiki-kenko",
+    "gihou-fukushiki-kokyu",
+    "gihou-koe-wo-haru"
+  ],
+  "sources": [
+    {
+      "title": "坂木佳壽美「腹式呼吸が自律神経機能に与える影響」体力科学 50巻1号（2001年） - J-STAGE",
+      "url": "https://www.jstage.jst.go.jp/article/jspfsm1949/50/1/50_1_105/_article/-char/ja/",
+      "accessed": "2026-07-12",
+      "reliability": "press"
+    },
+    {
+      "title": "正しい腹式呼吸をすることで得られるメリットとは｜セコム医療システム",
+      "url": "https://medical.secom.co.jp/prevent/kenko/column/kenko_c20.html",
+      "accessed": "2026-07-12",
+      "reliability": "press"
+    }
+  ],
+  "poem_ids": [],
+  "video_ids": [],
+  "performer_ids": [],
+  "updated": "2026-07-12"
 }
 );

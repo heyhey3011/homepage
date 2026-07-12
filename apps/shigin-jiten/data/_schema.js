@@ -11,6 +11,9 @@ window.SHIGIN_DAIJITEN.categories = [
   { key: "ryuha",     label: "流派・団体",       icon: "流" },
   { key: "taikai",    label: "大会・審査",       icon: "賞" },
   { key: "yougo",     label: "歴史・用語",       icon: "史" },
+  { key: "dougu",     label: "装束・道具",       icon: "装" },
+  { key: "bansou",    label: "伴奏・楽器",       icon: "楽" },
+  { key: "dani",      label: "段位・資格",       icon: "位" },
   { key: "kyoshitsu", label: "教室の探し方",     icon: "門" }
 ];
 
