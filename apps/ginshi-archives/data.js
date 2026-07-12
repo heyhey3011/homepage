@@ -8202,6 +8202,40 @@ window.ARCHIVE_DATA = {
     ],
     "春暁": [
       { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_019.html", "source": "関西吟詩文化協会" }
+    ],
+
+    // ----- ここから2026-07追加分 -----
+    // 題名だけでなく、data.js側のpoetフィールドと関西吟詩文化協会サイトの
+    // 「作者」欄が一致することを確認できたものだけを追加しています。
+    "元二の安西に使するを送る": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_005.html", "source": "関西吟詩文化協会" }
+    ],
+    "峨眉山月の歌": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_003.html", "source": "関西吟詩文化協会" }
+    ],
+    "川中島（不識庵機山を撃つの図に題す）": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A1_008.html", "source": "関西吟詩文化協会" }
+    ],
+    "月夜荒城の曲を聞く": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/kanshi_C20_2.html", "source": "関西吟詩文化協会" }
+    ],
+    "江南の春": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_001.html", "source": "関西吟詩文化協会" }
+    ],
+    "獄中作（モデル吟・発声解説付き）": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_B1_026.html", "source": "関西吟詩文化協会" }
+    ],
+    "赤馬が関舟中の作": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A2_021.html", "source": "関西吟詩文化協会" }
+    ],
+    "金州城下の作": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A1_013.html", "source": "関西吟詩文化協会" }
+    ],
+    "山行": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_012.html", "source": "関西吟詩文化協会" }
+    ],
+    "登高": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/kanshi_B16_1.html", "source": "関西吟詩文化協会" }
     ]
   }
 };

@@ -55,7 +55,8 @@ window.SITE_BOOKS = {
             description: "さらに表現や技術を深めたい方向け。",
             amazonUrl: "https://amzn.to/4ffb1Jy",
             size: "normal",
-            category: "textbook"
+            category: "textbook",
+            imageUrl: "assets/img/books/chukyu.jpg"
         }
     ],
 
@@ -70,7 +71,8 @@ window.SITE_BOOKS = {
             description: "上杉謙信ゆかりの漢詩を、その背景とともに味わう一冊です。",
             amazonUrl: "https://amzn.to/453LhuJ",
             size: "small",
-            category: "kanshi"
+            category: "kanshi",
+            imageUrl: "assets/img/books/kanshi-kessenya.jpg"
         },
         {
             id: "kanshi-ippo",
@@ -78,7 +80,8 @@ window.SITE_BOOKS = {
             description: "草場佩川「山行同志に示す」を、その背景とともに味わう一冊です。",
             amazonUrl: "https://amzn.to/4vl8nrz",
             size: "small",
-            category: "kanshi"
+            category: "kanshi",
+            imageUrl: "assets/img/books/kanshi-ippo.jpg"
         },
         {
             id: "kanshi-tabaruzaka",
@@ -86,7 +89,8 @@ window.SITE_BOOKS = {
             description: "佐々友房の漢詩を、田原坂の物語とともに味わう一冊です。",
             amazonUrl: "https://amzn.to/4gte5nz",
             size: "small",
-            category: "kanshi"
+            category: "kanshi",
+            imageUrl: "assets/img/books/kanshi-tabaruzaka.jpg"
         },
         {
             id: "kanshi-choujou",
@@ -94,7 +98,8 @@ window.SITE_BOOKS = {
             description: "汪遵の漢詩「長城」を、その背景とともに味わう一冊です。",
             amazonUrl: "https://amzn.to/4bCeSPA",
             size: "small",
-            category: "kanshi"
+            category: "kanshi",
+            imageUrl: "assets/img/books/kanshi-choujou.jpg"
         }
     ]
 };
