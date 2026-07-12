@@ -223,28 +223,86 @@
     text-align:center;color:var(--text-soft);padding:60px 20px;font-size:17px;
   }
 
-  /* ===== 吟題一覧 ===== */
-  .title-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
+  /* ===== 吟題一覧（横長1行リスト） ===== */
+  .title-list{
+    display:flex;flex-direction:column;gap:10px;
   }
-  .title-card{
+  .title-row{
     background:var(--card-bg);
     border:1px solid var(--line);
     border-left:5px solid var(--kincha);
     border-radius:10px;
-    padding:16px 18px;
+    padding:14px 18px;
     cursor:pointer;
     box-shadow:var(--shadow);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px 18px;
   }
-  .title-card:hover{border-left-color:var(--sumi);}
-  .title-card .tname{font-size:20px;font-weight:600;margin:0;}
-  .title-card .tpoet{font-size:14px;color:var(--text-soft);margin-top:4px;}
-  .title-card .tcounts{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .title-row:hover{border-left-color:var(--sumi);}
+  .title-row:focus-visible{outline:2px solid var(--shu);outline-offset:2px;}
+  .tr-main{
+    flex:1 1 260px;
+    min-width:0;
+  }
+  .tr-main .tname{
+    font-size:20px;font-weight:600;margin:0;
+    overflow-wrap:anywhere;
+  }
+  .tr-main .tpoet{font-size:14px;color:var(--text-soft);margin-top:3px;}
+  .tr-main .tpoet .tpoet-label{color:var(--kincha);}
+  .tr-badges{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    flex:0 0 auto;
+  }
   .count-badge{
     background:var(--kinari-2);border:1px solid var(--line);color:var(--text-soft);
-    font-size:12.5px;padding:2px 9px;border-radius:6px;letter-spacing:.02em;
+    font-size:12.5px;padding:3px 10px;border-radius:6px;letter-spacing:.02em;
+    white-space:nowrap;
   }
   .count-badge.multi{background:var(--shu);color:#fff;border-color:var(--shu);font-weight:600;}
+  .count-badge.audio{
+    background:#eef3ea;border-color:#b9cdae;color:#3f5e33;font-weight:600;
+  }
+  .tr-action{
+    flex:0 0 auto;
+    margin-left:auto;
+  }
+  .tr-action .detail-btn{
+    background:var(--sumi);color:var(--kinari);
+    border:none;border-radius:8px;
+    padding:9px 18px;
+    font-size:14.5px;
+    font-family:inherit;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .tr-action .detail-btn:hover{background:var(--shu);}
+
+  /* 吟題詳細ページの音源リンク */
+  .audio-link-box{
+    margin-top:14px;
+  }
+  .audio-link-box a{
+    display:inline-block;
+    background:#eef3ea;border:1.5px solid #b9cdae;color:#3f5e33;
+    padding:9px 16px;border-radius:8px;
+    font-size:15px;text-decoration:none;font-weight:600;
+  }
+  .audio-link-box a:hover{background:#e0ead9;}
+  .audio-link-note{
+    font-size:12.5px;color:var(--text-soft);margin-top:6px;line-height:1.6;
+  }
+
+  /* ===== スマホ幅：吟題一覧の行が2段組みで折り返す ===== */
+  @media (max-width:640px){
+    .title-row{padding:12px 14px;}
+    .tr-main{flex:1 1 100%;}
+    .tr-badges{flex:1 1 auto;order:2;}
+    .tr-action{flex:1 1 100%;order:3;margin-left:0;}
+    .tr-action .detail-btn{width:100%;padding:10px 18px;}
+  }
 
   /* ===== 吟士名鑑 ===== */
   .performer-grid{
@@ -382,6 +440,46 @@
   }
   .fb-close:hover{color:var(--text);}
 
+  /* ===== 依頼リンク ===== */
+  .request-link-row{
+    max-width:1160px;margin:0 auto;padding:0 18px;
+    text-align:right;
+  }
+  .request-link-row a{
+    font-size:13.5px;color:var(--text-soft);text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .request-link-row a:hover{color:var(--shu-dark);}
+
+  /* ===== メルマガ帯 ===== */
+  .newsletter-band{
+    background:var(--kinari-2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 18px;
+  }
+  .newsletter-band__inner{
+    max-width:1160px;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;
+  }
+  .newsletter-band__text{
+    flex:1 1 380px;font-size:15px;line-height:1.75;color:var(--text);margin:0;
+  }
+  .newsletter-band__btn{
+    flex:0 0 auto;
+    display:inline-block;
+    background:var(--shu);color:#fff;
+    padding:12px 24px;border-radius:8px;
+    font-size:15.5px;font-weight:600;
+    text-decoration:none;letter-spacing:.03em;
+    white-space:nowrap;
+  }
+  .newsletter-band__btn:hover{background:var(--shu-dark);}
+  @media (max-width:520px){
+    .newsletter-band__btn{width:100%;text-align:center;}
+    .request-link-row{text-align:left;}
+  }
+
   /* ===== フッター ===== */
   footer.site{
     background:var(--sumi);color:#c3baa8;
@@ -455,7 +553,7 @@
         <span class="pcount" id="title-count"></span>
       </div>
     </div>
-    <div class="title-grid" id="title-grid"></div>
+    <div class="title-list" id="title-grid"></div>
     <div class="empty" id="title-empty" style="display:none;">
       該当する吟題が見つかりませんでした。<br>検索の言葉を変えてみてください。
     </div>
@@ -496,6 +594,17 @@
   </section>
 </main>
 
+<div class="request-link-row">
+  <a id="request-link" href="#" target="_blank" rel="noopener noreferrer">掲載情報の追加・修正・削除依頼はこちら</a>
+</div>
+
+<div class="newsletter-band">
+  <div class="newsletter-band__inner">
+    <p class="newsletter-band__text">動画を見ながら学びたい方は、7日間の無料メルマガと合わせて使うと、より理解しやすくなります。</p>
+    <a id="newsletter-link" class="newsletter-band__btn" href="#" target="_blank" rel="noopener noreferrer">無料メルマガで7日間学ぶ</a>
+  </div>
+</div>
+
 <footer class="site">
   本アーカイブは各公式チャンネル等で公開されている動画へのリンク集です。<br>
   動画の著作権は各権利者に帰属します。
@@ -516,10 +625,19 @@
 (function(){
   "use strict";
 
+  // ==== 外部リンク（ファイル内で一元管理。差し替えはここだけでOK）====
+  // 掲載情報の追加・修正・削除依頼フォーム
+  var FORM_URLS = {
+    requestForm: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog"
+  };
+  // 無料メルマガ（7日間講座）。ポータル側の links.js を持たないため直書き
+  var NEWSLETTER_URL = "https://shigin.net/p/r/cbWMf1ve";
+
   var DATA = (window.ARCHIVE_DATA) || {};
   var ITEMS = DATA.items || [];
   var PERFORMERS = DATA.performers || [];
   var CATEGORIES = DATA.categoriesFound || [];
+  var AUDIO_LINKS = DATA.audioLinks || {};
 
   // ---- 吟題（漢詩のタイトル）ごとのグルーピング ----
   // ITEMS の title が同じものをまとめ、「この吟題を吟じている吟士」を横断的に見られるようにする。
@@ -540,7 +658,8 @@
         title: g.title,
         poets: Object.keys(g.poets),
         performerCount: Object.keys(g.performers).length,
-        items: g.items
+        items: g.items,
+        audioLinks: AUDIO_LINKS[g.title] || []
       };
     });
   }
@@ -857,20 +976,28 @@
       vidsBlock;
   }
 
-  // ---- 吟題一覧 ----
-  function titleCardHTML(g){
-    var poet = g.poets.length ? '<div class="tpoet">作：' + esc(g.poets.join("／")) + '</div>' : '';
+  // ---- 吟題一覧（横長1行リスト） ----
+  function titleRowHTML(g){
+    var poetText = g.poets.length ? esc(g.poets.join("／")) : "—";
+    var poet = '<div class="tpoet"><span class="tpoet-label">作者：</span>' + poetText + '</div>';
     var perfBadge = g.performerCount > 1
       ? '<span class="count-badge multi">' + g.performerCount + '人の吟士が吟じています</span>'
       : (g.performerCount === 1 ? '<span class="count-badge">' + g.performerCount + '人の吟士</span>' : '');
+    var audioBadge = (g.audioLinks && g.audioLinks.length)
+      ? '<span class="count-badge audio">🔊 音源</span>'
+      : '';
     return '' +
-      '<div class="title-card" data-title="' + esc(g.title) + '">' +
-        '<h3 class="tname">' + esc(g.title) + '</h3>' +
-        poet +
-        '<div class="tcounts">' +
-          '<span class="count-badge">動画 ' + g.items.length + '本</span>' +
+      '<div class="title-row" data-title="' + esc(g.title) + '" tabindex="0" role="button">' +
+        '<div class="tr-main">' +
+          '<h3 class="tname">' + esc(g.title) + '</h3>' +
+          poet +
+        '</div>' +
+        '<div class="tr-badges">' +
+          '<span class="count-badge">🎬 動画 ' + g.items.length + '本</span>' +
+          audioBadge +
           perfBadge +
         '</div>' +
+        '<div class="tr-action"><button type="button" class="detail-btn" data-title="' + esc(g.title) + '">詳細を見る</button></div>' +
       '</div>';
   }
 
@@ -906,7 +1033,7 @@
       return;
     }
     el.titleEmpty.style.display = "none";
-    el.titleGrid.innerHTML = list.map(titleCardHTML).join("");
+    el.titleGrid.innerHTML = list.map(titleRowHTML).join("");
   }
 
   function findTitleGroup(title){
@@ -915,15 +1042,28 @@
   }
 
   function renderTitleDetail(g){
-    var poet = g.poets.length ? '<p class="pschool">作：' + esc(g.poets.join("／")) + '</p>' : '';
+    var poet = '<p class="pschool">作者：' + (g.poets.length ? esc(g.poets.join("／")) : "—") + '</p>';
     var perfNote = g.performerCount > 1
       ? '<p class="card-note">' + g.performerCount + '人の吟士による吟詠を聞き比べられます。</p>'
       : '';
+    var audioBox = "";
+    if(g.audioLinks && g.audioLinks.length){
+      audioBox = '<div class="audio-link-box">' +
+        g.audioLinks.map(function(a){
+          return '<a href="' + esc(a.url) + '" target="_blank" rel="noopener noreferrer">' + esc(a.label) + ' ↗</a>';
+        }).join(" ") +
+        '<p class="audio-link-note">' +
+          ((g.audioLinks[0] && g.audioLinks[0].source) ? esc(g.audioLinks[0].source) : "関西吟詩文化協会") +
+          'の紹介ページで、この吟題の模範吟詠（音源）を聴くことができます（外部サイトが開きます）。' +
+        '</p>' +
+      '</div>';
+    }
     el.titleDetailContent.innerHTML =
       '<div class="profile-head">' +
         '<h2>' + esc(g.title) + '</h2>' +
         poet +
         perfNote +
+        audioBox +
       '</div>' +
       '<h3 class="section-title">この吟題の動画（' + g.items.length + '件）</h3>' +
       '<div class="grid">' + g.items.map(cardHTML).join("") + '</div>';
@@ -1022,10 +1162,15 @@
     }
   });
 
-  // 吟題カードのクリック
+  // 吟題行のクリック（行本体・詳細ボタンどちらでも遷移）
   el.titleGrid.addEventListener("click", function(e){
-    var tc = e.target.closest(".title-card");
-    if(tc) gotoTitleDetail(tc.getAttribute("data-title"));
+    var row = e.target.closest(".title-row");
+    if(row) gotoTitleDetail(row.getAttribute("data-title"));
+  });
+  el.titleGrid.addEventListener("keydown", function(e){
+    if(e.key !== "Enter" && e.key !== " ") return;
+    var row = e.target.closest(".title-row");
+    if(row){ e.preventDefault(); gotoTitleDetail(row.getAttribute("data-title")); }
   });
 
   // 吟題詳細の中の動画カード・吟士リンク
@@ -1081,6 +1226,12 @@
   document.addEventListener("keydown", function(e){
     if(e.key === "Escape" && el.modal.classList.contains("open")) closeModal();
   });
+
+  // ---- 依頼リンク・メルマガ帯のリンク先設定（ファイル冒頭の定数を反映） ----
+  var requestLinkEl = document.getElementById("request-link");
+  if(requestLinkEl) requestLinkEl.href = FORM_URLS.requestForm;
+  var newsletterLinkEl = document.getElementById("newsletter-link");
+  if(newsletterLinkEl) newsletterLinkEl.href = NEWSLETTER_URL;
 
   // ---- 初期描画 ----
   renderFilters();

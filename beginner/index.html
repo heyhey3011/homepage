@@ -253,41 +253,8 @@
 
                 <h3 class="mt-3 reveal">詩吟の教科書シリーズから選ぶ</h3>
                 <p class="reveal">もっと体系的に学びたい方には、Kindleの「詩吟の教科書」シリーズもおすすめです。今のご自身に近いものを選んでみてください。</p>
-                <div class="grid grid--3 mt-2">
-                    <div class="card book-card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/legacy/kindle-nyumon.jpg" alt="Kindle書籍『詩吟の教科書－入門編－』の表紙" width="400" height="560" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h4 class="card__title">入門編</h4>
-                            <p class="card__text">詩吟をこれから知りたい方向け。</p>
-                            <div class="book-card__links">
-                                <a data-link="books.nyumon" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">Amazonで見る</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card book-card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/legacy/kindle-shoshinsya.jpg" alt="Kindle書籍『詩吟の教科書－初心者編－』の表紙" width="400" height="560" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h4 class="card__title">初心者編</h4>
-                            <p class="card__text">実際に練習を始めたい方向け。</p>
-                            <div class="book-card__links">
-                                <a data-link="books.shoshinsya" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">Amazonで見る</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card book-card reveal">
-                        <div class="card__body">
-                            <h4 class="card__title">中級編 <span class="badge badge--coming-soon" data-status="coming-soon">準備中</span></h4>
-                            <p class="card__text">さらに表現や技術を深めたい方向け。（現在準備中です）</p>
-                            <div class="book-card__links">
-                                <a data-link="books.chukyu" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">Amazonで見る</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="grid grid--3 mt-2" data-books="main"></div>
+                <p class="books-affiliate-note reveal">このページにはアフィリエイトリンクが含まれます。</p>
 
                 <h3 class="mt-3 reveal">録音してみる</h3>
                 <p class="reveal">練習を始めたら、ぜひ自分の声を録音してみましょう。歌と同じで、自分の吟は自分ではなかなか客観的に聴けないものです。録音して聴き返すことで、次に直すところが見えてきます。</p>
@@ -392,6 +359,21 @@
             </div>
         </section>
 
+        <!-- ============ メルマガ導線（ページ下部の帯） ============ -->
+        <section class="section" id="mailmag-band">
+            <div class="container">
+                <div class="mailmag mailmag--band reveal">
+                    <span class="mailmag__eyebrow">無料メルマガ</span>
+                    <h2 class="mailmag__title">無料で詩吟の始め方を7日間で学べます【詩吟メルマガ】</h2>
+                    <p class="mailmag__text">このガイドの内容を7日間に分けてメールで受け取れます。自分のペースで進めたい方はこちら。</p>
+                    <div class="mailmag__actions">
+                        <a data-link="newsletter.beginner" href="https://shigin.net/p/r/cbWMf1ve" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">無料メルマガで7日間学ぶ</a>
+                        <a href="../newsletter/" class="mailmag__more">詳しく見る</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- SHARED-FOOTER-START -->
@@ -417,7 +399,6 @@
                     <h2 class="site-footer__heading">学ぶ・楽しむ</h2>
                     <ul class="site-footer__list">
                         <li><a href="../tools/">詩吟学習ツール</a></li>
-                        <li><a href="../recommended-videos.html">おすすめ動画</a></li>
                         <li><a href="../dojo-details.html">吟猫道場（オンライン教室）</a></li>
                         <li><a href="../community/">コミュニティ</a></li>
                         <li><a href="../how-to-record.html">録音のしかた</a></li>
@@ -448,6 +429,7 @@
 
     <!-- 共通スクリプト -->
     <script src="../assets/js/links.js" defer></script>
+    <script src="../assets/js/books.js" defer></script>
     <script src="../assets/js/site.js" defer></script>
 </body>
 </html>

@@ -402,6 +402,30 @@
     padding:22px 18px;letter-spacing:.02em;
   }
 
+  /* ===== 掲載情報の依頼リンク（ヘッダー下） ===== */
+  .report-edit-line{margin:10px 0 0;}
+  .report-edit-line a{
+    color:#e7dcc6;font-size:13px;text-decoration:underline;
+  }
+  .report-edit-line a:hover{color:#fff;}
+
+  /* ===== メルマガ帯（下部の小さな案内） ===== */
+  .newsletter-band{
+    max-width:1160px;margin:0 auto;padding:16px 18px;
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+    gap:8px 16px;text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .newsletter-band-text{margin:0;font-size:14px;color:var(--text-soft);}
+  .newsletter-band-button{
+    display:inline-block;flex:0 0 auto;
+    background:var(--shu);color:#fff;
+    padding:9px 18px;border-radius:999px;
+    font-size:14px;font-weight:600;text-decoration:none;
+    white-space:nowrap;
+  }
+  .newsletter-band-button:hover{background:var(--shu-dark);}
+
   /* ===== スマホ ===== */
   @media (max-width:520px){
     body{font-size:16px;}
@@ -458,6 +482,7 @@
     <p class="lead">詩吟の技法・流派・大会・用語・教室の探し方を、やさしく調べられる辞典です</p>
     <div class="count" id="count"></div>
     <div class="tabs" id="tabs"></div>
+    <p class="report-edit-line"><a id="request-link" href="#" target="_blank" rel="noopener">掲載情報の追加・修正・削除依頼はこちら</a></p>
   </div>
 </header>
 
@@ -525,6 +550,12 @@
   </section>
 </main>
 
+<!-- メルマガ帯（下部の小さな案内。リンク先はNEWSLETTER_URLで一元管理） -->
+<div class="newsletter-band">
+  <p class="newsletter-band-text">用語を調べながら詩吟を学びたい方へ。初心者向けに7日間で学べる無料メルマガも用意しています。</p>
+  <a id="newsletter-link" class="newsletter-band-button" href="#" target="_blank" rel="noopener">無料メルマガで7日間学ぶ</a>
+</div>
+
 <footer class="site">
   詩吟大辞典 v1（雛形）<br>
   出典は各項目に記載しています。情報の確度をバッジで表示していますので、ご参照ください。
@@ -541,6 +572,14 @@
 <script>
 (function(){
   "use strict";
+
+  // 掲載情報の追加・修正・削除依頼フォームのURL（一元管理）
+  var FORM_URLS = { requestForm: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" };
+
+  // 無料メルマガ（7日間講座）の登録ページURL（一元管理）
+  // TODO: 詩吟大辞典専用の入口URLを用意でき次第、こちらのURLに差し替えてください。
+  //       現状は既存メルマガの登録ページへ直接リンクしています。
+  var NEWSLETTER_URL = "https://shigin.net/p/r/cbWMf1ve";
 
   var DB = window.SHIGIN_DAIJITEN || { entries: [], categories: [], reliabilityLevels: {}, comparisons: [] };
   var ENTRIES = DB.entries || [];
@@ -659,8 +698,14 @@
     searchResults:document.getElementById("search-results"),
     searchEmpty:  document.getElementById("search-empty"),
     detailContent:document.getElementById("detail-content"),
-    detailBack:   document.getElementById("detail-back")
+    detailBack:   document.getElementById("detail-back"),
+    requestLink:  document.getElementById("request-link"),
+    newsletterLink:document.getElementById("newsletter-link")
   };
+
+  // 依頼リンク・メルマガリンクのURLを一元管理の定数から差し込む
+  if(el.requestLink) el.requestLink.href = FORM_URLS.requestForm;
+  if(el.newsletterLink) el.newsletterLink.href = NEWSLETTER_URL;
 
   // ---- HTMLエスケープ ----
   function esc(s){

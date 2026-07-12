@@ -11,11 +11,15 @@
 //       本番へデプロイする運用（管理者ログインやDB連携は導入しない）を想定。
 const ADMIN_MODE = false;
 
-// このマップからの「修正・削除」導線のURL設定（一元管理）
-// TODO: 下記は仮のダミーURLです。Googleフォームを用意でき次第、本番URLに差し替えてください。
+// このマップからの「修正・追加・削除」導線のURL設定（一元管理）
 const FORM_URLS = {
-  requestForm: "https://forms.gle/DUMMY-request-form",
+  requestForm: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog",
 };
+
+// 無料メルマガ（7日間講座）の登録ページURL（一元管理）
+// TODO: 教室マップ専用の入口URLを用意でき次第、こちらのURLに差し替えてください。
+//       現状は既存メルマガの登録ページへ直接リンクしています。
+const NEWSLETTER_URL = "https://shigin.net/p/r/cbWMf1ve";
 
 // 地方ブロック → 都道府県 のドリルダウン定義
 const REGIONS = [
@@ -91,6 +95,7 @@ document.addEventListener("DOMContentLoaded", init);
 function init() {
   cacheElements();
   applyAdminModeVisibility();
+  if (elements.newsletterLink) elements.newsletterLink.href = NEWSLETTER_URL;
   initMap();
   bindEvents();
 
@@ -173,6 +178,7 @@ function cacheElements() {
     "manageOverlay", "manageModal", "manageClose", "manageSummary", "manageList",
     "manageExport", "manageImportButton", "manageImportFile", "manageClearAll",
     "mapPickHint", "mapPickCancel",
+    "newsletterLink",
   ];
   ids.forEach(id => { elements[id] = document.getElementById(id); });
   elements.appMain = document.querySelector(".app-main");
@@ -841,7 +847,7 @@ function detailHtml(record) {
     </div>
     ${sourceHtml}
     <p class="report-edit-line">
-      <a class="report-edit-link" href="${escapeHtml(FORM_URLS.requestForm)}" target="_blank" rel="noopener">この教室情報を修正・削除する</a><br>
+      <a class="report-edit-link" href="${escapeHtml(FORM_URLS.requestForm)}" target="_blank" rel="noopener">掲載情報の修正・追加・削除依頼はこちら</a><br>
       <span class="report-edit-note">（フォーム準備中。それまでは <a href="../../request/">こちら</a> から）</span>
     </p>
   `;

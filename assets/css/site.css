@@ -961,6 +961,92 @@ a.card.is-coming-soon::after {
     margin-bottom: 0.75rem;
 }
 
+/* ---------- 13b. メルマガ導線（トップ用ブロック＋各ページ下部の帯） ---------- */
+/* 抹茶系の背景に朱ボタンで、目を引くが上品に。 */
+.mailmag {
+    background: linear-gradient(135deg, var(--color-matcha-soft) 0%, #F3EEDD 100%);
+    border: 1px solid var(--color-matcha);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 2rem 1.75rem;
+    text-align: center;
+}
+
+.mailmag__eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--color-deep-green-dark);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    padding: 0.25em 1em;
+    margin-bottom: 0.9rem;
+}
+
+.mailmag__title {
+    font-size: clamp(1.25rem, 3.6vw, 1.7rem);
+    margin: 0 0 0.75rem;
+    color: var(--color-ink-strong);
+}
+
+.mailmag__text {
+    max-width: 40em;
+    margin: 0 auto 1.5rem;
+    color: var(--color-ink-soft);
+    font-size: 0.98rem;
+}
+
+.mailmag__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.mailmag__more {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* トップページ用の大きめブロック */
+.mailmag--feature {
+    padding: 2.75rem 2rem;
+}
+
+/* 各ページ下部の帯（やや控えめ） */
+.mailmag--band {
+    padding: 1.75rem;
+}
+
+.mailmag--band .mailmag__title {
+    font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+}
+
+.mailmag--band .mailmag__text {
+    margin-bottom: 1.2rem;
+    font-size: 0.94rem;
+}
+
+/* ---------- 13c. 書籍カード（小カード・アフィリエイト注記） ---------- */
+.book-card--small .card__body {
+    padding: 1.1rem 1.2rem 1.25rem;
+}
+
+.book-card--small .card__title {
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.books-affiliate-note {
+    font-size: 0.8rem;
+    color: var(--color-ink-soft);
+    text-align: center;
+    margin-top: 1.25rem;
+}
+
 /* ---------- 14. アニメーション抑制設定への対応 ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
