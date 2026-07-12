@@ -23,8 +23,79 @@
     document.addEventListener("DOMContentLoaded", function () {
         setupMobileMenu();
         setupHeaderShadow();
+        // 書籍カードの描画は .reveal を付けた要素を生成するので、
+        // setupReveal より前に実行して監視対象に含める。
+        renderSiteBooks();
         setupReveal();
     });
+
+    /* ---------- 0. 書籍カードのデータ駆動描画 ---------- */
+    // books.js が読み込まれているページで、[data-books="main|small"]
+    // コンテナに window.SITE_BOOKS の内容を自動描画する。
+    function renderSiteBooks() {
+        var containers = document.querySelectorAll("[data-books]");
+        if (containers.length === 0) return;
+        if (typeof window.SITE_BOOKS === "undefined") {
+            console.warn("[site.js] SITE_BOOKS が見つかりません（books.js の読み込みをご確認ください）。");
+            return;
+        }
+
+        containers.forEach(function (container) {
+            var group = container.getAttribute("data-books");
+            var books = window.SITE_BOOKS[group];
+            if (!Array.isArray(books)) {
+                console.warn('[site.js] SITE_BOOKS に "' + group + '" が見つかりません。');
+                return;
+            }
+            container.innerHTML = books.map(renderBookCard).join("");
+        });
+    }
+
+    function renderBookCard(book) {
+        var isSmall = book.size === "small";
+        var cardClass = "card book-card reveal" + (isSmall ? " book-card--small" : "");
+        var btnClass = isSmall ? "btn btn-ghost btn--small" : "btn btn-secondary btn--small";
+        var btnLabel = isSmall ? "Amazonで見る →" : "Amazonで見る";
+        var title = escapeHtml(book.title || "（タイトル要確認）");
+        var desc = escapeHtml(book.description || "");
+        var url = escapeHtml(book.amazonUrl || "");
+
+        // imageUrl が指定されていれば表紙画像を表示する。
+        // ページの階層（トップ／サブページ）によって相対パスが異なるため、
+        // links.js の resolveSiteUrl() があればそれで補正する。
+        var mediaHtml = "";
+        if (book.imageUrl) {
+            var resolvedSrc = (typeof window.resolveSiteUrl === "function")
+                ? window.resolveSiteUrl(book.imageUrl)
+                : book.imageUrl;
+            mediaHtml =
+                '<div class="card__media">' +
+                    '<img src="' + escapeHtml(resolvedSrc) + '" alt="' + title + '" loading="lazy">' +
+                "</div>";
+        }
+
+        return (
+            '<div class="' + cardClass + '">' +
+                mediaHtml +
+                '<div class="card__body">' +
+                    '<h3 class="card__title">' + title + "</h3>" +
+                    (desc ? '<p class="card__text">' + desc + "</p>" : "") +
+                    '<div class="book-card__links">' +
+                        '<a href="' + url + '" target="_blank" rel="noopener noreferrer sponsored" class="' + btnClass + '">' + btnLabel + "</a>" +
+                    "</div>" +
+                "</div>" +
+            "</div>"
+        );
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
 
     /* ---------- 1. ハンバーガーメニュー ---------- */
     function setupMobileMenu() {

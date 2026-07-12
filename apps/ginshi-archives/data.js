@@ -8156,5 +8156,52 @@ window.ARCHIVE_DATA = {
     "その他",
     "歴史的音源",
     "クラウン吟士"
-  ]
+  ],
+
+  // ===== 吟題ごとの外部音源リンク（関西吟詩文化協会） =====
+  // 公式サイト（kangin.or.jp）の「漢詩・詩歌・吟詠紹介」ページのうち、
+  // このアーカイブスの吟題名と題名が完全一致し、かつ実際に音源（吟詠）が
+  // 掲載されているページだけを対応付けています（2026-07調査）。
+  // ・音源ファイルを直接配布するのではなく、必ず紹介ページ（解説＋試聴プレーヤー）
+  //   へのリンクにしています（関西吟詩文化協会サイトへのリスペクトのため）。
+  // ・キーは items[].title と完全一致する文字列にしてください。
+  // ・追加するときは同じ形式（label / url / source）でオブジェクトを配列に追加してください。
+  "audioLinks": {
+    "寒梅": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A3_100.html", "source": "関西吟詩文化協会" }
+    ],
+    "静御前": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/kanshi_C12_3.html", "source": "関西吟詩文化協会" }
+    ],
+    "松竹梅": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A4_151.html", "source": "関西吟詩文化協会" }
+    ],
+    "城山": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A2_044.html", "source": "関西吟詩文化協会" }
+    ],
+    "中庸": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A2_046.html", "source": "関西吟詩文化協会" }
+    ],
+    "平泉懐古": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A3_109.html", "source": "関西吟詩文化協会" }
+    ],
+    "勧学": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A3_112.html", "source": "関西吟詩文化協会" }
+    ],
+    "清明": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A3_114.html", "source": "関西吟詩文化協会" }
+    ],
+    "雪梅": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A4_168.html", "source": "関西吟詩文化協会" }
+    ],
+    "大楠公": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A2_045.html", "source": "関西吟詩文化協会" }
+    ],
+    "芳野懐古": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/japanese/k_A1_011.html", "source": "関西吟詩文化協会" }
+    ],
+    "春暁": [
+      { "label": "音源を聴く（関西吟詩文化協会のページへ）", "url": "http://www.kangin.or.jp/learning/text/chinese/k_A1_019.html", "source": "関西吟詩文化協会" }
+    ]
+  }
 };

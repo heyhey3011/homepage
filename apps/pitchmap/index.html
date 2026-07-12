@@ -451,8 +451,8 @@ select option { background: var(--bg-dark); }
 }
 
 .shigin-legend {
-    margin-top: 10px;
-    padding: 8px;
+    flex: 0 0 auto;
+    padding: 8px 10px;
     background: rgba(99, 102, 241, 0.08);
     border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 6px;
@@ -468,12 +468,22 @@ select option { background: var(--bg-dark); }
 .legend-grid {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    gap: 4px;
+    gap: 4px 10px;
     font-size: 0.75rem;
+    align-items: center;
 }
 
 .legend-grid span { color: var(--text-secondary); }
-.legend-grid strong { font-family: monospace; color: var(--text-primary); }
+.legend-grid strong { font-family: inherit; font-weight: 400; color: var(--text-primary); }
+
+.legend-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 6px;
+    flex: 0 0 auto;
+}
 
 .plot-area {
     flex: 1;
@@ -739,6 +749,11 @@ select option { background: var(--bg-dark); }
         gap: 4px;
     }
 
+    .legend-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
     .plot-header-controls {
         flex-direction: column;
         align-items: stretch;
@@ -995,6 +1010,17 @@ select option { background: var(--bg-dark); }
                     <div class="empty-state" id="empty-state">
                         <p>🎤 まずは左のパネルから音源ファイルを選択してください</p>
                         <p class="empty-state-sub">m4a / mp3 / wav / ogg など、ブラウザが再生できる形式に対応しています</p>
+                    </div>
+                </div>
+
+                <!-- 線の色の凡例（グラフの赤・青の意味を常時表示） -->
+                <div class="shigin-legend">
+                    <div class="legend-title">線の色について</div>
+                    <div class="legend-grid">
+                        <span><span class="legend-dot" style="background:var(--accent-cyan);"></span>青い部分</span>
+                        <strong>ドレミの音階にほぼぴったり合っている、安定した音の高さです。</strong>
+                        <span><span class="legend-dot" style="background:#f43f5e;"></span>赤い部分</span>
+                        <strong>2つの音のちょうど中間を通っている部分です。悪い音程という意味ではなく、詩吟らしく声を滑らかに動かす「ゆり」「こぶし」などのサインです。</strong>
                     </div>
                 </div>
 

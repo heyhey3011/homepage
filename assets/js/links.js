@@ -94,9 +94,9 @@ window.SITE_LINKS = {
     // url が空の場合は /contact ページへフォールバック
     // ------------------------------------------------------------
     requestForm: {
-        // 修正・削除依頼フォーム（ダミー）
-        // TODO: 後で実URL（Googleフォーム等）に差し替える
-        url: "https://forms.gle/DUMMY-request-form"
+        // 修正・削除依頼フォーム
+        // ※お問い合わせ・各種依頼は1つの統一Googleフォームに集約する方針。
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog"
     },
 
     // requestForm.url が空のときのフォールバック先
@@ -111,17 +111,19 @@ window.SITE_LINKS = {
     // ※現在はすべてダミーURLです。Googleフォームが用意できたら、
     //   下記の各 url を実際の https://forms.gle/... に差し替えてください。
     // ------------------------------------------------------------
+    // ※お問い合わせは種別を問わず1つの統一Googleフォームに集約する方針になったため、
+    //   全種別を同じ実URLに統一しています。
     contactForms: {
         // 講演依頼
-        koen:   { url: "https://forms.gle/DUMMY-contact-koen" },   // TODO: 後で実URLに差し替える
+        koen:   { url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" },
         // 取材依頼
-        shuzai: { url: "https://forms.gle/DUMMY-contact-shuzai" }, // TODO: 後で実URLに差し替える
+        shuzai: { url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" },
         // 吟猫道場について
-        dojo:   { url: "https://forms.gle/DUMMY-contact-dojo" },   // TODO: 後で実URLに差し替える
+        dojo:   { url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" },
         // 掲載情報について
-        keisai: { url: "https://forms.gle/DUMMY-contact-keisai" }, // TODO: 後で実URLに差し替える
+        keisai: { url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" },
         // その他のお問い合わせ
-        other:  { url: "https://forms.gle/DUMMY-contact-other" }   // TODO: 後で実URLに差し替える
+        other:  { url: "https://docs.google.com/forms/d/e/1FAIpQLSfTae1WmuDbTgIqUKCQMHahGo7RJ1gVgEchbMoCmsQEQFbdMA/viewform?usp=dialog" }
     },
 
     // ------------------------------------------------------------
@@ -179,31 +181,29 @@ window.SITE_LINKS = {
 
     // ------------------------------------------------------------
     // 詩吟の教科書シリーズ（3冊まとめ・カード導線用）
-    // beginner/ の「最初の練習」とトップのセクション7で使用します。
+    // ※書籍カードの表示は assets/js/books.js に一元化しました。
+    //   ここは data-link="books.*" を使う旧コードとの互換のために残しています。
+    //   URLは books.js と揃えてあります（変更時は両方を更新）。
     // status: "live"（公開中） | "coming-soon"（準備中）
     // ------------------------------------------------------------
     books: {
         // 入門編：詩吟をこれから知りたい方向け
         nyumon: {
-            url: "https://amzn.to/43hkDP6",
+            url: "https://amzn.to/4gyN56i",
             status: "live",
             label: "公開中"
         },
         // 初心者編：実際に練習を始めたい方向け
         shoshinsya: {
-            url: "https://amzn.to/3Mkz5Oe",
+            url: "https://amzn.to/4fcD2S4",
             status: "live",
             label: "公開中"
         },
         // 中級編：さらに表現や技術を深めたい方向け
-        // ※書籍自体は実在を確認済みですが、確定した Amazon URL が未取得のため
-        //   現在は「準備中」（url 空）扱いにしています。
-        //   URL が判明したら、下記コメントのダミーを実URLに差し替えて url に設定してください。
-        //   ダミー: https://www.amazon.co.jp/DUMMY-chukyu  // TODO: 後で実URLに差し替える
         chukyu: {
-            url: "",
-            status: "coming-soon",
-            label: "準備中"
+            url: "https://amzn.to/4ffb1Jy",
+            status: "live",
+            label: "公開中"
         }
     }
 };
