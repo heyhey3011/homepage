@@ -97,10 +97,14 @@
     </section>
   </main>
 
-  <!-- メルマガ帯（下部の小さな案内。リンク先はapp.jsのNEWSLETTER_URLで一元管理） -->
-  <div class="newsletter-band">
+  <!-- メルマガ帯（下部の小さな案内。リンク先はapp.jsのNEWSLETTER_URLで一元管理）
+       地図の操作（ズーム・パン・ピン選択）を妨げないよう、地図の上に重ねず
+       ページの通常のレイアウト内に配置。閉じるボタンで一度閉じたら
+       localStorageに記憶し、次回以降は表示しない -->
+  <div id="newsletterBand" class="newsletter-band">
     <p class="newsletter-band-text">近くの教室を探す前に、詩吟の基本を知っておきたい方は、無料メルマガもご活用ください。</p>
     <a id="newsletterLink" class="newsletter-band-button" href="#" target="_blank" rel="noopener">無料メルマガで7日間学ぶ</a>
+    <button id="newsletterClose" class="newsletter-band-close" type="button" aria-label="この案内を閉じる">×</button>
   </div>
 
   <!-- 詳細ボトムシート／パネル -->

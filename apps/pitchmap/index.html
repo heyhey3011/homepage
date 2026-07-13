@@ -117,6 +117,9 @@ header .subtitle {
     text-decoration: underline;
 }
 
+/* スマホでは短いラベル（アイコン）に切り替える。PCでは長いラベルを表示 */
+.portal-label-short { display: none; }
+
 /* はじめての使い方ガイドへの導線ボタン */
 .guide-link {
     flex: 0 0 auto;
@@ -598,8 +601,25 @@ select option { background: var(--bg-dark); }
     }
 
     .portal-back-link {
-        display: none; /* スマホでは狭いため非表示（ヘッダーの混雑を避ける） */
+        /* スマホではアイコンのみの最小サイズにして、他の要素(⚙️設定など)や
+           タイトルの表示スペースを圧迫しないようにする */
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 30px;
+        min-height: 30px;
+        padding: 4px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
     }
+    .portal-label-long { display: none; }
+    .portal-label-short { display: inline; font-size: 1rem; }
+
+    /* 音源ファイル名バッジは優先度が低いため、スマホでは非表示にして
+       タイトルや戻るボタンなどの表示スペースを確保する
+       （ファイル選択状況はドロワー内の表示でも確認できる） */
+    .audio-badge { display: none; }
 
     /* はじめての使い方ボタンはスマホでも残すが、短いラベルに切り替える */
     .guide-link {
@@ -635,6 +655,7 @@ select option { background: var(--bg-dark); }
     }
     .header-right {
         flex: 0 0 auto;
+        gap: 8px;
     }
 
     header {
@@ -804,7 +825,10 @@ select option { background: var(--bg-dark); }
                     <span class="guide-label-long">📖 はじめての使い方を見る</span>
                     <span class="guide-label-short" aria-hidden="true">📖 使い方</span>
                 </a>
-                <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+                <a class="portal-back-link" href="../../" title="heyhey 詩吟ポータルへ戻る">
+                    <span class="portal-label-long">← heyhey 詩吟ポータル</span>
+                    <span class="portal-label-short" aria-hidden="true">🏠</span>
+                </a>
                 <span class="privacy-badge" title="音声ファイルはサーバーへ送信されず、すべてブラウザ内で処理されます">🔒 音声はブラウザ内でのみ処理</span>
                 <div class="audio-badge" id="audio-filename">音源: 未選択</div>
                 <button id="btn-toggle-settings" class="btn btn-secondary btn-small mobile-only-btn" title="設定を開く">⚙️ 設定</button>

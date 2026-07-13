@@ -21,6 +21,9 @@ const FORM_URLS = {
 //       現状は既存メルマガの登録ページへ直接リンクしています。
 const NEWSLETTER_URL = "https://shigin.net/p/r/cbWMf1ve";
 
+// メルマガ帯を閉じた記憶（一度閉じたら次回以降は表示しない。地図操作の邪魔にならないように）
+const NEWSLETTER_DISMISS_KEY = "shiginMapNewsletterDismissed_v1";
+
 // 地方ブロック → 都道府県 のドリルダウン定義
 const REGIONS = [
   { name: "北海道・東北", prefs: ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"] },
@@ -96,6 +99,7 @@ function init() {
   cacheElements();
   applyAdminModeVisibility();
   if (elements.newsletterLink) elements.newsletterLink.href = NEWSLETTER_URL;
+  setupNewsletterBand();
   initMap();
   bindEvents();
 
@@ -121,6 +125,34 @@ function init() {
   restoreFromHash();
   applyFilters();
   maybeAutoLocateOnFirstVisit();
+}
+
+// メルマガ帯: 地図の操作（ズーム・パン・ピン選択）を妨げないよう、
+// 地図の上に重ねず通常のレイアウトの1行として表示する。
+// 閉じるボタンで一度閉じたらlocalStorageに記憶し、以降は表示しない
+// （地図の表示領域もその分だけ広がる）。
+function setupNewsletterBand() {
+  if (!elements.newsletterBand) return;
+  let dismissed = false;
+  try {
+    dismissed = localStorage.getItem(NEWSLETTER_DISMISS_KEY) === "1";
+  } catch (e) {
+    // localStorageが使えない環境でも致命的ではないため無視
+  }
+  if (dismissed) {
+    elements.newsletterBand.hidden = true;
+    return;
+  }
+  if (elements.newsletterClose) {
+    elements.newsletterClose.addEventListener("click", () => {
+      elements.newsletterBand.hidden = true;
+      try {
+        localStorage.setItem(NEWSLETTER_DISMISS_KEY, "1");
+      } catch (e) {
+        // 保存できなくても、今回のセッション内では閉じたままにする
+      }
+    });
+  }
 }
 
 // 公開ページでは編集モード関連のUIを丸ごと非表示にする（β公開向け）
@@ -178,7 +210,7 @@ function cacheElements() {
     "manageOverlay", "manageModal", "manageClose", "manageSummary", "manageList",
     "manageExport", "manageImportButton", "manageImportFile", "manageClearAll",
     "mapPickHint", "mapPickCancel",
-    "newsletterLink",
+    "newsletterLink", "newsletterBand", "newsletterClose",
   ];
   ids.forEach(id => { elements[id] = document.getElementById(id); });
   elements.appMain = document.querySelector(".app-main");
