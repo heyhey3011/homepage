@@ -27,10 +27,12 @@ const CONFIG = {
     SECURITY: {
         // 本番環境でのみAPIキーを使用
         USE_API_IN_PRODUCTION: true,
-        
-        // 開発環境でのフォールバック値
-        FALLBACK_SUBSCRIBER_COUNT: 1000,
-        
+
+        // フォールバック値（APIキー未設定・取得失敗時に「約◯◯人／本」の形で表示）
+        // ※実際の数値に合わせて調整してください。自動取得が成功した場合は上書きされます。
+        FALLBACK_SUBSCRIBER_COUNT: 2800,
+        FALLBACK_VIDEO_COUNT: 100,
+
         // APIエラー時の再試行設定
         RETRY_ATTEMPTS: 3,
         RETRY_DELAY: 2000 // 2秒
