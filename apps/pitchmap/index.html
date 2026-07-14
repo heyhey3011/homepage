@@ -117,6 +117,9 @@ header .subtitle {
     text-decoration: underline;
 }
 
+/* スマホでは短いラベル（アイコン）に切り替える。PCでは長いラベルを表示 */
+.portal-label-short { display: none; }
+
 /* はじめての使い方ガイドへの導線ボタン */
 .guide-link {
     flex: 0 0 auto;
@@ -450,41 +453,6 @@ select option { background: var(--bg-dark); }
     100% { transform: rotate(360deg); }
 }
 
-.shigin-legend {
-    flex: 0 0 auto;
-    padding: 8px 10px;
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 6px;
-}
-
-.legend-title {
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: var(--accent-indigo);
-    margin-bottom: 6px;
-}
-
-.legend-grid {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 4px 10px;
-    font-size: 0.75rem;
-    align-items: center;
-}
-
-.legend-grid span { color: var(--text-secondary); }
-.legend-grid strong { font-family: inherit; font-weight: 400; color: var(--text-primary); }
-
-.legend-dot {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    margin-right: 6px;
-    flex: 0 0 auto;
-}
-
 .plot-area {
     flex: 1;
     display: flex;
@@ -598,8 +566,25 @@ select option { background: var(--bg-dark); }
     }
 
     .portal-back-link {
-        display: none; /* スマホでは狭いため非表示（ヘッダーの混雑を避ける） */
+        /* スマホではアイコンのみの最小サイズにして、他の要素(⚙️設定など)や
+           タイトルの表示スペースを圧迫しないようにする */
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 30px;
+        min-height: 30px;
+        padding: 4px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
     }
+    .portal-label-long { display: none; }
+    .portal-label-short { display: inline; font-size: 1rem; }
+
+    /* 音源ファイル名バッジは優先度が低いため、スマホでは非表示にして
+       タイトルや戻るボタンなどの表示スペースを確保する
+       （ファイル選択状況はドロワー内の表示でも確認できる） */
+    .audio-badge { display: none; }
 
     /* はじめての使い方ボタンはスマホでも残すが、短いラベルに切り替える */
     .guide-link {
@@ -635,6 +620,7 @@ select option { background: var(--bg-dark); }
     }
     .header-right {
         flex: 0 0 auto;
+        gap: 8px;
     }
 
     header {
@@ -749,11 +735,6 @@ select option { background: var(--bg-dark); }
         gap: 4px;
     }
 
-    .legend-grid {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-
     .plot-header-controls {
         flex-direction: column;
         align-items: stretch;
@@ -804,7 +785,10 @@ select option { background: var(--bg-dark); }
                     <span class="guide-label-long">📖 はじめての使い方を見る</span>
                     <span class="guide-label-short" aria-hidden="true">📖 使い方</span>
                 </a>
-                <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+                <a class="portal-back-link" href="../../" title="heyhey 詩吟ポータルへ戻る">
+                    <span class="portal-label-long">← heyhey 詩吟ポータル</span>
+                    <span class="portal-label-short" aria-hidden="true">🏠</span>
+                </a>
                 <span class="privacy-badge" title="音声ファイルはサーバーへ送信されず、すべてブラウザ内で処理されます">🔒 音声はブラウザ内でのみ処理</span>
                 <div class="audio-badge" id="audio-filename">音源: 未選択</div>
                 <button id="btn-toggle-settings" class="btn btn-secondary btn-small mobile-only-btn" title="設定を開く">⚙️ 設定</button>
@@ -896,7 +880,7 @@ select option { background: var(--bg-dark); }
                                 <option value="77">9本 (F5)</option>
                                 <option value="78">10本 (F#5)</option>
                             </select>
-                            <div class="param-desc" style="margin-top: 6px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">ご自身の声の高さや、吟ずる調子に合わせて本数を選択してください。ピッチマップ上に主音（中）の位置が太線で表示されます。</div>
+                            <div class="param-desc" style="margin-top: 6px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">ご自身の声の高さや、吟ずる調子に合わせて本数を選択してください。ピッチマップ上に主音の位置が太線で表示されます。</div>
                         </div>
 
                         <audio id="audio-player" preload="auto"></audio>
@@ -1010,17 +994,6 @@ select option { background: var(--bg-dark); }
                     <div class="empty-state" id="empty-state">
                         <p>🎤 まずは左のパネルから音源ファイルを選択してください</p>
                         <p class="empty-state-sub">m4a / mp3 / wav / ogg など、ブラウザが再生できる形式に対応しています</p>
-                    </div>
-                </div>
-
-                <!-- 線の色の凡例（グラフの赤・青の意味を常時表示） -->
-                <div class="shigin-legend">
-                    <div class="legend-title">線の色について</div>
-                    <div class="legend-grid">
-                        <span><span class="legend-dot" style="background:var(--accent-cyan);"></span>青い部分</span>
-                        <strong>ドレミの音階にほぼぴったり合っている、安定した音の高さです。</strong>
-                        <span><span class="legend-dot" style="background:#f43f5e;"></span>赤い部分</span>
-                        <strong>2つの音のちょうど中間を通っている部分です。悪い音程という意味ではなく、詩吟らしく声を滑らかに動かす「ゆり」「こぶし」などのサインです。</strong>
                     </div>
                 </div>
 
@@ -2343,7 +2316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ctx.fillStyle = 'rgba(245, 158, 11, 0.95)';
                     ctx.font = 'bold 9px sans-serif';
-                    ctx.fillText('主音 (中)', width - 60, y - 4);
+                    ctx.fillText('主音', width - 60, y - 4);
                 }
             }
             ctx.restore();
@@ -2428,14 +2401,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const conf = d.confidence || 0.1;
             const alpha = Math.min(1.0, Math.max(0.15, conf * 1.5));
 
-            const centsFraction = d.midi % 1.0;
-            let strokeColor = '';
-
-            if (Math.abs(centsFraction - 0.5) < 0.1) {
-                strokeColor = `rgba(244, 63, 94, ${alpha})`;
-            } else {
-                strokeColor = `rgba(11, 219, 235, ${alpha})`;
-            }
+            const strokeColor = `rgba(11, 219, 235, ${alpha})`;
 
             const barHeight = 4.0;
 

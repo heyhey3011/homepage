@@ -8,14 +8,14 @@
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <title>詩吟学習ツール一覧｜heyhey 詩吟ポータル</title>
-    <meta name="description" content="詩吟の学習を助ける6つの無料ツールをまとめてご紹介します。教室マップや吟士アーカイブス、詩吟大辞典、漢詩辞典、吟猫コンダクター、録音を分析できるピッチマップなど、目的に合わせて選べるようご案内します。">
+    <meta name="description" content="詩吟の学習を助ける6つの無料ツールをまとめてご紹介します。教室マップや吟士アーカイブス、詩吟大辞典、漢詩の図書館、吟猫コンダクター、録音を分析できるピッチマップなど、目的に合わせて選べるようご案内します。">
     <link rel="canonical" href="https://shigin-portal.com/tools/">
 
     <!-- OGP -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="heyhey 詩吟ポータル">
     <meta property="og:title" content="詩吟学習ツール一覧｜heyhey 詩吟ポータル">
-    <meta property="og:description" content="教室マップや漢詩辞典、録音を分析できるピッチマップなど、詩吟の学習を助ける無料ツールをまとめてご紹介します。">
+    <meta property="og:description" content="教室マップや漢詩の図書館、録音を分析できるピッチマップなど、詩吟の学習を助ける無料ツールをまとめてご紹介します。">
     <meta property="og:url" content="https://shigin-portal.com/tools/">
     <meta property="og:image" content="https://shigin-portal.com/assets/img/ogp.jpg">
     <meta property="og:locale" content="ja_JP">
@@ -28,6 +28,13 @@
 
     <!-- デザインシステム -->
     <link rel="stylesheet" href="../assets/css/site.css">
+
+    <!-- PWA / ファビコン -->
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon-16.png">
+    <meta name="theme-color" content="#B4D455">
 
     <!-- 構造化データ: BreadcrumbList -->
     <script type="application/ld+json">
@@ -70,7 +77,7 @@
                 "name": "スマホでも使えますか？",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "はい、スマートフォンからもご利用いただけるよう作られています。外出先で教室を調べたり、ちょっとした空き時間に漢詩辞典を眺めたりと、気軽にお使いください。"
+                    "text": "はい、スマートフォンからもご利用いただけるよう作られています。外出先で教室を調べたり、ちょっとした空き時間に漢詩の図書館を眺めたりと、気軽にお使いください。"
                 }
             },
             {
@@ -147,114 +154,152 @@
             </div>
         </section>
 
-        <!-- ============ ツール一覧 ============ -->
-        <section class="section section--alt" id="tools-list">
-            <div class="container">
-                <div class="grid grid--3 mt-3">
-                    <a href="../apps/kyoshitsu-map/" data-link="tools.classroomMap" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-map.webp" alt="全国詩吟教室マップ" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">全国詩吟教室マップ <span class="badge" data-link-status="tools.classroomMap"></span></h3>
-                            <p class="card__text">全国5,000件の詩吟教室を、地域・流派・連絡先から探せます。詩吟を始めたい方、近くの教室を探したい方は、まずこちらをご利用ください。</p>
-                            <span class="card__arrow">教室マップを見る →</span>
-                        </div>
-                    </a>
-                    <a href="../apps/ginshi-archives/" data-link="tools.ginshiArchives" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-archives.webp" alt="実力派吟士アーカイブス" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">実力派吟士アーカイブス <span class="badge" data-link-status="tools.ginshiArchives"></span></h3>
-                            <p class="card__text">YouTubeなどにある実力派吟士の動画を、吟士別・所属別・漢詩別に整理していきます。よい吟をたくさん聴きたい方におすすめです。</p>
-                            <span class="card__arrow">アーカイブスを見る →</span>
-                        </div>
-                    </a>
-                    <a href="../apps/shigin-jiten/" data-link="tools.shiginDictionary" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-shigin-dict.webp" alt="詩吟大辞典" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">詩吟大辞典 <span class="badge" data-link-status="tools.shiginDictionary"></span></h3>
-                            <p class="card__text">詩吟に関する用語、流派、技巧、歴史、素朴な疑問を調べられる統合辞典です。わからない言葉が出てきたときに役立ちます。</p>
-                            <span class="card__arrow">詩吟大辞典を見る →</span>
-                        </div>
-                    </a>
-                    <a href="../apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-kanshi-dict.webp" alt="漢詩辞典" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">漢詩辞典 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
-                            <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。好きな漢詩を見つける手がかりになります。</p>
-                            <span class="card__arrow">漢詩辞典を見る →</span>
-                        </div>
-                    </a>
-                    <a href="https://ginneko-conductor.netlify.app/" data-link="tools.ginnekoConductor" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
-                            <p class="card__text">詩吟学習をサポートするツールです。詳しい内容は準備が整いしだい、あらためてご案内します。</p>
-                            <span class="card__arrow">吟猫コンダクターを見る →</span>
-                        </div>
-                    </a>
-                    <a href="../apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
-                        <div class="card__media">
-                            <img src="../assets/img/tool-pitchmap.webp" alt="吟猫ピッチマップ" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟猫ピッチマップ <span class="badge" data-link-status="tools.ginnekoPitchmap"></span></h3>
-                            <p class="card__text">録音データを読み込み、音の動きを可視化するツールです。自分の吟の分析や、指導時の説明に使えます。</p>
-                            <span class="card__arrow">吟猫ピッチマップを見る →</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ こんな人におすすめ ============ -->
-        <section class="section" id="recommend">
-            <div class="container" style="max-width:820px;">
-                <h2 class="section-title reveal">こんな人におすすめ</h2>
+        <!-- ============ 比較表（冒頭・目的から選ぶ） ============ -->
+        <section class="section section--alt" id="compare">
+            <div class="container" style="max-width:860px;">
+                <h2 class="section-title reveal">目的から選ぶ</h2>
+                <p class="section__lead reveal">やりたいことに近いものから選んで、下の詳しい紹介へお進みください。ツール名を押すと、そのツールの説明に移動します。</p>
                 <div class="reveal" style="overflow-x:auto;">
-                    <table style="width:100%;border-collapse:collapse;font-size:0.94rem;">
+                    <table class="tool-compare">
                         <thead>
                             <tr>
-                                <th style="text-align:left;padding:0.7em 0.6em;border-bottom:2px solid var(--color-border);">こんな方に</th>
-                                <th style="text-align:left;padding:0.7em 0.6em;border-bottom:2px solid var(--color-border);">おすすめのツール</th>
+                                <th scope="col">こんな方に</th>
+                                <th scope="col">おすすめのツール</th>
+                                <th scope="col">状態</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">近くの教室を探したい</td>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">全国詩吟教室マップ</td>
+                                <td>近くの教室を探したい</td>
+                                <td><a href="#tool-classroom-map">全国詩吟教室マップ</a></td>
+                                <td><span class="badge" data-link-status="tools.classroomMap"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">よい吟をたくさん聴きたい</td>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">実力派吟士アーカイブス</td>
+                                <td>よい吟をたくさん聴きたい</td>
+                                <td><a href="#tool-ginshi-archives">実力派吟士アーカイブス</a></td>
+                                <td><span class="badge" data-link-status="tools.ginshiArchives"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">用語や流派の意味を調べたい</td>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">詩吟大辞典</td>
+                                <td>用語や流派の意味を調べたい</td>
+                                <td><a href="#tool-shigin-jiten">詩吟大辞典</a></td>
+                                <td><span class="badge" data-link-status="tools.shiginDictionary"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">漢詩について詳しく知りたい</td>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">漢詩辞典</td>
+                                <td>漢詩について詳しく知りたい</td>
+                                <td><a href="#tool-kanshi-jiten">漢詩の図書館</a></td>
+                                <td><span class="badge" data-link-status="tools.kanshiDictionary"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">日々の学習をサポートしてほしい</td>
-                                <td style="padding:0.7em 0.6em;border-bottom:1px solid var(--color-border);">吟猫コンダクター</td>
+                                <td>日々の学習をサポートしてほしい</td>
+                                <td><a href="#tool-ginneko-conductor">吟猫コンダクター</a></td>
+                                <td><span class="badge" data-link-status="tools.ginnekoConductor"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding:0.7em 0.6em;">自分の吟を分析・指導に使いたい</td>
-                                <td style="padding:0.7em 0.6em;">吟猫ピッチマップ</td>
+                                <td>自分の吟を分析・指導に使いたい</td>
+                                <td><a href="#tool-pitchmap">吟猫ピッチマップ</a></td>
+                                <td><span class="badge" data-link-status="tools.ginnekoPitchmap"></span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============ 各ツールの詳しい紹介 ============ -->
+        <section class="section" id="tools-detail">
+            <div class="container">
+                <h2 class="section-title reveal">各ツールの詳しい紹介</h2>
+
+                <!-- 全国詩吟教室マップ -->
+                <div class="split tool-detail reveal" id="tool-classroom-map">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-map.webp" alt="全国詩吟教室マップ" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>全国詩吟教室マップ <span class="badge" data-link-status="tools.classroomMap"></span></h3>
+                        <p>全国およそ5,000件の詩吟教室情報を地図上にまとめたツールです。地域・流派・連絡先などから、近くの教室や気になる流派の教室を探せます。</p>
+                        <p>「詩吟を始めたいけれど、近くに教室があるのかわからない」という方の、最初の一歩を助けるためのツールです。気になる教室が見つかったら、まずは見学のご連絡をしてみてください。掲載情報の修正・削除依頼も受け付けています。</p>
+                        <div class="mt-2">
+                            <a href="../apps/kyoshitsu-map/" data-link="tools.classroomMap" class="btn btn-primary">全国詩吟教室マップを開く</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実力派吟士アーカイブス -->
+                <div class="split split--reverse tool-detail reveal" id="tool-ginshi-archives">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-archives.webp" alt="実力派吟士アーカイブス" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>実力派吟士アーカイブス <span class="badge" data-link-status="tools.ginshiArchives"></span></h3>
+                        <p>YouTubeなどに公開されている実力派吟士の動画を、吟士別・所属別・漢詩別に整理してまとめていくアーカイブスです。</p>
+                        <p>「よい吟をたくさん聴いて耳を養いたい」「好きな漢詩の吟をいろいろな吟士で聴き比べたい」という方におすすめです。内容は随時追加しています。</p>
+                        <div class="mt-2">
+                            <a href="../apps/ginshi-archives/" data-link="tools.ginshiArchives" class="btn btn-primary">実力派吟士アーカイブスを開く</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 詩吟大辞典 -->
+                <div class="split tool-detail reveal" id="tool-shigin-jiten">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-shigin-dict.webp" alt="詩吟大辞典" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>詩吟大辞典 <span class="badge" data-link-status="tools.shiginDictionary"></span></h3>
+                        <p>詩吟に関する用語、流派、技巧、歴史、そして素朴な疑問までを調べられる統合辞典です。</p>
+                        <p>練習中や動画を見ているときに、わからない言葉が出てきたら、ここで意味を確かめられます。内容は少しずつ増やしています。</p>
+                        <div class="mt-2">
+                            <a href="../apps/shigin-jiten/" data-link="tools.shiginDictionary" class="btn btn-primary">詩吟大辞典を開く</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 漢詩の図書館 -->
+                <div class="split split--reverse tool-detail reveal" id="tool-kanshi-jiten">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-kanshi-dict.webp" alt="漢詩の図書館" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>漢詩の図書館 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
+                        <p>詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
+                        <p>吟じている漢詩の背景を知ると、その詩の情景がより深く味わえます。好きな漢詩を見つけることは、詩吟を長く楽しむ手がかりにもなります。内容は随時追加しています。</p>
+                        <div class="mt-2">
+                            <a href="../apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="btn btn-primary">漢詩の図書館を開く</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 吟猫コンダクター -->
+                <div class="split tool-detail reveal" id="tool-ginneko-conductor">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
+                        <p>詩吟学習をサポートするためのツールです。別サイトで公開しています。</p>
+                        <p>詳しい使い方や内容は、準備が整いしだい、あらためてご案内します。</p>
+                        <div class="mt-2">
+                            <a href="https://ginneko-conductor.netlify.app/" data-link="tools.ginnekoConductor" class="btn btn-primary">吟猫コンダクターを開く</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 吟猫ピッチマップ -->
+                <div class="split split--reverse tool-detail reveal" id="tool-pitchmap">
+                    <div class="split__media">
+                        <img src="../assets/img/tool-pitchmap.webp" alt="吟猫ピッチマップ" width="800" height="500" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>吟猫ピッチマップ <span class="badge" data-link-status="tools.ginnekoPitchmap"></span></h3>
+                        <p>録音した吟のデータを読み込み、音の高さの動きを目で見えるかたちに可視化するツールです。</p>
+                        <p>自分の吟を録音して聴き返すだけでなく、音の動きを目で確かめることで、練習の手がかりが得やすくなります。指導のときに、相手へ説明する材料としても使えます。</p>
+                        <div class="mt-2">
+                            <a href="../apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="btn btn-primary">吟猫ピッチマップを開く</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -283,7 +328,7 @@
                     <details>
                         <summary>スマホでも使えますか？</summary>
                         <div class="faq__answer">
-                            <p>はい、スマートフォンからもご利用いただけるよう作られています。外出先で教室を調べたり、ちょっとした空き時間に漢詩辞典を眺めたりと、気軽にお使いください。</p>
+                            <p>はい、スマートフォンからもご利用いただけるよう作られています。外出先で教室を調べたり、ちょっとした空き時間に漢詩の図書館を眺めたりと、気軽にお使いください。</p>
                         </div>
                     </details>
                     <details>

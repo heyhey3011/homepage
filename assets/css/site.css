@@ -211,6 +211,57 @@ ul {
     background-color: var(--color-matcha-soft);
 }
 
+/* ---------- ツール紹介ページ（tools/） ---------- */
+/* 目的から選ぶ比較表 */
+.tool-compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: var(--color-card);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.tool-compare th,
+.tool-compare td {
+    text-align: left;
+    padding: 0.8em 0.9em;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+}
+
+.tool-compare thead th {
+    background-color: var(--color-matcha-soft);
+    color: var(--color-ink-strong);
+    font-family: var(--font-heading);
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.tool-compare tbody tr:last-child th,
+.tool-compare tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tool-compare td a {
+    font-weight: 700;
+}
+
+/* 各ツールの詳しい紹介ブロック */
+.tool-detail {
+    margin-top: 3rem;
+    scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+.tool-detail:first-of-type {
+    margin-top: 2rem;
+}
+
+.tool-detail h3 {
+    font-size: 1.35rem;
+}
+
 /* ---------- 4. ボタン ---------- */
 .btn {
     display: inline-flex;
@@ -608,7 +659,14 @@ a.card.is-coming-soon::after {
     line-height: 1.6;
     letter-spacing: 0.04em;
     margin-bottom: 1.25rem;
-    text-wrap: balance;
+}
+
+/* ヒーロー見出しは「、」区切りの各節を折り返しの最小単位にする。
+   inline-block + nowrap で、節の途中（単語の途中）では改行させず、
+   画面幅に応じて「、」の位置でのみ改行が入るようにする。 */
+.hero__title-seg {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .hero__lead {
@@ -954,6 +1012,178 @@ a.card.is-coming-soon::after {
     max-width: 46em;
     margin-inline: auto;
     text-align: center;
+}
+
+/* ---------- 吟猫道場ページ（dojo-details.html） ---------- */
+/* 7つの特長など、小さな特長カードのグリッド */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+}
+
+@media (min-width: 720px) {
+    .feature-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 980px) {
+    .feature-grid--7 { grid-template-columns: repeat(7, 1fr); }
+}
+
+.feature-item {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 1.1rem 0.75rem;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+}
+
+.feature-item__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    margin-bottom: 0.6rem;
+    border-radius: 50%;
+    background-color: var(--color-matcha-soft);
+    color: var(--color-deep-green);
+    font-size: 1.2rem;
+}
+
+.feature-item__title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-family: var(--font-heading);
+    color: var(--color-ink-strong);
+}
+
+/* 手順（ステップ）リスト */
+.step-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.step-list > li {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    box-shadow: var(--shadow-card);
+}
+
+.step-list__num {
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--color-deep-green);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.step-list__body h3 {
+    margin: 0.1rem 0 0.4rem;
+    font-size: 1.1rem;
+}
+
+.step-list__body p {
+    margin: 0 0 0.5rem;
+    color: var(--color-ink-soft);
+}
+
+/* 参加者の声 */
+.testimonial {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-matcha);
+    border-radius: 12px;
+    padding: 1.3rem;
+    box-shadow: var(--shadow-card);
+    height: 100%;
+}
+
+.testimonial__meta {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-ink-strong);
+    margin-bottom: 0.2rem;
+}
+
+.testimonial__sub {
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+    margin-bottom: 0.7rem;
+}
+
+.testimonial__quote {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 0.95rem;
+    line-height: 1.85;
+}
+
+/* 料金カード */
+.price-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 2.2rem 1.6rem;
+    text-align: center;
+    max-width: 540px;
+    margin-inline: auto;
+}
+
+.price-card__amount {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--color-ink-strong);
+    line-height: 1.1;
+}
+
+.price-card__amount .price-card__yen {
+    font-size: 3.2rem;
+}
+
+.price-card__note {
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+}
+
+/* 補足の枠（メール送付先・注意書きなど） */
+.info-box {
+    background-color: var(--color-matcha-soft);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.6rem 0;
+}
+
+.info-box code {
+    font-weight: 700;
+    color: var(--color-deep-green-dark);
+    word-break: break-all;
+}
+
+.callout {
+    background-color: var(--color-gold-soft);
+    border-left: 4px solid var(--color-gold);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
 }
 
 .about-site p {

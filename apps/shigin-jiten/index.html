@@ -52,6 +52,7 @@
 
   /* ===== ヘッダー ===== */
   header.site{
+    position:relative;
     background:var(--sumi);
     color:var(--kinari);
     padding:22px 18px 18px;
@@ -71,14 +72,20 @@
     color:#cfc6b4;
     letter-spacing:.04em;
   }
+  /* ホームへ戻るリンク：右上に統一配置（タブ・検索操作の邪魔にならない控えめな位置） */
   .portal-back-link{
+    position:absolute;
+    top:14px;
+    right:18px;
     display:inline-block;
-    margin:0 0 8px;
     font-size:12px;
     color:#a89d89;
     text-decoration:none;
+    white-space:nowrap;
+    z-index:5;
   }
   .portal-back-link:hover{color:var(--kinari);text-decoration:underline;}
+  .portal-label-short{display:none;}
   .count{
     margin-top:12px;
     font-size:15px;
@@ -454,10 +461,15 @@
   /* ===== スマホ ===== */
   @media (max-width:520px){
     body{font-size:16px;}
+    header.site{padding-right:70px;}
     header.site h1{font-size:22px;}
     .grid{grid-template-columns:1fr;}
     .cat-grid{grid-template-columns:1fr;}
     main{padding:16px 14px 50px;}
+    /* 「ホームへ戻る」は狭い画面ではアイコンのみに切り替え、タイトルと重ならないようにする */
+    .portal-back-link{right:10px;top:10px;}
+    .portal-label-long{display:none;}
+    .portal-label-short{display:inline;font-size:15px;}
     .tab-btn{padding:9px 16px;}       /* タップ領域確保 */
     .chip{padding:9px 15px;}
     .related-link{padding:10px 16px;}
@@ -502,7 +514,10 @@
 
 <header class="site">
   <div class="site-inner">
-    <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+    <a class="portal-back-link" href="../../" title="heyhey 詩吟ポータルへ戻る">
+      <span class="portal-label-long">← heyhey 詩吟ポータル</span>
+      <span class="portal-label-short" aria-hidden="true">🏠</span>
+    </a>
     <h1 id="home-link">詩吟大辞典</h1>
     <p class="lead">詩吟の技法・流派・大会・用語・教室の探し方を、やさしく調べられる辞典です</p>
     <div class="count" id="count"></div>

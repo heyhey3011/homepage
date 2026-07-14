@@ -54,6 +54,7 @@
 
   /* ===== ヘッダー ===== */
   header.site{
+    position:relative;
     background:var(--sumi);
     color:var(--kinari);
     padding:22px 18px 18px;
@@ -72,14 +73,20 @@
     color:#cfc6b4;
     letter-spacing:.04em;
   }
+  /* ホームへ戻るリンク：右上に統一配置（タブ操作の邪魔にならない控えめな位置） */
   .portal-back-link{
+    position:absolute;
+    top:14px;
+    right:18px;
     display:inline-block;
-    margin:0 0 8px;
     font-size:12px;
     color:#a89d89;
     text-decoration:none;
+    white-space:nowrap;
+    z-index:5;
   }
   .portal-back-link:hover{color:var(--kinari);text-decoration:underline;}
+  .portal-label-short{display:none;}
   .count{
     margin-top:12px;
     font-size:15px;
@@ -490,11 +497,16 @@
   /* ===== スマホ ===== */
   @media (max-width:520px){
     body{font-size:16px;}
+    header.site{padding-right:70px;}
     header.site h1{font-size:22px;}
     .grid{grid-template-columns:1fr;}
     .performer-grid{grid-template-columns:1fr;}
     main{padding:16px 14px 50px;}
     .modal-body{padding:16px 16px 22px;}
+    /* 「ホームへ戻る」は狭い画面ではアイコンのみに切り替え、タイトルと重ならないようにする */
+    .portal-back-link{right:10px;top:10px;}
+    .portal-label-long{display:none;}
+    .portal-label-short{display:inline;font-size:15px;}
   }
 </style>
 </head>
@@ -510,14 +522,17 @@
 
 <header class="site">
   <div class="site-inner">
-    <a class="portal-back-link" href="../../">← heyhey 詩吟ポータル</a>
+    <a class="portal-back-link" href="../../" title="heyhey 詩吟ポータルへ戻る">
+      <span class="portal-label-long">← heyhey 詩吟ポータル</span>
+      <span class="portal-label-short" aria-hidden="true">🏠</span>
+    </a>
     <h1>詩吟の実演・動画アーカイブス</h1>
     <p class="lead">公開されている詩吟の実演動画を、吟題・吟士・括りから探せます</p>
     <div class="count" id="count"></div>
     <div class="tabs">
       <button class="tab-btn active" id="tab-videos" type="button">動画一覧</button>
-      <button class="tab-btn" id="tab-titles" type="button">吟題一覧</button>
       <button class="tab-btn" id="tab-performers" type="button">吟士名鑑</button>
+      <button class="tab-btn" id="tab-titles" type="button">吟題一覧</button>
     </div>
   </div>
 </header>

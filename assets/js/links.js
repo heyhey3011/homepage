@@ -46,7 +46,7 @@ window.SITE_LINKS = {
             status: "growing",
             label: "随時追加中"
         },
-        // 漢詩辞典
+        // 漢詩の図書館
         kanshiDictionary: {
             url: "apps/kanshi-jiten/",
             status: "growing",
@@ -287,6 +287,14 @@ window.applySiteLinks = function applySiteLinks() {
             el.classList.remove("is-coming-soon");
             el.removeAttribute("aria-disabled");
             el.removeAttribute("role");
+
+            // 学習ツール（tools.*）は原則すべて別タブで開く。
+            // 内部のアプリ（apps/配下）も外部ツールも新しいタブで開き、
+            // ポータル本体のタブが残るようにする。
+            if (path.indexOf("tools.") === 0) {
+                el.setAttribute("target", "_blank");
+                el.setAttribute("rel", "noopener noreferrer");
+            }
         } else {
             // urlが空（準備中）の場合はクリックできないボタン状態にする
             el.classList.add("is-coming-soon");

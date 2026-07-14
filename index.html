@@ -8,7 +8,7 @@
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <title>heyhey 詩吟ポータル｜詩吟を、もっと探しやすく、学びやすく、続けやすく。</title>
-    <meta name="description" content="全国5,000件の詩吟教室マップを中心に、詩吟の始め方ガイド、漢詩辞典、吟の分析ツール、学習動画までまとめた詩吟ポータル。詩吟を始めたい人・深く学びたい人・教室を探す人のための総合サイトです。">
+    <meta name="description" content="全国5,000件の詩吟教室マップを中心に、詩吟の始め方ガイド、漢詩の図書館、吟の分析ツール、学習動画までまとめた詩吟ポータル。詩吟を始めたい人・深く学びたい人・教室を探す人のための総合サイトです。">
     <link rel="canonical" href="https://shigin-portal.com/">
 
     <!-- OGP -->
@@ -28,6 +28,13 @@
 
     <!-- デザインシステム -->
     <link rel="stylesheet" href="assets/css/site.css">
+
+    <!-- PWA / ファビコン -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16.png">
+    <meta name="theme-color" content="#B4D455">
 
     <!-- three.js（ローカル同梱 v0.182.0）の importmap
          ※サブページでヒーロー演出を使う場合はパスに ../ を付けること -->
@@ -96,7 +103,7 @@
                 "name": "詩吟でよく使われる漢詩には何がありますか？",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。漢詩辞典では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。"
+                    "text": "石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。漢詩の図書館では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。"
                 }
             },
             {
@@ -175,7 +182,7 @@
         <section class="hero">
             <div class="hero__canvas" id="hero-canvas" aria-hidden="true"></div>
             <div class="container hero__inner">
-                <h1 class="hero__title">詩吟を、もっと探しやすく、<br>学びやすく、続けやすく。</h1>
+                <h1 class="hero__title"><span class="hero__title-seg">詩吟を、</span><span class="hero__title-seg">もっと探しやすく、</span><span class="hero__title-seg">学びやすく、</span><span class="hero__title-seg">続けやすく。</span></h1>
                 <p class="hero__lead">全国5,000件の詩吟教室マップを中心に、詩吟を始めたい人・深く学びたい人のための学習ツールをまとめています。</p>
                 <div class="btn-group">
                     <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="btn btn-primary btn--large">近くの詩吟教室を探す</a>
@@ -192,7 +199,7 @@
                 <div class="mailmag mailmag--feature reveal">
                     <span class="mailmag__eyebrow">無料メルマガ</span>
                     <h2 class="mailmag__title">無料で詩吟の始め方を7日間で学べます【詩吟メルマガ】</h2>
-                    <p class="mailmag__text">詩吟に興味はあるけれど、何から始めればいいかわからない方へ。発声、練習方法、吟じ方、学び方の順番を、7日間のメールでわかりやすくお届けします。動画や本を見る前に、まずは無料メルマガから始めてみてください。</p>
+                    <p class="mailmag__text">詩吟に興味はあるけれど、何から始めればいいかわからない方へ。発声、練習方法、吟じ方、学び方の順番を、7日間のメールでわかりやすくお届けします。動画や本を見る前に、まずは無料メルマガから始めてみてください。7日目以降は、週2本ペースで、詩吟に関するコラムや、詩吟ポータルの最新情報などをお送りします。（解約はいつでも可）</p>
                     <div class="mailmag__actions">
                         <a data-link="newsletter.beginner" href="https://shigin.net/p/r/cbWMf1ve" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">無料メルマガで7日間学ぶ</a>
                         <a href="newsletter/" class="mailmag__more">7日間講座について詳しく見る</a>
@@ -255,7 +262,7 @@
                         <div class="card__body">
                             <h3 class="card__title">漢詩を学びたい</h3>
                             <p class="card__text">作者や時代背景、豆知識まで。詩吟でよく使われる漢詩の辞典へ。</p>
-                            <span class="card__arrow">漢詩辞典へ →</span>
+                            <span class="card__arrow">漢詩の図書館へ →</span>
                         </div>
                     </a>
                     <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
@@ -336,10 +343,10 @@
                     </a>
                     <a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
                         <div class="card__media">
-                            <img src="assets/img/tool-kanshi-dict.webp" alt="漢詩辞典" width="800" height="500" loading="lazy">
+                            <img src="assets/img/tool-kanshi-dict.webp" alt="漢詩の図書館" width="800" height="500" loading="lazy">
                         </div>
                         <div class="card__body">
-                            <h3 class="card__title">漢詩辞典 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
+                            <h3 class="card__title">漢詩の図書館 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
                             <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
                         </div>
                     </a>
@@ -383,7 +390,7 @@
                 </div>
                 <div class="btn-group mt-3 reveal">
                     <a href="https://www.youtube.com/channel/UCerBISByAKR3KU9CD9Tz5ZQ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">YouTube『詩吟ちゃんねる』を見る</a>
-                    <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
+                    <a href="dojo-details.html" class="btn btn-secondary">吟猫道場ってなに？</a>
                 </div>
             </div>
         </section>
@@ -410,13 +417,6 @@
                         <div class="mt-2 mb-2">
                             <a data-link="newsletter.beginner" href="https://shigin.net/p/r/cbWMf1ve" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">無料メルマガで7日間学ぶ</a>
                         </div>
-                        <p class="mb-2">あなたに合った入口からどうぞ:</p>
-                        <div class="btn-group" style="justify-content: flex-start;">
-                            <a data-link="newsletter.beginner" class="btn btn-secondary btn--small">詩吟初心者の方</a>
-                            <a data-link="newsletter.learner" class="btn btn-secondary btn--small">学習者・ツール利用者の方</a>
-                            <a data-link="newsletter.teacher" class="btn btn-secondary btn--small">教室・指導者の方</a>
-                        </div>
-                        <p class="mt-2 note-link"><a href="newsletter/">7日間講座について詳しく見る</a></p>
                     </div>
                 </div>
             </div>
@@ -434,7 +434,7 @@
                         <p>無料ツールや動画で学んだあと、継続して学びたい方は、吟ねこコミュニティ（LINEのオープンチャット）や吟猫道場（オンライン詩吟教室）もお気軽にご検討ください。</p>
                         <div class="btn-group mt-2" style="justify-content: flex-start;">
                             <a data-link="community.openChat" href="https://line.me/ti/g2/dQ7kQC3l9VKQwCiWqvT3qB20hVzkjw0LmVQmhg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer" class="btn btn-primary">吟ねこコミュニティに参加する</a>
-                            <a href="dojo-details.html" class="btn btn-secondary">吟猫道場を見る</a>
+                            <a href="dojo-details.html" class="btn btn-secondary">吟猫道場ってなに？</a>
                         </div>
                     </div>
                 </div>
@@ -509,7 +509,7 @@
                     <details>
                         <summary>詩吟でよく使われる漢詩には何がありますか？</summary>
                         <div class="faq__answer">
-                            <p>石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。<a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary">漢詩辞典</a>では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。</p>
+                            <p>石川丈山の「富士山」や頼山陽の「川中島」などが有名で、多くの流派で吟じられています。<a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary">漢詩の図書館</a>では、こうした漢詩を作者や時代背景、豆知識とともに調べられるよう整理を進めています。好きな漢詩を見つけることが、詩吟を長く楽しむ近道になります。</p>
                         </div>
                     </details>
                     <details>
@@ -615,22 +615,34 @@
         document.addEventListener('DOMContentLoaded', () => {
             // config.jsが読み込まれるのを少し待つ
             setTimeout(() => {
+                const subscriberElement = document.getElementById('subscriber-count');
+                const videoElement = document.getElementById('video-count');
+
+                // フォールバック表示（APIキー未設定・取得失敗時に「約◯◯」の形で表示）
+                function showFallbackStats() {
+                    const sec = (typeof CONFIG !== 'undefined' && CONFIG.SECURITY) ? CONFIG.SECURITY : {};
+                    const subs = sec.FALLBACK_SUBSCRIBER_COUNT || 2800;
+                    const vids = sec.FALLBACK_VIDEO_COUNT || 100;
+                    if (subscriberElement) subscriberElement.textContent = '約' + subs.toLocaleString();
+                    if (videoElement) videoElement.textContent = '約' + vids.toLocaleString();
+                }
+
                 if (typeof CONFIG === 'undefined' || !CONFIG.YOUTUBE || !CONFIG.YOUTUBE.CHANNEL_ID) {
-                    console.info('YouTube統計: CONFIG未設定のため取得をスキップします。');
+                    console.info('YouTube統計: CONFIG未設定のため、フォールバック値を表示します。');
+                    showFallbackStats();
                     return;
                 }
 
                 const { API_KEY, CHANNEL_ID } = CONFIG.YOUTUBE;
 
-                // APIキーが未設定・空・プレースホルダー（例: __YOUTUBE_API_KEY__）の場合はfetchせずスキップ
+                // APIキーが未設定・空・プレースホルダー（例: __YOUTUBE_API_KEY__）の場合はfetchせずフォールバック
                 if (!API_KEY || API_KEY.startsWith('__')) {
-                    console.info('YouTube統計: APIキーが未設定のため取得をスキップします（表示はデフォルト文言のままです）。');
+                    console.info('YouTube統計: APIキーが未設定のため、フォールバック値を表示します。');
+                    showFallbackStats();
                     return;
                 }
 
                 async function fetchChannelStats() {
-                    const subscriberElement = document.getElementById('subscriber-count');
-                    const videoElement = document.getElementById('video-count');
                     if (!subscriberElement || !videoElement) return;
 
                     try {
@@ -644,14 +656,17 @@
                             const stats = data.items[0].statistics;
                             subscriberElement.textContent = parseInt(stats.subscriberCount, 10).toLocaleString();
                             videoElement.textContent = parseInt(stats.videoCount, 10).toLocaleString();
+                        } else {
+                            showFallbackStats();
                         }
                     } catch (error) {
                         console.warn('YouTube統計の取得に失敗しました:', error);
-                        subscriberElement.textContent = CONFIG.SECURITY.FALLBACK_SUBSCRIBER_COUNT.toLocaleString();
-                        videoElement.textContent = `${CONFIG.SECURITY.FALLBACK_VIDEO_COUNT || 100}+`;
+                        showFallbackStats();
                     }
                 }
 
+                // 取得を試みる前に、まずフォールバック値を表示しておく（取得成功時に上書き）
+                showFallbackStats();
                 fetchChannelStats();
             }, 100);
         });

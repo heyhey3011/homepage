@@ -68,9 +68,14 @@
             var resolvedSrc = (typeof window.resolveSiteUrl === "function")
                 ? window.resolveSiteUrl(book.imageUrl)
                 : book.imageUrl;
+            // 表紙画像もクリックで Amazon へ飛べるように <a> でラップする。
+            var imgTag = '<img src="' + escapeHtml(resolvedSrc) + '" alt="' + title + '" loading="lazy">';
+            var mediaInner = url
+                ? '<a href="' + url + '" target="_blank" rel="noopener noreferrer sponsored" aria-label="' + title + 'をAmazonで見る">' + imgTag + "</a>"
+                : imgTag;
             mediaHtml =
                 '<div class="card__media">' +
-                    '<img src="' + escapeHtml(resolvedSrc) + '" alt="' + title + '" loading="lazy">' +
+                    mediaInner +
                 "</div>";
         }
 

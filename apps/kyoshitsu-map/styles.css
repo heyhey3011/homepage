@@ -46,9 +46,11 @@ a:focus-visible {
   outline-offset: 1px;
 }
 
-/* ---------- ポータルへの戻り導線（控えめな細いバー） ---------- */
+/* ---------- ポータルへの戻り導線（控えめな細いバー・右上に統一配置） ---------- */
 .portal-back-bar {
   flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
   padding: 3px 14px;
   background: var(--accent-strong);
 }
@@ -1202,19 +1204,42 @@ a:focus-visible {
   }
 }
 
-/* ---------- メルマガ帯（下部の小さな案内） ---------- */
+/* ---------- メルマガ帯（下部の小さな案内） ----------
+   地図と同じ画面領域を奪わないよう、通常のflexレイアウトの1行分としてのみ
+   高さを取る（地図の上に重ねない）。閉じるボタンで非表示にした後は
+   [hidden] 属性で高さ0にし、地図の表示領域を最大化する。 */
 .newsletter-band {
+  position: relative;
   flex: 0 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px 14px;
-  padding: 8px 14px;
+  padding: 8px 40px;
   background: var(--panel-soft);
   border-top: 1px solid var(--line);
   text-align: center;
 }
+/* display:flex は hidden 属性より優先度で勝ってしまうため、
+   閉じた後に高さを残さないよう明示的に display:none を指定する */
+.newsletter-band[hidden] { display: none; }
+
+.newsletter-band-close {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+.newsletter-band-close:hover { background: rgba(0, 0, 0, 0.08); color: var(--text); }
 
 .newsletter-band-text {
   margin: 0;
@@ -1237,6 +1262,7 @@ a:focus-visible {
 .newsletter-band-button:hover { background: var(--accent-strong); }
 
 @media (max-width: 768px) {
-  .newsletter-band { padding: 6px 10px; }
+  .newsletter-band { padding: 6px 36px; }
   .newsletter-band-text { font-size: 12px; }
+  .newsletter-band-close { min-width: 30px; min-height: 30px; }
 }

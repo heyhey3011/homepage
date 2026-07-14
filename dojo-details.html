@@ -1,608 +1,436 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; upgrade-insecure-requests;">
-    <title>吟猫道場 - オンライン詩吟教室詳細・入会方法</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-green': '#B4D455',
-                        'kimono-black': '#1A1A1A',
-                        'pure-white': '#FFFFFF',
-                        'accent-gold': '#D8B25F',
-                        'accent-pink': '#F4A7B9'
-                    },
-                    fontFamily: {
-                        'zen': ['Zen Kaku Gothic Antique', 'sans-serif'],
-                        'noto': ['Noto Sans JP', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <title>吟猫道場ってなに？｜オンライン詩吟教室の詳細・入会方法｜heyhey 詩吟ポータル</title>
+    <meta name="description" content="オンライン詩吟教室「吟猫道場」の詳細ページです。年齢・吟歴・流派・住む場所を問わず、月額990円で気軽に学べます。7つの特長、メンバーになってできること、詩吟アドバイスの流れ、参加者の声、入会方法をご案内します。">
+    <link rel="canonical" href="https://shigin-portal.com/dojo-details.html">
+
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="heyhey 詩吟ポータル">
+    <meta property="og:title" content="吟猫道場ってなに？｜オンライン詩吟教室の詳細・入会方法">
+    <meta property="og:description" content="年齢・吟歴・流派・住む場所を問わず、月額990円で気軽に学べるオンライン詩吟教室「吟猫道場」のご案内です。">
+    <meta property="og:url" content="https://shigin-portal.com/dojo-details.html">
+    <meta property="og:image" content="https://shigin-portal.com/assets/img/ogp.jpg">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- フォント: Shippori Mincho B1（見出し）+ Zen Kaku Gothic New（本文） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- デザインシステム -->
+    <link rel="stylesheet" href="assets/css/site.css">
+
+    <!-- PWA / ファビコン -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16.png">
+    <meta name="theme-color" content="#B4D455">
+
+    <!-- 構造化データ: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://shigin-portal.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "吟猫道場ってなに？",
+                "item": "https://shigin-portal.com/dojo-details.html"
+            }
+        ]
+    }
+    </script>
 </head>
-<body class="font-noto bg-pure-white">
-    <header class="bg-pure-white fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center">
-                        <img src="必要画像/吟ねこ.jpg" alt="heyhey Logo" class="h-8 w-8 rounded-full object-cover">
-                        <span class="font-zen font-bold text-kimono-black ml-3">heyheyのホームページ</span>
-                    </a>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="about.html" class="text-kimono-black hover:text-brand-green transition-colors">詳細プロフィール</a>
-                    <a href="blog.html" class="text-kimono-black hover:text-brand-green transition-colors">ブログ</a>
-                    <a href="contact.html" class="text-kimono-black hover:text-brand-green transition-colors">お問い合わせ</a>
-                </nav>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-kimono-black focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+<body>
+
+    <!-- SHARED-HEADER-START -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a href="index.html" class="site-header__brand">
+                <img src="assets/img/legacy/ginneko.jpg" alt="heyhey 詩吟ポータルのロゴ（吟ねこ）" class="site-header__logo" width="80" height="80">
+                <span>heyhey 詩吟ポータル</span>
+            </a>
+            <nav class="site-nav" aria-label="メインメニュー">
+                <a href="map/">教室マップ</a>
+                <a href="beginner/">始め方ガイド</a>
+                <a href="tools/">学習ツール</a>
+                <a href="index.html#videos">動画で学ぶ</a>
+                <a href="community/">コミュニティ</a>
+                <a href="profile/">プロフィール</a>
+                <a href="contact/">お問い合わせ</a>
+                <a href="newsletter/" class="btn btn-primary">7日間講座</a>
+            </nav>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開閉する">
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-pure-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="about.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">詳細プロフィール</a>
-                <a href="blog.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">ブログ</a>
-                <a href="contact.html" class="block px-3 py-2 text-kimono-black hover:text-brand-green transition-colors">お問い合わせ</a>
-            </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-menu__list">
+                <li><a href="map/">教室マップ</a></li>
+                <li><a href="beginner/">始め方ガイド</a></li>
+                <li><a href="tools/">学習ツール</a></li>
+                <li><a href="index.html#videos">動画で学ぶ</a></li>
+                <li><a href="community/">コミュニティ</a></li>
+                <li><a href="profile/">プロフィール</a></li>
+                <li><a href="contact/">お問い合わせ</a></li>
+                <li class="mobile-menu__cta"><a href="newsletter/" class="btn btn-primary btn--small">7日間講座</a></li>
+            </ul>
         </div>
     </header>
+    <!-- SHARED-HEADER-END -->
 
-    <!-- ファーストビュー・ヒーローセクション -->
-    <section class="bg-gray-800 flex items-center justify-center py-20 lg:py-32 mt-16">
-        <div class="text-center px-8">
-            <h1 class="font-zen text-4xl md:text-6xl font-black text-pure-white mb-6">
-                誰でも、どこにいても、<br>気軽に学び続けられる。
-            </h1>
-            <p class="text-pure-white/90 text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-                オンライン詩吟教室「吟猫道場」へようこそ
-            </p>
-            <!-- 修正1: CTAボタンテキスト変更 -->
-            <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-gold text-kimono-black px-12 py-4 rounded-full hover:bg-opacity-80 transition-all transform hover:scale-105 font-bold text-lg shadow-xl">
-                今すぐ入会する
-            </a>
-        </div>
-    </section>
+    <main>
 
-    <!-- 修正2: 新セクション「吟猫道場の7つの特長」 -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">吟猫道場の7つの特長</h2>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-                <!-- 年齢問わず -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">年齢問わず</h3>
-                </div>
+        <p class="container mt-2" style="font-size:0.85rem;color:var(--color-ink-soft);">
+            <a href="index.html">ホーム</a> ＞ 吟猫道場ってなに？
+        </p>
 
-                <!-- 吟歴問わず -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">吟歴問わず</h3>
-                </div>
-
-                <!-- 流派問わず -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">流派問わず</h3>
-                </div>
-
-                <!-- 住む場所問わず -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">住む場所問わず</h3>
-                </div>
-
-                <!-- 時間制約なし -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">時間制約なし</h3>
-                </div>
-
-                <!-- 学びが蓄積される -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">学びが蓄積される</h3>
-                </div>
-
-                <!-- 入会・退会がラク -->
-                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-zen text-sm font-bold text-kimono-black">入会・退会がラク</h3>
+        <!-- ============ ファーストビュー ============ -->
+        <section class="section" id="intro">
+            <div class="container text-center" style="max-width:760px;">
+                <h1 class="reveal">吟猫道場ってなに？</h1>
+                <p class="reveal">誰でも、どこにいても、気軽に学び続けられる。オンライン詩吟教室「吟猫道場」へようこそ。</p>
+                <p class="reveal">年齢や吟歴、流派、お住まいの場所を問わず、自分のペースで詩吟を楽しめる場所です。まずはどんなところか、ゆっくりご覧ください。</p>
+                <div class="btn-group mt-3 reveal">
+                    <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">入会ページを見る</a>
+                    <a href="#join" class="btn btn-secondary btn--large">入会方法へ</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 修正3: 「吟猫道場とは」セクションの文章リライト -->
-    <section class="py-16 bg-pure-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">吟猫道場とは</h2>
-                <p class="text-gray-600 text-lg">詩吟をもっと楽しく、もっと身近に感じられる場所</p>
-            </div>
-            
-            <div class="prose prose-lg max-w-none">
-                <p class="text-lg leading-8 mb-6 animate-on-scroll">
-                    <strong>吟猫道場</strong>は、<strong>吟歴、流派、場所に関係なく、誰でも自由に気軽に参加できる唯一のオンライン詩吟教室です。</strong>
-                </p>
-                
-                <p class="text-lg leading-8 mb-6 animate-on-scroll">
-                    従来の詩吟教室では、人間関係の煩わしさ、土日のスケジュール制約、高額な費用などが負担となりがちでした。
-                    吟猫道場では、そうした悩みから完全に解放され、月額990円という手頃な価格で、あなたのペースで詩吟の世界を楽しめます。
-                </p>
-                
-                <p class="text-lg leading-8 animate-on-scroll">
-                    練習も発表も気軽にできて、詩吟がもっと楽しめるように、もっと広がるように。
-                    そんな想いで、温かくて優しいメンバーが集まるコミュニティを目指しています。
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 修正4: 「メンバーになってできること」セクションの修正（3つのサービスのみ） -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">メンバーになってできること</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                        </svg>
+        <!-- ============ 7つの特長 ============ -->
+        <section class="section section--alt" id="features">
+            <div class="container">
+                <h2 class="section-title reveal">吟猫道場の7つの特長</h2>
+                <div class="feature-grid feature-grid--7 mt-3 reveal">
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">歳</span>
+                        <h3 class="feature-item__title">年齢問わず</h3>
                     </div>
-                    <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">メンバー限定の詩吟アドバイス</h3>
-                    <p class="text-gray-600">週2回配信される限定アドバイス動画で、あなたの詩吟スキルを向上させましょう。</p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                        </svg>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">歴</span>
+                        <h3 class="feature-item__title">吟歴問わず</h3>
                     </div>
-                    <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">過去の全アドバイス動画が見放題</h3>
-                    <p class="text-gray-600">これまでのアドバイス動画すべてがいつでも視聴可能。復習や学び直しに最適です。</p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                        </svg>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">派</span>
+                        <h3 class="feature-item__title">流派問わず</h3>
                     </div>
-                    <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">メンバー限定のコミュニティ交流</h3>
-                    <p class="text-gray-600">コミュニティ投稿で他のメンバーと交流し、互いの成長を応援し合えます。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 修正5: 新セクション「詩吟アドバイスの流れ」 -->
-    <section class="py-16 bg-pure-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">詩吟アドバイスの流れ</h2>
-                <p class="text-gray-600 text-lg">3つの簡単なステップで個別アドバイスを受けられます</p>
-            </div>
-            
-            <ol class="space-y-8">
-                <li class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">1</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">詩吟をスマホで録音する</h3>
-                        <p class="text-gray-600 text-lg">お好きな詩をスマートフォンで録音してください。録音時間や音質は気にせず、気軽に録音していただけます。</p>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">地</span>
+                        <h3 class="feature-item__title">住む場所問わず</h3>
                     </div>
-                </li>
-
-                <li class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">2</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">録音データをメールで送信する</h3>
-                        <p class="text-gray-600 text-lg mb-2">録音した音声ファイルを以下のメールアドレスまでお送りください。</p>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="font-mono text-accent-gold font-bold">heyhey.shigin@gmail.com</p>
-                        </div>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">時</span>
+                        <h3 class="feature-item__title">時間制約なし</h3>
                     </div>
-                </li>
-
-                <li class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">3</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">アドバイス動画が限定公開される</h3>
-                        <p class="text-gray-600 text-lg">数日以内にYouTubeメンバーシップ限定動画として、あなた専用のアドバイス動画が公開されます。</p>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">積</span>
+                        <h3 class="feature-item__title">学びが蓄積される</h3>
                     </div>
-                </li>
-            </ol>
-
-            <div class="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
-                <p class="text-sm text-gray-600">
-                    ※応募回数は現在制限しておりません。私の体調やスケジュールに応じて返信が遅くなる場合がございます。
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 「大切にしたい3つの心得」セクション -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">大切にしたい3つの心得</h2>
-                <p class="text-gray-600 text-lg">安心して学べる、温かいコミュニティを目指して</p>
-            </div>
-            
-            <div class="space-y-8">
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">1</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">発表する人の勇気を、みんなで称えよう</h3>
-                        <p class="text-gray-600 text-lg">詩吟を発表することは勇気のいることです。投稿してくれた方の勇気と努力を、みんなで温かく応援しましょう。</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">2</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">半年後、一年後の上達を目指し、焦らず楽しもう</h3>
-                        <p class="text-gray-600 text-lg">詩吟の上達には時間がかかります。短期間での変化を求めず、長期的な視点で楽しみながら続けていきましょう。</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-kimono-black font-bold text-xl">3</div>
-                    <div>
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">個人を特定したり攻撃したりせず、優しく温かい場所にしよう</h3>
-                        <p class="text-gray-600 text-lg">みんなが安心して参加できるよう、個人への攻撃や特定は避け、優しく温かいコミュニティを維持しましょう。</p>
+                    <div class="feature-item">
+                        <span class="feature-item__mark" aria-hidden="true">楽</span>
+                        <h3 class="feature-item__title">入会・退会がラク</h3>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 参加者の声 -->
-    <section class="py-16 bg-pure-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">参加者の声</h2>
-                <p class="text-gray-600 text-lg">実際に参加されている方々の体験談をご紹介します</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 口コミカード1 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-brand-green">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">S.K様</p>
-                            <p class="text-sm text-gray-600">40代女性・吟歴5ヶ月</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「heyhey先生の楽しそうで素敵な声の動画でファンになりました。毎回お返事をいただけて、とても嬉しくてもう辞められません。先生のおかげでここまで上達できました。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード2 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-accent-gold">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">U.T様</p>
-                            <p class="text-sm text-gray-600">50代男性・吟歴20年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「準師範先生の教え方はThe理系で端的にポイントを分かりやすく教えてくださるので、最近の自分の吟は上達していると自負しています。流派関係なく気軽に楽しめる場所です。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード3 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-accent-pink">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-accent-pink rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">M.K様</p>
-                            <p class="text-sm text-gray-600">40代女性・吟歴8年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「分かりやすい教え方で上達を実感しています。流派に関係なく、みんなで楽しく詩吟を学べる環境がとても気に入っています。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード4 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-brand-green">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">C.H様</p>
-                            <p class="text-sm text-gray-600">30代女性・吟歴3ヶ月</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「ハワイで詩吟を始めましたが、練習頻度に物足りなさを感じていた時にこの教室を発見。分かりやすさと先生の声の良さに感激です！」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード5 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-accent-gold">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">T.S様</p>
-                            <p class="text-sm text-gray-600">70代男性・カラオケ歴12年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「72歳でカラオケから詩吟に挑戦。年齢を気にせず、新しいことに挑戦できる環境がとても嬉しいです。毎回楽しく学んでいます。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード6 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-accent-pink">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-accent-pink rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">Y.M様</p>
-                            <p class="text-sm text-gray-600">50代女性・吟歴10年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「長年続けていますが、新しい発見がたくさんあります。先生の丁寧な指導で、詩吟の奥深さを改めて感じています。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード7 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-brand-green">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">A.N様</p>
-                            <p class="text-sm text-gray-600">60代女性・吟歴2年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「オンラインなので地方に住んでいても参加できるのが嬉しいです。自分のペースで学べて、他の参加者の方々との交流も楽しんでいます。」
-                    </blockquote>
-                </div>
-
-                <!-- 口コミカード8 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-accent-gold">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-white font-bold mr-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-zen font-bold text-kimono-black">K.H様</p>
-                            <p class="text-sm text-gray-600">40代男性・吟歴1年</p>
-                        </div>
-                    </div>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        「初心者でも安心して参加できる雰囲気が素晴らしいです。メンバー同士の温かい交流と先生の丁寧な指導で、毎回新しい発見があります。」
-                    </blockquote>
+        <!-- ============ 吟猫道場とは ============ -->
+        <section class="section" id="about">
+            <div class="container" style="max-width:760px;">
+                <h2 class="section-title reveal">吟猫道場とは</h2>
+                <p class="section__lead reveal">詩吟をもっと楽しく、もっと身近に感じられる場所です。</p>
+                <div class="reveal">
+                    <p>吟猫道場は、<strong>吟歴・流派・場所に関係なく、誰でも自由に、気軽に参加できるオンライン詩吟教室</strong>です。</p>
+                    <p>従来の詩吟教室では、人間関係の気づかいや、土日のスケジュールの制約、費用の負担などが、続けるうえでのハードルになりがちでした。吟猫道場では、そうした気がかりをできるだけ減らし、<strong>月額990円</strong>という手頃な価格で、自分のペースで詩吟の世界を楽しめます。</p>
+                    <p>練習も発表も気軽にできて、詩吟がもっと楽しめるように、もっと広がるように。そんな想いで、温かくて優しいメンバーが集まるコミュニティを目指しています。</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 料金について -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">料金について</h2>
-                <p class="text-gray-600 text-lg">続けやすい価格で、充実したサービスを</p>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-                <div class="mb-6">
-                    <span class="text-5xl font-bold text-kimono-black">月額990</span>
-                    <span class="text-2xl text-gray-600 ml-2">円</span>
-                </div>
-                <p class="text-lg text-gray-600 mb-6">
-                    教室や流派に縛られず、気軽に長く続けられる価格設定です。<br>
-                    この価格で上記のすべてのサービスをご利用いただけます。
-                </p>
-                <div class="text-sm text-gray-500 mb-6">
-                    ※YouTube メンバーシップの仕組みを利用しています<br>
-                    ※いつでも退会可能です
-                </div>
-                <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-gold text-kimono-black px-10 py-4 rounded-full hover:bg-opacity-80 transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
-                    今すぐ入会する
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 修正6: 入会方法セクション（QRコード削除） -->
-    <section id="join" class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="font-zen text-3xl md:text-4xl font-bold text-kimono-black mb-4">入会方法</h2>
-                <p class="text-gray-600 text-lg">3つの簡単なステップで完了</p>
-            </div>
-            
-            <div class="space-y-8">
-                <div class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-14 h-14 bg-brand-green rounded-full flex items-center justify-center text-white font-bold text-2xl">1</div>
-                    <div class="flex-1">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">下記のリンクからアクセス</h3>
-                        <p class="text-gray-600 mb-4">
-                            スマートフォンをご利用の場合は、<strong>YouTubeアプリではなく</strong>、SafariやChromeなどのブラウザでアクセスしてください。
-                            アプリ経由だと手数料の関係で料金が高くなる場合があります。
-                        </p>
-                        <div class="text-center">
-                            <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="bg-accent-gold text-kimono-black px-8 py-3 rounded-full font-bold hover:bg-opacity-80 transition-all">
-                                入会ページへ
-                            </a>
+        <!-- ============ メンバーになってできること ============ -->
+        <section class="section section--alt" id="benefits">
+            <div class="container">
+                <h2 class="section-title reveal">メンバーになってできること</h2>
+                <div class="grid grid--3 mt-3">
+                    <div class="card reveal">
+                        <div class="card__body">
+                            <h3 class="card__title">個別アドバイスがもらえる</h3>
+                            <p class="card__text">自分の詩吟を録音してメールで送ると、YouTubeメンバー限定動画で個別にアドバイスがもらえます。</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-14 h-14 bg-brand-green rounded-full flex items-center justify-center text-white font-bold text-2xl">2</div>
-                    <div class="flex-1">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">「メンバーになる」をクリック</h3>
-                        <p class="text-gray-600">
-                            ページ上部または動画の下に表示される「メンバーになる」ボタンをクリックします。
-                            PC版サイトでは緑色のボタンとして表示されます。
-                        </p>
+                    <div class="card reveal">
+                        <div class="card__body">
+                            <h3 class="card__title">過去の全アドバイス動画が見放題</h3>
+                            <p class="card__text">これまでのアドバイス動画がすべて見放題【150本以上】。復習や学び直しに役立ちます。</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="flex items-start space-x-6">
-                    <div class="flex-shrink-0 w-14 h-14 bg-brand-green rounded-full flex items-center justify-center text-white font-bold text-2xl">3</div>
-                    <div class="flex-1">
-                        <h3 class="font-zen text-xl font-bold text-kimono-black mb-2">お支払い情報の入力</h3>
-                        <p class="text-gray-600 mb-4">
-                            月額990円のプランを確認し、お支払い方法を選択してください。
-                        </p>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-bold text-kimono-black mb-2">利用可能な支払い方法：</h4>
-                            <ul class="text-gray-600 space-y-1">
-                                <li>• クレジットカード（Visa、MasterCard、American Express等）</li>
-                                <li>• PayPal</li>
-                                <li class="text-sm">※銀行振込をご希望の場合は、PayPal経由でのお支払いとなります</li>
-                            </ul>
+                    <div class="card reveal">
+                        <div class="card__body">
+                            <h3 class="card__title">メンバー限定のコミュニティ交流</h3>
+                            <p class="card__text">メンバー同士で交流できる限定コミュニティ（作成予定）。互いの成長を応援し合えます。</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 修正7: 最終CTAセクションの修正 -->
-            <div class="mt-12 text-center">
-                <div class="bg-brand-green/10 rounded-lg p-6 mb-6">
-                    <p class="text-lg text-kimono-black mb-4">
-                        <strong>入会後、さっそく詩吟を録音して送ってみましょう！</strong>
-                    </p>
-                    <a href="how-to-record.html" class="text-accent-gold hover:text-kimono-black transition-colors font-medium underline">
-                        録音データをメールで送付する方法はこちら
-                    </a>
-                </div>
-                <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-gold text-kimono-black px-12 py-4 rounded-full hover:bg-opacity-80 transition-all transform hover:scale-105 font-bold text-lg shadow-xl">
-                    今すぐ入会する
-                </a>
+        <!-- ============ 詩吟アドバイスの流れ ============ -->
+        <section class="section" id="advice-flow">
+            <div class="container" style="max-width:760px;">
+                <h2 class="section-title reveal">詩吟アドバイスの流れ</h2>
+                <p class="section__lead reveal">3つのステップで、個別のアドバイスを受けられます。</p>
+                <ol class="step-list mt-3 reveal">
+                    <li>
+                        <span class="step-list__num">1</span>
+                        <div class="step-list__body">
+                            <h3>詩吟をスマホで録音する</h3>
+                            <p>お好きな詩をスマートフォンで録音してください。録音時間や音質は気にせず、気軽に録音していただけます。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">2</span>
+                        <div class="step-list__body">
+                            <h3>録音データをメールで送信する</h3>
+                            <p>録音した音声ファイルを、下記のメールアドレスまでお送りください。</p>
+                            <div class="info-box"><code>heyhey.shigin@gmail.com</code></div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">3</span>
+                        <div class="step-list__body">
+                            <h3>アドバイス動画が限定公開される</h3>
+                            <p>数日以内に、YouTubeメンバーシップの限定動画として、あなた専用のアドバイス動画が公開されます。</p>
+                        </div>
+                    </li>
+                </ol>
+                <p class="callout mt-3 reveal">※応募回数は現在制限していません。体調やスケジュールにより、返信が遅くなる場合がございます。</p>
+                <p class="mt-2 note-link reveal"><a href="how-to-record.html">録音データをメールで送る方法はこちら</a></p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-kimono-black text-pure-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center">
-                <p class="text-center text-gray-400">© 2025 heyhey. All rights reserved.</p>
+        <!-- ============ 大切にしたい3つの心得 ============ -->
+        <section class="section section--alt" id="values">
+            <div class="container" style="max-width:760px;">
+                <h2 class="section-title reveal">大切にしたい3つの心得</h2>
+                <p class="section__lead reveal">安心して学べる、温かいコミュニティを目指して。</p>
+                <ol class="step-list mt-3 reveal">
+                    <li>
+                        <span class="step-list__num">1</span>
+                        <div class="step-list__body">
+                            <h3>発表する人の勇気を、みんなで称えよう</h3>
+                            <p>詩吟を発表することは勇気のいることです。投稿してくれた方の勇気と努力を、みんなで温かく応援しましょう。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">2</span>
+                        <div class="step-list__body">
+                            <h3>半年後、一年後の上達を目指し、焦らず楽しもう</h3>
+                            <p>詩吟の上達には時間がかかります。短期間での変化を求めず、長い目で、楽しみながら続けていきましょう。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">3</span>
+                        <div class="step-list__body">
+                            <h3>個人を特定したり攻撃したりせず、優しく温かい場所にしよう</h3>
+                            <p>みんなが安心して参加できるよう、個人への攻撃や特定は避け、優しく温かいコミュニティを保ちましょう。</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ 参加者の声 ============ -->
+        <section class="section" id="voices">
+            <div class="container">
+                <h2 class="section-title reveal">参加者の声</h2>
+                <p class="section__lead reveal">実際に参加されている方々の声をご紹介します。</p>
+                <div class="grid grid--3 mt-3">
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">S.K様</figcaption>
+                        <p class="testimonial__sub">40代女性・吟歴5ヶ月</p>
+                        <blockquote class="testimonial__quote">「heyhey先生の楽しそうで素敵な声の動画でファンになりました。毎回お返事をいただけて、とても嬉しくてもう辞められません。先生のおかげでここまで上達できました。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">U.T様</figcaption>
+                        <p class="testimonial__sub">50代男性・吟歴20年</p>
+                        <blockquote class="testimonial__quote">「準師範先生の教え方はThe理系で、端的にポイントをわかりやすく教えてくださるので、最近の自分の吟は上達していると自負しています。流派に関係なく気軽に楽しめる場所です。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">M.K様</figcaption>
+                        <p class="testimonial__sub">40代女性・吟歴8年</p>
+                        <blockquote class="testimonial__quote">「分かりやすい教え方で上達を実感しています。流派に関係なく、みんなで楽しく詩吟を学べる環境がとても気に入っています。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">C.H様</figcaption>
+                        <p class="testimonial__sub">30代女性・吟歴3ヶ月</p>
+                        <blockquote class="testimonial__quote">「ハワイで詩吟を始めましたが、練習頻度に物足りなさを感じていた時にこの教室を発見。分かりやすさと先生の声の良さに感激です！」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">T.S様</figcaption>
+                        <p class="testimonial__sub">70代男性・カラオケ歴12年</p>
+                        <blockquote class="testimonial__quote">「72歳でカラオケから詩吟に挑戦。年齢を気にせず、新しいことに挑戦できる環境がとても嬉しいです。毎回楽しく学んでいます。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">Y.M様</figcaption>
+                        <p class="testimonial__sub">50代女性・吟歴10年</p>
+                        <blockquote class="testimonial__quote">「長年続けていますが、新しい発見がたくさんあります。先生の丁寧な指導で、詩吟の奥深さを改めて感じています。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">A.N様</figcaption>
+                        <p class="testimonial__sub">60代女性・吟歴2年</p>
+                        <blockquote class="testimonial__quote">「オンラインなので地方に住んでいても参加できるのが嬉しいです。自分のペースで学べて、他の参加者の方々との交流も楽しんでいます。」</blockquote>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <figcaption class="testimonial__meta">K.H様</figcaption>
+                        <p class="testimonial__sub">40代男性・吟歴1年</p>
+                        <blockquote class="testimonial__quote">「初心者でも安心して参加できる雰囲気が素晴らしいです。メンバー同士の温かい交流と先生の丁寧な指導で、毎回新しい発見があります。」</blockquote>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 料金について ============ -->
+        <section class="section section--alt" id="price">
+            <div class="container">
+                <h2 class="section-title reveal">料金について</h2>
+                <p class="section__lead reveal">続けやすい価格で、充実した内容をご利用いただけます。</p>
+                <div class="price-card mt-3 reveal">
+                    <p class="price-card__amount">月額 <span class="price-card__yen">990</span> 円</p>
+                    <p class="mt-2">教室や流派に縛られず、気軽に長く続けられる価格設定です。この価格で、上記のすべての内容をご利用いただけます。</p>
+                    <p class="price-card__note">※YouTubeメンバーシップの仕組みを利用しています<br>※いつでも退会可能です</p>
+                    <div class="mt-2">
+                        <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">入会ページを見る</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 入会方法 ============ -->
+        <section class="section" id="join">
+            <div class="container" style="max-width:760px;">
+                <h2 class="section-title reveal">入会方法</h2>
+                <p class="section__lead reveal">3つのステップで入会が完了します。</p>
+                <ol class="step-list mt-3 reveal">
+                    <li>
+                        <span class="step-list__num">1</span>
+                        <div class="step-list__body">
+                            <h3>下記のリンクからアクセス</h3>
+                            <p>スマートフォンをご利用の場合は、<strong>YouTubeアプリではなく</strong>、SafariやChromeなどのブラウザでアクセスしてください。アプリ経由だと、手数料の関係で料金が高くなる場合があります。</p>
+                            <div class="mt-2">
+                                <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--small">入会ページへ</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">2</span>
+                        <div class="step-list__body">
+                            <h3>「メンバーになる」をクリック</h3>
+                            <p>ページ上部または動画の下に表示される「メンバーになる」ボタンをクリックします。PC版サイトでは緑色のボタンとして表示されます。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-list__num">3</span>
+                        <div class="step-list__body">
+                            <h3>お支払い情報の入力</h3>
+                            <p>月額990円のプランを確認し、お支払い方法を選んでください。</p>
+                            <div class="info-box">
+                                <p style="margin:0 0 0.3rem;font-weight:700;color:var(--color-ink-strong);">利用可能な支払い方法</p>
+                                <ul style="margin:0;">
+                                    <li>クレジットカード（Visa、MasterCard、American Express など）</li>
+                                    <li>PayPal</li>
+                                    <li style="font-size:0.85rem;">※銀行振込をご希望の場合は、PayPal経由でのお支払いとなります</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="callout mt-3 reveal">
+                    <p style="margin:0 0 0.4rem;color:var(--color-ink);"><strong>入会後は、さっそく詩吟を録音して送ってみましょう。</strong></p>
+                    <a href="how-to-record.html">録音データをメールで送付する方法はこちら</a>
+                </div>
+
+                <div class="btn-group mt-3 reveal">
+                    <a href="https://www.youtube.com/@shigin_channel/join" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">入会ページを見る</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SHARED-FOOTER-START -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div>
+                    <h2 class="site-footer__heading">heyhey 詩吟ポータル</h2>
+                    <p>詩吟を、もっと探しやすく、学びやすく、続けやすく。</p>
+                    <p>運営: heyhey<br>
+                    YouTube「詩吟ちゃんねる」運営・詩吟歴25年以上・2018年全国コンクール優勝</p>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">探す・始める</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="map/">全国詩吟教室マップ</a></li>
+                        <li><a href="beginner/">詩吟の始め方ガイド</a></li>
+                        <li><a href="newsletter/">初心者向け7日間講座</a></li>
+                        <li><a href="index.html#faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">学ぶ・楽しむ</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="tools/">詩吟学習ツール</a></li>
+                        <li><a href="dojo-details.html">吟猫道場（オンライン教室）</a></li>
+                        <li><a href="community/">コミュニティ</a></li>
+                        <li><a href="how-to-record.html">録音のしかた</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="site-footer__heading">サイト情報</h2>
+                    <ul class="site-footer__list">
+                        <li><a href="profile/">プロフィール</a></li>
+                        <li><a data-link="note" href="https://note.com/shigispel" target="_blank" rel="noopener noreferrer">note（個人ブログ）</a></li>
+                        <li><a href="contact/">お問い合わせ</a></li>
+                        <li><a href="request/">掲載情報の修正・削除依頼</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__meta">
+                <ul class="site-footer__legal">
+                    <li><a href="privacy/">プライバシーポリシー</a></li>
+                    <li><a href="legal/">特定電子メール法に基づく表記</a></li>
+                    <li><a href="unsubscribe/">配信停止について</a></li>
+                </ul>
+                <p>最終更新日: 2026年7月13日</p>
+                <p>&copy; 2026 heyhey. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
-    <script>
-        // モバイルメニューの切り替え
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <!-- SHARED-FOOTER-END -->
 
-        // スクロール時のヘッダー効果
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.classList.add('shadow-lg', 'bg-pure-white/80', 'backdrop-blur-sm');
-            } else {
-                header.classList.remove('shadow-lg', 'bg-pure-white/80', 'backdrop-blur-sm');
-            }
-        });
-        
-        // スクロールアニメーションの設定
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <!-- 共通スクリプト -->
+    <script src="assets/js/links.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
 </body>
 </html>
