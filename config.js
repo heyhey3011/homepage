@@ -30,8 +30,8 @@ const CONFIG = {
 
         // フォールバック値（APIキー未設定・取得失敗時に「約◯◯人／本」の形で表示）
         // ※実際の数値に合わせて調整してください。自動取得が成功した場合は上書きされます。
-        FALLBACK_SUBSCRIBER_COUNT: 2800,
-        FALLBACK_VIDEO_COUNT: 100,
+        FALLBACK_SUBSCRIBER_COUNT: 3600,
+        FALLBACK_VIDEO_COUNT: 900,
 
         // APIエラー時の再試行設定
         RETRY_ATTEMPTS: 3,
