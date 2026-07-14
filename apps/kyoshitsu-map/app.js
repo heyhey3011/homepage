@@ -77,7 +77,7 @@ const state = {
   userLocation: null,    // {lat, lng}
   sortByDistance: false,
   listLimit: LIST_STEP,
-  view: "list",          // スマホ用: list / map
+  view: "map",           // スマホ用: list / map（初期表示は地図）
   styleList: [],         // データに実在する流派（表示順）
   regionNames: [],       // データに実在する地方（海外含む）
   editMode: false,       // 編集モード
