@@ -53,6 +53,8 @@ const SOURCE_NAMES = {
   gindoh: "日本吟道学院",
   gindoukan: "吟道館流",
   tetsuzan: "吟道哲山流興風吟詠会",
+  suzuhanaryu: "吟道鈴華流",
+  natural_shigin: "ナチュラル詩吟教室",
 };
 const DATA_DATE = "2026年7月10日";
 
@@ -927,6 +929,16 @@ function contactHtml(record) {
     );
   }
 
+  // 1.5 教室・流派独自の公式サイト（登録されていれば本部サイトより優先して表示）
+  // 既存CSS（.org-row 相当の hq-row クラス）を流用し、styles.css には手を入れない
+  if (record.website) {
+    parts.push(
+      `<p class="hq-row"><span aria-hidden="true">🔗</span> ` +
+      `<a href="${escapeHtml(record.website)}" target="_blank" rel="noopener">` +
+      `教室の公式サイトを見る</a></p>`
+    );
+  }
+
   // 2. 所属団体（教室に直接の連絡先が無いときは本部へ誘導）
   if (record.organization) {
     const note = record.contact_phone || record.contact_email
@@ -981,8 +993,10 @@ function hqHtml(record) {
     inner.push(formLink);
   }
   if (hq.website) {
+    // 教室自身の website がある場合は上部で優先表示済みのため、
+    // ここでは「所属団体（本部）のサイト」であることが分かるラベルにする
     inner.push(
-      `<p class="hq-row">公式サイト: <a href="${escapeHtml(hq.website)}" target="_blank" rel="noopener">${escapeHtml(hq.website)}</a></p>`
+      `<p class="hq-row">所属団体の公式サイト: <a href="${escapeHtml(hq.website)}" target="_blank" rel="noopener">${escapeHtml(hq.website)}</a></p>`
     );
   }
 
