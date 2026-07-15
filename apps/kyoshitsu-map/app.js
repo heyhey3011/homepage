@@ -34,6 +34,10 @@ const REGIONS = [
   { name: "九州・沖縄", prefs: ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"] },
 ];
 const OVERSEAS = "海外"; // 国内以外（prefecture が47都道府県でないもの）
+// 住所（prefecture）自体が未登録のエントリ用の区分。
+// 「海外」と混同すると、実際は国内か海外か分からないのに「海外」と誤って断定してしまうため、
+// 専用の区分を設けて地域フィルターの対象外（一覧・キーワード検索では見つかる）として扱う。
+const UNKNOWN_LOCATION = "拠点情報なし（オンライン対応）";
 
 // 都道府県 → 地方 の逆引き
 const PREF_TO_REGION = {};
@@ -54,7 +58,6 @@ const SOURCE_NAMES = {
   gindoukan: "吟道館流",
   tetsuzan: "吟道哲山流興風吟詠会",
   suzuhanaryu: "吟道鈴華流",
-  natural_shigin: "ナチュラル詩吟教室",
 };
 const DATA_DATE = "2026年7月10日";
 
@@ -221,7 +224,11 @@ function cacheElements() {
 /* ---------- データ正規化 ---------- */
 
 function normalizeRecord(record) {
-  const region = PREF_TO_REGION[record.prefecture] || OVERSEAS;
+  // prefecture が未登録（空文字）の場合は「海外」に含めず、専用区分にする
+  // （住所不明＝海外と決めつけない。地域フィルターには出さず、一覧・検索では見つかる扱い）
+  const region = record.prefecture
+    ? (PREF_TO_REGION[record.prefecture] || OVERSEAS)
+    : UNKNOWN_LOCATION;
   const cityKey = normalizeCityKey(record);
   const yomi = window.CITY_YOMI || {};
 
