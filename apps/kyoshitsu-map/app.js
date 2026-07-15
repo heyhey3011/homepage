@@ -34,6 +34,10 @@ const REGIONS = [
   { name: "九州・沖縄", prefs: ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"] },
 ];
 const OVERSEAS = "海外"; // 国内以外（prefecture が47都道府県でないもの）
+// 住所（prefecture）自体が未登録のエントリ用の区分。
+// 「海外」と混同すると、実際は国内か海外か分からないのに「海外」と誤って断定してしまうため、
+// 専用の区分を設けて地域フィルターの対象外（一覧・キーワード検索では見つかる）として扱う。
+const UNKNOWN_LOCATION = "拠点情報なし（オンライン対応）";
 
 // 都道府県 → 地方 の逆引き
 const PREF_TO_REGION = {};
@@ -53,6 +57,7 @@ const SOURCE_NAMES = {
   gindoh: "日本吟道学院",
   gindoukan: "吟道館流",
   tetsuzan: "吟道哲山流興風吟詠会",
+  suzuhanaryu: "吟道鈴華流",
 };
 const DATA_DATE = "2026年7月10日";
 
@@ -219,7 +224,11 @@ function cacheElements() {
 /* ---------- データ正規化 ---------- */
 
 function normalizeRecord(record) {
-  const region = PREF_TO_REGION[record.prefecture] || OVERSEAS;
+  // prefecture が未登録（空文字）の場合は「海外」に含めず、専用区分にする
+  // （住所不明＝海外と決めつけない。地域フィルターには出さず、一覧・検索では見つかる扱い）
+  const region = record.prefecture
+    ? (PREF_TO_REGION[record.prefecture] || OVERSEAS)
+    : UNKNOWN_LOCATION;
   const cityKey = normalizeCityKey(record);
   const yomi = window.CITY_YOMI || {};
 
@@ -927,6 +936,16 @@ function contactHtml(record) {
     );
   }
 
+  // 1.5 教室・流派独自の公式サイト（登録されていれば本部サイトより優先して表示）
+  // 既存CSS（.org-row 相当の hq-row クラス）を流用し、styles.css には手を入れない
+  if (record.website) {
+    parts.push(
+      `<p class="hq-row"><span aria-hidden="true">🔗</span> ` +
+      `<a href="${escapeHtml(record.website)}" target="_blank" rel="noopener">` +
+      `教室の公式サイトを見る</a></p>`
+    );
+  }
+
   // 2. 所属団体（教室に直接の連絡先が無いときは本部へ誘導）
   if (record.organization) {
     const note = record.contact_phone || record.contact_email
@@ -981,8 +1000,10 @@ function hqHtml(record) {
     inner.push(formLink);
   }
   if (hq.website) {
+    // 教室自身の website がある場合は上部で優先表示済みのため、
+    // ここでは「所属団体（本部）のサイト」であることが分かるラベルにする
     inner.push(
-      `<p class="hq-row">公式サイト: <a href="${escapeHtml(hq.website)}" target="_blank" rel="noopener">${escapeHtml(hq.website)}</a></p>`
+      `<p class="hq-row">所属団体の公式サイト: <a href="${escapeHtml(hq.website)}" target="_blank" rel="noopener">${escapeHtml(hq.website)}</a></p>`
     );
   }
 
