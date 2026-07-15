@@ -59,6 +59,26 @@ const SOURCE_NAMES = {
   tetsuzan: "吟道哲山流興風吟詠会",
   suzuhanaryu: "吟道鈴華流",
 };
+
+// 主催団体（organization欄の値）→ その団体の公式サイトURL
+// data.js の organization 欄に出現する団体名のうち、出現回数の多い上位団体を中心に
+// WebSearch/WebFetchで実在確認できたものだけを登録している（推測・創作は含まない）。
+// 見つからなかった団体は登録しない（従来通りHQ本部サイトのみの表示になる）。
+const ORG_WEBSITES = {
+  "新大阪岳風会": "https://sigin-singakux.com/",
+  "宮城岳風会": "http://www.m-gakufu.jp/",
+  "兵庫中央岳風会": "http://hyogo-sigin.com/",
+  "横浜岳風会": "https://yokohama-gakufu.sakura.ne.jp/wp/",
+  "大阪岳風会": "https://osaka-gakufukai.jp/",
+  "とかち岳峯会": "http://tokatigakuhoukai.com/",
+  "佐賀岳翠会": "https://ameblo.jp/sagagakusuikai/",
+  "長野県上伊那岳風会": "https://kamiina-gakufukai.org/",
+  "三河岳周会": "https://mikawa-shigin.jimdofree.com/",
+  "成田岳風会": "https://narita.genki365.net/G0000757/aboutus.html",
+  "中日本岳陵会": "https://rougin.jp/",
+  "富山桜吟会": "https://toyamaoginkai.wixsite.com/shigin",
+  "碩心会": "https://sekishinhp.jp/",
+};
 const DATA_DATE = "2026年7月10日";
 
 const DAY_ORDER = ["月", "火", "水", "木", "金", "土", "日"];
@@ -937,12 +957,19 @@ function contactHtml(record) {
   }
 
   // 1.5 教室・流派独自の公式サイト（登録されていれば本部サイトより優先して表示）
+  // 表示優先順位: ①教室自身のwebsite → ②所属団体（organization）のORG_WEBSITES → ③本部サイト（hqHtml内、常時）
   // 既存CSS（.org-row 相当の hq-row クラス）を流用し、styles.css には手を入れない
   if (record.website) {
     parts.push(
       `<p class="hq-row"><span aria-hidden="true">🔗</span> ` +
       `<a href="${escapeHtml(record.website)}" target="_blank" rel="noopener">` +
       `教室の公式サイトを見る</a></p>`
+    );
+  } else if (record.organization && ORG_WEBSITES[record.organization]) {
+    parts.push(
+      `<p class="hq-row"><span aria-hidden="true">🔗</span> ` +
+      `<a href="${escapeHtml(ORG_WEBSITES[record.organization])}" target="_blank" rel="noopener">` +
+      `所属団体（${escapeHtml(record.organization)}）の公式サイトを見る</a></p>`
     );
   }
 
