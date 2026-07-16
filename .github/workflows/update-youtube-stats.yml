@@ -1,0 +1,89 @@
+name: YouTube統計の自動更新
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 毎日UTC21時 = 日本時間 朝6時
+  workflow_dispatch: {}  # 手動実行用
+
+permissions:
+  contents: write  # main ブランチへコミット・pushするために必要
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト 🛎️
+        uses: actions/checkout@v4
+
+      - name: YouTube APIから最新の統計情報を取得 📊
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          CHANNEL_ID: UCerBISByAKR3KU9CD9Tz5ZQ
+        run: |
+          set -euo pipefail
+
+          # APIキーをURLに直接埋め込まず、curlに変数経由で渡すことでログへの露出を防ぐ
+          http_status=$(curl -s -o response.json -w "%{http_code}" \
+            --get "https://www.googleapis.com/youtube/v3/channels" \
+            --data-urlencode "part=statistics" \
+            --data-urlencode "id=${CHANNEL_ID}" \
+            --data-urlencode "key=${YOUTUBE_API_KEY}")
+
+          echo "YouTube API HTTPステータス: ${http_status}"
+
+          if [ "${http_status}" != "200" ]; then
+            echo "::error::YouTube APIの呼び出しに失敗しました（HTTP ${http_status}）。前回の値を維持します。"
+            cat response.json || true
+            exit 1
+          fi
+
+          subscriber_count=$(jq -r '.items[0].statistics.subscriberCount // empty' response.json)
+          video_count=$(jq -r '.items[0].statistics.videoCount // empty' response.json)
+
+          echo "取得した subscriberCount: ${subscriber_count}"
+          echo "取得した videoCount: ${video_count}"
+
+          # 値が空・0・非数値の場合はファイルを書き換えずに失敗させる（壊れた値で上書きしない）
+          if [ -z "${subscriber_count}" ] || [ -z "${video_count}" ]; then
+            echo "::error::統計情報の取得に失敗しました（値が空です）。前回の値を維持します。"
+            exit 1
+          fi
+
+          if ! [[ "${subscriber_count}" =~ ^[0-9]+$ ]] || ! [[ "${video_count}" =~ ^[0-9]+$ ]]; then
+            echo "::error::統計情報が数値ではありません。前回の値を維持します。"
+            exit 1
+          fi
+
+          if [ "${subscriber_count}" -eq 0 ] || [ "${video_count}" -eq 0 ]; then
+            echo "::error::統計情報が0のため異常値と判断し、前回の値を維持します。"
+            exit 1
+          fi
+
+          updated_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          jq -n \
+            --argjson subscriberCount "${subscriber_count}" \
+            --argjson videoCount "${video_count}" \
+            --arg updatedAt "${updated_at}" \
+            '{subscriberCount: $subscriberCount, videoCount: $videoCount, updatedAt: $updatedAt}' \
+            > assets/data/youtube-stats.json
+
+          echo "assets/data/youtube-stats.json を更新しました。"
+          cat assets/data/youtube-stats.json
+
+          # 後続ステップに一時ファイルを残さない
+          rm -f response.json
+
+      - name: 変更をコミットしてpush 🚀
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- assets/data/youtube-stats.json; then
+            echo "変更がないため、コミットをスキップします。"
+            exit 0
+          fi
+
+          git add assets/data/youtube-stats.json
+          git commit -m "chore: YouTube統計情報を自動更新"
+          git push origin HEAD:main
