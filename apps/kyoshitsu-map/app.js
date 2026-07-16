@@ -58,6 +58,7 @@ const SOURCE_NAMES = {
   gindoukan: "吟道館流",
   tetsuzan: "吟道哲山流興風吟詠会",
   suzuhanaryu: "吟道鈴華流",
+  web_research: "Web調査（出典付き・要確認）",
 };
 
 // 主催団体（organization欄の値）→ その団体の公式サイトURL
@@ -78,6 +79,12 @@ const ORG_WEBSITES = {
   "中日本岳陵会": "https://rougin.jp/",
   "富山桜吟会": "https://toyamaoginkai.wixsite.com/shigin",
   "碩心会": "https://sekishinhp.jp/",
+  // 2026-07-16 Web調査（H班レポート）で追加
+  "夢風会": "https://shiginmufukai.wixsite.com/mysite",
+  "玉龍吟道会": "https://ameblo.jp/bossabaixo/",
+  "南洲吟道会": "https://xn--6oq16hfral61f0y0b.jp/",
+  // 津岳風会は公式サイトURL(http://tsugaku.html.xdomain.jp/index.html)を確認したが、
+  // 統合時の再確認でも接続不可（ECONNREFUSED）だったため見送り。復旧確認でき次第追加を検討。
 };
 const DATA_DATE = "2026年7月10日";
 
