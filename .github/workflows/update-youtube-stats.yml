@@ -22,14 +22,28 @@ jobs:
         run: |
           set -euo pipefail
 
-          # APIキーをURLに直接埋め込まず、curlに変数経由で渡すことでログへの露出を防ぐ
-          http_status=$(curl -s -o response.json -w "%{http_code}" \
-            --get "https://www.googleapis.com/youtube/v3/channels" \
-            --data-urlencode "part=statistics" \
-            --data-urlencode "id=${CHANNEL_ID}" \
-            --data-urlencode "key=${YOUTUBE_API_KEY}")
+          # APIキーには「HTTPリファラー制限」がかかっているため、許可済みドメインを
+          # Refererヘッダーとして送信する（自サイト用キーを自サイトの自動処理から使うための設定）。
+          # 1回目: 本番ドメイン → 403なら 2回目: GitHub Pagesドメイン でリトライ。
+          # APIキーをURLに直接埋め込まず、curlに変数経由で渡すことでログへの露出を防ぐ。
+          fetch_stats() {
+            local referer="$1"
+            curl -s -o response.json -w "%{http_code}" \
+              -H "Referer: ${referer}" \
+              --get "https://www.googleapis.com/youtube/v3/channels" \
+              --data-urlencode "part=statistics" \
+              --data-urlencode "id=${CHANNEL_ID}" \
+              --data-urlencode "key=${YOUTUBE_API_KEY}"
+          }
 
-          echo "YouTube API HTTPステータス: ${http_status}"
+          http_status=$(fetch_stats "https://shigin-portal.com/")
+          echo "YouTube API HTTPステータス（Referer: shigin-portal.com）: ${http_status}"
+
+          if [ "${http_status}" = "403" ]; then
+            echo "403のため、別のRefererでリトライします。"
+            http_status=$(fetch_stats "https://heyhey3011.github.io/")
+            echo "YouTube API HTTPステータス（Referer: heyhey3011.github.io）: ${http_status}"
+          fi
 
           if [ "${http_status}" != "200" ]; then
             echo "::error::YouTube APIの呼び出しに失敗しました（HTTP ${http_status}）。前回の値を維持します。"
