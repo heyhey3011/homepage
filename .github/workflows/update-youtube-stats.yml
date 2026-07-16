@@ -110,8 +110,36 @@ jobs:
       # deploy-cloudflare.yml）をトリガーしない。そのため、値に変更があった場合は
       # この同じワークフロー内で両方のデプロイを直接実行する。
       # 通常の（人間の）pushでは従来通り既存の2つのデプロイワークフローが動く。
+      #
+      # 順序に注意: peaceiris/actions-gh-pages はワークスペースの .git を壊すため、
+      # git を必要とする処理（git archive）を先に済ませ、GitHub Pagesデプロイは最後に回す。
+
+      # --- Cloudflare Pages（deploy-cloudflare.yml と同じ手順） ---
+      # git archive は統計コミット後のHEAD（コミット済みツリー）を使うため、
+      # プレースホルダーのconfig.jsのまま配信される（実キーは含まれない）
+      - name: 追跡ファイルのみのクリーンなコピーを作成（Cloudflare用） 🧹
+        if: steps.commit_push.outputs.changed == 'true'
+        run: |
+          mkdir -p dist
+          git archive HEAD | tar -x -C dist
+
+      - name: Cloudflare Pagesへデプロイ 🚀
+        if: steps.commit_push.outputs.changed == 'true'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=heyhey-shigin-portal --branch=main
+
+      # dist はCloudflareへアップロード済みのため削除する。
+      # 残したままだと、次のGitHub Pagesデプロイ（publish_dir: ./）に混入してしまう。
+      # リポジトリの追跡ファイルには触れない。
+      - name: distをクリーンアップ 🧹
+        if: steps.commit_push.outputs.changed == 'true'
+        run: rm -rf dist
 
       # --- GitHub Pages（deploy.yml と同じ手順） ---
+      # peaceiris は .git を破壊するため必ず最後に実行する
       - name: config.jsをSecretから生成（GitHub Pages用） 🔑
         if: steps.commit_push.outputs.changed == 'true'
         run: |
@@ -141,20 +169,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-
-      # --- Cloudflare Pages（deploy-cloudflare.yml と同じ手順） ---
-      # git archive は統計コミット後のHEAD（コミット済みツリー）を使うため、
-      # 上で生成した実キー入りconfig.jsは含まれず、プレースホルダーのまま配信される
-      - name: 追跡ファイルのみのクリーンなコピーを作成（Cloudflare用） 🧹
-        if: steps.commit_push.outputs.changed == 'true'
-        run: |
-          mkdir -p dist
-          git archive HEAD | tar -x -C dist
-
-      - name: Cloudflare Pagesへデプロイ 🚀
-        if: steps.commit_push.outputs.changed == 'true'
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=heyhey-shigin-portal --branch=main
