@@ -89,15 +89,72 @@ jobs:
           rm -f response.json
 
       - name: 変更をコミットしてpush 🚀
+        id: commit_push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           if git diff --quiet -- assets/data/youtube-stats.json; then
-            echo "変更がないため、コミットをスキップします。"
+            echo "変更がないため、コミットとデプロイをスキップします。"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           git add assets/data/youtube-stats.json
           git commit -m "chore: YouTube統計情報を自動更新"
           git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # ---- ここから両サイトへのデプロイ ----
+      # GITHUB_TOKENによるbotのpushは、再帰防止のため他のワークフロー（deploy.yml /
+      # deploy-cloudflare.yml）をトリガーしない。そのため、値に変更があった場合は
+      # この同じワークフロー内で両方のデプロイを直接実行する。
+      # 通常の（人間の）pushでは従来通り既存の2つのデプロイワークフローが動く。
+
+      # --- GitHub Pages（deploy.yml と同じ手順） ---
+      - name: config.jsをSecretから生成（GitHub Pages用） 🔑
+        if: steps.commit_push.outputs.changed == 'true'
+        run: |
+          # config.jsを直接生成する方法で安定性を向上
+          cat <<EOF > config.js
+          const CONFIG = {
+              YOUTUBE: {
+                  API_KEY: '${{ secrets.YOUTUBE_API_KEY }}',
+                  CHANNEL_ID: 'UCerBISByAKR3KU9CD9Tz5ZQ',
+                  PICKUP_LIST_1_IDS: ['IwBnAvPYRh0', 'DQA-R_DkEhU', '1xL8CaRDU_Q', 'asWq0vICQ-Q'],
+                  PICKUP_LIST_2_IDS: ['YIuOy8K5GzY', 'dCA1KRYJKHU', 'ZDSFoBrDqUU', 'BG5kIRN7rns']
+              },
+              SECURITY: {
+                  FALLBACK_SUBSCRIBER_COUNT: 3600,
+                  FALLBACK_VIDEO_COUNT: 900
+              }
+          };
+          Object.freeze(CONFIG);
+          Object.freeze(CONFIG.YOUTUBE);
+          Object.freeze(CONFIG.SECURITY);
+          EOF
+          echo "config.js has been generated successfully."
+
+      - name: GitHub Pagesへデプロイ 🚀
+        if: steps.commit_push.outputs.changed == 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+
+      # --- Cloudflare Pages（deploy-cloudflare.yml と同じ手順） ---
+      # git archive は統計コミット後のHEAD（コミット済みツリー）を使うため、
+      # 上で生成した実キー入りconfig.jsは含まれず、プレースホルダーのまま配信される
+      - name: 追跡ファイルのみのクリーンなコピーを作成（Cloudflare用） 🧹
+        if: steps.commit_push.outputs.changed == 'true'
+        run: |
+          mkdir -p dist
+          git archive HEAD | tar -x -C dist
+
+      - name: Cloudflare Pagesへデプロイ 🚀
+        if: steps.commit_push.outputs.changed == 'true'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=heyhey-shigin-portal --branch=main
