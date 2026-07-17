@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
@@ -139,7 +139,10 @@
 
                 <div class="card reveal" style="padding: 1.75rem 2rem; margin-bottom: 1.5rem;">
                     <h2 style="font-size: 1.2rem;">4. アクセス解析について</h2>
-                    <p>当サイトでは、現在アクセス解析ツールを使用していません。今後、サイトの改善のために導入する場合は、本ポリシーを更新してお知らせします。</p>
+                    <p>当サイトでは、サイトをよりよくするために「Googleアナリティクス（GA4）」というアクセス解析サービスを利用しています。このサービスは、Cookie（クッキー）というしくみを使って、どのページがよく見られているか、どこからサイトに来たかといった情報を、匿名のまま集めています。</p>
+                    <p>集めているのは全体の傾向をつかむための情報だけで、お名前やメールアドレスなど、あなた個人を特定できる情報は含まれません。</p>
+                    <p>アクセス解析による情報収集を望まない場合は、Googleが提供する「<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Googleアナリティクス オプトアウト アドオン</a>」をご利用いただくと、計測を無効にできます。</p>
+                    <p>集めた情報の取り扱いについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご確認ください。</p>
                 </div>
 
                 <div class="card reveal" style="padding: 1.75rem 2rem; margin-bottom: 1.5rem;">
@@ -169,7 +172,7 @@
                     メール: <a href="mailto:heyhey.shigin@gmail.com">heyhey.shigin@gmail.com</a></p>
                 </div>
 
-                <p class="note-link reveal" style="text-align: center; margin-top: 2rem;">最終更新日: 2026年7月11日</p>
+                <p class="note-link reveal" style="text-align: center; margin-top: 2rem;">最終更新日: 2026年7月16日</p>
             </div>
         </section>
 
@@ -234,7 +237,7 @@
                     <li><a href="../legal/">特定電子メール法に基づく表記</a></li>
                     <li><a href="../unsubscribe/">配信停止について</a></li>
                 </ul>
-                <p>最終更新日: 2026年7月11日</p>
+                <p>最終更新日: 2026年7月16日</p>
                 <p>&copy; 2026 heyhey. All rights reserved.</p>
             </div>
         </div>
@@ -244,5 +247,6 @@
     <!-- 共通スクリプト -->
     <script src="../assets/js/links.js" defer></script>
     <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/analytics.js" defer></script>
 </body>
 </html>
