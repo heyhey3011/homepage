@@ -1,0 +1,133 @@
+name: アクセス解析サマリーの自動更新
+
+on:
+  schedule:
+    - cron: '15 21 * * *'  # 毎日UTC21:15 = 日本時間 朝6:15（YouTube統計の直後）
+  workflow_dispatch: {}  # 手動実行用
+
+permissions:
+  contents: write  # main ブランチへコミット・pushするために必要
+
+jobs:
+  update-analytics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト 🛎️
+        uses: actions/checkout@v4
+
+      # Secretが両方そろっているかを最初に確認する。
+      # 片方でも未設定なら「スキップ」として正常終了させ、ワークフローを赤くしない。
+      - name: Secretの有無を確認（未設定ならスキップ） 🔍
+        id: precheck
+        env:
+          GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+        run: |
+          set -eu
+          if [ -z "${GA4_SA_KEY:-}" ] || [ -z "${GA4_PROPERTY_ID:-}" ]; then
+            echo "::notice::GA4の連携Secret（GA4_SA_KEY / GA4_PROPERTY_ID）が未設定のためスキップします。設定が完了すると自動で実データに切り替わります。"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Secretは設定済みです。集計を実行します。"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Python をセットアップ 🐍
+        if: steps.precheck.outputs.skip == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 依存ライブラリをインストール 📦
+        if: steps.precheck.outputs.skip == 'false'
+        run: pip install --quiet google-auth requests
+
+      # GA4 Data API を呼んで集計し、assets/data/analytics-summary.json に書き出す。
+      # 認証情報（鍵JSON・プロパティID）は env 経由でのみ渡し、ログには出さない（set -x 禁止）。
+      # API失敗時は例外で終了し、既存ファイルは書き換えない（前回値の保護）。
+      - name: GA4から集計してJSONを生成 📊
+        if: steps.precheck.outputs.skip == 'false'
+        env:
+          GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+        run: |
+          set -eu
+          python .github/scripts/build_analytics_summary.py
+
+      - name: 変更をコミットしてpush 🚀
+        id: commit_push
+        if: steps.precheck.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- assets/data/analytics-summary.json; then
+            echo "変更がないため、コミットとデプロイをスキップします。"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git add assets/data/analytics-summary.json
+          git commit -m "chore: アクセス解析サマリーを自動更新"
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # ---- ここから両サイトへのデプロイ ----
+      # GITHUB_TOKENによるbotのpushは、再帰防止のため他のワークフロー（deploy.yml /
+      # deploy-cloudflare.yml）をトリガーしない。そのため、値に変更があった場合は
+      # この同じワークフロー内で両方のデプロイを直接実行する。
+      #
+      # 順序に注意: peaceiris/actions-gh-pages はワークスペースの .git を壊すため、
+      # git を必要とする処理（git archive）を先に済ませ、GitHub Pagesデプロイは最後に回す。
+
+      # --- Cloudflare Pages（deploy-cloudflare.yml と同じ手順） ---
+      - name: 追跡ファイルのみのクリーンなコピーを作成（Cloudflare用） 🧹
+        if: steps.commit_push.outputs.changed == 'true'
+        run: |
+          mkdir -p dist
+          git archive HEAD | tar -x -C dist
+
+      - name: Cloudflare Pagesへデプロイ 🚀
+        if: steps.commit_push.outputs.changed == 'true'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=heyhey-shigin-portal --branch=main
+
+      # dist はCloudflareへアップロード済みのため削除する。
+      # 残したままだと、次のGitHub Pagesデプロイ（publish_dir: ./）に混入してしまう。
+      - name: distをクリーンアップ 🧹
+        if: steps.commit_push.outputs.changed == 'true'
+        run: rm -rf dist
+
+      # --- GitHub Pages（deploy.yml と同じ手順） ---
+      # peaceiris は .git を破壊するため必ず最後に実行する
+      - name: config.jsをSecretから生成（GitHub Pages用） 🔑
+        if: steps.commit_push.outputs.changed == 'true'
+        run: |
+          cat <<EOF > config.js
+          const CONFIG = {
+              YOUTUBE: {
+                  API_KEY: '${{ secrets.YOUTUBE_API_KEY }}',
+                  CHANNEL_ID: 'UCerBISByAKR3KU9CD9Tz5ZQ',
+                  PICKUP_LIST_1_IDS: ['IwBnAvPYRh0', 'DQA-R_DkEhU', '1xL8CaRDU_Q', 'asWq0vICQ-Q'],
+                  PICKUP_LIST_2_IDS: ['YIuOy8K5GzY', 'dCA1KRYJKHU', 'ZDSFoBrDqUU', 'BG5kIRN7rns']
+              },
+              SECURITY: {
+                  FALLBACK_SUBSCRIBER_COUNT: 3600,
+                  FALLBACK_VIDEO_COUNT: 900
+              }
+          };
+          Object.freeze(CONFIG);
+          Object.freeze(CONFIG.YOUTUBE);
+          Object.freeze(CONFIG.SECURITY);
+          EOF
+          echo "config.js has been generated successfully."
+
+      - name: GitHub Pagesへデプロイ 🚀
+        if: steps.commit_push.outputs.changed == 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
