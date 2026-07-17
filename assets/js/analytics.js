@@ -12,7 +12,7 @@
  *  空のままだと、このスクリプトは何もしません（計測オフ）。
  *  例: const ANALYTICS_ID = "G-ABCDEFGHIJ";
  */
-const ANALYTICS_ID = "";
+const ANALYTICS_ID = "G-HFVMQXTYRY";
 /*  ▲▲▲ 変更するのはこの1行だけでOKです ▲▲▲  */
 
 (function () {
