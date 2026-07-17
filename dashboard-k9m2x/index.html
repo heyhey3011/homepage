@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 自分専用の管理ページ。検索エンジンに載せない・自分の閲覧を計測しない設計 -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <title>ダッシュボード｜詩吟の入口（運営者用）</title>
+
+    <!-- フォント: Shippori Mincho B1（見出し）+ Zen Kaku Gothic New（本文） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- デザインシステム -->
+    <link rel="stylesheet" href="../assets/css/site.css">
+
+    <!-- ファビコン -->
+    <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon-16.png">
+    <meta name="theme-color" content="#B4D455">
+
+    <style>
+        /* ------- ダッシュボード専用のちいさな装飾 ------- */
+        .dash-wrap { max-width: 760px; }
+        .dash-hero {
+            text-align: center;
+            padding: 1.6rem 0 0.4rem;
+        }
+        .dash-hero h1 {
+            font-size: clamp(1.5rem, 6vw, 2.1rem);
+            margin-bottom: 0.3rem;
+        }
+        .dash-hero p {
+            color: var(--color-ink-soft);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .dash-note {
+            background: var(--color-gold-soft);
+            border: 1px solid var(--color-gold);
+            border-radius: var(--radius-card);
+            padding: 0.9rem 1.1rem;
+            margin: 1.2rem 0;
+            font-weight: 700;
+            color: var(--color-ink-strong);
+            text-align: center;
+        }
+        .dash-note--error {
+            background: #FBEDE9;
+            border-color: var(--color-vermilion);
+            color: var(--color-vermilion-dark);
+        }
+
+        .dash-block { margin: 2.2rem 0; }
+        .dash-block__title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--color-ink-strong);
+            margin: 0 0 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .dash-block__title::before {
+            content: "";
+            width: 8px; height: 22px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--color-matcha), var(--color-gold));
+            display: inline-block;
+        }
+        .dash-sub { color: var(--color-ink-soft); font-size: 0.85rem; margin: -0.4rem 0 0.9rem; }
+
+        /* --- 大カード（今週のハイライト） --- */
+        .dash-highlights {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 560px) {
+            .dash-highlights { grid-template-columns: repeat(3, 1fr); }
+        }
+        .stat-card {
+            background: var(--color-card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            padding: 1.3rem 1rem;
+            text-align: center;
+            border-top: 4px solid var(--color-matcha);
+        }
+        .stat-card--gold { border-top-color: var(--color-gold); }
+        .stat-card--vermilion { border-top-color: var(--color-vermilion); }
+        .stat-card__label { font-size: 0.9rem; color: var(--color-ink-soft); margin: 0 0 0.3rem; font-weight: 700; }
+        .stat-card__value {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(2rem, 9vw, 2.8rem);
+            line-height: 1.1;
+            color: var(--color-ink-strong);
+        }
+        .stat-card__unit { font-size: 0.9rem; color: var(--color-ink-soft); font-weight: 700; margin-left: 0.15em; }
+        .stat-card__hint { font-size: 0.78rem; color: var(--color-ink-soft); margin: 0.4rem 0 0; }
+
+        /* --- 棒グラフ（CSSの高さバー） --- */
+        .bar-card {
+            background: var(--color-card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            padding: 1.2rem 1rem 0.6rem;
+        }
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 180px;
+            overflow-x: auto;
+            padding-bottom: 0.3rem;
+        }
+        .bar {
+            flex: 1 0 8px;
+            min-width: 8px;
+            background: linear-gradient(180deg, var(--color-matcha), var(--color-deep-green));
+            border-radius: 3px 3px 0 0;
+            position: relative;
+            transition: opacity 0.15s ease;
+        }
+        .bar:hover { opacity: 0.75; }
+        .bar--weekend { background: linear-gradient(180deg, var(--color-gold), #b98f3d); }
+        .bar-legend {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--color-ink-soft);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .bar-key { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--color-ink-soft); margin-top: 0.5rem; }
+        .bar-key span { display: inline-flex; align-items: center; gap: 0.35rem; }
+        .bar-key i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+        .bar-key .k-weekday { background: var(--color-deep-green); }
+        .bar-key .k-weekend { background: var(--color-gold); }
+
+        /* --- リスト（流入元・ページ） --- */
+        .rank-list { list-style: none; padding: 0; margin: 0; }
+        .rank-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.7rem;
+            padding: 0.75rem 0.2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .rank-item:last-child { border-bottom: none; }
+        .rank-no {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: var(--color-deep-green);
+            width: 1.6em;
+            flex: 0 0 auto;
+            text-align: center;
+        }
+        .rank-main { flex: 1 1 auto; min-width: 0; }
+        .rank-name { font-weight: 700; color: var(--color-ink-strong); }
+        .rank-desc { font-size: 0.8rem; color: var(--color-ink-soft); }
+        .rank-path { font-size: 0.75rem; color: var(--color-ink-soft); word-break: break-all; }
+        .rank-value {
+            flex: 0 0 auto;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--color-ink-strong);
+        }
+        .rank-value small { font-size: 0.72rem; font-weight: 500; color: var(--color-ink-soft); margin-left: 0.2em; }
+
+        /* --- ボタンのクリック状況（テーブル） --- */
+        .click-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-card);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            font-size: 0.95rem;
+        }
+        .click-table th, .click-table td {
+            padding: 0.7em 0.7em;
+            border-bottom: 1px solid var(--color-border);
+            text-align: right;
+        }
+        .click-table th:first-child, .click-table td:first-child { text-align: left; }
+        .click-table thead th {
+            background: var(--color-matcha-soft);
+            font-family: var(--font-heading);
+            color: var(--color-ink-strong);
+            white-space: nowrap;
+        }
+        .click-table tbody tr:last-child td { border-bottom: none; }
+        .click-table .num { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; }
+
+        .card-panel {
+            background: var(--color-card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            padding: 0.4rem 1.1rem;
+        }
+
+        .dash-footer {
+            text-align: center;
+            color: var(--color-ink-soft);
+            font-size: 0.9rem;
+            margin: 2.5rem 0 3rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .dash-footer a { font-weight: 700; }
+
+        .loading { text-align: center; color: var(--color-ink-soft); padding: 2rem 0; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <main class="container dash-wrap">
+
+        <div class="dash-hero">
+            <h1>詩吟の入口 ダッシュボード</h1>
+            <p>あなただけの、アクセスのまとめ画面です</p>
+        </div>
+
+        <!-- サンプル表示の注記（サンプルのときだけ出る） -->
+        <div class="dash-note" id="sampleNote" hidden>
+            ※これはサンプル表示です。連携設定が完了すると実データに切り替わります。
+        </div>
+
+        <!-- データが読めなかったとき -->
+        <div class="dash-note dash-note--error" id="errorNote" hidden>
+            ※ただいまデータを準備中です。明日の朝6時ごろ、自動で最新の数字に切り替わります。
+        </div>
+
+        <!-- 読み込み中 -->
+        <p class="loading" id="loading">読み込み中です…</p>
+
+        <div id="content" hidden>
+
+            <!-- 1. 今週のハイライト -->
+            <section class="dash-block">
+                <h2 class="dash-block__title">今週のハイライト（この7日間）</h2>
+                <div class="dash-highlights">
+                    <div class="stat-card">
+                        <p class="stat-card__label">表示回数</p>
+                        <div><span class="stat-card__value" id="hlViews">–</span><span class="stat-card__unit">回</span></div>
+                        <p class="stat-card__hint">ページが見られた回数</p>
+                    </div>
+                    <div class="stat-card stat-card--vermilion">
+                        <p class="stat-card__label">メルマガ登録へ</p>
+                        <div><span class="stat-card__value" id="hlMailmag">–</span><span class="stat-card__unit">回</span></div>
+                        <p class="stat-card__hint">登録ページへ進んだ数</p>
+                    </div>
+                    <div class="stat-card stat-card--gold">
+                        <p class="stat-card__label">メルマガのクリック率</p>
+                        <div><span class="stat-card__value" id="hlRate">–</span><span class="stat-card__unit">%</span></div>
+                        <p class="stat-card__hint">見た人のうち進んだ割合</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. アクセスの推移 -->
+            <section class="dash-block">
+                <h2 class="dash-block__title">アクセスの推移（この28日間）</h2>
+                <p class="dash-sub">棒の高さ＝その日にページが見られた回数です。</p>
+                <div class="bar-card">
+                    <div class="bar-chart" id="barChart" aria-label="日別のアクセス数の棒グラフ"></div>
+                    <div class="bar-legend"><span id="barStart">–</span><span id="barEnd">–</span></div>
+                    <div class="bar-key">
+                        <span><i class="k-weekday"></i>平日</span>
+                        <span><i class="k-weekend"></i>土日</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. どこから来たか -->
+            <section class="dash-block">
+                <h2 class="dash-block__title">どこから来たか（この7日間）</h2>
+                <p class="dash-sub">訪問者がサイトにたどり着いた入口の多い順です。</p>
+                <div class="card-panel">
+                    <ol class="rank-list" id="channelList"></ol>
+                </div>
+            </section>
+
+            <!-- 4. よく見られているページ -->
+            <section class="dash-block">
+                <h2 class="dash-block__title">よく見られているページ（この7日間）</h2>
+                <div class="card-panel">
+                    <ol class="rank-list" id="pageList"></ol>
+                </div>
+            </section>
+
+            <!-- 5. ボタンのクリック状況 -->
+            <section class="dash-block">
+                <h2 class="dash-block__title">ボタンのクリック状況</h2>
+                <p class="dash-sub">サイト内の主要リンクが押された回数です。</p>
+                <table class="click-table">
+                    <thead>
+                        <tr><th>ボタン</th><th>この7日間</th><th>この28日間</th></tr>
+                    </thead>
+                    <tbody id="eventRows"></tbody>
+                </table>
+            </section>
+
+            <!-- 6. フッター -->
+            <div class="dash-footer">
+                <p id="updatedLine">最終更新: –</p>
+                <p><a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer">もっと詳しく見る → Googleアナリティクス</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+    (function () {
+        "use strict";
+
+        // 流入元（GA4のチャンネル名）を、やさしい日本語に置き換える表
+        var CHANNEL_JA = {
+            "Organic Search": { name: "Google検索など", desc: "検索から見つけて来た人" },
+            "Organic Video":  { name: "YouTubeなど動画", desc: "動画のリンクから来た人" },
+            "Direct":         { name: "直接アクセス", desc: "ブックマークやURL入力・アプリから" },
+            "Organic Social": { name: "SNSから", desc: "X・Instagramなどのリンクから" },
+            "Referral":       { name: "他サイトのリンク", desc: "よそのサイトのリンクから" },
+            "Email":          { name: "メールから", desc: "メール内のリンクから" },
+            "Paid Search":    { name: "検索広告から", desc: "検索の広告枠から" },
+            "Paid Social":    { name: "SNS広告から", desc: "SNSの広告から" },
+            "Unassigned":     { name: "分類なし", desc: "入口が判定できなかった訪問" }
+        };
+
+        // 7つのカスタムイベントの表示順とやさしい名前
+        var EVENT_ORDER = [
+            ["mailmag_click", "メルマガ登録へ"],
+            ["kindle_click",  "Kindleへ"],
+            ["dojo_click",    "吟猫道場へ"],
+            ["openchat_click","オープンチャットへ"],
+            ["tool_open",     "ツール起動"],
+            ["form_click",    "フォームへ"],
+            ["youtube_click", "YouTubeへ"]
+        ];
+
+        var el = function (id) { return document.getElementById(id); };
+
+        function showError() {
+            el("loading").hidden = true;
+            el("content").hidden = true;
+            el("errorNote").hidden = false;
+        }
+
+        // 数字を「1,234」のように3桁区切りで
+        function fmtNum(n) {
+            if (typeof n !== "number" || !isFinite(n)) { return "–"; }
+            return n.toLocaleString("ja-JP");
+        }
+
+        // 「2026-07-16」→「7/16」
+        function shortDate(iso) {
+            var m = /^\d{4}-(\d{2})-(\d{2})$/.exec(iso || "");
+            if (!m) { return iso || ""; }
+            return parseInt(m[1], 10) + "/" + parseInt(m[2], 10);
+        }
+
+        // 「2026-07-17T21:15:00Z」→「7月17日 朝6時」（日本時間）
+        function updatedLabel(iso) {
+            var d = new Date(iso);
+            if (isNaN(d.getTime())) { return "—"; }
+            // 日本時間に変換（UTC+9）
+            var jst = new Date(d.getTime() + 9 * 60 * 60 * 1000);
+            return (jst.getUTCMonth() + 1) + "月" + jst.getUTCDate() + "日 朝6時（毎日自動更新）";
+        }
+
+        function isWeekend(iso) {
+            var d = new Date(iso + "T00:00:00Z");
+            var day = d.getUTCDay();
+            return day === 0 || day === 6;
+        }
+
+        function render(data) {
+            el("loading").hidden = true;
+            el("content").hidden = false;
+            if (data.isSample) { el("sampleNote").hidden = false; }
+
+            var daily = Array.isArray(data.daily) ? data.daily : [];
+            var events = data.events || {};
+            var e7 = events.d7 || {};
+            var e28 = events.d28 || {};
+
+            // --- 1. ハイライト ---
+            var last7 = daily.slice(-7);
+            var views7 = last7.reduce(function (a, b) { return a + (b.screenPageViews || 0); }, 0);
+            var mailmag7 = e7.mailmag_click || 0;
+            el("hlViews").textContent = fmtNum(views7);
+            el("hlMailmag").textContent = fmtNum(mailmag7);
+            var rate = views7 > 0 ? (mailmag7 / views7 * 100) : 0;
+            el("hlRate").textContent = (Math.round(rate * 10) / 10).toString();
+
+            // --- 2. 棒グラフ ---
+            var chart = el("barChart");
+            chart.innerHTML = "";
+            var max = daily.reduce(function (m, d) { return Math.max(m, d.screenPageViews || 0); }, 0) || 1;
+            daily.forEach(function (d) {
+                var bar = document.createElement("div");
+                bar.className = "bar" + (isWeekend(d.date) ? " bar--weekend" : "");
+                var h = Math.max(4, Math.round((d.screenPageViews || 0) / max * 100));
+                bar.style.height = h + "%";
+                bar.title = shortDate(d.date) + "：" + fmtNum(d.screenPageViews || 0) + "回";
+                chart.appendChild(bar);
+            });
+            if (daily.length) {
+                el("barStart").textContent = shortDate(daily[0].date);
+                el("barEnd").textContent = shortDate(daily[daily.length - 1].date);
+            }
+
+            // --- 3. 流入元トップ5 ---
+            var chList = el("channelList");
+            chList.innerHTML = "";
+            var channels = (data.channels && data.channels.d7) ? data.channels.d7.slice(0, 5) : [];
+            channels.forEach(function (c, i) {
+                var info = CHANNEL_JA[c.channel] || { name: c.channel, desc: "" };
+                var li = document.createElement("li");
+                li.className = "rank-item";
+                li.innerHTML =
+                    '<span class="rank-no">' + (i + 1) + '</span>' +
+                    '<span class="rank-main"><span class="rank-name"></span><br><span class="rank-desc"></span></span>' +
+                    '<span class="rank-value"></span>';
+                li.querySelector(".rank-name").textContent = info.name;
+                li.querySelector(".rank-desc").textContent = info.desc;
+                li.querySelector(".rank-value").innerHTML = fmtNum(c.sessions || 0) + '<small>件</small>';
+                chList.appendChild(li);
+            });
+            if (!channels.length) { chList.innerHTML = '<li class="rank-item"><span class="rank-desc">データがまだありません</span></li>'; }
+
+            // --- 4. よく見られているページ トップ10 ---
+            var pgList = el("pageList");
+            pgList.innerHTML = "";
+            var pages = Array.isArray(data.pages) ? data.pages.slice(0, 10) : [];
+            pages.forEach(function (p, i) {
+                var li = document.createElement("li");
+                li.className = "rank-item";
+                li.innerHTML =
+                    '<span class="rank-no">' + (i + 1) + '</span>' +
+                    '<span class="rank-main"><span class="rank-name"></span><br><span class="rank-path"></span></span>' +
+                    '<span class="rank-value"></span>';
+                li.querySelector(".rank-name").textContent = p.pageTitle || p.pagePath || "（無題）";
+                li.querySelector(".rank-path").textContent = p.pagePath || "";
+                li.querySelector(".rank-value").innerHTML = fmtNum(p.views || 0) + '<small>回</small>';
+                pgList.appendChild(li);
+            });
+            if (!pages.length) { pgList.innerHTML = '<li class="rank-item"><span class="rank-desc">データがまだありません</span></li>'; }
+
+            // --- 5. ボタンのクリック状況 ---
+            var rows = el("eventRows");
+            rows.innerHTML = "";
+            EVENT_ORDER.forEach(function (pair) {
+                var key = pair[0], label = pair[1];
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td"); td1.textContent = label;
+                var td2 = document.createElement("td"); td2.className = "num"; td2.textContent = fmtNum(e7[key] || 0);
+                var td3 = document.createElement("td"); td3.className = "num"; td3.textContent = fmtNum(e28[key] || 0);
+                tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+                rows.appendChild(tr);
+            });
+
+            // --- 6. フッター ---
+            el("updatedLine").textContent = "最終更新: " + updatedLabel(data.updatedAt);
+        }
+
+        fetch("../assets/data/analytics-summary.json", { cache: "no-store" })
+            .then(function (res) {
+                if (!res.ok) { throw new Error("not ok"); }
+                return res.json();
+            })
+            .then(function (data) {
+                if (!data || typeof data !== "object") { throw new Error("bad data"); }
+                render(data);
+            })
+            .catch(function () { showError(); });
+    })();
+    </script>
+
+</body>
+</html>
