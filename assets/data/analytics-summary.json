@@ -1,0 +1,265 @@
+{
+  "isSample": true,
+  "updatedAt": "2026-07-17T21:15:00Z",
+  "rangeEnd": "2026-07-16",
+  "daily": [
+    {
+      "date": "2026-06-19",
+      "screenPageViews": 117,
+      "activeUsers": 77
+    },
+    {
+      "date": "2026-06-20",
+      "screenPageViews": 82,
+      "activeUsers": 54
+    },
+    {
+      "date": "2026-06-21",
+      "screenPageViews": 75,
+      "activeUsers": 50
+    },
+    {
+      "date": "2026-06-22",
+      "screenPageViews": 97,
+      "activeUsers": 64
+    },
+    {
+      "date": "2026-06-23",
+      "screenPageViews": 93,
+      "activeUsers": 61
+    },
+    {
+      "date": "2026-06-24",
+      "screenPageViews": 92,
+      "activeUsers": 61
+    },
+    {
+      "date": "2026-06-25",
+      "screenPageViews": 95,
+      "activeUsers": 63
+    },
+    {
+      "date": "2026-06-26",
+      "screenPageViews": 103,
+      "activeUsers": 68
+    },
+    {
+      "date": "2026-06-27",
+      "screenPageViews": 83,
+      "activeUsers": 55
+    },
+    {
+      "date": "2026-06-28",
+      "screenPageViews": 93,
+      "activeUsers": 61
+    },
+    {
+      "date": "2026-06-29",
+      "screenPageViews": 131,
+      "activeUsers": 86
+    },
+    {
+      "date": "2026-06-30",
+      "screenPageViews": 136,
+      "activeUsers": 90
+    },
+    {
+      "date": "2026-07-01",
+      "screenPageViews": 137,
+      "activeUsers": 90
+    },
+    {
+      "date": "2026-07-02",
+      "screenPageViews": 133,
+      "activeUsers": 88
+    },
+    {
+      "date": "2026-07-03",
+      "screenPageViews": 127,
+      "activeUsers": 84
+    },
+    {
+      "date": "2026-07-04",
+      "screenPageViews": 89,
+      "activeUsers": 59
+    },
+    {
+      "date": "2026-07-05",
+      "screenPageViews": 82,
+      "activeUsers": 54
+    },
+    {
+      "date": "2026-07-06",
+      "screenPageViews": 110,
+      "activeUsers": 73
+    },
+    {
+      "date": "2026-07-07",
+      "screenPageViews": 110,
+      "activeUsers": 73
+    },
+    {
+      "date": "2026-07-08",
+      "screenPageViews": 116,
+      "activeUsers": 77
+    },
+    {
+      "date": "2026-07-09",
+      "screenPageViews": 125,
+      "activeUsers": 83
+    },
+    {
+      "date": "2026-07-10",
+      "screenPageViews": 135,
+      "activeUsers": 89
+    },
+    {
+      "date": "2026-07-11",
+      "screenPageViews": 115,
+      "activeUsers": 76
+    },
+    {
+      "date": "2026-07-12",
+      "screenPageViews": 121,
+      "activeUsers": 80
+    },
+    {
+      "date": "2026-07-13",
+      "screenPageViews": 155,
+      "activeUsers": 102
+    },
+    {
+      "date": "2026-07-14",
+      "screenPageViews": 153,
+      "activeUsers": 101
+    },
+    {
+      "date": "2026-07-15",
+      "screenPageViews": 148,
+      "activeUsers": 98
+    },
+    {
+      "date": "2026-07-16",
+      "screenPageViews": 141,
+      "activeUsers": 93
+    }
+  ],
+  "channels": {
+    "d7": [
+      {
+        "channel": "Organic Search",
+        "sessions": 214
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 132
+      },
+      {
+        "channel": "Direct",
+        "sessions": 88
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 41
+      },
+      {
+        "channel": "Referral",
+        "sessions": 17
+      }
+    ],
+    "d28": [
+      {
+        "channel": "Organic Search",
+        "sessions": 902
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 511
+      },
+      {
+        "channel": "Direct",
+        "sessions": 364
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 158
+      },
+      {
+        "channel": "Referral",
+        "sessions": 73
+      }
+    ]
+  },
+  "pages": [
+    {
+      "pagePath": "/",
+      "pageTitle": "詩吟の入口｜詩吟をもっと身近に",
+      "views": 1240
+    },
+    {
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ｜詩吟の入口",
+      "views": 880
+    },
+    {
+      "pagePath": "/beginner/",
+      "pageTitle": "詩吟の始め方ガイド｜詩吟の入口",
+      "views": 640
+    },
+    {
+      "pagePath": "/newsletter/",
+      "pageTitle": "初心者向け7日間講座｜詩吟の入口",
+      "views": 512
+    },
+    {
+      "pagePath": "/tools/",
+      "pageTitle": "詩吟学習ツール｜詩吟の入口",
+      "views": 398
+    },
+    {
+      "pagePath": "/dojo-details.html",
+      "pageTitle": "吟猫道場（オンライン教室）｜詩吟の入口",
+      "views": 277
+    },
+    {
+      "pagePath": "/community/",
+      "pageTitle": "コミュニティ｜詩吟の入口",
+      "views": 203
+    },
+    {
+      "pagePath": "/profile/",
+      "pageTitle": "プロフィール｜詩吟の入口",
+      "views": 168
+    },
+    {
+      "pagePath": "/recommended-videos.html",
+      "pageTitle": "おすすめ動画｜詩吟の入口",
+      "views": 141
+    },
+    {
+      "pagePath": "/contact/",
+      "pageTitle": "お問い合わせ｜詩吟の入口",
+      "views": 96
+    }
+  ],
+  "events": {
+    "d7": {
+      "mailmag_click": 14,
+      "kindle_click": 6,
+      "dojo_click": 9,
+      "openchat_click": 4,
+      "tool_open": 58,
+      "form_click": 5,
+      "youtube_click": 31
+    },
+    "d28": {
+      "mailmag_click": 52,
+      "kindle_click": 23,
+      "dojo_click": 34,
+      "openchat_click": 15,
+      "tool_open": 221,
+      "form_click": 19,
+      "youtube_click": 118
+    }
+  }
+}
