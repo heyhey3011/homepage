@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-07-21T22:12:07Z",
-  "rangeEnd": "2026-07-21",
+  "updatedAt": "2026-07-22T22:15:45Z",
+  "rangeEnd": "2026-07-22",
   "daily": [
     {
       "date": "2026-07-17",
@@ -25,45 +25,66 @@
     },
     {
       "date": "2026-07-21",
-      "screenPageViews": 21,
-      "activeUsers": 11
+      "screenPageViews": 22,
+      "activeUsers": 12
+    },
+    {
+      "date": "2026-07-22",
+      "screenPageViews": 40,
+      "activeUsers": 5
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 35
-      },
-      {
-        "channel": "Organic Video",
-        "sessions": 5
+        "sessions": 38
       },
       {
         "channel": "Organic Search",
-        "sessions": 4
+        "sessions": 9
       },
       {
         "channel": "Unassigned",
-        "sessions": 2
+        "sessions": 8
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 6
+      },
+      {
+        "channel": "AI Assistant",
+        "sessions": 1
+      },
+      {
+        "channel": "Referral",
+        "sessions": 1
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 35
-      },
-      {
-        "channel": "Organic Video",
-        "sessions": 5
+        "sessions": 38
       },
       {
         "channel": "Organic Search",
-        "sessions": 4
+        "sessions": 9
       },
       {
         "channel": "Unassigned",
-        "sessions": 2
+        "sessions": 8
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 6
+      },
+      {
+        "channel": "AI Assistant",
+        "sessions": 1
+      },
+      {
+        "channel": "Referral",
+        "sessions": 1
       }
     ]
   },
@@ -71,17 +92,32 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口｜全国5,000件の詩吟教室マップと初心者向け学習ガイド",
-      "views": 29
+      "views": 35
+    },
+    {
+      "pagePath": "/apps/pitchmap/",
+      "pageTitle": "吟猫ピッチマップ - 詩吟絶対音階ピッチ検出ツール",
+      "views": 20
     },
     {
       "pagePath": "/homepage/index.html",
       "pageTitle": "詩吟の入口｜全国5,000件の詩吟教室マップと初心者向け学習ガイド",
-      "views": 11
+      "views": 13
+    },
+    {
+      "pagePath": "/apps/pitchmap/guide",
+      "pageTitle": "はじめての使い方｜吟猫ピッチマップ",
+      "views": 8
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "詩吟の実演・動画アーカイブス",
+      "views": 7
     },
     {
       "pagePath": "/homepage/beginner/",
       "pageTitle": "詩吟を始める完全ガイド｜詩吟の入口",
-      "views": 5
+      "views": 6
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
@@ -89,8 +125,8 @@
       "views": 4
     },
     {
-      "pagePath": "/apps/pitchmap/",
-      "pageTitle": "吟猫ピッチマップ - 詩吟絶対音階ピッチ検出ツール",
+      "pagePath": "/homepage/apps/ginshi-archives/",
+      "pageTitle": "詩吟の実演・動画アーカイブス",
       "views": 4
     },
     {
@@ -99,13 +135,8 @@
       "views": 4
     },
     {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "詩吟の実演・動画アーカイブス",
-      "views": 3
-    },
-    {
-      "pagePath": "/homepage/apps/ginshi-archives/",
-      "pageTitle": "詩吟の実演・動画アーカイブス",
+      "pagePath": "/homepage/dojo-details.html",
+      "pageTitle": "吟猫道場ってなに？｜オンライン詩吟教室の詳細・入会方法｜詩吟の入口",
       "views": 3
     },
     {
@@ -116,11 +147,6 @@
     {
       "pagePath": "/homepage/community/",
       "pageTitle": "もっと深く学びたい方へ｜詩吟の入口",
-      "views": 2
-    },
-    {
-      "pagePath": "/homepage/dojo-details.html",
-      "pageTitle": "吟猫道場ってなに？｜オンライン詩吟教室の詳細・入会方法｜詩吟の入口",
       "views": 2
     },
     {
@@ -137,11 +163,6 @@
       "pagePath": "/homepage/profile/",
       "pageTitle": "heyheyプロフィール｜詩吟の入口",
       "views": 2
-    },
-    {
-      "pagePath": "/profile/",
-      "pageTitle": "heyheyプロフィール｜詩吟の入口",
-      "views": 2
     }
   ],
   "events": {
@@ -150,18 +171,18 @@
       "kindle_click": 1,
       "dojo_click": 5,
       "openchat_click": 2,
-      "tool_open": 9,
+      "tool_open": 11,
       "form_click": 0,
-      "youtube_click": 2
+      "youtube_click": 3
     },
     "d28": {
       "mailmag_click": 1,
       "kindle_click": 1,
       "dojo_click": 5,
       "openchat_click": 2,
-      "tool_open": 9,
+      "tool_open": 11,
       "form_click": 0,
-      "youtube_click": 2
+      "youtube_click": 3
     }
   }
 }
