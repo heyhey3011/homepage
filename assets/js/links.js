@@ -53,16 +53,20 @@ window.SITE_LINKS = {
             label: "随時追加中"
         },
         // 吟猫コンダクター
+        // iOS版App Store公開済み(2026-07)。以前のWeb版(Netlify)から差し替え。
         ginnekoConductor: {
-            url: "https://ginneko-conductor.netlify.app/",
+            url: "https://apps.apple.com/jp/app/%E5%90%9F%E7%8C%AB%E3%82%B3%E3%83%B3%E3%83%80%E3%82%AF%E3%82%BF%E3%83%BC/id6792195176",
             status: "live",
             label: "公開中"
         },
         // 吟猫ピッチマップ
+        // 本体は有料note購入者向け。ここは常にランディングページ(apps/pitchmap/)を指し、
+        // ランディングからnoteの購入ページへ誘導する構成。本体の実ファイルは
+        // apps/pitchmap-app-<秘密トークン>/ に移動済み（sitemap等には載せない）。
         ginnekoPitchmap: {
             url: "apps/pitchmap/",
-            status: "live",
-            label: "公開中"
+            status: "paid",
+            label: "有料note限定"
         }
     },
 
@@ -215,7 +219,8 @@ const SITE_LINK_STATUS_LABELS = {
     "coming-soon": "準備中",
     "beta": "試験公開中",
     "live": "公開中",
-    "growing": "随時追加中"
+    "growing": "随時追加中",
+    "paid": "有料note限定"
 };
 
 /**

@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
+# 本番はCloudflare Pages(deploy-cloudflare.yml)に一本化。
+# 旧GitHub Pagesデプロイは手動時のみ(workflow_dispatch)実行する。
 on:
-  push:
-    branches:
-      - main  # mainブランチにプッシュされたら自動で実行
+  workflow_dispatch:
 
 permissions:
   contents: write # gh-pagesブランチに書き込むために必要

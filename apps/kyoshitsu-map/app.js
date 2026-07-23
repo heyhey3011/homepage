@@ -916,7 +916,7 @@ function detailHtml(record) {
     ${sourceHtml}
     <p class="report-edit-line">
       <a class="report-edit-link" href="${escapeHtml(FORM_URLS.requestForm)}" target="_blank" rel="noopener">掲載情報の修正・追加・削除依頼はこちら</a><br>
-      <span class="report-edit-note">（フォーム準備中。それまでは <a href="../../request/">こちら</a> から）</span>
+      <span class="report-edit-note">（うまく開けない場合は <a href="../../request/">こちら</a> からもご連絡いただけます）</span>
     </p>
   `;
 }
