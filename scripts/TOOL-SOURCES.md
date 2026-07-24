@@ -10,8 +10,9 @@
 
 **これから先の更新は、すべて `homepage\apps` の中で直接おこないます。**
 
-`07_詩吟教室マップ【凍結】`、`16_吟猫ピッチマップ【凍結】`、`18_詩吟iOSアプリ` 配下のフォルダは、
-今後は「凍結ラボ」として扱います。つまり、
+`凍結フォルダ\07_詩吟教室マップ【凍結】`、`凍結フォルダ\16_吟猫ピッチマップ【凍結】`、
+`凍結フォルダ\02_詩吟の実演・動画アーカイブス【凍結】`、`凍結フォルダ\03_詩吟大辞典【凍結】` は、
+今後は「凍結ラボ」として扱います(Cowork直下の `凍結フォルダ\` にひとつにまとめました)。つまり、
 
 - 過去の試作・実験・素材を置いておく場所
 - 新しいアイデアを試すときはここで自由に触ってOK
@@ -26,11 +27,11 @@
 
 | ツール名 | サイト上のフォルダ | 開発の正(source of truth) | デプロイ先 | 同期方法 |
 |---|---|---|---|---|
-| kyoshitsu-map(詩吟教室マップ) | `homepage\apps\kyoshitsu-map` | `homepage\apps\kyoshitsu-map` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`07_詩吟教室マップ【凍結】` は凍結ラボ扱い |
-| ginshi-archives(詩吟の実演・動画アーカイブス) | `homepage\apps\ginshi-archives` | `homepage\apps\ginshi-archives` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\02_詩吟の実演・動画アーカイブス【凍結】\v1` は凍結ラボ扱い |
-| shigin-jiten(詩吟大辞典) | `homepage\apps\shigin-jiten` | `homepage\apps\shigin-jiten` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\03_詩吟大辞典【凍結】` は凍結ラボ扱い |
-| kanshi-jiten(漢詩の図書館) | `homepage\apps\kanshi-jiten` | **例外**: `18_詩吟iOSアプリ\01_詩吟用の漢詩辞典\v1\claudecode\prototype-v2`(アプリ本体・Viteプロジェクト) + `v1\codex\DATA-CARD`(データカード, 一次データ) | Cloudflare Pages(自動) | 下の「かんし辞典の更新手順」を参照。ビルドしてから `dist` を丸ごとコピー |
-| pitchmap(吟猫ピッチマップ) | `homepage\apps\pitchmap` | `homepage\apps\pitchmap` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`16_吟猫ピッチマップ【凍結】` は凍結ラボ扱い |
+| kyoshitsu-map(詩吟教室マップ) | `homepage\apps\kyoshitsu-map` | `homepage\apps\kyoshitsu-map` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`凍結フォルダ\07_詩吟教室マップ【凍結】` は凍結ラボ扱い |
+| ginshi-archives(詩吟の実演・動画アーカイブス) | `homepage\apps\ginshi-archives` | `homepage\apps\ginshi-archives` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`凍結フォルダ\02_詩吟の実演・動画アーカイブス【凍結】\v1` は凍結ラボ扱い |
+| shigin-jiten(詩吟大辞典) | `homepage\apps\shigin-jiten` | `homepage\apps\shigin-jiten` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`凍結フォルダ\03_詩吟大辞典【凍結】` は凍結ラボ扱い |
+| kanshi-jiten(漢詩の図書館) | `homepage\apps\kanshi-jiten` | **例外**: `00_ALL-SHIGIN\漢詩の図書館(データ工房)\v1\claudecode\prototype-v2`(アプリ本体・Viteプロジェクト) + `v1\codex\DATA-CARD`(データカード, 一次データ) | Cloudflare Pages(自動) | 下の「かんし辞典の更新手順」を参照。ビルドしてから `dist` を丸ごとコピー |
+| pitchmap(吟猫ピッチマップ) | `homepage\apps\pitchmap` | `homepage\apps\pitchmap` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`凍結フォルダ\16_吟猫ピッチマップ【凍結】` は凍結ラボ扱い |
 
 ## かんし辞典(kanshi-jiten)の更新手順
 
@@ -39,7 +40,7 @@
 次の順番で作業してください。
 
 1. **データカードを追加・修正する**
-   場所: `18_詩吟iOSアプリ\01_詩吟用の漢詩辞典\v1\codex\DATA-CARD`
+   場所: `00_ALL-SHIGIN\漢詩の図書館(データ工房)\v1\codex\DATA-CARD`
    ここに1つの漢詩につき1つのMarkdownファイル(データカード)を置きます。
 
 2. **`parse_cards.py` を実行する**
@@ -49,7 +50,7 @@
    変換したデータから、辞典アプリが読み込む本番用データを組み立てます。
 
 4. **`npm run build` を実行する**
-   場所: `18_詩吟iOSアプリ\01_詩吟用の漢詩辞典\v1\claudecode\prototype-v2`
+   場所: `00_ALL-SHIGIN\漢詩の図書館(データ工房)\v1\claudecode\prototype-v2`
    Viteアプリをビルドして、`dist` フォルダに本番用ファイル一式ができます。
 
 5. **`dist` フォルダの中身を `homepage\apps\kanshi-jiten` へコピーする**
@@ -73,9 +74,15 @@
 
 ## 「凍結ラボ」フォルダとは何をする場所か
 
-- `07_詩吟教室マップ【凍結】`
-- `16_吟猫ピッチマップ【凍結】`
-- `18_詩吟iOSアプリ` 配下の各ツールフォルダ(`01_...` の kanshi-jiten 用データカード部分を除く。`02_詩吟の実演・動画アーカイブス【凍結】`、`03_詩吟大辞典【凍結】`)
+Cowork直下の `凍結フォルダ\` の中にまとめてあります。
+
+- `凍結フォルダ\07_詩吟教室マップ【凍結】`
+- `凍結フォルダ\16_吟猫ピッチマップ【凍結】`
+- `凍結フォルダ\02_詩吟の実演・動画アーカイブス【凍結】`
+- `凍結フォルダ\03_詩吟大辞典【凍結】`
+
+(kanshi-jiten用のデータ工房 `00_ALL-SHIGIN\漢詩の図書館(データ工房)` は「凍結ラボ」ではなく、
+現役で使うデータ元フォルダなので `00_ALL-SHIGIN` 直下に置かれています。)
 
 これらは、今までの試作・実験・調査の記録として、そのまま残しています。
 削除はしません(このプロジェクトのルール「ファイルは絶対に削除しない」の通りです)。

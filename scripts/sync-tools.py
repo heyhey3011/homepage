@@ -4,7 +4,9 @@
 sync-tools.py
 =============
 
-これは「凍結ラボ」フォルダ(07_詩吟教室マップ【凍結】、18_詩吟iOSアプリ 配下など)を
+これは「凍結ラボ」フォルダ(Cowork直下の 凍結フォルダ\ にまとめられている、
+07_詩吟教室マップ【凍結】、16_吟猫ピッチマップ【凍結】、
+02_詩吟の実演・動画アーカイブス【凍結】、03_詩吟大辞典【凍結】)を
 うっかり更新してしまったときの"救済用"スクリプトです。
 
 普段の運用では使う必要はありません。
@@ -113,7 +115,7 @@ def build_tool_configs() -> list[ToolConfig]:
     configs: list[ToolConfig] = []
 
     # --- a) kyoshitsu-map(詩吟教室マップ) -----------------------------
-    kyoshitsu_src = COWORK_ROOT / "07_詩吟教室マップ【凍結】" / "03_Fable5" / "data.js"
+    kyoshitsu_src = COWORK_ROOT / "凍結フォルダ" / "07_詩吟教室マップ【凍結】" / "03_Fable5" / "data.js"
     kyoshitsu_dst = APPS_DIR / "kyoshitsu-map" / "data.js"
     configs.append(
         ToolConfig(
@@ -126,7 +128,7 @@ def build_tool_configs() -> list[ToolConfig]:
     # --- b) ginshi-archives(詩吟の実演・動画アーカイブス) --------------
     ginshi_src = (
         COWORK_ROOT
-        / "18_詩吟iOSアプリ"
+        / "凍結フォルダ"
         / "02_詩吟の実演・動画アーカイブス【凍結】"
         / "v1"
         / "data.js"
@@ -141,7 +143,7 @@ def build_tool_configs() -> list[ToolConfig]:
     )
 
     # --- c) shigin-jiten(詩吟大辞典) -----------------------------------
-    jiten_src_dir = COWORK_ROOT / "18_詩吟iOSアプリ" / "03_詩吟大辞典【凍結】" / "data"
+    jiten_src_dir = COWORK_ROOT / "凍結フォルダ" / "03_詩吟大辞典【凍結】" / "data"
     jiten_dst_dir = APPS_DIR / "shigin-jiten" / "data"
     configs.append(
         ToolConfig(
@@ -172,7 +174,7 @@ def build_tool_configs() -> list[ToolConfig]:
             name="pitchmap(吟猫ピッチマップ)",
             description="ピッチ(音程)判定ツール",
             skip_reason=(
-                "16_吟猫ピッチマップ【凍結】 フォルダの中には v1_codex / v2_fable5 / v2_gemini / "
+                "凍結フォルダ\\16_吟猫ピッチマップ【凍結】 フォルダの中には v1_codex / v2_fable5 / v2_gemini / "
                 "v3_sonnet5 / v4_opus など複数のバージョンがあり、どれが最新か"
                 "自動では判断できません。更新する場合は homepage\\apps\\pitchmap を"
                 "直接編集するか、内容を目で見て確認してから手動でコピーしてください。"
