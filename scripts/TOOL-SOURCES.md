@@ -10,7 +10,7 @@
 
 **これから先の更新は、すべて `homepage\apps` の中で直接おこないます。**
 
-`07_詩吟教室マップ`、`16_吟猫ピッチマップ`、`18_詩吟iOSアプリ` 配下のフォルダは、
+`07_詩吟教室マップ【凍結】`、`16_吟猫ピッチマップ【凍結】`、`18_詩吟iOSアプリ` 配下のフォルダは、
 今後は「凍結ラボ」として扱います。つまり、
 
 - 過去の試作・実験・素材を置いておく場所
@@ -26,11 +26,11 @@
 
 | ツール名 | サイト上のフォルダ | 開発の正(source of truth) | デプロイ先 | 同期方法 |
 |---|---|---|---|---|
-| kyoshitsu-map(詩吟教室マップ) | `homepage\apps\kyoshitsu-map` | `homepage\apps\kyoshitsu-map` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`07_詩吟教室マップ` は凍結ラボ扱い |
-| ginshi-archives(詩吟の実演・動画アーカイブス) | `homepage\apps\ginshi-archives` | `homepage\apps\ginshi-archives` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\02_...\v1` は凍結ラボ扱い |
-| shigin-jiten(詩吟大辞典) | `homepage\apps\shigin-jiten` | `homepage\apps\shigin-jiten` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\03_詩吟大辞典` は凍結ラボ扱い |
+| kyoshitsu-map(詩吟教室マップ) | `homepage\apps\kyoshitsu-map` | `homepage\apps\kyoshitsu-map` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`07_詩吟教室マップ【凍結】` は凍結ラボ扱い |
+| ginshi-archives(詩吟の実演・動画アーカイブス) | `homepage\apps\ginshi-archives` | `homepage\apps\ginshi-archives` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\02_詩吟の実演・動画アーカイブス【凍結】\v1` は凍結ラボ扱い |
+| shigin-jiten(詩吟大辞典) | `homepage\apps\shigin-jiten` | `homepage\apps\shigin-jiten` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`18_詩吟iOSアプリ\03_詩吟大辞典【凍結】` は凍結ラボ扱い |
 | kanshi-jiten(漢詩の図書館) | `homepage\apps\kanshi-jiten` | **例外**: `18_詩吟iOSアプリ\01_詩吟用の漢詩辞典\v1\claudecode\prototype-v2`(アプリ本体・Viteプロジェクト) + `v1\codex\DATA-CARD`(データカード, 一次データ) | Cloudflare Pages(自動) | 下の「かんし辞典の更新手順」を参照。ビルドしてから `dist` を丸ごとコピー |
-| pitchmap(吟猫ピッチマップ) | `homepage\apps\pitchmap` | `homepage\apps\pitchmap` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`16_吟猫ピッチマップ` は凍結ラボ扱い |
+| pitchmap(吟猫ピッチマップ) | `homepage\apps\pitchmap` | `homepage\apps\pitchmap` 自体(今後はここで直接編集) | Cloudflare Pages(自動) | 不要(直接編集)。`16_吟猫ピッチマップ【凍結】` は凍結ラボ扱い |
 
 ## かんし辞典(kanshi-jiten)の更新手順
 
@@ -73,12 +73,15 @@
 
 ## 「凍結ラボ」フォルダとは何をする場所か
 
-- `07_詩吟教室マップ`
-- `16_吟猫ピッチマップ`
-- `18_詩吟iOSアプリ` 配下の各ツールフォルダ(`01_...` の kanshi-jiten 用データカード部分を除く)
+- `07_詩吟教室マップ【凍結】`
+- `16_吟猫ピッチマップ【凍結】`
+- `18_詩吟iOSアプリ` 配下の各ツールフォルダ(`01_...` の kanshi-jiten 用データカード部分を除く。`02_詩吟の実演・動画アーカイブス【凍結】`、`03_詩吟大辞典【凍結】`)
 
 これらは、今までの試作・実験・調査の記録として、そのまま残しています。
 削除はしません(このプロジェクトのルール「ファイルは絶対に削除しない」の通りです)。
+
+フォルダ名についている **【凍結】** は「もう更新しない・編集禁止」という目印です。
+サイトに反映したい変更は、ここではなく必ず `homepage\apps\(ツール名)` 側を編集してください。
 
 ただし、**ここを更新してもサイトには反映されません**。もし「うっかりこっちを更新してしまった」
 という場合は、`sync-tools.py` を使って `homepage\apps` 側に取り込むことができます
