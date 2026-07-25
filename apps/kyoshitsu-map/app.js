@@ -89,6 +89,20 @@ const ORG_WEBSITES = {
 const DATA_DATE = "2026年7月10日";
 
 const DAY_ORDER = ["月", "火", "水", "木", "金", "土", "日"];
+
+// 通える時間帯の区分（稽古の「開始時刻」で判定する）
+// 稽古時間は自由記述のため、読み取れないものは必ず「時間未定」に入れて
+// 絞り込みから漏れる教室が出ないようにする。
+const TIME_SLOTS = ["午前", "午後", "夜", "時間未定"];
+const TIME_UNKNOWN = "時間未定";
+// チップに出す言葉（区分名だけだと何時ごろか伝わりにくいため、目安を添える）
+const TIME_SLOT_LABELS = {
+  "午前": "午前（〜12時）",
+  "午後": "午後（12〜17時）",
+  "夜": "夜（17時〜）",
+  "時間未定": "時間未定",
+};
+
 const JAPAN_BOUNDS = [[24.0, 122.5], [45.8, 146.5]]; // 日本全体
 const LIST_STEP = 200; // 一覧の初期表示件数（「さらに表示」で増える）
 
@@ -104,6 +118,7 @@ const state = {
   selectedCity: "",
   selectedStyles: [],    // 流派・複数選択
   selectedDays: [],      // 曜日・複数選択
+  selectedTimes: [],     // 時間帯・複数選択
   search: "",
   selectedId: "",
   userLocation: null,    // {lat, lng}
@@ -210,6 +225,7 @@ function buildAllFilters() {
   buildCityFilters();
   buildStyleFilters();
   buildDayFilters();
+  buildTimeFilters();
 }
 
 // 手動編集を反映した後、画面全体を作り直す
@@ -226,7 +242,7 @@ function cacheElements() {
   const ids = [
     "searchInput", "resetButton", "locateButton",
     "regionFilters", "prefBlock", "prefectureFilters",
-    "cityBlock", "cityFilters", "styleFilters", "dayFilters",
+    "cityBlock", "cityFilters", "styleFilters", "dayFilters", "timeFilters",
     "filtersToggle", "filterBadge", "filtersBar",
     "resultLabel", "resultList", "mapNotice",
     "tabList", "tabMap",
@@ -282,6 +298,8 @@ function normalizeRecord(record) {
     cityKey,
     // 稽古日の構造化された曜日（「月２回」「毎月」の月などは含まない）
     days: extractDays(record.practice_day_raw),
+    // 稽古時間から読み取った時間帯（午前／午後／夜／時間未定・必ず1つ以上入る）
+    timeSlots: extractTimeSlots(record.practice_time_raw),
     // 検索用の正規化インデックス（NFKC＋カタカナ→ひらがな＋小文字）
     searchIndex: normalizeForSearch(searchSource),
     distance: null,
@@ -353,6 +371,60 @@ function extractDays(raw) {
   while ((m = parenRe.exec(text)) !== null) found.add(m[1]);
 
   return DAY_ORDER.filter(day => found.has(day));
+}
+
+// 稽古時間テキストから「通える時間帯」を抽出する
+// - 判定は「開始時刻」で行う（午前=〜12時 / 午後=12〜17時 / 夜=17時〜）
+// - 「10:00-12:00 19:00-21:00」のような複合表記は、複数の区分に入れてよい
+// - 「午前」「午後」「夜」など言葉だけの書き方も拾う
+// - 読み取れないもの（空欄・「随時」「不定期」など）は必ず「時間未定」に入れる。
+//   こうしておかないと、どの時間帯を選んでも出てこない教室ができてしまう
+function extractTimeSlots(raw) {
+  let text = String(raw || "");
+  if (typeof text.normalize === "function") text = text.normalize("NFKC");
+
+  // 「〜」「～」「ー」「?（文字化け）」などの区切りをすべて「-」に寄せる
+  text = text.replace(/[~〜～ー―–—?]/g, "-");
+  // 「：」「；」の表記ゆれを「:」に寄せる
+  text = text.replace(/[：；;]/g, ":");
+  // 「13時30分」「13時」→「13:30」「13:00」に。「2時間」の「時」は時刻ではないので除く
+  text = text.replace(/(\d{1,2})\s*時\s*(\d{1,2})\s*分/g, "$1:$2");
+  text = text.replace(/(\d{1,2})\s*時(?!間)/g, "$1:00");
+
+  const hours = [];
+  let m;
+
+  // ① 「13:00-」のように後ろに区切りが続く時刻を「開始時刻」とみなす
+  const startRe = /(\d{1,2}):(\d{1,2})\s*-/g;
+  while ((m = startRe.exec(text)) !== null) hours.push(Number(m[1]));
+
+  // ② 開始時刻が見つからないとき（「13:00」だけ等）は、書かれている時刻をそのまま使う
+  if (hours.length === 0) {
+    const anyRe = /(\d{1,2}):(\d{1,2})/g;
+    while ((m = anyRe.exec(text)) !== null) hours.push(Number(m[1]));
+  }
+
+  // ③ それも無いときだけ「14-16」のような「時」も「:」も無い書き方を拾う
+  if (hours.length === 0) {
+    const bareRe = /(?:^|[^\d:])(\d{1,2})\s*-\s*(\d{1,2})(?![\d:])/g;
+    while ((m = bareRe.exec(text)) !== null) hours.push(Number(m[1]));
+  }
+
+  const found = new Set();
+  hours.forEach(hour => {
+    if (!Number.isFinite(hour) || hour < 0 || hour > 24) return;
+    if (hour < 12) found.add("午前");
+    else if (hour < 17) found.add("午後");
+    else found.add("夜");
+  });
+
+  // 時刻が書かれていない「午前」「夜」などの言い方も拾う
+  if (/午前|朝/.test(text)) found.add("午前");
+  if (/午後/.test(text)) found.add("午後");
+  if (/夜|夕方/.test(text)) found.add("夜");
+
+  if (found.size === 0) found.add(TIME_UNKNOWN);
+  return TIME_SLOTS.filter(slot => found.has(slot));
 }
 
 function toNumber(value) {
@@ -611,6 +683,28 @@ function buildDayFilters() {
   });
 }
 
+function buildTimeFilters() {
+  const counts = new Map(TIME_SLOTS.map(slot => [
+    slot,
+    state.records.filter(r => r.timeSlots.includes(slot)).length,
+  ]));
+
+  elements.timeFilters.innerHTML = TIME_SLOTS
+    .map(slot => chipHtml(TIME_SLOT_LABELS[slot] || slot, counts.get(slot) || 0, "time", slot))
+    .join("");
+
+  elements.timeFilters.querySelectorAll(".chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const value = btn.dataset.value;
+      const idx = state.selectedTimes.indexOf(value);
+      if (idx === -1) state.selectedTimes.push(value);
+      else state.selectedTimes.splice(idx, 1);
+      state.listLimit = LIST_STEP;
+      applyFilters();
+    });
+  });
+}
+
 function chipHtml(label, count, type, value) {
   return `<button class="chip" type="button" data-type="${type}" data-value="${escapeHtml(value)}">`
     + `${escapeHtml(label)} <span>${count}</span></button>`;
@@ -632,6 +726,9 @@ function updateActiveChips() {
   elements.dayFilters.querySelectorAll(".chip").forEach(btn => {
     btn.classList.toggle("active", state.selectedDays.includes(btn.dataset.value));
   });
+  elements.timeFilters.querySelectorAll(".chip").forEach(btn => {
+    btn.classList.toggle("active", state.selectedTimes.includes(btn.dataset.value));
+  });
 }
 
 /* ---------- 絞り込み ---------- */
@@ -646,6 +743,10 @@ function applyFilters() {
     if (state.selectedStyles.length && !state.selectedStyles.includes(record.school_style)) return false;
     if (state.selectedDays.length) {
       const hit = state.selectedDays.some(d => record.days.includes(d));
+      if (!hit) return false;
+    }
+    if (state.selectedTimes.length) {
+      const hit = state.selectedTimes.some(t => record.timeSlots.includes(t));
       if (!hit) return false;
     }
     if (query && !record.searchIndex.includes(query)) return false;
@@ -669,6 +770,7 @@ function updateFilterBadge() {
   if (state.selectedCity) count += 1;
   count += state.selectedStyles.length;
   count += state.selectedDays.length;
+  count += state.selectedTimes.length;
   if (state.search) count += 1;
 
   if (count > 0) {
@@ -913,11 +1015,33 @@ function detailHtml(record) {
       </a>
       ${copyBtn}
     </div>
+    ${contactTipsHtml()}
     ${sourceHtml}
     <p class="report-edit-line">
       <a class="report-edit-link" href="${escapeHtml(FORM_URLS.requestForm)}" target="_blank" rel="noopener">掲載情報の修正・追加・削除依頼はこちら</a><br>
       <span class="report-edit-note">（うまく開けない場合は <a href="../../request/">こちら</a> からもご連絡いただけます）</span>
     </p>
+  `;
+}
+
+// はじめて問い合わせる方への共通の案内（見学の可否・費用は掲載データに無いため、
+// 「こう聞けば分かります」という形でお伝えする）。
+// 教室ごとの違いはないので、レコードによらず同じ内容を表示する。
+function contactTipsHtml() {
+  return `
+    <details class="tips-details">
+      <summary>はじめて問い合わせるときのヒント</summary>
+      <div class="tips-body">
+        <p class="tips-lead">見学ができるかどうかや、かかる費用は教室によってさまざまです。
+          お問い合わせのときに、次の3つを聞いてみるとイメージがつかみやすくなります。</p>
+        <ul class="tips-list">
+          <li>見学や体験はできますか？</li>
+          <li>月謝や教材費など、かかる費用はどのくらいですか？</li>
+          <li>まったくの初心者ですが、大丈夫でしょうか？</li>
+        </ul>
+        <p class="tips-note">「ホームページの地図で見て連絡しました」とお伝えいただくと、話が早く進みます。</p>
+      </div>
+    </details>
   `;
 }
 
@@ -1266,6 +1390,7 @@ function resetFilters() {
   state.selectedCity = "";
   state.selectedStyles = [];
   state.selectedDays = [];
+  state.selectedTimes = [];
   state.search = "";
   state.selectedId = "";
   state.sortByDistance = false;
@@ -1289,6 +1414,7 @@ function updateHash() {
   if (state.selectedCity) params.set("city", state.selectedCity);
   if (state.selectedStyles.length) params.set("styles", state.selectedStyles.join(","));
   if (state.selectedDays.length) params.set("days", state.selectedDays.join(","));
+  if (state.selectedTimes.length) params.set("times", state.selectedTimes.join(","));
   if (state.search) params.set("q", state.search);
 
   const hash = params.toString();
@@ -1321,6 +1447,8 @@ function restoreFromHash() {
   state.selectedStyles = styles;
   const days = (params.get("days") || "").split(",").filter(d => DAY_ORDER.includes(d));
   state.selectedDays = days;
+  const times = (params.get("times") || "").split(",").filter(t => TIME_SLOTS.includes(t));
+  state.selectedTimes = times;
   state.search = params.get("q") || "";
   elements.searchInput.value = state.search;
   buildPrefectureFilters();
