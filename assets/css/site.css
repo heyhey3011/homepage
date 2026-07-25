@@ -795,7 +795,12 @@ a.card.is-coming-soon::after {
 }
 
 .site-footer__list li {
-    margin-bottom: 0.45rem;
+    margin-bottom: 0;
+}
+
+.site-footer__list a {
+    display: inline-block;
+    padding: 0.5rem 0;
 }
 
 .site-footer__meta {
@@ -854,6 +859,18 @@ a.card.is-coming-soon::after {
 
 .note-link {
     font-size: 0.88rem;
+}
+
+/* パンくずリスト（見た目は控えめなまま、リンクのタップ領域だけ広げる） */
+.breadcrumb {
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+}
+
+.breadcrumb a {
+    display: inline-block;
+    padding: 0.9em 0.4em;
+    margin: -0.9em -0.4em;
 }
 
 .visually-hidden {
