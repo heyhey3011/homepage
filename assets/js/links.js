@@ -59,6 +59,14 @@ window.SITE_LINKS = {
             status: "live",
             label: "公開中"
         },
+        // 吟猫コンダクター（無料ブラウザ版）
+        // 無料ブラウザ版の受け取りフォーム(Googleフォーム)。iOS版とは別導線。
+        // フォーム送信後に利用URLと使い方ページが案内される仕組み。
+        ginnekoConductorFree: {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSdLOj7frcpJFGiQ6CW4ju-ZK5W6YTqol2jw6IK4ulUkye3r-Q/viewform",
+            status: "live",
+            label: "無料公開中"
+        },
         // 吟猫ピッチマップ
         // 本体は有料note購入者向け。ここは常にランディングページ(apps/pitchmap/)を指し、
         // ランディングからnoteの購入ページへ誘導する構成。本体の実ファイルは

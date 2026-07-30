@@ -150,10 +150,7 @@
                 <a href="map/">教室マップ</a>
                 <a href="beginner/">始め方ガイド</a>
                 <a href="tools/">学習ツール</a>
-                <a href="#videos">動画で学ぶ</a>
                 <a href="community/">コミュニティ</a>
-                <a href="profile/">プロフィール</a>
-                <a href="contact/">お問い合わせ</a>
                 <a href="newsletter/" class="btn btn-primary">7日間講座</a>
             </nav>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開閉する">
@@ -167,10 +164,7 @@
                 <li><a href="map/">教室マップ</a></li>
                 <li><a href="beginner/">始め方ガイド</a></li>
                 <li><a href="tools/">学習ツール</a></li>
-                <li><a href="#videos">動画で学ぶ</a></li>
                 <li><a href="community/">コミュニティ</a></li>
-                <li><a href="profile/">プロフィール</a></li>
-                <li><a href="contact/">お問い合わせ</a></li>
                 <li class="mobile-menu__cta"><a href="newsletter/" class="btn btn-primary btn--small">7日間講座</a></li>
             </ul>
         </div>
@@ -351,13 +345,13 @@
                             <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
                         </div>
                     </a>
-                    <a href="https://apps.apple.com/jp/app/%E5%90%9F%E7%8C%AB%E3%82%B3%E3%83%B3%E3%83%80%E3%82%AF%E3%82%BF%E3%83%BC/id6792195176" data-link="tools.ginnekoConductor" class="card reveal">
+                    <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
                         <div class="card__media">
                             <img src="assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
-                            <p class="card__text">音程や伴奏を確認しながら練習できる、iPhone向けの詩吟練習アプリです。</p>
+                            <p class="card__text">音程や伴奏を確かめながら練習できる詩吟練習ツールです。iPhone用アプリ（300円）と、無料のブラウザ版があります。</p>
                         </div>
                     </a>
                     <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
@@ -574,6 +568,7 @@
                     <h2 class="site-footer__heading">学ぶ・楽しむ</h2>
                     <ul class="site-footer__list">
                         <li><a href="tools/">詩吟学習ツール</a></li>
+                        <li><a href="index.html#videos">動画で学ぶ</a></li>
                         <li><a href="dojo-details.html">吟猫道場（オンライン教室）</a></li>
                         <li><a href="community/">コミュニティ</a></li>
                         <li><a href="how-to-record.html">録音のしかた</a></li>
@@ -595,7 +590,7 @@
                     <li><a href="legal/">特定電子メール法に基づく表記</a></li>
                     <li><a href="unsubscribe/">配信停止について</a></li>
                 </ul>
-                <p>最終更新日: 2026年7月26日</p>
+                <p>最終更新日: 2026年7月30日</p>
                 <p>&copy; 2026 heyhey. All rights reserved.</p>
             </div>
         </div>
@@ -671,8 +666,13 @@
             }
 
             // 1. assets/data/youtube-stats.json を取得して表示（メイン経路）
-            fetch('assets/data/youtube-stats.json', { cache: 'no-store' })
+            // ハングしたまま統計欄が非表示にならないよう、5秒でタイムアウトしてフォールバックへ落とす
+            const statsFetchController = new AbortController();
+            const statsFetchTimeout = setTimeout(() => statsFetchController.abort(), 5000);
+
+            fetch('assets/data/youtube-stats.json', { cache: 'no-store', signal: statsFetchController.signal })
                 .then((response) => {
+                    clearTimeout(statsFetchTimeout);
                     if (!response.ok) throw new Error(`JSON response was not ok: ${response.status}`);
                     return response.json();
                 })
@@ -689,7 +689,8 @@
                     tryLiveApiUpdate();
                 })
                 .catch((error) => {
-                    console.warn('YouTube統計JSONの取得に失敗しました。フォールバック値を表示します:', error);
+                    clearTimeout(statsFetchTimeout);
+                    console.warn('YouTube統計JSONの取得に失敗しました（タイムアウトの可能性も含む）。フォールバック値を表示します:', error);
                     showFallbackStats();
                 });
         });
