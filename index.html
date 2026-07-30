@@ -666,8 +666,13 @@
             }
 
             // 1. assets/data/youtube-stats.json を取得して表示（メイン経路）
-            fetch('assets/data/youtube-stats.json', { cache: 'no-store' })
+            // ハングしたまま統計欄が非表示にならないよう、5秒でタイムアウトしてフォールバックへ落とす
+            const statsFetchController = new AbortController();
+            const statsFetchTimeout = setTimeout(() => statsFetchController.abort(), 5000);
+
+            fetch('assets/data/youtube-stats.json', { cache: 'no-store', signal: statsFetchController.signal })
                 .then((response) => {
+                    clearTimeout(statsFetchTimeout);
                     if (!response.ok) throw new Error(`JSON response was not ok: ${response.status}`);
                     return response.json();
                 })
@@ -684,7 +689,8 @@
                     tryLiveApiUpdate();
                 })
                 .catch((error) => {
-                    console.warn('YouTube統計JSONの取得に失敗しました。フォールバック値を表示します:', error);
+                    clearTimeout(statsFetchTimeout);
+                    console.warn('YouTube統計JSONの取得に失敗しました（タイムアウトの可能性も含む）。フォールバック値を表示します:', error);
                     showFallbackStats();
                 });
         });
