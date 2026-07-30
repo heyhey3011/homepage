@@ -13,7 +13,7 @@
    .section / .section--alt        … セクション余白・交互背景
    .btn .btn-primary|-secondary|-ghost … ボタン
    .card                           … 白カード（角丸16px＋影）
-   .badge .badge--coming-soon|--beta|--live|--growing … バッジ
+   .badge .badge--coming-soon|--beta|--live|--growing|--step … バッジ
    .is-coming-soon                 … links.js が付ける準備中状態
    .reveal                         … スクロールフェードイン対象
    .faq details/summary            … FAQアコーディオン
@@ -441,6 +441,11 @@ a.card:hover {
 .badge[data-status="growing"] {
     background-color: #DCEDF3;
     color: #2F6577;
+}
+
+.badge--step {
+    background-color: #E9EAEC;
+    color: #4A4F57;
 }
 
 /* ---------- 7. 準備中リンク（links.js が付与） ---------- */
