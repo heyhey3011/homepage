@@ -84,17 +84,17 @@ window.SITE_LINKS = {
     // フォールバックする仕様（applySiteLinks 内で処理）
     // ------------------------------------------------------------
     newsletter: {
-        // 初心者向け
+        // 初心者向け（7日間無料メール講座の登録フォーム。2026-07-31にGAS配信システムと連携済み）
         beginner: {
-            url: ""
+            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
         },
         // 学習者・ツール利用者向け
         learner: {
-            url: ""
+            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
         },
         // 教室・指導者向け
         teacher: {
-            url: ""
+            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
         }
     },
 
