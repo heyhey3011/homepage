@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-07-30T22:18:56Z",
-  "rangeEnd": "2026-07-30",
+  "updatedAt": "2026-07-31T22:15:29Z",
+  "rangeEnd": "2026-07-31",
   "daily": [
     {
       "date": "2026-07-17",
@@ -70,27 +70,32 @@
     },
     {
       "date": "2026-07-30",
-      "screenPageViews": 25,
+      "screenPageViews": 28,
       "activeUsers": 10
+    },
+    {
+      "date": "2026-07-31",
+      "screenPageViews": 50,
+      "activeUsers": 5
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 50
+        "sessions": 42
       },
       {
         "channel": "Organic Search",
-        "sessions": 20
+        "sessions": 23
       },
       {
         "channel": "Referral",
-        "sessions": 13
+        "sessions": 9
       },
       {
         "channel": "Unassigned",
-        "sessions": 7
+        "sessions": 6
       },
       {
         "channel": "AI Assistant",
@@ -108,11 +113,11 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 104
+        "sessions": 110
       },
       {
         "channel": "Organic Search",
-        "sessions": 33
+        "sessions": 40
       },
       {
         "channel": "Referral",
@@ -124,7 +129,7 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 7
+        "sessions": 6
       },
       {
         "channel": "AI Assistant",
@@ -140,32 +145,37 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 52
-    },
-    {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 18
+      "views": 64
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "詩吟の実演・動画アーカイブス | 詩吟の入口",
+      "views": 15
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 15
+    },
+    {
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "views": 14
+    },
+    {
+      "pagePath": "/apps/kyoshitsu-map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 13
+    },
+    {
+      "pagePath": "/tools/",
+      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
       "views": 12
     },
     {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 12
-    },
-    {
-      "pagePath": "/tools/",
-      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 11
-    },
-    {
-      "pagePath": "/apps/kyoshitsu-map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 9
+      "views": 8
     },
     {
       "pagePath": "/homepage/index.html",
@@ -178,8 +188,8 @@
       "views": 6
     },
     {
-      "pagePath": "/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
       "views": 6
     },
     {
@@ -188,19 +198,9 @@
       "views": 5
     },
     {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 5
-    },
-    {
       "pagePath": "/homepage/recommended-videos.html",
       "pageTitle": "おすすめ動画一覧 | 詩吟の入口",
       "views": 5
-    },
-    {
-      "pagePath": "/contact/",
-      "pageTitle": "お問い合わせ | 詩吟の入口",
-      "views": 4
     },
     {
       "pagePath": "/dojo-details",
@@ -211,25 +211,30 @@
       "pagePath": "/homepage/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 3
+    },
+    {
+      "pagePath": "/profile/",
+      "pageTitle": "heyheyプロフィール | 詩吟の入口",
+      "views": 3
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 2,
+      "mailmag_click": 9,
       "kindle_click": 0,
       "dojo_click": 1,
       "openchat_click": 0,
-      "tool_open": 14,
-      "form_click": 0,
+      "tool_open": 20,
+      "form_click": 5,
       "youtube_click": 3
     },
     "d28": {
-      "mailmag_click": 3,
+      "mailmag_click": 10,
       "kindle_click": 1,
       "dojo_click": 6,
       "openchat_click": 2,
-      "tool_open": 28,
-      "form_click": 5,
+      "tool_open": 34,
+      "form_click": 10,
       "youtube_click": 8
     }
   }
