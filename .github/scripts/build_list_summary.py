@@ -33,8 +33,13 @@ assets/data/list-summary.json を生成する。
   GA4_SA_KEY     … サービスアカウントの鍵JSON（全文。GA4連携のものを流用）
   LIST_SHEET_ID  … スプレッドシートのID
 
-集計の区切り（GA4集計と揃える）:
-- 「昨日」までを対象にする。GA4プロパティのタイムゾーンに合わせ、日本時間(JST)で判定する。
+集計の区切り:
+- 「今日（日本時間）」までを対象にする。
+  GA4集計は「昨日」までだが、スプレッドシートはGA4と違って当日分も完全に揃っている
+  （未確定日によるデータ欠けが起きない）ため、当日の登録もその日のうちに反映する。
+  こうすることで `total` と `daily` 末尾の `cumulative` が常に一致する。
+  ※登録完了率（added7 ÷ GA4のmailmag_click d7）は分母側の窓が1日ずれるが、
+    参考値としての率なので許容する（指示書 追記2 の判断）。
 """
 
 import json
@@ -52,7 +57,7 @@ API_SCOPE = "https://www.googleapis.com/auth/spreadsheets.readonly"
 OUTPUT_PATH = "assets/data/list-summary.json"
 
 # 読みたいタブ名（この優先順で探す）。どれも無ければ先頭タブにフォールバックする。
-PREFERRED_SHEET_TITLES = ["フォームの回答1", "Form_Responses"]
+PREFERRED_SHEET_TITLES = ["フォームの回答1", "フォームの回答 1", "Form_Responses"]
 
 # 登録日として扱う列のヘッダー候補（部分一致・大文字小文字は無視）
 DATE_HEADER_CANDIDATES = ["タイムスタンプ", "登録日", "日付", "timestamp", "date"]
@@ -66,7 +71,7 @@ EMAIL_HEADER_CANDIDATES = ["メール", "mail"]
 # お名前にこの文字列を含む行は運営者の動作確認なので全集計から除外する
 TEST_ROW_MARKER = "テスト"
 
-# 日本時間（GA4の「昨日」と区切りを合わせるため）
+# 日本時間（シートのタイムスタンプがJST表記のため、日付の区切りもJSTで判定する）
 JST = timezone(timedelta(hours=9))
 
 # daily に出す日数
@@ -374,25 +379,33 @@ def main():
     if not people:
         fail("集計対象の人数が0人でした。前回の値を維持します。")
 
-    # 「昨日」までを対象にする（GA4集計と同じ区切り。日本時間で判定）
-    end = datetime.now(JST).date() - timedelta(days=1)
+    # 「今日（日本時間）」までを対象にする。
+    # シートは当日分も完全に揃っているので、当日の登録もその日のうちに反映する。
+    # これにより total と daily 末尾の cumulative が常に一致する。
+    end = datetime.now(JST).date()
     start28 = end - timedelta(days=DAILY_DAYS - 1)
     start7 = end - timedelta(days=6)
 
     counts = {}
     unknown = 0  # 登録日が読めない人は最古扱い（累計の底に含める）
     before_window = 0
+    future = 0  # 入力ミス等で未来日になっている人（当日扱いにして数え漏らさない）
     for registered in people:
         if registered is None:
             unknown += 1
             continue
-        if registered < start28:
+        if registered > end:
+            future += 1
+            registered = end
+        elif registered < start28:
             before_window += 1
         key = registered.isoformat()
         counts[key] = counts.get(key, 0) + 1
 
     if unknown:
         print("登録日が読み取れない人が {} 人いました（最古扱いで累計に含めます）。".format(unknown))
+    if future:
+        print("登録日が未来日になっている人が {} 人いました（本日扱いで数えます）。".format(future))
 
     daily = []
     cumulative = unknown + before_window
