@@ -1,6 +1,6 @@
 {
   "isSample": false,
-  "updatedAt": "2026-07-31T22:15:29Z",
+  "updatedAt": "2026-08-01T13:54:57Z",
   "rangeEnd": "2026-07-31",
   "daily": [
     {
@@ -75,15 +75,15 @@
     },
     {
       "date": "2026-07-31",
-      "screenPageViews": 50,
-      "activeUsers": 5
+      "screenPageViews": 52,
+      "activeUsers": 6
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 42
+        "sessions": 43
       },
       {
         "channel": "Organic Search",
@@ -92,10 +92,6 @@
       {
         "channel": "Referral",
         "sessions": 9
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 6
       },
       {
         "channel": "AI Assistant",
@@ -113,7 +109,7 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 110
+        "sessions": 111
       },
       {
         "channel": "Organic Search",
@@ -126,10 +122,6 @@
       {
         "channel": "Organic Video",
         "sessions": 8
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 6
       },
       {
         "channel": "AI Assistant",
@@ -145,7 +137,7 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 64
+      "views": 65
     },
     {
       "pagePath": "/apps/ginshi-archives/",
@@ -160,7 +152,7 @@
     {
       "pagePath": "/newsletter/",
       "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 14
+      "views": 15
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
