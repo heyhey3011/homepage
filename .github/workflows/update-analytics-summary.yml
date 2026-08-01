@@ -15,38 +15,54 @@ jobs:
       - name: リポジトリをチェックアウト 🛎️
         uses: actions/checkout@v4
 
-      # Secretが両方そろっているかを最初に確認する。
-      # 片方でも未設定なら「スキップ」として正常終了させ、ワークフローを赤くしない。
+      # Secretがそろっているかを最初に確認する。
+      # 未設定なら「スキップ」として正常終了させ、ワークフローを赤くしない。
+      # GA4集計とリスト集計は独立して判定する（片方だけ未設定でも、もう片方は動く）。
       - name: Secretの有無を確認（未設定ならスキップ） 🔍
         id: precheck
         env:
           GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          LIST_SHEET_ID: ${{ secrets.LIST_SHEET_ID }}
         run: |
           set -eu
           if [ -z "${GA4_SA_KEY:-}" ] || [ -z "${GA4_PROPERTY_ID:-}" ]; then
             echo "::notice::GA4の連携Secret（GA4_SA_KEY / GA4_PROPERTY_ID）が未設定のためスキップします。設定が完了すると自動で実データに切り替わります。"
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Secretは設定済みです。集計を実行します。"
+            echo "Secretは設定済みです。GA4集計を実行します。"
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+          # リスト集計はGA4の鍵（GA4_SA_KEY）を流用しつつ、シートIDが必要
+          if [ -z "${GA4_SA_KEY:-}" ] || [ -z "${LIST_SHEET_ID:-}" ]; then
+            echo "::notice::リスト連携のSecret（LIST_SHEET_ID）が未設定のため、リスト集計だけスキップします。ダッシュボードは「連携待ち」表示のままになります。"
+            echo "skip_list=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "リスト連携のSecretは設定済みです。リスト集計を実行します。"
+            echo "skip_list=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Python をセットアップ 🐍
-        if: steps.precheck.outputs.skip == 'false'
+        if: steps.precheck.outputs.skip == 'false' || steps.precheck.outputs.skip_list == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: 依存ライブラリをインストール 📦
-        if: steps.precheck.outputs.skip == 'false'
+        if: steps.precheck.outputs.skip == 'false' || steps.precheck.outputs.skip_list == 'false'
         run: pip install --quiet google-auth requests
 
       # GA4 Data API を呼んで集計し、assets/data/analytics-summary.json に書き出す。
       # 認証情報（鍵JSON・プロパティID）は env 経由でのみ渡し、ログには出さない（set -x 禁止）。
       # API失敗時は例外で終了し、既存ファイルは書き換えない（前回値の保護）。
+      # GA4集計とリスト集計はステップを分離し、両方 continue-on-error にする。
+      # 片方が失敗しても、もう片方の結果はコミット・デプロイまで反映される。
+      # （GA4集計が失敗した場合は、最後の「集計結果の確認」ステップでジョブを赤くする）
       - name: GA4から集計してJSONを生成 📊
+        id: ga4
         if: steps.precheck.outputs.skip == 'false'
+        continue-on-error: true
         env:
           GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
@@ -54,21 +70,47 @@ jobs:
           set -eu
           python .github/scripts/build_analytics_summary.py
 
+      # Googleスプレッドシート（メルマガ登録フォームの回答）から読者数を集計する。
+      # シートには個人情報が入っているため、スクリプトは集計値しか出力しない
+      # （メールアドレス・お名前・自由記入欄の値はJSONにもログにも出さない・set -x 禁止）。
+      # 失敗しても既存JSONは書き換わらず、GA4の結果は通常どおり反映される。
+      - name: リスト（メルマガ読者数）を集計してJSONを生成 📮
+        id: list
+        if: steps.precheck.outputs.skip_list == 'false'
+        continue-on-error: true
+        env:
+          GA4_SA_KEY: ${{ secrets.GA4_SA_KEY }}
+          LIST_SHEET_ID: ${{ secrets.LIST_SHEET_ID }}
+        run: |
+          set -eu
+          python .github/scripts/build_list_summary.py
+
+      # 差分のあるファイルだけを git add する。
+      # 片方の集計が失敗（＝ファイル未更新）でも、成功した方はそのままコミットされる。
       - name: 変更をコミットしてpush 🚀
         id: commit_push
-        if: steps.precheck.outputs.skip == 'false'
+        if: steps.precheck.outputs.skip == 'false' || steps.precheck.outputs.skip_list == 'false'
         run: |
+          set -eu
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet -- assets/data/analytics-summary.json; then
+          CHANGED=""
+          for FILE in assets/data/analytics-summary.json assets/data/list-summary.json; do
+            if [ -n "$(git status --porcelain -- "$FILE")" ]; then
+              git add "$FILE"
+              CHANGED="${CHANGED}${CHANGED:+ }${FILE}"
+            fi
+          done
+
+          if [ -z "$CHANGED" ]; then
             echo "変更がないため、コミットとデプロイをスキップします。"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git add assets/data/analytics-summary.json
-          git commit -m "chore: アクセス解析サマリーを自動更新"
+          echo "コミット対象: ${CHANGED}"
+          git commit -m "chore: ダッシュボード用サマリーを自動更新"
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
@@ -131,3 +173,18 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+
+      # 各集計の成否をまとめて判定する（デプロイのあとに実行）。
+      # GA4集計が失敗した場合は従来どおりワークフローを赤くして気づけるようにする。
+      # リスト集計の失敗は警告のみ（ダッシュボードは前回値のまま表示される）。
+      - name: 集計結果の確認 ✅
+        if: always()
+        run: |
+          set -eu
+          if [ "${{ steps.list.outcome }}" = "failure" ]; then
+            echo "::warning::リスト（メルマガ読者数）の集計に失敗しました。list-summary.json は前回の値のままです。シートの共有設定をご確認ください。"
+          fi
+          if [ "${{ steps.ga4.outcome }}" = "failure" ]; then
+            echo "::error::GA4の集計に失敗しました。analytics-summary.json は前回の値のままです。"
+            exit 1
+          fi
