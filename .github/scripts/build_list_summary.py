@@ -9,6 +9,15 @@ assets/data/list-summary.json を生成する。
   このスクリプトが出力してよいのは **集計値（人数・日付）だけ**。
   セルの値は JSON にも標準出力（Actionsのログ）にも 1文字たりとも出さない。
 - ログに出してよいのは「ヘッダー行の列名」「件数」「日付範囲」まで。
+  （重複排除でもアドレスの値は出さず、除外した「件数」だけをログに出す）
+
+人数の数え方:
+- 同じ人が複数回登録することがあるため、メールアドレスで重複を除いた
+  **ユニーク人数**を「人数」とする（total / added7 / added28 / daily すべて）。
+- 同一アドレスが複数行ある場合は、最古の登録日をその人の登録日として数える。
+- メールアドレスが空の行はユニーク判定できないため 1行=1人 として数える。
+- メール列が見つからない場合は重複排除をスキップし、従来どおり行数で数える（警告を出す）。
+- 処理順は「テスト行の除外 → 重複排除」。
 
 設計方針（build_analytics_summary.py と同じ思想）:
 - 認証情報（サービスアカウント鍵JSON・シートID）は環境変数からのみ受け取る。
@@ -42,14 +51,17 @@ from google.auth.transport.requests import Request as GoogleAuthRequest
 API_SCOPE = "https://www.googleapis.com/auth/spreadsheets.readonly"
 OUTPUT_PATH = "assets/data/list-summary.json"
 
-# 読みたいタブ名。見つからない場合は先頭タブにフォールバックする。
-PREFERRED_SHEET_TITLE = "フォームの回答1"
+# 読みたいタブ名（この優先順で探す）。どれも無ければ先頭タブにフォールバックする。
+PREFERRED_SHEET_TITLES = ["フォームの回答1", "Form_Responses"]
 
 # 登録日として扱う列のヘッダー候補（部分一致・大文字小文字は無視）
-DATE_HEADER_CANDIDATES = ["タイムスタンプ", "登録日", "日付", "date"]
+DATE_HEADER_CANDIDATES = ["タイムスタンプ", "登録日", "日付", "timestamp", "date"]
 
 # お名前列のヘッダー候補（テスト行の判定に使う）
 NAME_HEADER_CANDIDATES = ["お名前"]
+
+# メールアドレス列のヘッダー候補（重複排除に使う）
+EMAIL_HEADER_CANDIDATES = ["メール", "mail"]
 
 # お名前にこの文字列を含む行は運営者の動作確認なので全集計から除外する
 TEST_ROW_MARKER = "テスト"
@@ -125,14 +137,15 @@ def fetch_sheet_titles(token, sheet_id):
 
 
 def pick_sheet_title(titles):
-    """希望のタブ名があればそれを、無ければ先頭タブを使う。"""
+    """希望のタブ名（優先順）があればそれを、どれも無ければ先頭タブを使う。"""
     if not titles:
         fail("スプレッドシートにタブが1つも見つかりませんでした。前回の値を維持します。")
-    if PREFERRED_SHEET_TITLE in titles:
-        return PREFERRED_SHEET_TITLE
+    for candidate in PREFERRED_SHEET_TITLES:
+        if candidate in titles:
+            return candidate
     print(
         "::notice::タブ「{}」が見つからないため、先頭タブ「{}」を使用します。".format(
-            PREFERRED_SHEET_TITLE, titles[0]
+            "」「".join(PREFERRED_SHEET_TITLES), titles[0]
         )
     )
     return titles[0]
@@ -251,6 +264,64 @@ def find_name_column(header):
     return index
 
 
+def find_email_column(header):
+    """メールアドレス列（重複排除用）。見つからなければ None（重複排除はスキップ）。"""
+    index = find_column_by_header(header, EMAIL_HEADER_CANDIDATES)
+    if index is None:
+        print(
+            "::warning::メールアドレスの列が見つからなかったため、重複排除をスキップして行数で数えます。"
+        )
+        return None
+    print("重複排除に使用する列: 「{}」".format(cell(header, index).strip()))
+    return index
+
+
+def build_people(data_rows, date_index, email_index):
+    """
+    データ行を「人」の単位にまとめ、各人の登録日（date または None）のリストを返す。
+
+    - メールアドレス（前後空白除去＋小文字化のみで正規化）が同じ行は同一人物とみなす。
+      アドレスの値はログにもJSONにも出さない（キーとしてメモリ上で使うだけ）。
+    - 同一人物の登録日は「最古の登録日」を採用する。
+      日付が読めない行しか無い人は None（＝最古扱い）とする。
+    - アドレスが空の行はユニーク判定できないため、1行=1人として数える。
+    - email_index が None のときは重複排除せず、1行=1人として数える。
+
+    戻り値: (people, duplicates)
+      people     … 各人の登録日（date か None）のリスト
+      duplicates … 重複として1人にまとめた「行数」
+    """
+    people = []
+    index_by_email = {}
+    duplicates = 0
+
+    for row in data_rows:
+        registered = parse_date(cell(row, date_index))
+
+        email = ""
+        if email_index is not None:
+            email = cell(row, email_index).strip().lower()
+
+        if not email:
+            people.append(registered)
+            continue
+
+        if email in index_by_email:
+            duplicates += 1
+            position = index_by_email[email]
+            existing = people[position]
+            if existing is None:
+                # これまで日付が読めていなかった人は、読める日付が来たら採用する
+                people[position] = registered
+            elif registered is not None and registered < existing:
+                people[position] = registered
+        else:
+            index_by_email[email] = len(people)
+            people.append(registered)
+
+    return people, duplicates
+
+
 def main():
     sa_key = os.environ.get("GA4_SA_KEY", "")
     sheet_id = os.environ.get("LIST_SHEET_ID", "")
@@ -275,7 +346,9 @@ def main():
 
     date_index = find_date_column(header, data_rows)
     name_index = find_name_column(header)
+    email_index = find_email_column(header)
 
+    # 処理順は「テスト行の除外 → 重複排除」
     # テスト行（お名前に「テスト」を含む行）を全集計から除外する
     if name_index is not None:
         kept = [
@@ -289,26 +362,37 @@ def main():
     if not data_rows:
         fail("集計対象のデータ行が0件でした。前回の値を維持します。")
 
+    # メールアドレスで重複を排除し、ここから先は「人」単位で数える
+    people, duplicates = build_people(data_rows, date_index, email_index)
+    if duplicates:
+        print(
+            "同じメールアドレスの重複登録を {} 件まとめました（{} 行 → {} 人）。".format(
+                duplicates, len(data_rows), len(people)
+            )
+        )
+
+    if not people:
+        fail("集計対象の人数が0人でした。前回の値を維持します。")
+
     # 「昨日」までを対象にする（GA4集計と同じ区切り。日本時間で判定）
     end = datetime.now(JST).date() - timedelta(days=1)
     start28 = end - timedelta(days=DAILY_DAYS - 1)
     start7 = end - timedelta(days=6)
 
     counts = {}
-    unknown = 0  # 登録日が読めない行は最古扱い（累計の底に含める）
+    unknown = 0  # 登録日が読めない人は最古扱い（累計の底に含める）
     before_window = 0
-    for row in data_rows:
-        parsed = parse_date(cell(row, date_index))
-        if parsed is None:
+    for registered in people:
+        if registered is None:
             unknown += 1
             continue
-        if parsed < start28:
+        if registered < start28:
             before_window += 1
-        key = parsed.isoformat()
+        key = registered.isoformat()
         counts[key] = counts.get(key, 0) + 1
 
     if unknown:
-        print("登録日が読み取れない行が {} 件ありました（最古扱いで累計に含めます）。".format(unknown))
+        print("登録日が読み取れない人が {} 人いました（最古扱いで累計に含めます）。".format(unknown))
 
     daily = []
     cumulative = unknown + before_window
@@ -329,7 +413,7 @@ def main():
     result = {
         "isSample": False,
         "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "total": len(data_rows),
+        "total": len(people),
         "added7": added7,
         "added28": added28,
         "daily": daily,
