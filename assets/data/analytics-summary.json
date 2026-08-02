@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-01T22:10:21Z",
-  "rangeEnd": "2026-08-01",
+  "updatedAt": "2026-08-02T21:51:29Z",
+  "rangeEnd": "2026-08-02",
   "daily": [
     {
       "date": "2026-07-17",
@@ -80,65 +80,66 @@
     },
     {
       "date": "2026-08-01",
-      "screenPageViews": 391,
+      "screenPageViews": 401,
       "activeUsers": 69
+    },
+    {
+      "date": "2026-08-02",
+      "screenPageViews": 121,
+      "activeUsers": 29
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 89
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 64
+        "sessions": 99
       },
       {
         "channel": "Organic Search",
-        "sessions": 28
+        "sessions": 34
+      },
+      {
+        "channel": "Unassigned",
+        "sessions": 32
       },
       {
         "channel": "Organic Video",
-        "sessions": 14
+        "sessions": 22
       },
       {
         "channel": "Organic Social",
-        "sessions": 13
+        "sessions": 15
       },
       {
         "channel": "Referral",
-        "sessions": 10
-      },
-      {
-        "channel": "AI Assistant",
-        "sessions": 2
+        "sessions": 9
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 168
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 64
+        "sessions": 189
       },
       {
         "channel": "Organic Search",
-        "sessions": 47
+        "sessions": 56
+      },
+      {
+        "channel": "Unassigned",
+        "sessions": 32
       },
       {
         "channel": "Organic Video",
-        "sessions": 21
+        "sessions": 30
       },
       {
         "channel": "Referral",
-        "sessions": 20
+        "sessions": 22
       },
       {
         "channel": "Organic Social",
-        "sessions": 13
+        "sessions": 15
       },
       {
         "channel": "AI Assistant",
@@ -150,97 +151,97 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 193
+      "views": 229
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "詩吟の実演・動画アーカイブス | 詩吟の入口",
-      "views": 89
+      "views": 116
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 79
+      "views": 95
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 36
+      "views": 47
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 28
-    },
-    {
-      "pagePath": "/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 18
+      "views": 33
     },
     {
       "pagePath": "/community/",
       "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 17
+      "views": 20
     },
     {
-      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
-      "pageTitle": "吟猫ピッチマップ",
-      "views": 14
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "views": 19
     },
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 14
+      "views": 19
     },
     {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 9
+      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
+      "pageTitle": "吟猫ピッチマップ",
+      "views": 13
     },
     {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 8
+      "views": 11
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 8
+      "views": 7
     },
     {
       "pagePath": "/apps/shigin-jiten/",
       "pageTitle": "詩吟大辞典 | 詩吟の入口",
-      "views": 5
+      "views": 6
+    },
+    {
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 6
+    },
+    {
+      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/guide",
+      "pageTitle": "はじめての使い方 | 吟猫ピッチマップ",
+      "views": 4
     },
     {
       "pagePath": "/homepage/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/homepage/recommended-videos.html",
-      "pageTitle": "おすすめ動画一覧 | 詩吟の入口",
-      "views": 4
+      "views": 3
     }
   ],
   "events": {
     "d7": {
       "mailmag_click": 11,
-      "kindle_click": 6,
-      "dojo_click": 7,
+      "kindle_click": 7,
+      "dojo_click": 6,
       "openchat_click": 0,
-      "tool_open": 156,
-      "form_click": 15,
-      "youtube_click": 16
+      "tool_open": 192,
+      "form_click": 19,
+      "youtube_click": 18
     },
     "d28": {
       "mailmag_click": 12,
-      "kindle_click": 7,
+      "kindle_click": 8,
       "dojo_click": 12,
       "openchat_click": 2,
-      "tool_open": 172,
-      "form_click": 20,
-      "youtube_click": 21
+      "tool_open": 213,
+      "form_click": 24,
+      "youtube_click": 24
     }
   }
 }
