@@ -40,6 +40,10 @@ assets/data/list-summary.json を生成する。
   こうすることで `total` と `daily` 末尾の `cumulative` が常に一致する。
   ※登録完了率（added7 ÷ GA4のmailmag_click d7）は分母側の窓が1日ずれるが、
     参考値としての率なので許容する（指示書 追記2 の判断）。
+- 集計の開始日は LIST_START_DATE（メルマガ正式スタート日）。それより前の登録は数えない。
+
+人数の数え方の全体像（処理順）:
+  テスト行の除外 → メールアドレスでの重複排除 → 開始日フィルタ
 """
 
 import json
@@ -76,6 +80,12 @@ JST = timezone(timedelta(hours=9))
 
 # daily に出す日数
 DAILY_DAYS = 28
+
+# メルマガ正式スタート日。これより前の登録は集計対象外（total / added7 / added28 / daily すべて）。
+# 重複排除後の「その人の登録日（＝最古の登録日）」で判定するため、
+# スタート前に登録した人が後から再登録しても集計には入らない。
+# 登録日が読み取れない人は判定できないので除外しない（従来どおり累計の底に含める）。
+LIST_START_DATE = date(2026, 8, 1)
 
 # スプレッドシートのシリアル値（1899-12-30 起点）を日付に戻すときの基準
 SERIAL_EPOCH = date(1899, 12, 30)
@@ -375,6 +385,24 @@ def main():
                 duplicates, len(data_rows), len(people)
             )
         )
+
+    # 開始日フィルタ（重複排除のあと）。
+    # メルマガ正式スタート前に登録した人は集計に入れない。
+    # 判定はその人の登録日（＝最古の登録日）で行うため、スタート前に登録した人が
+    # あとから再登録していても対象外のまま。日付が読めない人は判定できないので残す。
+    kept_people = [
+        registered
+        for registered in people
+        if registered is None or registered >= LIST_START_DATE
+    ]
+    before_start = len(people) - len(kept_people)
+    if before_start:
+        print(
+            "開始日（{}）より前の登録を {} 人分、集計から除外しました。".format(
+                LIST_START_DATE.isoformat(), before_start
+            )
+        )
+    people = kept_people
 
     if not people:
         fail("集計対象の人数が0人でした。前回の値を維持します。")
