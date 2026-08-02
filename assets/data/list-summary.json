@@ -1,15 +1,10 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-01T22:10:22Z",
-  "total": 9,
-  "added7": 9,
-  "added28": 9,
+  "updatedAt": "2026-08-02T21:51:30Z",
+  "total": 15,
+  "added7": 15,
+  "added28": 15,
   "daily": [
-    {
-      "date": "2026-07-06",
-      "added": 0,
-      "cumulative": 0
-    },
     {
       "date": "2026-07-07",
       "added": 0,
@@ -142,8 +137,13 @@
     },
     {
       "date": "2026-08-02",
-      "added": 2,
-      "cumulative": 9
+      "added": 8,
+      "cumulative": 15
+    },
+    {
+      "date": "2026-08-03",
+      "added": 0,
+      "cumulative": 15
     }
   ]
 }
