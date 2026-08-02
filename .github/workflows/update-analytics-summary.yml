@@ -2,7 +2,7 @@ name: アクセス解析サマリーの自動更新
 
 on:
   schedule:
-    - cron: '15 21 * * *'  # 毎日UTC21:15 = 日本時間 朝6:15（YouTube統計の直後）
+    - cron: '7 20 * * *'  # 毎日UTC20:07 = 日本時間 5:07。GitHubの混雑遅延（約1時間）を見込んで、日本時間 朝6時すぎに実行される想定
   workflow_dispatch: {}  # 手動実行用
 
 permissions:
