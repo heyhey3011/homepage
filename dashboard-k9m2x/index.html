@@ -42,6 +42,15 @@
             margin: 0;
         }
 
+        /* 計測スタート日のちいさなお知らせ（目立たせすぎない） */
+        .dash-startnote {
+            text-align: center;
+            color: var(--color-ink-soft);
+            font-size: 0.78rem;
+            margin: 0.6rem 0 0;
+            line-height: 1.6;
+        }
+
         .dash-note {
             background: var(--color-gold-soft);
             border: 1px solid var(--color-gold);
@@ -121,10 +130,14 @@
             height: 180px;
             overflow-x: auto;
             padding-bottom: 0.3rem;
+            /* 日数が少ないときは中央にまとめる（safe なので溢れるときは左寄せに戻る） */
+            justify-content: safe center;
         }
         .bar {
             flex: 1 0 8px;
             min-width: 8px;
+            /* 日数が少なくても棒が極端に太くならないように */
+            max-width: 40px;
             background: linear-gradient(180deg, var(--color-matcha), var(--color-deep-green));
             border-radius: 3px 3px 0 0;
             position: relative;
@@ -301,6 +314,15 @@
             color: var(--color-deep-green);
         }
 
+        /* 率が100%を超えたときだけ出るちいさな補足 */
+        .funnel-caveat {
+            font-size: 0.75rem;
+            color: var(--color-ink-soft);
+            line-height: 1.6;
+            margin: -0.35rem 0 0.55rem;
+            padding-left: 1.45rem;
+        }
+
         /* --- リスト推移グラフ --- */
         .bar-chart--list { height: 120px; }
         .bar--list { background: linear-gradient(180deg, #D98A73, var(--color-vermilion)); }
@@ -328,6 +350,7 @@
         <div class="dash-hero">
             <h1>詩吟の入口 ダッシュボード</h1>
             <p>あなただけの、アクセスのまとめ画面です</p>
+            <p class="dash-startnote">※集計は2026年8月1日（計測スタート日）以降のデータが対象です</p>
         </div>
 
         <!-- サンプル表示の注記（サンプルのときだけ出る） -->
@@ -414,6 +437,7 @@
                         <div class="funnel-step__bar"><span id="fnClicksBar" style="width: 8%;"></span></div>
                     </div>
                     <p class="funnel-arrow"><b id="fnRate2">—</b><span>が登録まで進みました</span></p>
+                    <p class="funnel-caveat" id="fnRate2Note" hidden>※配信のリンクなどサイトを通らない登録があると100%を超えます</p>
                     <div class="funnel-step funnel-step--3">
                         <p class="funnel-step__head">
                             <span class="funnel-step__label">登録完了<span class="funnel-step__note">この7日間で新しく登録した人</span></span>
@@ -742,6 +766,8 @@
             var r2 = (added7 === null) ? null : ratio(added7, clicks);
             el("fnRate1").textContent = (r1 === null) ? "—" : r1 + "%";
             el("fnRate2").textContent = (r2 === null) ? "—" : r2 + "%";
+            // 100%を超えたときだけ、その理由をそっと添える
+            el("fnRate2Note").hidden = !(r2 !== null && r2 > 100);
 
             // --- 2-2. リストの伸び（累計の棒グラフ） ---
             renderListChart(list);

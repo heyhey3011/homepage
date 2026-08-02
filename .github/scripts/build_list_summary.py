@@ -40,7 +40,9 @@ assets/data/list-summary.json を生成する。
   こうすることで `total` と `daily` 末尾の `cumulative` が常に一致する。
   ※登録完了率（added7 ÷ GA4のmailmag_click d7）は分母側の窓が1日ずれるが、
     参考値としての率なので許容する（指示書 追記2 の判断）。
-- 集計の開始日は LIST_START_DATE（メルマガ正式スタート日）。それより前の登録は数えない。
+- 集計の開始日は STATS_START_DATE（メルマガ・計測の正式スタート日）。
+  それより前の登録は数えず、daily にもそれより前の日付を出さない
+  （スタート直後は daily が28件未満になる。ダッシュボード側はそれで正常）。
 
 人数の数え方の全体像（処理順）:
   テスト行の除外 → メールアドレスでの重複排除 → 開始日フィルタ
@@ -81,11 +83,17 @@ JST = timezone(timedelta(hours=9))
 # daily に出す日数
 DAILY_DAYS = 28
 
-# メルマガ正式スタート日。これより前の登録は集計対象外（total / added7 / added28 / daily すべて）。
+# メルマガ・計測の正式スタート日。ダッシュボードの数字はすべてこの日以降だけを対象にする。
+# - これより前の登録は集計対象外（total / added7 / added28 / daily すべて）
+# - daily にもこれより前の日付は出さない（配列が28件未満になってよい）
 # 重複排除後の「その人の登録日（＝最古の登録日）」で判定するため、
 # スタート前に登録した人が後から再登録しても集計には入らない。
 # 登録日が読み取れない人は判定できないので除外しない（従来どおり累計の底に含める）。
-LIST_START_DATE = date(2026, 8, 1)
+# build_analytics_summary.py の STATS_START_DATE と同じ日付にそろえること。
+STATS_START_DATE = date(2026, 8, 1)
+
+# 旧名（追記3で導入）。意味は STATS_START_DATE と同じ。
+LIST_START_DATE = STATS_START_DATE
 
 # スプレッドシートのシリアル値（1899-12-30 起点）を日付に戻すときの基準
 SERIAL_EPOCH = date(1899, 12, 30)
@@ -393,13 +401,13 @@ def main():
     kept_people = [
         registered
         for registered in people
-        if registered is None or registered >= LIST_START_DATE
+        if registered is None or registered >= STATS_START_DATE
     ]
     before_start = len(people) - len(kept_people)
     if before_start:
         print(
             "開始日（{}）より前の登録を {} 人分、集計から除外しました。".format(
-                LIST_START_DATE.isoformat(), before_start
+                STATS_START_DATE.isoformat(), before_start
             )
         )
     people = kept_people
@@ -410,9 +418,12 @@ def main():
     # 「今日（日本時間）」までを対象にする。
     # シートは当日分も完全に揃っているので、当日の登録もその日のうちに反映する。
     # これにより total と daily 末尾の cumulative が常に一致する。
+    # daily の窓は「28日前」始まりだが、計測スタート日より前には遡らない
+    # （8/1より前の日付を daily に出さない。窓が28日に満たない間は配列も短くなる）。
     end = datetime.now(JST).date()
-    start28 = end - timedelta(days=DAILY_DAYS - 1)
-    start7 = end - timedelta(days=6)
+    start28 = max(end - timedelta(days=DAILY_DAYS - 1), STATS_START_DATE)
+    start7 = max(end - timedelta(days=6), STATS_START_DATE)
+    window_days = (end - start28).days + 1
 
     counts = {}
     unknown = 0  # 登録日が読めない人は最古扱い（累計の底に含める）
@@ -437,7 +448,7 @@ def main():
 
     daily = []
     cumulative = unknown + before_window
-    for offset in range(DAILY_DAYS):
+    for offset in range(window_days):
         day = start28 + timedelta(days=offset)
         added = counts.get(day.isoformat(), 0)
         cumulative += added
