@@ -389,7 +389,7 @@
                     <div class="stat-card stat-card--vermilion">
                         <p class="stat-card__label">登録完了率</p>
                         <div><span class="stat-card__value" id="listCvr">–</span><span class="stat-card__unit" id="listCvrUnit">%</span></div>
-                        <p class="stat-card__hint">登録ページに進んだ人のうち、実際に登録した割合</p>
+                        <p class="stat-card__hint" id="listCvrHint">登録ページに進んだ人のうち、実際に登録した割合</p>
                     </div>
                 </div>
             </section>
@@ -437,10 +437,10 @@
                         <div class="funnel-step__bar"><span id="fnClicksBar" style="width: 8%;"></span></div>
                     </div>
                     <p class="funnel-arrow"><b id="fnRate2">—</b><span>が登録まで進みました</span></p>
-                    <p class="funnel-caveat" id="fnRate2Note" hidden>※配信のリンクなどサイトを通らない登録があると100%を超えます</p>
+                    <p class="funnel-caveat" id="fnRate2Note" hidden>※配信やSNSなどサイトの外からの登録も含むため、100%を超えることがあります</p>
                     <div class="funnel-step funnel-step--3">
                         <p class="funnel-step__head">
-                            <span class="funnel-step__label">登録完了<span class="funnel-step__note">この7日間で新しく登録した人</span></span>
+                            <span class="funnel-step__label">登録完了<span class="funnel-step__note">この7日間で新しく登録した人（サイト外からの登録も含む）</span></span>
                             <span class="funnel-step__value"><span id="fnSignups">–</span><small>人</small></span>
                         </p>
                         <div class="funnel-step__bar"><span id="fnSignupsBar" class="is-empty" style="width: 8%;"></span></div>
@@ -745,9 +745,13 @@
             el("listTotal").textContent = (total === null) ? "–" : fmtNum(total);
             el("listAdded7").textContent = (added7 === null) ? "–" : "+" + fmtNum(added7);
 
+            // 登録完了率（数字はそのまま出す。100%を超えたときだけ説明文を差し替える）
             var cvr = (added7 === null) ? null : ratio(added7, access.mailmag7);
             el("listCvr").textContent = (cvr === null) ? "—" : cvr.toString();
             el("listCvrUnit").hidden = (cvr === null);
+            el("listCvrHint").textContent = (cvr !== null && cvr > 100)
+                ? "※配信やSNSなど、サイトの外からの登録も含むため100%を超えることがあります"
+                : "登録ページに進んだ人のうち、実際に登録した割合";
 
             // --- 1-2. 段階ファネル ---
             var visits = access.views7, clicks = access.mailmag7;
@@ -767,6 +771,7 @@
             el("fnRate1").textContent = (r1 === null) ? "—" : r1 + "%";
             el("fnRate2").textContent = (r2 === null) ? "—" : r2 + "%";
             // 100%を超えたときだけ、その理由をそっと添える
+            // （配信の概要欄やSNSからの直接登録は、サイトのボタンを通らないため）
             el("fnRate2Note").hidden = !(r2 !== null && r2 > 100);
 
             // --- 2-2. リストの伸び（累計の棒グラフ） ---
