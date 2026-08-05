@@ -1843,7 +1843,7 @@ window.ARCHIVE_DATA = {
       "youtubeId": "BZG2xIpwg7o",
       "youtubeTitle": "【懐かしの名舞台】「芳野に遊ぶ」（吟詠）海老澤宏升",
       "mediaType": "video",
-      "note": "日本吟剣詩舞振興会公式「懐かしの名舞台」シリーズ。1974年クラウン吟士権者・元少壮吟士",
+      "note": "日本吟剣詩舞振興会公式「懐かしの名舞台」シリーズ。1974年クラウンレコード全国吟詠コンクール第1位・元少壮吟士",
       "verified": true
     },
     {
