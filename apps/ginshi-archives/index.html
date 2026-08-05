@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>詩吟の実演・動画アーカイブス | 詩吟の入口</title>
+<title>吟士アーカイブス | 詩吟の入口</title>
 <!--
   ============================================================
-  詩吟の実演・動画アーカイブス
+  吟士アーカイブス
   ------------------------------------------------------------
   ・このファイル（index.html）をダブルクリックすると開きます。
   ・表示される動画やプロフィールの中身は「data.js」に入っています。
@@ -326,7 +326,6 @@
   }
   .performer-card:hover{border-left-color:var(--sumi);}
   .performer-card .pname{font-size:20px;font-weight:600;margin:0;}
-  .performer-card .pkana{font-size:13px;color:var(--text-soft);}
   .performer-card .pschool{font-size:14px;color:var(--text-soft);margin-top:6px;}
   .performer-card .ptitles{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;}
   .pmeta{margin-top:7px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
@@ -358,7 +357,6 @@
     padding:22px 22px;margin-bottom:24px;box-shadow:var(--shadow);
   }
   .profile-head h2{margin:0;font-size:26px;}
-  .profile-head .pkana{color:var(--text-soft);font-size:14px;}
   .profile-head .pschool{margin-top:8px;color:var(--text);font-size:16px;}
   .profile-head .ptitles{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;}
   .profile-head .pprofile{margin-top:14px;line-height:1.85;font-size:16px;}
@@ -515,7 +513,7 @@
 <!-- file:// で開いたときだけ表示される案内 -->
 <div class="file-banner" id="file-banner" style="display:none;">
   <div class="fb-inner">
-    ダブルクリック起動では、YouTubeの仕様により動画をこの画面内で再生できません。「アーカイブスを開く.bat」から起動すると、その場で再生できます。
+    ダブルクリック起動では、YouTubeの仕様により動画をこの画面内で再生できません。「吟士アーカイブスを開く.bat」から起動すると、その場で再生できます。
     <button class="fb-close" id="fb-close" type="button" aria-label="閉じる">×</button>
   </div>
 </div>
@@ -526,7 +524,7 @@
       <span class="portal-label-long">← 詩吟の入口</span>
       <span class="portal-label-short" aria-hidden="true">🏠</span>
     </a>
-    <h1>詩吟の実演・動画アーカイブス</h1>
+    <h1>吟士アーカイブス</h1>
     <p class="lead">公開されている詩吟の実演動画を、吟題・吟士・括りから探せます</p>
     <div class="count" id="count"></div>
     <div class="tabs">
@@ -584,7 +582,7 @@
   <section id="view-performers" style="display:none;">
     <div class="controls">
       <div class="search-box">
-        <input type="text" id="performer-search" placeholder="名前・よみ・流派・称号・都道府県で検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
+        <input type="text" id="performer-search" placeholder="名前・流派・称号・都道府県で検索（ひらがな・カタカナ どちらでもOK）" autocomplete="off">
       </div>
       <div class="sort-row">
         <label class="filter-label" for="performer-sort">並び順</label>
@@ -691,6 +689,11 @@
     // 空白除去
     s = s.replace(/[\s　]/g, "");
     return s;
+  }
+
+  // 半角・全角の空白だけを除去（大文字小文字やかな変換はしない、名前の突き合わせ専用）
+  function stripSpace(s){
+    return String(s||"").replace(/[\s　]/g, "");
   }
 
   var IS_FILE = (location.protocol === "file:");
@@ -881,11 +884,10 @@
 
   function performerCardHTML(p){
     var titles = (p.titles||[]).map(function(t){ return '<span class="badge">'+esc(t)+'</span>'; }).join("");
-    var kana = p.kana ? '<span class="pkana">（' + esc(p.kana) + '）</span>' : '';
     var school = p.school ? '<div class="pschool">' + esc(p.school) + '</div>' : '';
     return '' +
       '<div class="performer-card" data-pid="' + esc(p.id) + '">' +
-        '<h3 class="pname">' + esc(p.name) + ' ' + kana + '</h3>' +
+        '<h3 class="pname">' + esc(p.name) + '</h3>' +
         metaRowHTML(p) +
         school +
         '<div class="ptitles">' + titles + '</div>' +
@@ -898,14 +900,14 @@
     if(!q) return PERFORMERS.slice();
     return PERFORMERS.filter(function(p){
       var hay = normalize(
-        (p.name||"") + " " + (p.kana||"") + " " + (p.school||"") + " " +
+        (p.name||"") + " " + (p.school||"") + " " +
         (p.prefecture||"") + " " + ((p.titles||[]).join(" "))
       );
       return hay.indexOf(q) !== -1;
     });
   }
 
-  function nameKey(p){ return normalize(p.kana ? p.kana : p.name); }
+  function nameKey(p){ return normalize(p.name); }
   function cmpName(a,b){ return nameKey(a).localeCompare(nameKey(b), "ja"); }
 
   function sortPerformers(list){
@@ -940,11 +942,13 @@
     el.performerGrid.innerHTML = list.map(performerCardHTML).join("");
   }
 
-  // その吟士の出演動画を抽出（performerIdがあればそれ優先、無ければ名前の部分一致）
+  // その吟士の出演動画を抽出（performerIdがあればそれ優先、無ければ名前の部分一致。
+  // 名前の比較は両辺の空白（半角・全角）を除去してから行う＝「巽 吟城」のような表記ゆれも拾える）
   function itemsOfPerformer(p){
+    var pname = stripSpace(p.name);
     return ITEMS.filter(function(it){
       if(p.id && it.performerId && it.performerId === p.id) return true;
-      if(p.name && it.performer && it.performer.indexOf(p.name) !== -1) return true;
+      if(pname && it.performer && stripSpace(it.performer).indexOf(pname) !== -1) return true;
       return false;
     });
   }
@@ -962,7 +966,6 @@
 
   function renderProfile(p){
     var titles = (p.titles||[]).map(function(t){ return '<span class="badge">'+esc(t)+'</span>'; }).join("");
-    var kana = p.kana ? '<span class="pkana">（' + esc(p.kana) + '）</span>' : '';
     var school = p.school ? '<div class="pschool">流派・所属：' + esc(p.school) + '</div>' : '';
     var links = (p.links||[]).map(function(l){
       return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label||l.url) + '</a>';
@@ -981,7 +984,7 @@
 
     el.profileContent.innerHTML =
       '<div class="profile-head">' +
-        '<h2>' + esc(p.name) + ' ' + kana + '</h2>' +
+        '<h2>' + esc(p.name) + '</h2>' +
         metaRowHTML(p) +
         school +
         '<div class="ptitles">' + titles + '</div>' +

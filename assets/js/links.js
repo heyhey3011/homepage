@@ -34,7 +34,7 @@ window.SITE_LINKS = {
             status: "live",
             label: "公開中"
         },
-        // 実力派吟士アーカイブス
+        // 吟士アーカイブス
         ginshiArchives: {
             url: "apps/ginshi-archives/",
             status: "growing",
