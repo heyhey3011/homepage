@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-12T20:59:03Z",
-  "rangeEnd": "2026-08-12",
+  "updatedAt": "2026-08-13T20:59:04Z",
+  "rangeEnd": "2026-08-13",
   "daily": [
     {
       "date": "2026-08-01",
@@ -60,85 +60,98 @@
     },
     {
       "date": "2026-08-12",
-      "screenPageViews": 40,
+      "screenPageViews": 38,
       "activeUsers": 11
+    },
+    {
+      "date": "2026-08-13",
+      "screenPageViews": 54,
+      "activeUsers": 16
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 90
+        "sessions": 84
       },
       {
         "channel": "Organic Search",
-        "sessions": 31
+        "sessions": 39
       },
       {
         "channel": "Organic Video",
-        "sessions": 23
+        "sessions": 19
       },
       {
         "channel": "Unassigned",
-        "sessions": 7
+        "sessions": 12
       },
       {
         "channel": "Organic Social",
         "sessions": 6
+      },
+      {
+        "channel": "Cross-network",
+        "sessions": 1
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 223
+        "sessions": 233
       },
       {
         "channel": "Organic Search",
-        "sessions": 56
+        "sessions": 65
       },
       {
         "channel": "Organic Video",
-        "sessions": 51
+        "sessions": 54
       },
       {
         "channel": "Organic Social",
-        "sessions": 23
+        "sessions": 24
       },
       {
         "channel": "Unassigned",
-        "sessions": 13
+        "sessions": 18
       },
       {
         "channel": "Referral",
         "sessions": 10
+      },
+      {
+        "channel": "Cross-network",
+        "sessions": 1
       }
     ]
   },
   "pages": [
     {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 105
-    },
-    {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 90
+      "views": 103
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 99
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 40
+      "views": 38
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 28
+      "views": 27
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 17
+      "views": 19
     },
     {
       "pagePath": "/homepage/index.html",
@@ -148,36 +161,36 @@
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 13
+      "views": 12
     },
     {
       "pagePath": "/homepage/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 10
-    },
-    {
-      "pagePath": "/map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 7
+      "views": 8
     },
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 7
+      "views": 8
     },
     {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/apps/pitchmap/",
-      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 3
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 6
     },
     {
       "pagePath": "/apps/shigin-jiten/",
       "pageTitle": "詩吟大辞典 | 詩吟の入口",
+      "views": 5
+    },
+    {
+      "pagePath": "/apps/pitchmap/",
+      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
       "views": 3
     },
     {
@@ -194,21 +207,21 @@
   "events": {
     "d7": {
       "mailmag_click": 5,
-      "kindle_click": 5,
-      "dojo_click": 12,
-      "openchat_click": 2,
-      "tool_open": 103,
-      "form_click": 8,
+      "kindle_click": 4,
+      "dojo_click": 11,
+      "openchat_click": 1,
+      "tool_open": 117,
+      "form_click": 9,
       "youtube_click": 21
     },
     "d28": {
       "mailmag_click": 10,
       "kindle_click": 13,
-      "dojo_click": 32,
+      "dojo_click": 34,
       "openchat_click": 3,
-      "tool_open": 318,
-      "form_click": 36,
-      "youtube_click": 40
+      "tool_open": 339,
+      "form_click": 37,
+      "youtube_click": 42
     }
   }
 }
