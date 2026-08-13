@@ -17,9 +17,7 @@ const FORM_URLS = {
 };
 
 // 無料メルマガ（7日間講座）の登録ページURL（一元管理）
-// TODO: 教室マップ専用の入口URLを用意でき次第、こちらのURLに差し替えてください。
-//       現状は既存メルマガの登録ページへ直接リンクしています。
-const NEWSLETTER_URL = "https://shigin.net/p/r/cbWMf1ve";
+const NEWSLETTER_URL = "/newsletter/register/";
 
 // メルマガ帯を閉じた記憶（一度閉じたら次回以降は表示しない。地図操作の邪魔にならないように）
 const NEWSLETTER_DISMISS_KEY = "shiginMapNewsletterDismissed_v1";
