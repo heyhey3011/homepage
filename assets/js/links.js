@@ -80,26 +80,26 @@ window.SITE_LINKS = {
 
     // ------------------------------------------------------------
     // メルマガ（読者層別）
-    // url が空の場合は、既存メルマガ https://shigin.net/p/r/cbWMf1ve に
-    // フォールバックする仕様（applySiteLinks 内で処理）
+    // url が空の場合は newsletterFallbackUrl にフォールバックする仕様
+    // （applySiteLinks 内で処理）
     // ------------------------------------------------------------
     newsletter: {
-        // 初心者向け（7日間無料メール講座の登録フォーム。2026-07-31にGAS配信システムと連携済み）
+        // 初心者向け（7日間無料メール講座。2026-08-14にRondo登録ページへ統一）
         beginner: {
-            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
+            url: "/newsletter/register/"
         },
         // 学習者・ツール利用者向け
         learner: {
-            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
+            url: "/newsletter/register/"
         },
         // 教室・指導者向け
         teacher: {
-            url: "https://forms.gle/PckZDUkDVutZ37xZ7"
+            url: "/newsletter/register/"
         }
     },
 
-    // 既存メルマガURL（newsletter.* が空のときのフォールバック先）
-    newsletterFallbackUrl: "https://shigin.net/p/r/cbWMf1ve",
+    // newsletter.* が空のときのフォールバック先（Rondo登録ページ）
+    newsletterFallbackUrl: "/newsletter/register/",
 
     // ------------------------------------------------------------
     // お問い合わせ・申し込みフォーム
