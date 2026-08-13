@@ -82,8 +82,9 @@ const ANALYTICS_ID = "G-HFVMQXTYRY";
         // 「吟猫道場のjoinリンク」は youtube.com を含むため、
         // 先に道場判定を行い、その後で一般のYouTube判定を行います。
 
-        // (1) メルマガ（配信スタンド shigin.net への登録リンク）
-        if (href.indexOf("shigin.net") !== -1) {
+        // (1) メルマガ（登録リンク。2026-08-14にRondo登録ページ /newsletter/register/ へ統一。
+        //     旧配信スタンド shigin.net の判定は移行期の保険として残しています）
+        if (href.indexOf("shigin.net") !== -1 || href.indexOf("/newsletter/register") !== -1) {
             send("mailmag_click", { page_path: pagePath, link_text: linkText });
             return;
         }
