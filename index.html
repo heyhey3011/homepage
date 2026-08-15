@@ -30,6 +30,24 @@
     <!-- デザインシステム -->
     <link rel="stylesheet" href="assets/css/site.css">
 
+    <!-- このページだけの微調整
+         入口カードが7枚になり、最後の行に1枚だけ残るため、
+         その1枚を中央にそろえて余白が片寄って見えないようにしています。
+         （カード1枚分の幅は grid の gap 1.5rem から計算しています） -->
+    <style>
+        .entrance-grid > :last-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+            .entrance-grid > :last-child { max-width: calc((100% - 1.5rem) / 2); }
+        }
+        @media (min-width: 960px) {
+            .entrance-grid > :last-child { max-width: calc((100% - 3rem) / 3); }
+        }
+    </style>
+
     <!-- PWA / ファビコン -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
@@ -219,7 +237,7 @@
             <div class="container">
                 <h2 class="section-title reveal">あなたに合う入口を選んでください</h2>
                 <p class="section__lead reveal">目的に合わせて、ぴったりのページへご案内します。</p>
-                <div class="grid grid--3 mt-3">
+                <div class="grid grid--3 entrance-grid mt-3">
                     <a href="beginner/" class="card reveal">
                         <div class="card__media">
                             <img src="assets/img/entrance-start.webp" alt="詩吟を始めたい方向けの入口" width="800" height="500" loading="lazy">
@@ -248,6 +266,16 @@
                             <h3 class="card__title">よい吟を聴きたい</h3>
                             <p class="card__text">実力派吟士の動画を、吟士別・漢詩別に整理した吟士アーカイブスへ。</p>
                             <span class="card__arrow">吟士アーカイブスへ →</span>
+                        </div>
+                    </a>
+                    <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-conductor.webp" alt="音程をたしかめながら練習したい方向けの入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">練習したい</h3>
+                            <p class="card__text">音程をたしかめながら練習できる「吟猫コンダクター」へ。無料のブラウザ版もあります。</p>
+                            <span class="card__arrow">吟猫コンダクターへ →</span>
                         </div>
                     </a>
                     <a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
@@ -309,6 +337,15 @@
                 <h2 class="section-title reveal">詩吟学習ツール一覧</h2>
                 <p class="section__lead reveal">詩吟の学習を助ける無料ツールを開発・公開しています。</p>
                 <div class="grid grid--3 mt-3">
+                    <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
+                            <p class="card__text">音程や伴奏を確かめながら練習できる詩吟練習ツールです。iPhone用アプリ（300円）と、無料のブラウザ版があります。</p>
+                        </div>
+                    </a>
                     <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="card reveal">
                         <div class="card__media">
                             <img src="assets/img/tool-map.webp" alt="全国詩吟教室マップ" width="800" height="500" loading="lazy">
@@ -343,15 +380,6 @@
                         <div class="card__body">
                             <h3 class="card__title">漢詩の図書館 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
                             <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
-                        </div>
-                    </a>
-                    <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
-                            <p class="card__text">音程や伴奏を確かめながら練習できる詩吟練習ツールです。iPhone用アプリ（300円）と、無料のブラウザ版があります。</p>
                         </div>
                     </a>
                     <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
