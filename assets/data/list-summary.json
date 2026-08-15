@@ -1,8 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-14T20:41:49Z",
+  "updatedAt": "2026-08-15T20:35:08Z",
   "total": 24,
-  "added7": 2,
+  "added7": 1,
   "added28": 24,
   "daily": [
     {
@@ -77,6 +77,11 @@
     },
     {
       "date": "2026-08-15",
+      "added": 0,
+      "cumulative": 24
+    },
+    {
+      "date": "2026-08-16",
       "added": 0,
       "cumulative": 24
     }
