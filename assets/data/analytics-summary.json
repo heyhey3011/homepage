@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-20T20:42:11Z",
-  "rangeEnd": "2026-08-20",
+  "updatedAt": "2026-08-21T20:36:48Z",
+  "rangeEnd": "2026-08-21",
   "daily": [
     {
       "date": "2026-08-01",
@@ -100,27 +100,32 @@
     },
     {
       "date": "2026-08-20",
-      "screenPageViews": 13,
+      "screenPageViews": 14,
       "activeUsers": 6
+    },
+    {
+      "date": "2026-08-21",
+      "screenPageViews": 29,
+      "activeUsers": 8
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 67
-      },
-      {
-        "channel": "Organic Video",
-        "sessions": 25
+        "sessions": 57
       },
       {
         "channel": "Organic Search",
-        "sessions": 24
+        "sessions": 17
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 15
       },
       {
         "channel": "Unassigned",
-        "sessions": 3
+        "sessions": 5
       },
       {
         "channel": "Organic Social",
@@ -134,27 +139,27 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 300
+        "sessions": 307
       },
       {
         "channel": "Organic Search",
-        "sessions": 89
+        "sessions": 90
       },
       {
         "channel": "Organic Video",
-        "sessions": 80
+        "sessions": 82
       },
       {
         "channel": "Organic Social",
         "sessions": 25
       },
       {
-        "channel": "Referral",
-        "sessions": 11
+        "channel": "Unassigned",
+        "sessions": 12
       },
       {
-        "channel": "Unassigned",
-        "sessions": 10
+        "channel": "Referral",
+        "sessions": 11
       }
     ]
   },
@@ -162,37 +167,37 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 63
-    },
-    {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 20
-    },
-    {
-      "pagePath": "/dojo-details",
-      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 17
-    },
-    {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 17
+      "views": 43
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 12
+      "views": 14
+    },
+    {
+      "pagePath": "/dojo-details",
+      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
+      "views": 14
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 13
+    },
+    {
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 13
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 11
+      "views": 10
     },
     {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 8
+      "pagePath": "/apps/kyoshitsu-map/index.html",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 9
     },
     {
       "pagePath": "/index.html",
@@ -200,19 +205,19 @@
       "views": 7
     },
     {
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
+      "views": 6
+    },
+    {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 7
+      "views": 5
     },
     {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 6
-    },
-    {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 5
+      "views": 4
     },
     {
       "pagePath": "/how-to-record.html",
@@ -220,39 +225,39 @@
       "views": 4
     },
     {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/homepage/",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
       "views": 3
     },
     {
-      "pagePath": "/homepage/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "pagePath": "/homepage/beginner/",
+      "pageTitle": "始め方ガイド | 詩吟の入口",
+      "views": 3
+    },
+    {
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 3
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 6,
-      "kindle_click": 3,
-      "dojo_click": 6,
+      "mailmag_click": 4,
+      "kindle_click": 2,
+      "dojo_click": 3,
       "openchat_click": 1,
-      "tool_open": 41,
+      "tool_open": 27,
       "form_click": 1,
-      "youtube_click": 9
+      "youtube_click": 8
     },
     "d28": {
       "mailmag_click": 16,
-      "kindle_click": 16,
+      "kindle_click": 17,
       "dojo_click": 41,
-      "openchat_click": 4,
-      "tool_open": 381,
+      "openchat_click": 5,
+      "tool_open": 382,
       "form_click": 38,
-      "youtube_click": 51
+      "youtube_click": 52
     }
   }
 }
