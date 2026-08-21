@@ -662,11 +662,11 @@ window.SHIGIN_DAIJITEN.entries.push(
     "流派",
     "関東"
   ],
-  "summary": "1957年に洌風吟詠修養会として発足し、東京・千葉・埼玉・神奈川に展開する流派。",
+  "summary": "昭和32年(1957)に前身の洌風吟詠修養会が誕生し、東京・千葉・埼玉・神奈川に展開する流派。",
   "body": [
     {
       "heading": "概要",
-      "text": "昭和32年(1957)「洌風吟詠修養会」として誕生。昭和40年(1965)に「詩吟洌風会」へ改称、昭和50年(1975)に「詩吟洌風流」として改組された。"
+      "text": "昭和32年(1957)に前身の「洌風吟詠修養会」が誕生し、昭和35年(1960)に結成大会を開いて発足した。昭和40年(1965)に「詩吟洌風会」へ改称、昭和50年(1975)に「詩吟洌風流」として改組された。創立年は千葉県本部・鷺苑会サイトが昭和32年(1957)、総本部サイトが昭和35年(1960)の結成大会を挙げており、本項では両方を併記している。"
     },
     {
       "heading": "特色",
@@ -675,8 +675,8 @@ window.SHIGIN_DAIJITEN.entries.push(
   ],
   "fields": {
     "founded_year": 1957,
-    "founded_label": "昭和32年",
-    "official_url": "https://roenkai.jimdofree.com/",
+    "founded_label": "昭和32年（前身の洌風吟詠修養会が誕生）／昭和35年 結成大会",
+    "official_url": "https://sites.google.com/view/shigin-reppuuryuu/",
     "region": "関東",
     "umbrella": "日本吟剣詩舞振興会"
   },
@@ -689,12 +689,18 @@ window.SHIGIN_DAIJITEN.entries.push(
       "url": "https://roenkai.jimdofree.com/%E6%B4%8C%E9%A2%A8%E6%B5%81%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/",
       "accessed": "2026-07-11",
       "reliability": "official"
+    },
+    {
+      "title": "詩吟洌風流 総本部",
+      "url": "https://sites.google.com/view/shigin-reppuuryuu/",
+      "accessed": "2026-08-21",
+      "reliability": "official"
     }
   ],
   "poem_ids": [],
   "video_ids": [],
   "performer_ids": [],
-  "updated": "2026-07-11"
+  "updated": "2026-08-21"
 },
 {
   "id": "ryuha-gadoryu",

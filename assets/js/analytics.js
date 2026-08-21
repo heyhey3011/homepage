@@ -60,6 +60,24 @@ const ANALYTICS_ID = "G-HFVMQXTYRY";
         return m ? m[1] : "unknown";
     }
 
+    // 吟猫コンダクターのリンクかどうかを判定する。
+    // 判定に使うURLは assets/js/links.js の
+    //   tools.ginnekoConductor（iPhone用アプリ / App Store）
+    //   tools.ginnekoConductorFree（無料ブラウザ版の申し込みフォーム）
+    // をそのまま見にいくので、リンク先が変わってもここを直す必要はありません。
+    var CONDUCTOR_LINK_KEYS = ["ginnekoConductor", "ginnekoConductorFree"];
+    function isConductorLink(href) {
+        var tools = (window.SITE_LINKS && window.SITE_LINKS.tools) || {};
+        for (var i = 0; i < CONDUCTOR_LINK_KEYS.length; i++) {
+            var item = tools[CONDUCTOR_LINK_KEYS[i]];
+            var url = item && item.url;
+            if (url && href.indexOf(url) !== -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     function send(eventName, params) {
         try {
             window.gtag("event", eventName, params);
@@ -108,19 +126,28 @@ const ANALYTICS_ID = "G-HFVMQXTYRY";
             return;
         }
 
-        // (5) 練習補助ツール（apps/ 配下）
+        // (5) 吟猫コンダクター（iPhone用アプリと、無料ブラウザ版の申し込みフォーム）
+        //     どちらも「ツールを開いた」として tool_open にまとめます。
+        //     ※無料版のリンクはGoogleフォームなので、
+        //       下の (7) の一般的なフォーム判定より先に置くことが大切です。
+        if (isConductorLink(href)) {
+            send("tool_open", { page_path: pagePath, link_text: linkText, tool_name: "吟猫コンダクター" });
+            return;
+        }
+
+        // (6) 練習補助ツール（apps/ 配下）
         if (href.indexOf("apps/") !== -1) {
             send("tool_open", { page_path: pagePath, link_text: linkText, tool_name: detectTool(href) });
             return;
         }
 
-        // (6) Googleフォーム（お問い合わせ・リクエスト等）
+        // (7) Googleフォーム（お問い合わせ・リクエスト等）
         if (href.indexOf("forms.gle") !== -1 || href.indexOf("docs.google.com/forms") !== -1) {
             send("form_click", { page_path: pagePath, link_text: linkText });
             return;
         }
 
-        // (7) YouTube（(3)のメンバーシップ加入リンク以外の動画・チャンネル）
+        // (8) YouTube（(3)のメンバーシップ加入リンク以外の動画・チャンネル）
         if (href.indexOf("youtube.com") !== -1 || href.indexOf("youtu.be") !== -1) {
             send("youtube_click", { page_path: pagePath, link_text: linkText });
             return;
