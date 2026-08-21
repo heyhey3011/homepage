@@ -45,7 +45,7 @@ REGIONS.forEach(region => region.prefs.forEach(pref => { PREF_TO_REGION[pref] = 
 const PREF_ORDER = REGIONS.flatMap(region => region.prefs);
 
 // 流派（表示順）
-const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "吟道館流", "哲山流"];
+const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "紫洲流", "國風流", "吟道館流", "哲山流", "洌風流"];
 
 // 出典（source → 団体名）
 const SOURCE_NAMES = {
@@ -53,8 +53,11 @@ const SOURCE_NAMES = {
   kangin: "関西吟詩文化協会",
   gakuseiryu: "岳精流日本吟院",
   gindoh: "日本吟道学院",
+  shishuryu: "紫洲流日本明吟会",
+  kokufuryu: "日本國風流詩吟吟舞会",
   gindoukan: "吟道館流",
   tetsuzan: "吟道哲山流興風吟詠会",
+  reppuuryu: "詩吟洌風流",
   suzuhanaryu: "吟道鈴華流",
   web_research: "Web調査（出典付き・要確認）",
 };
@@ -979,8 +982,13 @@ function detailHtml(record) {
     const dateInfo = updated
       ? `出典サイト更新: ${updated}`
       : `${scraped}取得の情報`;
-    sourceHtml = record.source_url
-      ? `<p class="source-line">出典: <a href="${escapeHtml(record.source_url)}" target="_blank" rel="noopener">${escapeHtml(sourceName)}</a> ・ ${escapeHtml(dateInfo)}</p>`
+    // source_url は「／」区切りで複数の出典ページを持てる（例: 総本部サイト＋県本部サイト）
+    const sourceUrls = String(record.source_url || "").split("／").map(u => u.trim()).filter(Boolean);
+    const sourceLinks = sourceUrls.map((url, index) =>
+      `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(index === 0 ? sourceName : "別の出典")}</a>`
+    ).join(" ・ ");
+    sourceHtml = sourceLinks
+      ? `<p class="source-line">出典: ${sourceLinks} ・ ${escapeHtml(dateInfo)}</p>`
       : `<p class="source-line">出典: ${escapeHtml(sourceName)} ・ ${escapeHtml(dateInfo)}</p>`;
   }
 
