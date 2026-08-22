@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-21T20:36:48Z",
-  "rangeEnd": "2026-08-21",
+  "updatedAt": "2026-08-22T20:35:58Z",
+  "rangeEnd": "2026-08-22",
   "daily": [
     {
       "date": "2026-08-01",
@@ -105,31 +105,36 @@
     },
     {
       "date": "2026-08-21",
-      "screenPageViews": 29,
+      "screenPageViews": 31,
       "activeUsers": 8
+    },
+    {
+      "date": "2026-08-22",
+      "screenPageViews": 30,
+      "activeUsers": 10
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 57
+        "sessions": 48
       },
       {
         "channel": "Organic Search",
-        "sessions": 17
+        "sessions": 16
       },
       {
         "channel": "Organic Video",
-        "sessions": 15
+        "sessions": 13
       },
       {
         "channel": "Unassigned",
-        "sessions": 5
+        "sessions": 6
       },
       {
         "channel": "Organic Social",
-        "sessions": 1
+        "sessions": 4
       },
       {
         "channel": "Referral",
@@ -139,23 +144,23 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 307
+        "sessions": 309
       },
       {
         "channel": "Organic Search",
-        "sessions": 90
+        "sessions": 92
       },
       {
         "channel": "Organic Video",
-        "sessions": 82
+        "sessions": 84
       },
       {
         "channel": "Organic Social",
-        "sessions": 25
+        "sessions": 28
       },
       {
         "channel": "Unassigned",
-        "sessions": 12
+        "sessions": 13
       },
       {
         "channel": "Referral",
@@ -167,17 +172,22 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 43
+      "views": 36
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 14
+      "views": 17
+    },
+    {
+      "pagePath": "/apps/kyoshitsu-map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 15
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 14
+      "views": 15
     },
     {
       "pagePath": "/apps/ginshi-archives/",
@@ -185,29 +195,19 @@
       "views": 13
     },
     {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 13
-    },
-    {
-      "pagePath": "/apps/kyoshitsu-map/",
+      "pagePath": "/apps/kyoshitsu-map/index.html",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 10
     },
     {
-      "pagePath": "/apps/kyoshitsu-map/index.html",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
       "views": 9
     },
     {
-      "pagePath": "/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 7
-    },
-    {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 6
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 5
     },
     {
       "pagePath": "/tools/",
@@ -215,47 +215,52 @@
       "views": 5
     },
     {
-      "pagePath": "/apps/pitchmap/",
-      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/how-to-record.html",
-      "pageTitle": "録音データの送り方 | 詩吟の入口",
-      "views": 4
-    },
-    {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/apps/pitchmap/",
+      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
       "views": 3
     },
     {
-      "pagePath": "/homepage/beginner/",
-      "pageTitle": "始め方ガイド | 詩吟の入口",
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
       "views": 3
     },
     {
-      "pagePath": "/map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "pagePath": "/newsletter/register/",
+      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
       "views": 3
+    },
+    {
+      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
+      "pageTitle": "吟猫ピッチマップ",
+      "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 4,
+      "mailmag_click": 3,
       "kindle_click": 2,
       "dojo_click": 3,
       "openchat_click": 1,
-      "tool_open": 27,
-      "form_click": 1,
-      "youtube_click": 8
+      "tool_open": 25,
+      "form_click": 0,
+      "youtube_click": 4
     },
     "d28": {
-      "mailmag_click": 16,
+      "mailmag_click": 17,
       "kindle_click": 17,
       "dojo_click": 41,
       "openchat_click": 5,
-      "tool_open": 382,
+      "tool_open": 393,
       "form_click": 38,
       "youtube_click": 52
     }
