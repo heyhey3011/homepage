@@ -113,7 +113,7 @@
                 <div class="text-center">
                     <span class="mailmag__eyebrow">無料メール講座</span>
                     <h1 class="reveal">詩吟の始め方・7日間講座（無料）</h1>
-                    <p class="section__lead reveal">詩吟をこれから始めたい方へ、学びの順番を7日間のメールでお届けします。7日目以降も、週2〜3通ほどのペースで詩吟にまつわるお話をお送りします。</p>
+                    <p class="section__lead reveal">詩吟をこれから始めたい方へ、学びの順番を7日間のメールでお届けします。7日目以降も、週1〜2通ほどのペースで詩吟にまつわるお話をお送りします。</p>
                 </div>
 
                 <div class="card reveal" style="padding: 2rem 1.75rem; margin-top: 2rem;">
@@ -214,6 +214,17 @@
       const form = document.getElementById('rondo-subscribe');
       const status = document.getElementById('rondo-status');
       const button = form.querySelector('button[type="submit"]');
+      // 流入元トラッキング: ?src=youtube のようなクエリを source に載せる。
+      // 自由文字列が混ざらないよう [a-z0-9_-] 20字までに丸め、無ければ従来どおり 'web'。
+      const subscribeSource = (() => {
+        try {
+          const raw = new URLSearchParams(window.location.search).get('src') || '';
+          const slug = raw.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 20);
+          return slug ? `web:${slug}` : 'web';
+        } catch {
+          return 'web';
+        }
+      })();
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const data = new FormData(form);
@@ -233,7 +244,7 @@
               email: data.get('email'),
               website: data.get('website'),
               cfToken,
-              source: 'web',
+              source: subscribeSource,
             }),
           });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
