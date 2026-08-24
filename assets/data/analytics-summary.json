@@ -1,7 +1,7 @@
 {
   "isSample": false,
-  "updatedAt": "2026-08-23T20:35:20Z",
-  "rangeEnd": "2026-08-23",
+  "updatedAt": "2026-08-24T20:44:53Z",
+  "rangeEnd": "2026-08-24",
   "daily": [
     {
       "date": "2026-08-01",
@@ -115,8 +115,13 @@
     },
     {
       "date": "2026-08-23",
-      "screenPageViews": 21,
+      "screenPageViews": 25,
       "activeUsers": 12
+    },
+    {
+      "date": "2026-08-24",
+      "screenPageViews": 18,
+      "activeUsers": 9
     }
   ],
   "channels": {
@@ -126,42 +131,42 @@
         "sessions": 50
       },
       {
-        "channel": "Organic Search",
-        "sessions": 15
+        "channel": "Organic Video",
+        "sessions": 18
       },
       {
-        "channel": "Organic Video",
-        "sessions": 15
+        "channel": "Organic Search",
+        "sessions": 17
       },
       {
         "channel": "Organic Social",
-        "sessions": 5
-      },
-      {
-        "channel": "Referral",
-        "sessions": 3
+        "sessions": 6
       },
       {
         "channel": "Unassigned",
+        "sessions": 6
+      },
+      {
+        "channel": "Referral",
         "sessions": 3
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 316
+        "sessions": 323
       },
       {
         "channel": "Organic Search",
-        "sessions": 95
+        "sessions": 99
       },
       {
         "channel": "Organic Video",
-        "sessions": 89
+        "sessions": 94
       },
       {
         "channel": "Organic Social",
-        "sessions": 30
+        "sessions": 31
       },
       {
         "channel": "Referral",
@@ -169,7 +174,7 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 10
+        "sessions": 13
       }
     ]
   },
@@ -177,27 +182,27 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 33
+      "views": 36
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 18
+      "views": 20
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 16
-    },
-    {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 15
+      "views": 14
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 13
+      "views": 14
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 11
     },
     {
       "pagePath": "/apps/kyoshitsu-map/index.html",
@@ -205,19 +210,19 @@
       "views": 10
     },
     {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 7
-    },
-    {
       "pagePath": "/newsletter/register/",
       "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
+      "views": 8
+    },
+    {
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 7
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 6
+      "views": 5
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
@@ -225,47 +230,47 @@
       "views": 5
     },
     {
-      "pagePath": "/map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 5
-    },
-    {
-      "pagePath": "/tools/",
-      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 5
-    },
-    {
       "pagePath": "/community/",
       "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 4
+      "views": 5
     },
     {
-      "pagePath": "/homepage/beginner/",
-      "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 3
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 5
     },
     {
       "pagePath": "/newsletter/",
       "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 3
+      "views": 4
+    },
+    {
+      "pagePath": "/tools/",
+      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "詩吟の実演・動画アーカイブス | 詩吟の入口",
+      "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 3,
+      "mailmag_click": 1,
       "kindle_click": 2,
       "dojo_click": 3,
       "openchat_click": 1,
-      "tool_open": 21,
+      "tool_open": 17,
       "form_click": 0,
-      "youtube_click": 4
+      "youtube_click": 2
     },
     "d28": {
       "mailmag_click": 17,
       "kindle_click": 17,
       "dojo_click": 41,
       "openchat_click": 5,
-      "tool_open": 394,
+      "tool_open": 398,
       "form_click": 38,
       "youtube_click": 53
     }
