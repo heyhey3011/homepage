@@ -144,6 +144,140 @@
         ]
     }
     </script>
+<style id="kintsugi-repair">
+/* 金継ぎ 追補スタイル — 詩吟の入口（shigin-portal.com）
+   本体サイトは無改変。このファイルを <head> の最後に1枚足すだけで効く。
+   直したのは「読めない濃さ」「12px未満の文字」「役割の中で割れていた文字サイズ」「角丸の種類」
+   「二重になっていた墨とフッターのリンク色」だけ。色の狙い・文言・並び・行き先は触っていない。 */
+
+/* ============================================================
+   1. 破れ（読めない濃さ）— 新しい色は作らず、既にある色へ寄せる
+   ============================================================ */
+
+/* ヘッダーとモバイルメニューの「7日間講座」ボタン。
+   .site-nav a / .mobile-menu__list a の color が .btn-primary の白より詳細度が高く、
+   朱の上に墨色の文字（コントラスト比3.05／床4.5）で刷られていた。根っこはこの一行。 */
+.site-nav a.btn-primary,
+.mobile-menu__list a.btn-primary {
+    color: #FFFFFF;
+}
+
+/* 深緑 #5B7444 は生成りの地 #F2EDE2 の上で 4.47（床4.5）。
+   既にある濃い方 --color-deep-green-dark #465935 へ寄せる（色みは変えない）。 */
+.btn-secondary,
+.note-link a,
+.card__arrow,
+.mailmag__more,
+.day-list__day {
+    color: var(--color-deep-green-dark);
+}
+.btn-secondary {
+    border-color: var(--color-deep-green-dark);
+}
+.btn-secondary:hover {
+    background-color: var(--color-deep-green-dark);
+    color: #FFFFFF;
+}
+
+/* ファーストビューの淡い枠ボタンは、水墨の絵の上に直接載っていて
+   （画素検査で背景の最悪の画素と比1.0）、山の墨に文字が重なると読めない。
+   紙の色の面を1枚敷いて、文字を一様な地の上に置く。 */
+.hero .btn-secondary {
+    background-color: var(--color-paper);
+}
+
+/* ============================================================
+   2. 破れ（12px未満の文字）
+   ============================================================ */
+.badge { font-size: 0.75rem; }              /* 11.5px → 12px */
+.site-header__brand-by { font-size: 0.875rem; opacity: 0.75; }  /* 9.9px → 14px */
+
+/* ============================================================
+   3. 乱れ（文字サイズの段）— 役割ごとに段を決める
+      見出し h2: 28px / 16px（フッター見出し）
+      小見出し h3: 17.6px / 12px（バッジ）
+      本文: 18px（リード）/ 16px（本文）/ 14px（補足）
+      ボタン・ナビ: 16px / 14px
+      その他: 28.8px（数字）/ 16px / 14px
+   ============================================================ */
+
+/* --- h2 --- */
+h2,
+.section-title,
+.mailmag__title {
+    font-size: clamp(1.5rem, 2.4vw, 1.75rem);   /* 幅1280で28px・幅390で24px */
+}
+.site-footer__heading { font-size: 1rem; }
+
+/* --- h3 --- */
+h3,
+.card__title,
+.book-card--small .card__title { font-size: 1.1rem; }   /* 17.6px */
+
+/* --- 本文 --- */
+.hero__lead,
+.intro-lead p,
+.intro-lead p:last-child { font-size: 1.125rem; }        /* 18px（リード） */
+
+.card__text,
+.faq__answer,
+.faq__answer p,
+.mailmag__text,
+.section__lead { font-size: 1rem; }                      /* 16px（本文） */
+
+.site-footer,
+.site-footer__legal a,
+.site-footer__meta,
+.books-affiliate-note,
+.note-link,
+.day-list__day { font-size: 0.875rem; }                  /* 14px（補足） */
+
+/* --- ボタン・ナビ --- */
+.btn,
+.btn--large,
+.btn--small,
+.site-nav .btn,
+.site-nav a,
+.site-header__brand { font-size: 1rem; }                 /* 16px */
+
+.mailmag__more,
+.card__arrow,
+.pill-links a { font-size: 0.875rem; }                   /* 14px */
+
+/* --- その他 --- */
+.faq summary { font-size: 1rem; }                        /* 16.3px → 16px */
+.stat-box__label,
+.stat-box__unit,
+.mailmag__eyebrow { font-size: 0.875rem; }               /* 14px */
+
+/* ============================================================
+   4. 乱れ（角丸の種類）— 12px / 16px / 丸 の3種へ
+   ============================================================ */
+.nav-toggle__bar { border-radius: 999px; }               /* 2px の4種目をやめる */
+
+/* ============================================================
+   5. 乱れ（似て非なる色）— 二重になっていた2組だけ1本にする
+      紙の階調（#F8F5EF 地 / #F2EDE2 交互の地 / #FFFFFF カード）と
+      バッジの状態色は役割が違うので統合しない（診断書に理由を記載）
+   ============================================================ */
+:root {
+    --color-ink: #1A1A1A;      /* #22211E と #1A1A1A の墨2本を1本に（元栓で当てる） */
+}
+.site-footer__legal a { color: #EDEAE2; }   /* フッターのリンク色を1本に（#C9C5BC を廃止） */
+
+/* ============================================================
+   6. 読みやすさ（参考点）— 語の泣き別れを文節で折る
+      「コン|ダクター」「オープ|ンチャット」のような割れ方を減らす（Chromium系）
+   ============================================================ */
+h2,
+.hero__lead,
+.intro-lead p,
+.section__lead,
+.card__text,
+.faq__answer p,
+.mailmag__text,
+.mailmag__title { word-break: auto-phrase; }
+</style>
 </head>
 <body>
 
@@ -195,14 +329,13 @@
         <section class="hero">
             <div class="hero__canvas" id="hero-canvas" aria-hidden="true"></div>
             <div class="container hero__inner">
+                <img src="assets/img/entrance-start-v2.webp" alt="羽織を着た吟ねこが一歩を踏み出すイラスト" class="hero__mascot" width="1024" height="1024" fetchpriority="high">
                 <h1 class="hero__title"><span class="hero__title-seg">詩吟を、</span><span class="hero__title-seg">もっと探しやすく、</span><span class="hero__title-seg">学びやすく、</span><span class="hero__title-seg">続けやすく。</span></h1>
                 <p class="hero__lead">全国5,000件の詩吟教室マップを中心に、詩吟を始めたい人・深く学びたい人のための学習ツールをまとめています。</p>
                 <div class="btn-group">
                     <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="btn btn-primary btn--large">近くの詩吟教室を探す</a>
-                    <a href="beginner/" class="btn btn-secondary btn--large">詩吟を始める完全ガイドを見る</a>
-                    <a data-link="newsletter.beginner" href="/newsletter/register/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn--large">無料メール講座を受け取る</a>
                 </div>
-                <p class="mt-2 note-link"><a href="newsletter/">7日間講座について詳しく見る</a></p>
+                <p class="hero__subnote">はじめての方は<a href="beginner/">詩吟を始める完全ガイド</a>から。メールで少しずつ学びたい方には、<a data-link="newsletter.beginner" href="/newsletter/register/" target="_blank" rel="noopener noreferrer">無料の7日間メール講座</a>もあります（<a href="newsletter/">講座の内容を見る</a>）。</p>
             </div>
         </section>
 
@@ -217,6 +350,10 @@
                         <a data-link="newsletter.beginner" href="/newsletter/register/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--large">無料メール講座を受け取る</a>
                         <a href="newsletter/" class="mailmag__more">7日間講座について詳しく見る</a>
                     </div>
+                </div>
+                <div class="trust-line reveal">
+                    <img src="assets/img/legacy/ginneko.jpg" alt="運営者 heyhey のアイコン（吟ねこ）" class="trust-line__photo" width="1800" height="1800" loading="lazy">
+                    <p class="trust-line__text">お届けしているのは、YouTube「詩吟ちゃんねる」の heyhey です。詩吟歴は25年以上、2018年の全国コンクールで優勝しました。<a href="profile/">プロフィールを見る</a></p>
                 </div>
             </div>
         </section>
@@ -334,63 +471,17 @@
         <!-- ============ セクション3: 詩吟学習ツール一覧 ============ -->
         <section class="section" id="tools-list">
             <div class="container">
-                <h2 class="section-title reveal">詩吟学習ツール一覧</h2>
-                <p class="section__lead reveal">詩吟の学習を助ける無料ツールを開発・公開しています。</p>
-                <div class="grid grid--3 mt-3">
-                    <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-conductor.webp" alt="吟猫コンダクター" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟猫コンダクター <span class="badge" data-link-status="tools.ginnekoConductor"></span></h3>
-                            <p class="card__text">音程や伴奏を確かめながら練習できる詩吟練習ツールです。iPhone用アプリ（300円）と、無料のブラウザ版があります。</p>
-                        </div>
-                    </a>
-                    <a href="apps/kyoshitsu-map/" data-link="tools.classroomMap" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-map.webp" alt="全国詩吟教室マップ" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">全国詩吟教室マップ <span class="badge" data-link-status="tools.classroomMap"></span></h3>
-                            <p class="card__text">全国5,000件の詩吟教室を、地域・流派・連絡先から探せます。</p>
-                        </div>
-                    </a>
-                    <a href="apps/ginshi-archives/" data-link="tools.ginshiArchives" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-archives.webp" alt="吟士アーカイブス" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟士アーカイブス <span class="badge" data-link-status="tools.ginshiArchives"></span></h3>
-                            <p class="card__text">YouTubeなどにある実力派吟士の動画を、吟士別・所属別・漢詩別に整理していきます。</p>
-                        </div>
-                    </a>
-                    <a href="apps/shigin-jiten/" data-link="tools.shiginDictionary" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-shigin-dict.webp" alt="詩吟大辞典" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">詩吟大辞典 <span class="badge" data-link-status="tools.shiginDictionary"></span></h3>
-                            <p class="card__text">詩吟に関する用語、流派、技巧、歴史、素朴な疑問を調べられる統合辞典です。</p>
-                        </div>
-                    </a>
-                    <a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-kanshi-dict.webp" alt="漢詩の図書館" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">漢詩の図書館 <span class="badge" data-link-status="tools.kanshiDictionary"></span></h3>
-                            <p class="card__text">詩吟でよく使われる漢詩について、作者、時代背景、地図、年表、豆知識とともに調べられる辞典です。</p>
-                        </div>
-                    </a>
-                    <a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap" class="card reveal">
-                        <div class="card__media">
-                            <img src="assets/img/tool-pitchmap.webp" alt="吟猫ピッチマップ" width="800" height="500" loading="lazy">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">吟猫ピッチマップ <span class="badge" data-link-status="tools.ginnekoPitchmap"></span></h3>
-                            <p class="card__text">録音データを読み込み、音の動きを可視化するツールです。自分の吟の分析や、指導時の説明に使えます。</p>
-                        </div>
-                    </a>
+                <h2 class="section-title reveal">詩吟学習ツールをつくっています</h2>
+                <div class="story mt-3 reveal">
+                    <div class="split__media">
+                        <img src="assets/img/tool-conductor.webp" alt="指揮棒を振る吟ねこのイラスト" width="1512" height="1008" loading="lazy">
+                    </div>
+                    <div class="story__body">
+                        <p>詩吟の練習でつまずきやすいのは、音の高さと節回しです。そこで、練習のそばに置いておける道具をいくつか作って、無料で公開しています。</p>
+                        <p>音程や伴奏をたしかめながら吟じたいときは<a href="tools/index.html#tool-ginneko-conductor">吟猫コンダクター</a>をどうぞ。iPhone用のアプリ（300円）のほかに、無料で使えるブラウザ版もあります。録音した自分の吟を聴き返すときは、音の動きが目で見える<a href="apps/pitchmap/" data-link="tools.ginnekoPitchmap">吟猫ピッチマップ</a>が役に立ちます。指導のときの説明にも使えます。</p>
+                        <p>近くの教室を探すなら<a href="apps/kyoshitsu-map/" data-link="tools.classroomMap">全国詩吟教室マップ</a>へ。お手本になる吟を聴きたい方は、実力派の吟を吟士別・漢詩別にまとめた<a href="apps/ginshi-archives/" data-link="tools.ginshiArchives">吟士アーカイブス</a>を覗いてみてください。こちらも少しずつ増やしています。</p>
+                        <p>言葉や流派、技巧のことを調べたいときは<a href="apps/shigin-jiten/" data-link="tools.shiginDictionary">詩吟大辞典</a>、漢詩の作者や時代の背景まで味わいたいときは<a href="apps/kanshi-jiten/" data-link="tools.kanshiDictionary">漢詩の図書館</a>をご利用ください。どちらも中身を少しずつ増やしているところです。</p>
+                    </div>
                 </div>
                 <p class="text-center mt-3 reveal"><a href="tools/" class="btn btn-ghost">学習ツールの詳しい紹介を見る</a></p>
             </div>

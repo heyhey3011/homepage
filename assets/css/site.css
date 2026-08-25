@@ -1313,6 +1313,88 @@ a.card.is-coming-soon::after {
     margin-top: 1.25rem;
 }
 
+/* ---------- 13d. ファーストビューの吟ねこと、格下げした文中リンク ---------- */
+/* 吟ねこは「切らない」のが決まりです。幅だけ指定して高さは auto にし、
+   角丸はデザインシステムの16pxを使うので、絵そのものは欠けません。 */
+.hero__mascot {
+    width: clamp(104px, 15vw, 148px);
+    height: auto;
+    margin: 0 auto 1.5rem;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
+
+/* ボタンから格下げした2つの導線。文中リンクの見た目のまま残します。
+   ヒーローは水墨の絵の上なので、金継ぎ追補と同じ考えで
+   紙の色の面を1枚敷いて、文字を一様な地の上に置きます。 */
+.hero__subnote {
+    display: inline-block;
+    max-width: 34em;
+    margin: 1.5rem auto 0;
+    padding: 0.7rem 1.25rem;
+    border-radius: 12px;
+    background-color: rgba(248, 245, 239, 0.92);
+    font-size: 0.875rem;
+    line-height: 1.9;
+    color: var(--color-ink);
+    text-align: center;
+    word-break: auto-phrase;   /* 語の途中で折り返さず、文節で折る */
+}
+
+.hero__subnote a {
+    color: var(--color-deep-green-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ---------- 13e. 運営者の一行（写真＋実績） ---------- */
+.trust-line {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    max-width: 40em;
+    margin: 1.5rem auto 0;
+    text-align: left;
+}
+
+.trust-line__photo {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-matcha);
+}
+
+.trust-line__text {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: var(--color-ink);
+    word-break: auto-phrase;
+}
+
+.trust-line__text a {
+    color: var(--color-deep-green-dark);
+    white-space: nowrap;
+}
+
+/* ---------- 13f. 写真1枚＋文章の節 ---------- */
+/* カードの格子が続くのを避けたいところで使います。
+   画像の見た目は .split__media をそのまま流用します。 */
+.story {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.story__body {
+    margin-top: 1.5rem;
+}
+
+.story__body p {
+    word-break: auto-phrase;
+}
+
 /* ---------- 14. アニメーション抑制設定への対応 ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
