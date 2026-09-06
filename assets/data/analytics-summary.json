@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-05T22:02:22Z",
-  "rangeEnd": "2026-09-05",
+  "updatedAt": "2026-09-06T22:05:38Z",
+  "rangeEnd": "2026-09-06",
   "daily": [
-    {
-      "date": "2026-08-09",
-      "screenPageViews": 103,
-      "activeUsers": 19
-    },
     {
       "date": "2026-08-10",
       "screenPageViews": 23,
@@ -140,31 +135,36 @@
     },
     {
       "date": "2026-09-05",
-      "screenPageViews": 60,
+      "screenPageViews": 64,
       "activeUsers": 20
+    },
+    {
+      "date": "2026-09-06",
+      "screenPageViews": 30,
+      "activeUsers": 6
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 56
-      },
-      {
-        "channel": "Organic Video",
-        "sessions": 21
+        "sessions": 53
       },
       {
         "channel": "Organic Search",
-        "sessions": 20
+        "sessions": 19
       },
       {
-        "channel": "Unassigned",
+        "channel": "Organic Video",
         "sessions": 17
       },
       {
+        "channel": "Unassigned",
+        "sessions": 9
+      },
+      {
         "channel": "Referral",
-        "sessions": 6
+        "sessions": 7
       },
       {
         "channel": "Organic Social",
@@ -178,11 +178,11 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 240
+        "sessions": 222
       },
       {
         "channel": "Organic Search",
-        "sessions": 98
+        "sessions": 87
       },
       {
         "channel": "Organic Video",
@@ -193,12 +193,12 @@
         "sessions": 22
       },
       {
-        "channel": "Unassigned",
-        "sessions": 19
+        "channel": "Referral",
+        "sessions": 13
       },
       {
-        "channel": "Referral",
-        "sessions": 12
+        "channel": "Unassigned",
+        "sessions": 11
       },
       {
         "channel": "AI Assistant",
@@ -210,7 +210,7 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 45
+      "views": 46
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
@@ -223,84 +223,84 @@
       "views": 25
     },
     {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 16
-    },
-    {
       "pagePath": "/newsletter/register/",
       "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 10
+      "views": 15
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 14
     },
     {
       "pagePath": "/newsletter/",
       "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 8
+      "views": 10
     },
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 8
+      "views": 10
     },
     {
       "pagePath": "/community/",
       "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 7
+      "views": 6
     },
     {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 6
+      "views": 5
     },
     {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 5
+      "views": 4
     },
     {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 5
-    },
-    {
-      "pagePath": "/how-to-record",
-      "pageTitle": "録音データの送り方 | 詩吟の入口",
+      "pagePath": "/apps/shigin-jiten/",
+      "pageTitle": "詩吟大辞典 | 詩吟の入口",
       "views": 4
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
       "pageTitle": "吟猫ピッチマップ",
-      "views": 2
+      "views": 3
     },
     {
-      "pagePath": "/apps/shigin-jiten/",
-      "pageTitle": "詩吟大辞典 | 詩吟の入口",
-      "views": 2
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 3
     },
     {
-      "pagePath": "/homepage/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "pagePath": "/how-to-record",
+      "pageTitle": "録音データの送り方 | 詩吟の入口",
+      "views": 3
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
       "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 10,
-      "kindle_click": 1,
-      "dojo_click": 14,
+      "mailmag_click": 11,
+      "kindle_click": 2,
+      "dojo_click": 15,
       "openchat_click": 0,
-      "tool_open": 28,
-      "form_click": 1,
-      "youtube_click": 6
+      "tool_open": 27,
+      "form_click": 0,
+      "youtube_click": 5
     },
     "d28": {
-      "mailmag_click": 20,
-      "kindle_click": 7,
-      "dojo_click": 31,
+      "mailmag_click": 21,
+      "kindle_click": 6,
+      "dojo_click": 30,
       "openchat_click": 3,
-      "tool_open": 192,
-      "form_click": 7,
-      "youtube_click": 37
+      "tool_open": 158,
+      "form_click": 5,
+      "youtube_click": 29
     }
   }
 }
