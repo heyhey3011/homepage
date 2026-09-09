@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-08T22:35:48Z",
-  "rangeEnd": "2026-09-08",
+  "updatedAt": "2026-09-09T22:30:46Z",
+  "rangeEnd": "2026-09-09",
   "daily": [
-    {
-      "date": "2026-08-12",
-      "screenPageViews": 38,
-      "activeUsers": 11
-    },
     {
       "date": "2026-08-13",
       "screenPageViews": 55,
@@ -140,31 +135,36 @@
     },
     {
       "date": "2026-09-08",
-      "screenPageViews": 26,
-      "activeUsers": 15
+      "screenPageViews": 29,
+      "activeUsers": 16
+    },
+    {
+      "date": "2026-09-09",
+      "screenPageViews": 32,
+      "activeUsers": 14
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 48
+        "sessions": 51
       },
       {
         "channel": "Organic Video",
-        "sessions": 21
+        "sessions": 22
       },
       {
         "channel": "Organic Search",
         "sessions": 17
       },
       {
-        "channel": "Referral",
-        "sessions": 10
+        "channel": "Unassigned",
+        "sessions": 12
       },
       {
-        "channel": "Unassigned",
-        "sessions": 8
+        "channel": "Referral",
+        "sessions": 11
       },
       {
         "channel": "Organic Social",
@@ -172,25 +172,21 @@
       },
       {
         "channel": "AI Assistant",
-        "sessions": 1
-      },
-      {
-        "channel": "Cross-network",
-        "sessions": 1
+        "sessions": 2
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 220
+        "sessions": 216
       },
       {
         "channel": "Organic Search",
-        "sessions": 84
+        "sessions": 87
       },
       {
         "channel": "Organic Video",
-        "sessions": 81
+        "sessions": 83
       },
       {
         "channel": "Organic Social",
@@ -198,19 +194,15 @@
       },
       {
         "channel": "Referral",
-        "sessions": 18
+        "sessions": 20
       },
       {
         "channel": "Unassigned",
-        "sessions": 10
+        "sessions": 14
       },
       {
         "channel": "AI Assistant",
-        "sessions": 1
-      },
-      {
-        "channel": "Cross-network",
-        "sessions": 1
+        "sessions": 2
       }
     ]
   },
@@ -218,17 +210,17 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 69
+      "views": 74
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 38
+      "views": 37
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 27
+      "views": 29
     },
     {
       "pagePath": "/newsletter/register/",
@@ -243,12 +235,17 @@
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 17
+      "views": 15
     },
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
       "views": 13
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 8
     },
     {
       "pagePath": "/community/",
@@ -258,7 +255,7 @@
     {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 4
+      "views": 3
     },
     {
       "pagePath": "/apps/shigin-jiten/",
@@ -276,39 +273,34 @@
       "views": 3
     },
     {
-      "pagePath": "/map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 3
-    },
-    {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "pagePath": "/homepage/index.html",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
       "views": 2
     },
     {
-      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
-      "pageTitle": "吟猫ピッチマップ",
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 16,
+      "mailmag_click": 14,
       "kindle_click": 4,
-      "dojo_click": 10,
+      "dojo_click": 12,
       "openchat_click": 0,
-      "tool_open": 36,
+      "tool_open": 33,
       "form_click": 0,
-      "youtube_click": 6
+      "youtube_click": 7
     },
     "d28": {
       "mailmag_click": 26,
       "kindle_click": 8,
-      "dojo_click": 31,
+      "dojo_click": 33,
       "openchat_click": 3,
-      "tool_open": 156,
-      "form_click": 5,
-      "youtube_click": 27
+      "tool_open": 153,
+      "form_click": 4,
+      "youtube_click": 24
     }
   }
 }

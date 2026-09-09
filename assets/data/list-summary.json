@@ -1,15 +1,10 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-08T22:35:49Z",
+  "updatedAt": "2026-09-09T22:30:47Z",
   "total": 24,
   "added7": 0,
   "added28": 0,
   "daily": [
-    {
-      "date": "2026-08-13",
-      "added": 0,
-      "cumulative": 24
-    },
     {
       "date": "2026-08-14",
       "added": 0,
@@ -142,6 +137,11 @@
     },
     {
       "date": "2026-09-09",
+      "added": 0,
+      "cumulative": 24
+    },
+    {
+      "date": "2026-09-10",
       "added": 0,
       "cumulative": 24
     }
