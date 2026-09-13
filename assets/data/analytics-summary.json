@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-12T22:13:34Z",
-  "rangeEnd": "2026-09-12",
+  "updatedAt": "2026-09-13T22:22:24Z",
+  "rangeEnd": "2026-09-13",
   "daily": [
-    {
-      "date": "2026-08-16",
-      "screenPageViews": 19,
-      "activeUsers": 9
-    },
     {
       "date": "2026-08-17",
       "screenPageViews": 23,
@@ -140,31 +135,36 @@
     },
     {
       "date": "2026-09-12",
-      "screenPageViews": 34,
-      "activeUsers": 22
+      "screenPageViews": 40,
+      "activeUsers": 24
+    },
+    {
+      "date": "2026-09-13",
+      "screenPageViews": 16,
+      "activeUsers": 8
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Direct",
-        "sessions": 64
+        "sessions": 63
       },
       {
         "channel": "Organic Search",
-        "sessions": 25
+        "sessions": 29
       },
       {
         "channel": "Organic Video",
-        "sessions": 21
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 9
+        "sessions": 20
       },
       {
         "channel": "Referral",
         "sessions": 7
+      },
+      {
+        "channel": "Unassigned",
+        "sessions": 5
       },
       {
         "channel": "AI Assistant",
@@ -182,15 +182,15 @@
       },
       {
         "channel": "Organic Search",
-        "sessions": 80
+        "sessions": 81
       },
       {
         "channel": "Organic Video",
-        "sessions": 72
+        "sessions": 71
       },
       {
         "channel": "Organic Social",
-        "sessions": 22
+        "sessions": 21
       },
       {
         "channel": "Referral",
@@ -198,7 +198,7 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 12
+        "sessions": 8
       },
       {
         "channel": "AI Assistant",
@@ -210,47 +210,52 @@
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 80
-    },
-    {
-      "pagePath": "/apps/kyoshitsu-map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 24
+      "views": 75
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 24
-    },
-    {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 21
+      "views": 22
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 20
+      "views": 21
     },
     {
-      "pagePath": "/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 14
+      "pagePath": "/apps/kyoshitsu-map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 19
     },
     {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 12
-    },
-    {
-      "pagePath": "/tools/",
-      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 10
+      "pagePath": "/newsletter/register/",
+      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
+      "views": 18
     },
     {
       "pagePath": "/how-to-record",
       "pageTitle": "録音データの送り方 | 詩吟の入口",
-      "views": 9
+      "views": 15
+    },
+    {
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 13
+    },
+    {
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "views": 12
+    },
+    {
+      "pagePath": "/beginner/",
+      "pageTitle": "始め方ガイド | 詩吟の入口",
+      "views": 7
+    },
+    {
+      "pagePath": "/tools/",
+      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
+      "views": 6
     },
     {
       "pagePath": "/community/",
@@ -258,19 +263,9 @@
       "views": 5
     },
     {
-      "pagePath": "/apps/shigin-jiten/",
-      "pageTitle": "詩吟大辞典 | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/beginner/",
-      "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 4
-    },
-    {
       "pagePath": "/apps/pitchmap/",
       "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
-      "views": 3
+      "views": 4
     },
     {
       "pagePath": "/homepage/index.html",
@@ -281,26 +276,31 @@
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 3
+    },
+    {
+      "pagePath": "/apps/shigin-jiten/",
+      "pageTitle": "詩吟大辞典 | 詩吟の入口",
+      "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 8,
-      "kindle_click": 3,
-      "dojo_click": 10,
+      "mailmag_click": 6,
+      "kindle_click": 2,
+      "dojo_click": 9,
       "openchat_click": 0,
-      "tool_open": 36,
+      "tool_open": 30,
       "form_click": 0,
-      "youtube_click": 6
+      "youtube_click": 4
     },
     "d28": {
-      "mailmag_click": 22,
+      "mailmag_click": 23,
       "kindle_click": 6,
       "dojo_click": 31,
       "openchat_click": 2,
-      "tool_open": 116,
+      "tool_open": 111,
       "form_click": 2,
-      "youtube_click": 21
+      "youtube_click": 18
     }
   }
 }
