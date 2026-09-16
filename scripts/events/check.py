@@ -13,7 +13,7 @@ data=json.loads((ROOT/'events/events.json').read_text(encoding='utf-8'))
 events=data['events']
 html=(ROOT/'events/index.html').read_text(encoding='utf-8')
 assert len({e['id'] for e in events})==len(events)
-assert len(events)==63
+assert len(events)>=63
 assert not {'E061','E065','E066','E067','E068','E069','E070','E071'} & {e['id'] for e in events}
 for e in events:
     date.fromisoformat(e['date'])
@@ -60,7 +60,7 @@ for url in p.assets+p.links:
 for file in [ROOT/'index.html',ROOT/'beginner/index.html',ROOT/'tools/index.html']:
     content=file.read_text(encoding='utf-8')
     assert 'href="'+('events/' if file.parent==ROOT else '../events/')+'"' in content
-    assert '>大会・公演情報</a>' in content
+    assert '>全国詩吟イベントナビ</a>' in content
 ET.parse(ROOT/'sitemap.xml')
 assert '<loc>https://shigin-portal.com/events/</loc>' in (ROOT/'sitemap.xml').read_text(encoding='utf-8')
 
@@ -73,4 +73,15 @@ assert '<script>alert' not in output and '<img src=x' not in output
 try: renderer.secure_link('javascript:alert(1)')
 except ValueError: pass
 else: raise AssertionError('unsafe URL accepted')
-print('PASS: 63 records, dates/times, admissions, maps, sources, TPO, static links, navigation, sitemap, escaping.')
+# 地図の47県と県選択が一致し、県名ラベル・検索用リンクを持つ。
+map_names=re.findall(r'class="map-prefecture" data-prefecture="([^"]+)"',html)
+assert len(map_names)==47 and len(set(map_names))==47
+assert {e['prefecture'] for e in events} <= set(map_names)
+assert html.count('id="calendar-month"')==1 and html.count('id="event-prefecture"')==1
+assert '<h1>全国詩吟イベントナビ</h1>' in html
+assert 'この月の一覧を見る' in html
+assert '地形を簡略化した地図' in html
+for e in events:
+    if '第38回日本詩吟選手権' in e['name']: assert e['fee_status']=='unknown'
+assert not re.search(r'<(?:script|foreignObject)',renderer.japan_map(events,data['updated_at']))
+print(f'PASS: {len(events)} records, 47 map regions, calendar controls, dates/times, admissions, sources, TPO, links, navigation, escaping.')

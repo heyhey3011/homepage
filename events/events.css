@@ -65,6 +65,64 @@
 .event-notes a { text-decoration: underline; text-underline-offset: 3px; }
 .event-controls select:disabled { opacity: .65; }
 .event-nojs { border-left: 4px solid var(--color-gold); padding: .8rem; background: #fff; }
+.event-explorer { margin: 0 0 2rem; }
+.explorer-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .3rem 1rem; }
+.explorer-heading h2 { font-size: 1.45rem; margin: 0; }
+.explorer-heading p, .explorer-intro { font-size: .95rem; color: var(--event-muted); margin: .4rem 0 .7rem; }
+.explorer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch; }
+.explorer-map, .explorer-calendar { min-width: 0; padding: 1.2rem 1.3rem; background: #fff; border: 1px solid var(--color-border); border-radius: 10px; }
+.explorer-grid h3 { margin: 0 0 .2rem; font-size: 1.2rem; }
+.explorer-help { color: var(--event-muted); font-size: .9rem; line-height: 1.7; margin: .3rem 0 .7rem; }
+.japan-map { max-width: 440px; margin: 0 auto; }
+.japan-map svg { width: 100%; display: block; height: auto; }
+.map-prefecture { cursor: pointer; }
+.map-prefecture path { fill: #ebe9e4; stroke: #fff; stroke-width: 6; stroke-linejoin: round; }
+.map-prefecture[data-state="upcoming"] path { fill: #bdd1b8; }
+.map-prefecture[data-state="past"] path { fill: #eadbc0; }
+.map-prefecture text { font: 500 46px var(--font-body); fill: #253b29; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.map-prefecture:hover path, .map-prefecture:focus-visible path { stroke: #36513b; stroke-width: 11; }
+.map-prefecture[aria-current="true"] path { fill: #36513b; stroke: #b79248; stroke-width: 10; }
+.map-prefecture[aria-current="true"] text { fill: #fff; }
+.map-legend { display: flex; flex-wrap: wrap; gap: .3rem .8rem; font-size: .8rem; margin: .4rem 0 1rem; }
+.map-legend span { display: inline-flex; align-items: center; gap: .3rem; }
+.map-legend i { display: inline-block; width: .8rem; height: .8rem; border: 1px solid #92978d; border-radius: 2px; }
+.legend-upcoming { background: #bdd1b8; }.legend-past { background: #eadbc0; }.legend-none { background: #ebe9e4; }
+.map-selection { min-height: 1.7em; font-size: .9rem; margin: .6rem 0 .3rem; }
+.explorer-link { font-weight: 700; display: inline-block; padding: .5rem 0; text-underline-offset: .2rem; }
+.map-credit { font-size: .75rem; color: var(--event-muted); margin: .5rem 0 0; }
+.calendar-toolbar { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin: 1rem 0 .8rem; }
+.calendar-toolbar button, .calendar-actions button, .event-active-filter button { font: inherit; cursor: pointer; border: 1px solid #879681; border-radius: 5px; color: var(--event-green); background: #fff; min-height: 44px; padding: .35rem .6rem; }
+.calendar-toolbar button { min-width: 44px; font-size: 1.65rem; }
+.calendar-toolbar button:disabled, .calendar-actions button:disabled { color: #8b8e86; cursor: default; border-color: #ddd; }
+.calendar-month-label { display: grid; gap: .15rem; text-align: center; font-size: .8rem; color: var(--event-muted); }
+.calendar-month-label select { font: 700 1.15rem var(--font-body); color: var(--event-green); background: #fff; min-height: 44px; border: 0; max-width: 100%; cursor: pointer; }
+.event-calendar { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 3px; }
+.event-calendar caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.event-calendar th { font-size: .875rem; font-weight: 500; padding: .3rem 0; color: var(--event-muted); }
+.event-calendar td { text-align: center; height: 52px; padding: 0; vertical-align: top; }
+.calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 52px; padding: 3px 0; font: 500 1rem var(--font-body); line-height: 1.3; color: #62665d; border: 1px solid transparent; border-radius: 5px; background: #f8f8f5; font-variant-numeric: tabular-nums; }
+button.calendar-day { background: #edf2e8; color: #294d37; border-color: #cedac8; cursor: pointer; }
+.calendar-day small { font-size: .7rem; font-weight: 700; }
+.calendar-day[data-past="true"] { background: #f6f0e5; color: #6e5938; border-color: #e6d9c2; }
+.calendar-day[aria-current="date"] { box-shadow: inset 0 0 0 2px #36513b; }
+.calendar-day[aria-pressed="true"] { background: #36513b; border-color: #36513b; color: #fff; }
+.calendar-status { margin: .6rem 0; font-size: .9rem; color: var(--event-muted); min-height: 1.7em; }
+.calendar-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+.calendar-actions button:last-child { background: var(--event-green); color: #fff; }
+.calendar-actions button:last-child:disabled { background: #eee; color: #7c8178; }
+.calendar-preview { list-style: none; margin: .9rem 0; padding: 0; }
+.calendar-preview li { border-top: 1px solid #e2e5de; }
+.calendar-preview button { font: inherit; font-size: .85rem; text-align: left; padding: .55rem 0; width: 100%; min-height: 44px; color: var(--event-green); cursor: pointer; background: none; border: 0; line-height: 1.5; overflow-wrap: anywhere; }
+.event-active-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: 0 0 1rem; padding: .7rem 1rem; border-left: 4px solid var(--event-green); background: #edf2e8; }
+.event-active-filter button { font-size: .875rem; }
+#event-results-heading, #event-explorer { scroll-margin-top: 100px; }
+.events-page :is(button, select, a):focus-visible { outline: 3px solid #ac7623; outline-offset: 3px; }
+.no-js .event-calendar, .no-js .calendar-status, .no-js .calendar-actions, .no-js .calendar-toolbar { display: none; }
+@media (max-width: 800px) {
+  .explorer-grid { grid-template-columns: 1fr; }
+  .japan-map { max-width: 420px; }
+  .explorer-map, .explorer-calendar { padding: 1rem; }
+}
 .event-skip { position: absolute; left: 1rem; top: -100px; z-index: 1000; background: #fff; padding: .7rem 1rem; }
 .event-skip:focus { top: 1rem; }
 @media (max-width: 640px) {

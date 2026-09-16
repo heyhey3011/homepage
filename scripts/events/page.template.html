@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; upgrade-insecure-requests;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>詩吟の大会・コンサート・発表会を探す | 詩吟の入口</title>
+  <title>全国詩吟イベントナビ | 詩吟の入口</title>
   <meta name="description" content="全国の詩吟コンクール・コンサート・発表会の開催情報。日時、会場とGoogleマップ、観覧料、一般見学の可否を確認できます。はじめて見学する方の観覧マナーもご案内します。">
   <link rel="canonical" href="https://shigin-portal.com/events/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="詩吟の入口">
-  <meta property="og:title" content="詩吟の大会・コンサート・発表会を探す">
+  <meta property="og:title" content="全国詩吟イベントナビ">
   <meta property="og:description" content="全国大会から各地の発表会まで。日時・場所・観覧料・一般見学の案内をまとめています。">
   <meta property="og:url" content="https://shigin-portal.com/events/">
   <meta property="og:image" content="https://shigin-portal.com/assets/img/ogp.jpg">
@@ -25,16 +25,16 @@
   <link rel="icon" type="image/png" href="../assets/img/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="../manifest.json">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"詩吟の大会・コンサート・発表会を探す","url":"https://shigin-portal.com/events/","inLanguage":"ja","dateModified":"{{UPDATED}}","isPartOf":{"@type":"WebSite","name":"詩吟の入口","url":"https://shigin-portal.com/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"全国詩吟イベントナビ","url":"https://shigin-portal.com/events/","inLanguage":"ja","dateModified":"{{UPDATED}}","isPartOf":{"@type":"WebSite","name":"詩吟の入口","url":"https://shigin-portal.com/"}}</script>
 </head>
 <body class="events-page">
   <a href="#event-search" class="event-skip">大会・公演の一覧へ</a>
   <!-- SHARED-HEADER -->
   <main class="container event-shell" id="main-content">
     <div class="event-heading">
-      <p class="breadcrumb"><a href="../">ホーム</a> ＞ 大会・公演情報</p>
-      <h1>詩吟の大会・コンサート・発表会</h1>
-      <p>気になる吟を、会場で。全国大会から各地の発表会まで、見学のための情報をまとめました。</p>
+      <p class="breadcrumb"><a href="../">ホーム</a> ＞ 全国詩吟イベントナビ</p>
+      <h1>全国詩吟イベントナビ</h1>
+      <p>全国大会・コンサート・発表会を、地図と日付から。気になる吟を、会場で楽しみませんか。</p>
     </div>
 
     <aside class="visit-manners" aria-labelledby="manners-title">
@@ -47,6 +47,40 @@
       </ol>
     </aside>
 
+    <section class="event-explorer" aria-labelledby="explorer-title" id="event-explorer">
+      <div class="explorer-heading"><h2 id="explorer-title">場所と日付から、吟に出会う</h2><p>{{PREFECTURE_COUNT}}都道府県・{{TOTAL}}件の開催情報</p></div>
+      <p class="explorer-intro">地図・カレンダーには、全国大会と地域の催事をまとめて表示します。</p>
+      <div class="explorer-grid">
+        <section class="explorer-map" aria-labelledby="map-title">
+          <h3 id="map-title">日本地図から探す</h3>
+          <p class="explorer-help">都道府県を選ぶと、その地域の一覧に絞れます。</p>
+          <div class="japan-map"><!-- JAPAN-MAP --></div>
+          <div class="map-legend"><span><i class="legend-upcoming"></i>これからの予定あり</span><span><i class="legend-past"></i>過去の情報のみ</span><span><i class="legend-none"></i>情報募集中</span></div>
+          <label class="event-field" for="event-prefecture" id="prefecture-field">県名からも選べます
+            <select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select>
+          </label>
+          <p id="map-selection" class="map-selection" role="status" aria-live="polite">掲載情報は順次追加しています。</p>
+          <a href="#event-results-heading" class="explorer-link" id="map-results-link">選んだ地域の一覧を見る ↓</a>
+          <p class="map-credit">地形を簡略化した地図です。素材：<a href="https://github.com/lalamalink/japan-map-svg" target="_blank" rel="noopener noreferrer">lalamalink（CC0）</a></p>
+        </section>
+        <section class="explorer-calendar" aria-labelledby="calendar-title">
+          <h3 id="calendar-title">カレンダーから探す</h3>
+          <p class="explorer-help" id="calendar-region">全国すべての催事</p>
+          <div class="calendar-toolbar">
+            <button type="button" id="calendar-prev" aria-label="前の月" disabled>‹</button>
+            <label class="calendar-month-label" for="calendar-month">表示する月<select id="calendar-month" disabled><!-- CALENDAR-MONTHS --></select></label>
+            <button type="button" id="calendar-next" aria-label="次の月" disabled>›</button>
+          </div>
+          <table class="event-calendar"><caption id="calendar-caption">開催日カレンダー</caption><thead><tr><th scope="col">日</th><th scope="col">月</th><th scope="col">火</th><th scope="col">水</th><th scope="col">木</th><th scope="col">金</th><th scope="col">土</th></tr></thead><tbody id="calendar-days"></tbody></table>
+          <p class="calendar-status" id="calendar-status" role="status" aria-live="polite"></p>
+          <div class="calendar-actions"><button type="button" id="calendar-today" disabled>今月に戻る</button><button type="button" id="calendar-list" disabled>この月の一覧を見る ↓</button></div>
+          <ul class="calendar-preview" id="calendar-preview" aria-label="表示月の催事の一部"></ul>
+          <p class="explorer-help">件数のある日を押すと、その日の催事が表示されます。過去の日付も調べられます。</p>
+        </section>
+      </div>
+      <noscript><p class="event-nojs">地図・カレンダーを使うにはJavaScriptを有効にしてください。下の一覧では、すべての開催情報をご覧いただけます。</p></noscript>
+    </section>
+
     <section id="event-search" aria-label="大会・公演を探す">
       <div class="event-tabs" role="tablist" aria-label="探し方">
         <button type="button" role="tab" id="tab-national" aria-selected="true" aria-controls="event-panel" data-scope="national" disabled>全国大会・公演</button>
@@ -55,13 +89,11 @@
       <div id="event-panel" role="tabpanel" aria-labelledby="tab-national">
         <div class="event-controls">
           <label class="event-field" for="event-period">開催時期
-            <select id="event-period" disabled><option value="upcoming">これからの開催予定</option><option value="past">過去の開催情報</option></select>
-          </label>
-          <label class="event-field" for="event-prefecture" id="prefecture-field" hidden>開催する都道府県
-            <select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select>
+            <select id="event-period" disabled><option value="upcoming">これからの開催予定</option><option value="past">過去の開催情報</option><option value="all">予定と過去の情報すべて</option></select>
           </label>
           <p class="event-update">情報確認日：<time datetime="{{UPDATED}}">{{UPDATED}}</time></p>
         </div>
+        <div class="event-active-filter" id="event-active-filter" hidden><span id="event-date-filter-label"></span><button type="button" id="clear-date">日付の絞り込みを解除</button></div>
         <noscript><p class="event-nojs">すべての開催情報を表示しています。都道府県や開催時期で絞り込むには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
         <div class="event-summary"><h2 id="event-results-heading" tabindex="-1">大会・公演の一覧</h2><span id="event-count" role="status" aria-live="polite" aria-atomic="true">{{TOTAL}}件</span></div>
         <p class="event-intro" id="event-list-note">観覧料と出場参加費は異なります。お出かけ前に、主催者の最新案内で開催・開演時刻・入場方法をご確認ください。</p>
