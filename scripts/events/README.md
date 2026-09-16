@@ -9,6 +9,8 @@
 
 週次の自動調査・更新は [WEEKLY_UPDATE.md](WEEKLY_UPDATE.md) に従う。毎週月曜9時（日本時間）のCodex予約から実行する。
 
+追加・修正時の精査は [FACT_CHECK.md](FACT_CHECK.md) に従う。原文との再照合を行い、項目別の根拠を `reviews.json` へ残す。公開前に `python -X utf8 scripts/events/check-reviews.py --base <更新前SHA>` も実行する。GitHub Actionsでも確認記録の欠落・掲載内容との不一致を検出したらデプロイを停止する。
+
 ## 過去の情報を残す方針（2026-09-16 指定）
 
 - 保存対象は **2022年1月1日以降**の大会・コンサート・発表会。開催終了や年数の経過を理由に削除しない。「直近1年」へ掲載範囲を戻さない。

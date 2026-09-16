@@ -85,7 +85,8 @@ def main():
     html=TEMPLATE.read_text(encoding='utf-8')
     # クエリ文字列だけでは古いCSSが残る環境があるため、内容に応じたファイル名を使う。
     for ext in ['css','js']:
-        asset=(ROOT/f'events/events.{ext}').read_bytes()
+        # Windowsと公開前検査（Linux）で同じ内容・ファイル名になるよう改行をそろえる。
+        asset=(ROOT/f'events/events.{ext}').read_text(encoding='utf-8').encode('utf-8')
         name=f'events.{hashlib.sha256(asset).hexdigest()[:12]}.{ext}'
         (ROOT/'events'/name).write_bytes(asset)
         html=html.replace('{{EVENT_'+ext.upper()+'}}',name)

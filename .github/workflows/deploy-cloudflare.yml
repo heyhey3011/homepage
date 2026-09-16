@@ -12,6 +12,20 @@ jobs:
     steps:
       - name: リポジトリをチェックアウト 🛎️
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 催事情報の精査記録と整合性を確認
+        env:
+          EVENTS_BASE_SHA: ${{ github.event.before }}
+        run: |
+          python -X utf8 scripts/events/test-reviews.py
+          python -X utf8 scripts/events/check-reviews.py --base "$EVENTS_BASE_SHA"
+          python -X utf8 scripts/events/check.py
+          node scripts/events/check-ui.cjs
+          python -X utf8 scripts/events/render.py
+          git diff --exit-code -- events
+          git diff --check
 
       - name: 追跡ファイルのみのクリーンなコピーを作成 🧹
         # .git履歴や.github配下の作業用ファイルなどを含めず、
