@@ -11,6 +11,9 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2]
 DATA=ROOT/'events/events.json'
 TEMPLATE=Path(__file__).with_name('page.template.html')
+REGIONS=json.loads((ROOT/'events/regions.json').read_text(encoding='utf-8'))
+REGION_BY_PREF={pref:r['id'] for r in REGIONS for pref in r['prefectures']}
+assert len(REGION_BY_PREF)==47 and sum(len(r['prefectures']) for r in REGIONS)==47
 
 def h(value): return escape(str(value or ''),quote=True)
 
@@ -56,7 +59,7 @@ def card(e,asof):
     if e.get('participation_note'): extra+=f'<p><strong>出場・申込について：</strong>{h(e["participation_note"])}</p>'
     kind='関連公演' if e.get('related') else '全国大会・公演' if e['scope']=='national' else '地域大会・公演'
     short=e.get('short_name') or re.sub(r'（[^）]*）|\([^)]*\)','',e['name']).strip()
-    return f'''<article class="event-card" id="event-{h(e['id'])}" data-date="{h(e['date'])}" data-scope="{h(e['scope'])}" data-prefecture="{h(e['prefecture'])}" data-short-name="{h(short)}" data-past="{str(past).lower()}">
+    return f'''<article class="event-card" id="event-{h(e['id'])}" data-date="{h(e['date'])}" data-scope="{h(e['scope'])}" data-prefecture="{h(e['prefecture'])}" data-region="{REGION_BY_PREF[e['prefecture']]}" data-short-name="{h(short)}" data-past="{str(past).lower()}">
   <div class="event-date"><time datetime="{h(e['date'])}"><span class="event-date__year">{d.year}年</span><span class="event-date__day">{d.month}/{d.day}</span><span class="event-date__weekday">{weekday}曜日</span></time><span class="event-date__state">{label}</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag{' event-tag--related' if e.get('related') else ''}">{kind}</span><span class="event-tag">{h(e['category'])}</span></div>
@@ -96,7 +99,8 @@ def main():
         html=html.replace(f'<!-- SHARED-{part} -->',fragment)
     html=html.replace('<!-- EVENT-CARDS -->','\n'.join(card(e,asof) for e in ordered))
     prefectures='北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県'.split()
-    html=html.replace('<!-- PREFECTURES -->',''.join(f'<option value="{p}">{p}</option>' for p in prefectures))
+    html=html.replace('<!-- PREFECTURES -->',''.join(f'<option value="{p}" data-region="{REGION_BY_PREF[p]}">{p}</option>' for p in prefectures))
+    html=html.replace('<!-- REGIONS -->',''.join(f'<option value="{r["id"]}">{r["label"]}</option>' for r in REGIONS))
     html=html.replace('<!-- JAPAN-MAP -->',japan_map(events,asof))
     months=sorted({e['date'][:7] for e in events}|{asof[:7]})
     start=int(months[0][:4])*12+int(months[0][5:])-1

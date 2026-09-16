@@ -78,6 +78,14 @@ map_names=re.findall(r'class="map-prefecture" data-prefecture="([^"]+)"',html)
 assert len(map_names)==47 and len(set(map_names))==47
 assert {e['prefecture'] for e in events} <= set(map_names)
 assert html.count('id="calendar-month"')==1 and html.count('id="event-prefecture"')==1
+regions=json.loads((ROOT/'events/regions.json').read_text(encoding='utf-8'))
+region_prefs=[p for r in regions for p in r['prefectures']]
+assert len(regions)==11 and len(region_prefs)==47 and set(region_prefs)==set(map_names)
+assert len(set(r['id'] for r in regions))==11
+assert next(r['prefectures'] for r in regions if r['id']=='koshinetsu')==['山梨県','長野県','新潟県']
+assert 'id="period-upcoming"' in html and 'id="period-past"' in html
+assert 'id="event-period"' not in html and '予定と過去の情報すべて' not in html
+assert html.count('id="event-region"')==1
 assert '<h1>全国詩吟イベントナビ</h1>' in html
 assert 'id="calendar-pair"' in html
 assert 'この月の一覧を見る' in (ROOT/'events/events.js').read_text(encoding='utf-8-sig')

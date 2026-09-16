@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="events.5eaddccecb0d.css">
+  <link rel="stylesheet" href="events.2aaf72aa8f96.css">
   <link rel="icon" type="image/png" href="../assets/img/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="../manifest.json">
@@ -79,9 +79,20 @@
       </ol>
     </aside>
 
+    <div class="event-period-tabs" role="tablist" aria-label="開催時期">
+      <button type="button" role="tab" id="period-upcoming" data-period="upcoming" aria-selected="true" aria-controls="event-browse" disabled>これからの予定</button>
+      <button type="button" role="tab" id="period-past" data-period="past" aria-selected="false" aria-controls="event-browse" tabindex="-1" disabled>アーカイブス</button>
+    </div>
+    <div id="event-browse" role="tabpanel" aria-labelledby="period-upcoming">
+    <p id="archive-notice" class="archive-notice" hidden>過去の大会・公演の記録です。2022年1月以降の情報を順次保存しています。料金・観覧条件は、その回の開催当時のものです。</p>
     <section class="event-explorer" aria-labelledby="explorer-title" id="event-explorer">
       <div class="explorer-heading"><h2 id="explorer-title">場所と日付から、吟に出会う</h2><p>36都道府県・90件の開催情報</p></div>
-      <p class="explorer-intro">全国大会も、地域の発表会も。まずは今月・来月の予定を見渡してみましょう。</p>
+      <p class="explorer-intro" id="explorer-intro">全国大会も、地域の発表会も。まずは今月・来月の予定を見渡してみましょう。</p>
+      <div class="event-location-filters">
+        <label class="event-field" for="event-region">地方から絞り込む<select id="event-region" disabled><option value="">全国すべて</option><option value="hokkaido">北海道</option><option value="tohoku">東北</option><option value="kanto">関東</option><option value="koshinetsu">甲信越</option><option value="hokuriku">北陸</option><option value="tokai">東海</option><option value="kinki">近畿</option><option value="chugoku">中国</option><option value="shikoku">四国</option><option value="kyushu">九州</option><option value="okinawa">沖縄</option></select></label>
+        <label class="event-field" for="event-prefecture" id="prefecture-field">都道府県から絞り込む<select id="event-prefecture" disabled><option value="">全国すべて</option><option value="北海道" data-region="hokkaido">北海道</option><option value="青森県" data-region="tohoku">青森県</option><option value="岩手県" data-region="tohoku">岩手県</option><option value="宮城県" data-region="tohoku">宮城県</option><option value="秋田県" data-region="tohoku">秋田県</option><option value="山形県" data-region="tohoku">山形県</option><option value="福島県" data-region="tohoku">福島県</option><option value="茨城県" data-region="kanto">茨城県</option><option value="栃木県" data-region="kanto">栃木県</option><option value="群馬県" data-region="kanto">群馬県</option><option value="埼玉県" data-region="kanto">埼玉県</option><option value="千葉県" data-region="kanto">千葉県</option><option value="東京都" data-region="kanto">東京都</option><option value="神奈川県" data-region="kanto">神奈川県</option><option value="新潟県" data-region="koshinetsu">新潟県</option><option value="富山県" data-region="hokuriku">富山県</option><option value="石川県" data-region="hokuriku">石川県</option><option value="福井県" data-region="hokuriku">福井県</option><option value="山梨県" data-region="koshinetsu">山梨県</option><option value="長野県" data-region="koshinetsu">長野県</option><option value="岐阜県" data-region="tokai">岐阜県</option><option value="静岡県" data-region="tokai">静岡県</option><option value="愛知県" data-region="tokai">愛知県</option><option value="三重県" data-region="tokai">三重県</option><option value="滋賀県" data-region="kinki">滋賀県</option><option value="京都府" data-region="kinki">京都府</option><option value="大阪府" data-region="kinki">大阪府</option><option value="兵庫県" data-region="kinki">兵庫県</option><option value="奈良県" data-region="kinki">奈良県</option><option value="和歌山県" data-region="kinki">和歌山県</option><option value="鳥取県" data-region="chugoku">鳥取県</option><option value="島根県" data-region="chugoku">島根県</option><option value="岡山県" data-region="chugoku">岡山県</option><option value="広島県" data-region="chugoku">広島県</option><option value="山口県" data-region="chugoku">山口県</option><option value="徳島県" data-region="shikoku">徳島県</option><option value="香川県" data-region="shikoku">香川県</option><option value="愛媛県" data-region="shikoku">愛媛県</option><option value="高知県" data-region="shikoku">高知県</option><option value="福岡県" data-region="kyushu">福岡県</option><option value="佐賀県" data-region="kyushu">佐賀県</option><option value="長崎県" data-region="kyushu">長崎県</option><option value="熊本県" data-region="kyushu">熊本県</option><option value="大分県" data-region="kyushu">大分県</option><option value="宮崎県" data-region="kyushu">宮崎県</option><option value="鹿児島県" data-region="kyushu">鹿児島県</option><option value="沖縄県" data-region="okinawa">沖縄県</option></select></label>
+        <p id="region-description" class="region-description">地方・都道府県で地図、カレンダー、一覧を絞り込めます。</p>
+      </div>
       <div class="explorer-period">
         <div class="calendar-toolbar">
           <button type="button" id="calendar-prev" aria-label="表示期間を1か月前へ" disabled>‹</button>
@@ -94,7 +105,7 @@
         <section class="explorer-map" aria-labelledby="map-title">
           <div class="explorer-section-heading"><div><p class="explorer-kicker">開催地を見渡す</p><h3 id="map-title">この2か月、どこで吟に出会える？</h3></div><a href="#calendar-title" class="explorer-link">カレンダーへ ↓</a></div>
           <p class="explorer-help" id="map-window-note">地図から伸びる線の先に、日付と催事名を表示します。</p>
-          <div class="map-legend"><span><i class="legend-upcoming"></i>表示期間に予定あり</span><span><i class="legend-none"></i>この期間の予定は未掲載</span><span>催事名を押すと詳しい案内へ</span></div>
+          <div class="map-legend"><span><i class="legend-upcoming"></i>表示期間の掲載あり</span><span><i class="legend-none"></i>この期間の情報は未掲載</span><span>催事名を押すと詳しい案内へ</span></div>
           <div class="map-board" id="map-board">
             <div class="map-callouts map-callouts--left" id="map-callouts-left"></div>
             <div class="japan-map" id="japan-map"><svg viewBox="-35 -35 1607 1820" role="group" aria-labelledby="japan-map-title"><title id="japan-map-title">開催地を選ぶ日本地図。県名からも選べます。</title><g transform="translate(-542.3661,-311.44048)">
@@ -151,9 +162,6 @@
           </div>
           <p class="map-empty" id="map-empty" hidden>この期間の予定は、まだ掲載されていません。カレンダーで過去の情報を見るか、別の月を選んでみてください。</p>
           <div class="map-filter-row">
-          <label class="event-field" for="event-prefecture" id="prefecture-field">県名からも選べます
-            <select id="event-prefecture" disabled><option value="">全国すべて</option><option value="北海道">北海道</option><option value="青森県">青森県</option><option value="岩手県">岩手県</option><option value="宮城県">宮城県</option><option value="秋田県">秋田県</option><option value="山形県">山形県</option><option value="福島県">福島県</option><option value="茨城県">茨城県</option><option value="栃木県">栃木県</option><option value="群馬県">群馬県</option><option value="埼玉県">埼玉県</option><option value="千葉県">千葉県</option><option value="東京都">東京都</option><option value="神奈川県">神奈川県</option><option value="新潟県">新潟県</option><option value="富山県">富山県</option><option value="石川県">石川県</option><option value="福井県">福井県</option><option value="山梨県">山梨県</option><option value="長野県">長野県</option><option value="岐阜県">岐阜県</option><option value="静岡県">静岡県</option><option value="愛知県">愛知県</option><option value="三重県">三重県</option><option value="滋賀県">滋賀県</option><option value="京都府">京都府</option><option value="大阪府">大阪府</option><option value="兵庫県">兵庫県</option><option value="奈良県">奈良県</option><option value="和歌山県">和歌山県</option><option value="鳥取県">鳥取県</option><option value="島根県">島根県</option><option value="岡山県">岡山県</option><option value="広島県">広島県</option><option value="山口県">山口県</option><option value="徳島県">徳島県</option><option value="香川県">香川県</option><option value="愛媛県">愛媛県</option><option value="高知県">高知県</option><option value="福岡県">福岡県</option><option value="佐賀県">佐賀県</option><option value="長崎県">長崎県</option><option value="熊本県">熊本県</option><option value="大分県">大分県</option><option value="宮崎県">宮崎県</option><option value="鹿児島県">鹿児島県</option><option value="沖縄県">沖縄県</option></select>
-          </label>
           <p id="map-selection" class="map-selection" role="status" aria-live="polite">掲載情報は順次追加しています。</p>
           <a href="#event-results-heading" class="explorer-link" id="map-results-link">選んだ地域の一覧を見る ↓</a>
           </div>
@@ -162,7 +170,7 @@
         <section class="explorer-calendar" aria-labelledby="calendar-title">
           <div class="explorer-section-heading"><div><p class="explorer-kicker">日付から見つける</p><h3 id="calendar-title">2か月の詩吟カレンダー</h3></div></div>
           <p class="explorer-help" id="calendar-region">全国すべての催事</p>
-          <p class="explorer-help">日付の枠に「開催地・催事名」を掲載。過ぎた日程には「終了」を付けています。</p>
+          <p class="explorer-help" id="calendar-help">日付の枠に「開催地・催事名」を掲載。過去の情報はアーカイブスで見られます。</p>
           <div class="calendar-pair" id="calendar-pair"></div>
           <p class="calendar-status" id="calendar-status" role="status" aria-live="polite"></p>
         </section>
@@ -172,13 +180,11 @@
     <section id="event-search" aria-label="大会・公演を探す">
       <div class="event-tabs" role="tablist" aria-label="探し方">
         <button type="button" role="tab" id="tab-national" aria-selected="true" aria-controls="event-panel" data-scope="national" disabled>全国大会・公演</button>
-        <button type="button" role="tab" id="tab-prefecture" aria-selected="false" aria-controls="event-panel" data-scope="prefecture" tabindex="-1" disabled>都道府県から探す</button>
+        <button type="button" role="tab" id="tab-prefecture" aria-selected="false" aria-controls="event-panel" data-scope="prefecture" tabindex="-1" disabled>地域の催事も含める</button>
       </div>
       <div id="event-panel" role="tabpanel" aria-labelledby="tab-national">
         <div class="event-controls">
-          <label class="event-field" for="event-period">開催時期
-            <select id="event-period" disabled><option value="upcoming">これからの開催予定</option><option value="past">過去の開催情報</option><option value="all">予定と過去の情報すべて</option></select>
-          </label>
+          <p class="event-period-status" id="event-period-status">これからの予定を表示中</p>
           <p class="event-update">情報確認日：<time datetime="2026-09-16">2026-09-16</time></p>
         </div>
         <div class="event-active-filter" id="event-active-filter" hidden><span id="event-date-filter-label"></span><button type="button" id="clear-date">日付の絞り込みを解除</button></div>
@@ -186,7 +192,7 @@
         <div class="event-summary"><h2 id="event-results-heading" tabindex="-1">大会・公演の一覧</h2><span id="event-count" role="status" aria-live="polite" aria-atomic="true">90件</span></div>
         <p class="event-intro" id="event-list-note">観覧料と出場参加費は異なります。お出かけ前に、主催者の最新案内で開催・開演時刻・入場方法をご確認ください。</p>
         <div id="event-list" class="event-list">
-          <article class="event-card" id="event-E057" data-date="2026-09-20" data-scope="national" data-prefecture="石川県" data-short-name="九月十三夜 全国詩吟大会" data-past="false">
+          <article class="event-card" id="event-E057" data-date="2026-09-20" data-scope="national" data-prefecture="石川県" data-region="hokuriku" data-short-name="九月十三夜 全国詩吟大会" data-past="false">
   <div class="event-date"><time datetime="2026-09-20"><span class="event-date__year">2026年</span><span class="event-date__day">9/20</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">課題詩の全国大会</span></div>
@@ -201,7 +207,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://toyamaoginkai.wixsite.com/shigin/news" target="_blank" rel="noopener noreferrer">富山桜吟会・行事予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E094" data-date="2026-09-23" data-scope="regional" data-prefecture="京都府" data-short-name="キング吟詠 近畿決勝大会" data-past="false">
+<article class="event-card" id="event-E094" data-date="2026-09-23" data-scope="regional" data-prefecture="京都府" data-region="kinki" data-short-name="キング吟詠 近畿決勝大会" data-past="false">
   <div class="event-date"><time datetime="2026-09-23"><span class="event-date__year">2026年</span><span class="event-date__day">9/23</span><span class="event-date__weekday">水曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区決選</span></div>
@@ -216,7 +222,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>キング吟詠剣詩舞会</p><ul><li><a href="https://www.yawata-bunka.jp/center/other_event/" target="_blank" rel="noopener noreferrer">八幡市文化センター：2026年9月催物予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E058" data-date="2026-09-26" data-scope="national" data-prefecture="東京都" data-short-name="クラウン関東リサイタル" data-past="false">
+<article class="event-card" id="event-E058" data-date="2026-09-26" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="クラウン関東リサイタル" data-past="false">
   <div class="event-date"><time datetime="2026-09-26"><span class="event-date__year">2026年</span><span class="event-date__day">9/26</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">リサイタル</span></div>
@@ -231,7 +237,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/event_info/" target="_blank" rel="noopener noreferrer">クラウン吟友会・イベント情報</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E074" data-date="2026-09-27" data-scope="national" data-prefecture="東京都" data-short-name="錦城会 詩吟全国大会" data-past="false">
+<article class="event-card" id="event-E074" data-date="2026-09-27" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="錦城会 詩吟全国大会" data-past="false">
   <div class="event-date"><time datetime="2026-09-27"><span class="event-date__year">2026年</span><span class="event-date__day">9/27</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -246,7 +252,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>一般社団法人 詩吟朗詠錦城会</p><ul><li><a href="https://kinjoukai.or.jp/activity/schedule.html" target="_blank" rel="noopener noreferrer">詩吟朗詠錦城会：令和7・8年度活動予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E076" data-date="2026-10-03" data-scope="regional" data-prefecture="東京都" data-short-name="日本詩吟選手権 東京西部予選" data-past="false">
+<article class="event-card" id="event-E076" data-date="2026-10-03" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="日本詩吟選手権 東京西部予選" data-past="false">
   <div class="event-date"><time datetime="2026-10-03"><span class="event-date__year">2026年</span><span class="event-date__day">10/3</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -261,7 +267,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E085" data-date="2026-10-04" data-scope="regional" data-prefecture="岩手県" data-short-name="陸前高田 芸術祭（詩吟出演）" data-past="false">
+<article class="event-card" id="event-E085" data-date="2026-10-04" data-scope="regional" data-prefecture="岩手県" data-region="tohoku" data-short-name="陸前高田 芸術祭（詩吟出演）" data-past="false">
   <div class="event-date"><time datetime="2026-10-04"><span class="event-date__year">2026年</span><span class="event-date__day">10/4</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">文化祭・発表会</span></div>
@@ -276,7 +282,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>陸前高田市民芸術祭実行委員会</p><p>詩吟・謡曲・民謡などの合同発表です。詩吟の出演時刻は主催者にご確認ください。</p><ul><li><a href="https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html" target="_blank" rel="noopener noreferrer">陸前高田市：令和8年度市民芸術祭日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E059" data-date="2026-10-11" data-scope="national" data-prefecture="埼玉県" data-short-name="全国吟道大会（大宮）" data-past="false">
+<article class="event-card" id="event-E059" data-date="2026-10-11" data-scope="national" data-prefecture="埼玉県" data-region="kanto" data-short-name="全国吟道大会（大宮）" data-past="false">
   <div class="event-date"><time datetime="2026-10-11"><span class="event-date__year">2026年</span><span class="event-date__day">10/11</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟道大会・競吟</span></div>
@@ -291,7 +297,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益社団法人日本詩吟学院</p><ul><li><a href="https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/" target="_blank" rel="noopener noreferrer">日本詩吟学院・第136回全国吟道大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E073" data-date="2026-10-11" data-scope="regional" data-prefecture="北海道" data-short-name="錦城会 道南・函館記念大会" data-past="false">
+<article class="event-card" id="event-E073" data-date="2026-10-11" data-scope="regional" data-prefecture="北海道" data-region="hokkaido" data-short-name="錦城会 道南・函館記念大会" data-past="false">
   <div class="event-date"><time datetime="2026-10-11"><span class="event-date__year">2026年</span><span class="event-date__day">10/11</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -306,7 +312,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>一般社団法人 詩吟朗詠錦城会</p><ul><li><a href="https://kinjoukai.or.jp/activity/schedule.html" target="_blank" rel="noopener noreferrer">詩吟朗詠錦城会：令和7・8年度活動予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E084" data-date="2026-10-17" data-scope="regional" data-prefecture="福岡県" data-short-name="福芸2026（詩吟出演）" data-past="false">
+<article class="event-card" id="event-E084" data-date="2026-10-17" data-scope="regional" data-prefecture="福岡県" data-region="kyushu" data-short-name="福芸2026（詩吟出演）" data-past="false">
   <div class="event-date"><time datetime="2026-10-17"><span class="event-date__year">2026年</span><span class="event-date__day">10/17</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">伝統芸能公演</span></div>
@@ -321,7 +327,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>詩吟は14:00の開会時と15:30の枠に予定。日本舞踊・琵琶なども含む公演です。</p><ul><li><a href="https://fukugei.com/index.html" target="_blank" rel="noopener noreferrer">福芸2026：開催概要・プログラム</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E060" data-date="2026-10-18" data-scope="national" data-prefecture="東京都" data-short-name="クラウン全国吟詠 全国大会" data-past="false">
+<article class="event-card" id="event-E060" data-date="2026-10-18" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="クラウン全国吟詠 全国大会" data-past="false">
   <div class="event-date"><time datetime="2026-10-18"><span class="event-date__year">2026年</span><span class="event-date__day">10/18</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -336,7 +342,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><p><strong>出場・申込について：</strong>地区大会経由。全国大会参加費は1部門6,000円。18歳未満無料の条件は要項参照。</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度実施要領</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E083" data-date="2026-10-18" data-scope="regional" data-prefecture="栃木県" data-short-name="栃木県芸術祭 吟詠剣詩舞" data-past="false">
+<article class="event-card" id="event-E083" data-date="2026-10-18" data-scope="regional" data-prefecture="栃木県" data-region="kanto" data-short-name="栃木県芸術祭 吟詠剣詩舞" data-past="false">
   <div class="event-date"><time datetime="2026-10-18"><span class="event-date__year">2026年</span><span class="event-date__day">10/18</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -351,7 +357,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>栃木県・栃木県文化協会</p><ul><li><a href="https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html" target="_blank" rel="noopener noreferrer">栃木県：第80回記念栃木県芸術祭</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E098" data-date="2026-10-25" data-scope="regional" data-prefecture="福岡県" data-short-name="福岡県吟詠剣詩舞大会" data-past="false">
+<article class="event-card" id="event-E098" data-date="2026-10-25" data-scope="regional" data-prefecture="福岡県" data-region="kyushu" data-short-name="福岡県吟詠剣詩舞大会" data-past="false">
   <div class="event-date"><time datetime="2026-10-25"><span class="event-date__year">2026年</span><span class="event-date__day">10/25</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">吟剣詩舞公演</span></div>
@@ -366,7 +372,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>福岡県吟詠剣詩舞連盟</p><ul><li><a href="https://fcaf.jp/eventlist_print/" target="_blank" rel="noopener noreferrer">福岡市民芸術祭：令和8年度参加行事一覧</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E077" data-date="2026-10-30" data-scope="regional" data-prefecture="千葉県" data-short-name="日本詩吟選手権 千葉北部予選" data-past="false">
+<article class="event-card" id="event-E077" data-date="2026-10-30" data-scope="regional" data-prefecture="千葉県" data-region="kanto" data-short-name="日本詩吟選手権 千葉北部予選" data-past="false">
   <div class="event-date"><time datetime="2026-10-30"><span class="event-date__year">2026年</span><span class="event-date__day">10/30</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -381,7 +387,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E091" data-date="2026-11-03" data-scope="regional" data-prefecture="愛媛県" data-short-name="愛媛県 県民総合文化祭 吟詠剣詩舞公演" data-past="false">
+<article class="event-card" id="event-E091" data-date="2026-11-03" data-scope="regional" data-prefecture="愛媛県" data-region="shikoku" data-short-name="愛媛県 県民総合文化祭 吟詠剣詩舞公演" data-past="false">
   <div class="event-date"><time datetime="2026-11-03"><span class="event-date__year">2026年</span><span class="event-date__day">11/3</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">吟剣詩舞公演</span></div>
@@ -396,7 +402,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>託児サービスは事前申込みが必要です。詳細は県の開催案内でご確認ください。</p><p>当初の日程PDFは公開終了のため、2026年9月10日更新の県公式開催案内に置き換え。</p><ul><li><a href="https://www.pref.ehime.jp/page/145342.html" target="_blank" rel="noopener noreferrer">愛媛県：令和8年度県民総合文化祭（2026年9月10日更新）</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E092" data-date="2026-11-03" data-scope="regional" data-prefecture="愛媛県" data-short-name="第71回秋の芸術祭 第3部" data-past="false">
+<article class="event-card" id="event-E092" data-date="2026-11-03" data-scope="regional" data-prefecture="愛媛県" data-region="shikoku" data-short-name="第71回秋の芸術祭 第3部" data-past="false">
   <div class="event-date"><time datetime="2026-11-03"><span class="event-date__year">2026年</span><span class="event-date__day">11/3</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">文化祭・発表会</span></div>
@@ -411,7 +417,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>新居浜文化協会</p><p>第3部は洋舞・日舞・吟詠・器楽。詩吟の出演時刻は主催者にご確認ください。</p><ul><li><a href="https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html" target="_blank" rel="noopener noreferrer">新居浜市：第71回秋の芸術祭（2026年9月1日更新）</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E096" data-date="2026-11-03" data-scope="regional" data-prefecture="東京都" data-short-name="北区文化芸術祭in北とぴあ 吟剣詩舞道大会" data-past="false">
+<article class="event-card" id="event-E096" data-date="2026-11-03" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="北区文化芸術祭in北とぴあ 吟剣詩舞道大会" data-past="false">
   <div class="event-date"><time datetime="2026-11-03"><span class="event-date__year">2026年</span><span class="event-date__day">11/3</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">吟剣詩舞公演</span></div>
@@ -426,7 +432,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>北区吟剣詩舞道連盟</p><ul><li><a href="https://kitabunka.or.jp/art_festival_2026/" target="_blank" rel="noopener noreferrer">北区文化振興財団：北区文化芸術祭2026</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E078" data-date="2026-11-06" data-scope="regional" data-prefecture="神奈川県" data-short-name="第38回日本詩吟選手権 神奈川地区予選" data-past="false">
+<article class="event-card" id="event-E078" data-date="2026-11-06" data-scope="regional" data-prefecture="神奈川県" data-region="kanto" data-short-name="第38回日本詩吟選手権 神奈川地区予選" data-past="false">
   <div class="event-date"><time datetime="2026-11-06"><span class="event-date__year">2026年</span><span class="event-date__day">11/6</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -441,7 +447,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E097" data-date="2026-11-07" data-scope="regional" data-prefecture="兵庫県" data-short-name="第62回加古川市文化まつり 詩吟と剣詩舞の大会" data-past="false">
+<article class="event-card" id="event-E097" data-date="2026-11-07" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="第62回加古川市文化まつり 詩吟と剣詩舞の大会" data-past="false">
   <div class="event-date"><time datetime="2026-11-07"><span class="event-date__year">2026年</span><span class="event-date__day">11/7</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">吟剣詩舞公演</span></div>
@@ -456,7 +462,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>加古川吟詠連合会</p><ul><li><a href="https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html" target="_blank" rel="noopener noreferrer">加古川市：第62回文化まつり</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E086" data-date="2026-11-08" data-scope="regional" data-prefecture="山口県" data-short-name="岩国地区吟剣詩舞道連盟大会「吟と歌と舞の祭典」" data-past="false">
+<article class="event-card" id="event-E086" data-date="2026-11-08" data-scope="regional" data-prefecture="山口県" data-region="chugoku" data-short-name="岩国地区吟剣詩舞道連盟大会「吟と歌と舞の祭典」" data-past="false">
   <div class="event-date"><time datetime="2026-11-08"><span class="event-date__year">2026年</span><span class="event-date__day">11/8</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -471,7 +477,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>岩国地区吟剣詩舞道連盟</p><p>同じ日・会場の重複案内を1件にまとめています。</p><ul><li><a href="https://iwakuni-bunka.com/calendar_2026.html" target="_blank" rel="noopener noreferrer">岩国市文化協会：2026年度イベントカレンダー</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E062" data-date="2026-11-10" data-scope="national" data-prefecture="東京都" data-short-name="第56回全国吟剣詩舞道大会／令和8年度全国吟詠合吟コンクール" data-past="false">
+<article class="event-card" id="event-E062" data-date="2026-11-10" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第56回全国吟剣詩舞道大会／令和8年度全国吟詠合吟コンクール" data-past="false">
   <div class="event-date"><time datetime="2026-11-10"><span class="event-date__year">2026年</span><span class="event-date__day">11/10</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">総合大会・合吟コンクール</span></div>
@@ -486,7 +492,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益財団法人日本吟剣詩舞振興会</p><p>第1部は17:20終了予定、第2部は18:00〜20:00予定。終日観覧券の販売期間は2026年10月27日まで。</p><ul><li><a href="https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d" target="_blank" rel="noopener noreferrer">日本吟剣詩舞振興会・公式観覧チケット</a></li><li><a href="https://www.ginken.or.jp/index.php/news/news-14143/" target="_blank" rel="noopener noreferrer">日本吟剣詩舞振興会・第56回大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E079" data-date="2026-11-13" data-scope="regional" data-prefecture="千葉県" data-short-name="第38回日本詩吟選手権 千葉南部地区予選" data-past="false">
+<article class="event-card" id="event-E079" data-date="2026-11-13" data-scope="regional" data-prefecture="千葉県" data-region="kanto" data-short-name="第38回日本詩吟選手権 千葉南部地区予選" data-past="false">
   <div class="event-date"><time datetime="2026-11-13"><span class="event-date__year">2026年</span><span class="event-date__day">11/13</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -501,7 +507,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E087" data-date="2026-11-21" data-scope="regional" data-prefecture="山形県" data-short-name="日本九重流詩吟庄内町詩吟愛好会 吟詠大会" data-past="false">
+<article class="event-card" id="event-E087" data-date="2026-11-21" data-scope="regional" data-prefecture="山形県" data-region="tohoku" data-short-name="日本九重流詩吟庄内町詩吟愛好会 吟詠大会" data-past="false">
   <div class="event-date"><time datetime="2026-11-21"><span class="event-date__year">2026年</span><span class="event-date__day">11/21</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -516,7 +522,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本九重流詩吟庄内町詩吟愛好会</p><p>庄内町芸術祭の参加事業。会場は旧コミセンと案内されています。新しい複合拠点施設とお間違えのないようご確認ください。</p><ul><li><a href="https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html" target="_blank" rel="noopener noreferrer">庄内町：第22回庄内町芸術祭</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E088" data-date="2026-11-21" data-scope="regional" data-prefecture="兵庫県" data-short-name="第34回さんだ吟剣詩舞道・連盟創立45周年記念大会" data-past="false">
+<article class="event-card" id="event-E088" data-date="2026-11-21" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="第34回さんだ吟剣詩舞道・連盟創立45周年記念大会" data-past="false">
   <div class="event-date"><time datetime="2026-11-21"><span class="event-date__year">2026年</span><span class="event-date__day">11/21</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -531,7 +537,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>三田吟剣詩舞連盟</p><ul><li><a href="https://sandashibunka.grupo.jp/free6953045" target="_blank" rel="noopener noreferrer">三田市文化協会：2026年度行事予定・行事完了</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E080" data-date="2026-11-28" data-scope="regional" data-prefecture="埼玉県" data-short-name="第38回日本詩吟選手権 さいたま地区予選" data-past="false">
+<article class="event-card" id="event-E080" data-date="2026-11-28" data-scope="regional" data-prefecture="埼玉県" data-region="kanto" data-short-name="第38回日本詩吟選手権 さいたま地区予選" data-past="false">
   <div class="event-date"><time datetime="2026-11-28"><span class="event-date__year">2026年</span><span class="event-date__day">11/28</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -546,7 +552,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E063" data-date="2026-11-29" data-scope="national" data-prefecture="愛知県" data-short-name="日本伝統文化吟友会 吟剣詩舞コンクール全国決勝大会" data-past="false">
+<article class="event-card" id="event-E063" data-date="2026-11-29" data-scope="national" data-prefecture="愛知県" data-region="tokai" data-short-name="日本伝統文化吟友会 吟剣詩舞コンクール全国決勝大会" data-past="false">
   <div class="event-date"><time datetime="2026-11-29"><span class="event-date__year">2026年</span><span class="event-date__day">11/29</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟詠・剣詩舞コンクール</span></div>
@@ -561,7 +567,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本伝統文化吟友会</p><ul><li><a href="https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1" target="_blank" rel="noopener noreferrer">日本伝統文化吟友会関東地区連合会・大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E090" data-date="2026-11-29" data-scope="national" data-prefecture="高知県" data-short-name="吟と剣と扇と ～よさこい高知文化祭2026 吟剣詩舞の祭典～" data-past="false">
+<article class="event-card" id="event-E090" data-date="2026-11-29" data-scope="national" data-prefecture="高知県" data-region="shikoku" data-short-name="吟と剣と扇と ～よさこい高知文化祭2026 吟剣詩舞の祭典～" data-past="false">
   <div class="event-date"><time datetime="2026-11-29"><span class="event-date__year">2026年</span><span class="event-date__day">11/29</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟剣詩舞公演</span></div>
@@ -576,7 +582,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>文化庁・高知県・高知市・日本吟剣詩舞振興会・高知県吟剣詩舞道総連盟ほか</p><ul><li><a href="https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97" target="_blank" rel="noopener noreferrer">よさこい高知文化祭2026：吟と剣と扇と</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E081" data-date="2027-01-22" data-scope="regional" data-prefecture="東京都" data-short-name="第38回日本詩吟選手権 東京東部地区予選" data-past="false">
+<article class="event-card" id="event-E081" data-date="2027-01-22" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第38回日本詩吟選手権 東京東部地区予選" data-past="false">
   <div class="event-date"><time datetime="2027-01-22"><span class="event-date__year">2027年</span><span class="event-date__day">1/22</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -591,7 +597,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E082" data-date="2027-03-20" data-scope="regional" data-prefecture="東京都" data-short-name="第38回日本詩吟選手権 首都圏決選大会" data-past="false">
+<article class="event-card" id="event-E082" data-date="2027-03-20" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第38回日本詩吟選手権 首都圏決選大会" data-past="false">
   <div class="event-date"><time datetime="2027-03-20"><span class="event-date__year">2027年</span><span class="event-date__day">3/20</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区決選</span></div>
@@ -606,7 +612,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会：第38回応募要項・地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E064" data-date="2027-04-25" data-scope="national" data-prefecture="東京都" data-short-name="第38回日本詩吟選手権全国決選大会" data-past="false">
+<article class="event-card" id="event-E064" data-date="2027-04-25" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第38回日本詩吟選手権全国決選大会" data-past="false">
   <div class="event-date"><time datetime="2027-04-25"><span class="event-date__year">2027年</span><span class="event-date__day">4/25</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">開催予定</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -621,7 +627,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p><strong>出場・申込について：</strong>全国決選の参加費5,000円、18歳未満無料。観覧料ではない。</p><ul><li><a href="https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf" target="_blank" rel="noopener noreferrer">日本詩吟協会・第38回応募要項</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E010" data-date="2026-09-13" data-scope="national" data-prefecture="東京都" data-short-name="全国吟詠コンクール 決勝" data-past="true">
+<article class="event-card" id="event-E010" data-date="2026-09-13" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="全国吟詠コンクール 決勝" data-past="true">
   <div class="event-date"><time datetime="2026-09-13"><span class="event-date__year">2026年</span><span class="event-date__day">9/13</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -636,7 +642,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益財団法人日本吟剣詩舞振興会</p><ul><li><a href="https://www.ginken.or.jp/index.php/news/news-14159/" target="_blank" rel="noopener noreferrer">日本吟剣詩舞振興会・令和8年度全国吟詠コンクール</a></li><li><a href="https://yuko-suzuhana.com/news/2609132/" target="_blank" rel="noopener noreferrer">鈴華ゆう子公式・全国吟詠コンクール受賞報告</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E009" data-date="2026-09-12" data-scope="national" data-prefecture="東京都" data-short-name="全国優秀吟者吟道大会" data-past="true">
+<article class="event-card" id="event-E009" data-date="2026-09-12" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="全国優秀吟者吟道大会" data-past="true">
   <div class="event-date"><time datetime="2026-09-12"><span class="event-date__year">2026年</span><span class="event-date__day">9/12</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -651,7 +657,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益社団法人日本詩吟学院</p><p><strong>出場・申込について：</strong>入場申込締切2026-06-30。競吟出場とは別。</p><ul><li><a href="https://www.gakufukai.or.jp/2026/05/01/%E3%80%8C%E7%AC%AC32%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%84%AA%E7%A7%80%E5%90%9F%E8%80%85%E5%90%9F%E9%81%93%E5%A4%A7%E4%BC%9A%E3%80%8D%E9%96%8B%E5%82%AC%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/" target="_blank" rel="noopener noreferrer">日本詩吟学院・第32回全国優秀吟者吟道大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E052" data-date="2026-09-06" data-scope="regional" data-prefecture="石川県" data-short-name="北陸クラウン コンサート" data-past="true">
+<article class="event-card" id="event-E052" data-date="2026-09-06" data-scope="regional" data-prefecture="石川県" data-region="hokuriku" data-short-name="北陸クラウン コンサート" data-past="true">
   <div class="event-date"><time datetime="2026-09-06"><span class="event-date__year">2026年</span><span class="event-date__day">9/6</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンサート</span></div>
@@ -666,7 +672,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://toyamaoginkai.wixsite.com/shigin/news" target="_blank" rel="noopener noreferrer">富山桜吟会・行事予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E008" data-date="2026-09-05" data-scope="national" data-prefecture="静岡県" data-short-name="全日本歌謡吟詠 全国大会" data-past="true">
+<article class="event-card" id="event-E008" data-date="2026-09-05" data-scope="national" data-prefecture="静岡県" data-region="tokai" data-short-name="全日本歌謡吟詠 全国大会" data-past="true">
   <div class="event-date"><time datetime="2026-09-05"><span class="event-date__year">2026年</span><span class="event-date__day">9/5</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">歌謡吟詠コンクール</span></div>
@@ -681,7 +687,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>同大会実行委員会</p><ul><li><a href="https://rose-theatre.jp/event/detail/?dat_id=5343" target="_blank" rel="noopener noreferrer">富士市文化会館・第10回全日本歌謡吟詠コンクール</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E012" data-date="2026-08-30" data-scope="national" data-prefecture="兵庫県" data-short-name="第39回関西地区ジョイントリサイタル" data-past="true">
+<article class="event-card" id="event-E012" data-date="2026-08-30" data-scope="national" data-prefecture="兵庫県" data-region="kinki" data-short-name="第39回関西地区ジョイントリサイタル" data-past="true">
   <div class="event-date"><time datetime="2026-08-30"><span class="event-date__year">2026年</span><span class="event-date__day">8/30</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">リサイタル</span></div>
@@ -696,7 +702,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/event_info/" target="_blank" rel="noopener noreferrer">クラウン吟友会・イベント情報</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E024" data-date="2026-08-22" data-scope="regional" data-prefecture="青森県" data-short-name="第53回クラウン全国吟詠コンクール 北東北地区大会" data-past="true">
+<article class="event-card" id="event-E024" data-date="2026-08-22" data-scope="regional" data-prefecture="青森県" data-region="tohoku" data-short-name="第53回クラウン全国吟詠コンクール 北東北地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-08-22"><span class="event-date__year">2026年</span><span class="event-date__day">8/22</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -711,7 +717,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E043" data-date="2026-08-08" data-scope="regional" data-prefecture="東京都" data-short-name="日本伝統文化吟友会 関東決勝大会" data-past="true">
+<article class="event-card" id="event-E043" data-date="2026-08-08" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="日本伝統文化吟友会 関東決勝大会" data-past="true">
   <div class="event-date"><time datetime="2026-08-08"><span class="event-date__year">2026年</span><span class="event-date__day">8/8</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選・決勝</span></div>
@@ -726,7 +732,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本伝統文化吟友会 各地区組織</p><ul><li><a href="https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1" target="_blank" rel="noopener noreferrer">日本伝統文化吟友会関東地区連合会・大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E023" data-date="2026-08-02" data-scope="regional" data-prefecture="岡山県" data-short-name="第53回クラウン全国吟詠コンクール 東中国地区大会" data-past="true">
+<article class="event-card" id="event-E023" data-date="2026-08-02" data-scope="regional" data-prefecture="岡山県" data-region="chugoku" data-short-name="第53回クラウン全国吟詠コンクール 東中国地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-08-02"><span class="event-date__year">2026年</span><span class="event-date__day">8/2</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -741,7 +747,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E045" data-date="2026-08-02" data-scope="regional" data-prefecture="兵庫県" data-short-name="第50回全国吟詠コンクール近畿決勝大会" data-past="true">
+<article class="event-card" id="event-E045" data-date="2026-08-02" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="第50回全国吟詠コンクール近畿決勝大会" data-past="true">
   <div class="event-date"><time datetime="2026-08-02"><span class="event-date__year">2026年</span><span class="event-date__day">8/2</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -756,7 +762,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://osaka-gakufukai.jp/tournament_results/?menu=2" target="_blank" rel="noopener noreferrer">大阪岳風会・大会結果</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E007" data-date="2026-08-01" data-scope="national" data-prefecture="秋田県" data-short-name="第50回全国高等学校総合文化祭 吟詠剣詩舞部門" data-past="true">
+<article class="event-card" id="event-E007" data-date="2026-08-01" data-scope="national" data-prefecture="秋田県" data-region="tohoku" data-short-name="第50回全国高等学校総合文化祭 吟詠剣詩舞部門" data-past="true">
   <div class="event-date"><time datetime="2026-08-01"><span class="event-date__year">2026年</span><span class="event-date__day">8/1</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">高校生・総合文化祭</span></div>
@@ -771,7 +777,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>あきた総文2026（共催者詳細は公式参照）</p><p>高校生による吟詠・剣詩舞の全国発表です。</p><ul><li><a href="https://akita-soubun2026.pref.akita.lg.jp/department/gineikenshibu/" target="_blank" rel="noopener noreferrer">あきた総文2026・吟詠剣詩舞部門</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E022" data-date="2026-07-26" data-scope="regional" data-prefecture="北海道" data-short-name="第53回クラウン全国吟詠コンクール 北海道地区大会" data-past="true">
+<article class="event-card" id="event-E022" data-date="2026-07-26" data-scope="regional" data-prefecture="北海道" data-region="hokkaido" data-short-name="第53回クラウン全国吟詠コンクール 北海道地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-26"><span class="event-date__year">2026年</span><span class="event-date__day">7/26</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -786,7 +792,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E031" data-date="2026-07-26" data-scope="regional" data-prefecture="東京都" data-short-name="第53回クラウン全国吟詠コンクール 東京南地区大会" data-past="true">
+<article class="event-card" id="event-E031" data-date="2026-07-26" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 東京南地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-26"><span class="event-date__year">2026年</span><span class="event-date__day">7/26</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -801,7 +807,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E032" data-date="2026-07-26" data-scope="regional" data-prefecture="東京都" data-short-name="第53回クラウン全国吟詠コンクール 東京北地区大会" data-past="true">
+<article class="event-card" id="event-E032" data-date="2026-07-26" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 東京北地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-26"><span class="event-date__year">2026年</span><span class="event-date__day">7/26</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -816,7 +822,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E048" data-date="2026-07-26" data-scope="regional" data-prefecture="兵庫県" data-short-name="第18回ジュニア・シニア燦々優勝者決定詩吟大会" data-past="true">
+<article class="event-card" id="event-E048" data-date="2026-07-26" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="第18回ジュニア・シニア燦々優勝者決定詩吟大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-26"><span class="event-date__year">2026年</span><span class="event-date__day">7/26</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -831,7 +837,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>愛国詩吟総連盟</p><ul><li><a href="https://www.archaic.or.jp/schedule/detail.php?id=3543" target="_blank" rel="noopener noreferrer">尼崎市総合文化センター・第18回ジュニア／シニア大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E051" data-date="2026-07-26" data-scope="regional" data-prefecture="宮城県" data-short-name="令和8年度全国吟詠剣詩舞コンクール東北大会" data-past="true">
+<article class="event-card" id="event-E051" data-date="2026-07-26" data-scope="regional" data-prefecture="宮城県" data-region="tohoku" data-short-name="令和8年度全国吟詠剣詩舞コンクール東北大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-26"><span class="event-date__year">2026年</span><span class="event-date__day">7/26</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区大会</span></div>
@@ -846,7 +852,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><ul><li><a href="https://www.city.myoko.niigata.jp/docs/48197.html" target="_blank" rel="noopener noreferrer">妙高市・東北大会出場者の全国大会出場報告</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E030" data-date="2026-07-24" data-scope="regional" data-prefecture="東京都" data-short-name="第53回クラウン全国吟詠コンクール 東京東地区大会" data-past="true">
+<article class="event-card" id="event-E030" data-date="2026-07-24" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 東京東地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-24"><span class="event-date__year">2026年</span><span class="event-date__day">7/24</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -861,7 +867,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E021" data-date="2026-07-20" data-scope="regional" data-prefecture="広島県" data-short-name="第53回クラウン全国吟詠コンクール 中国2地区大会" data-past="true">
+<article class="event-card" id="event-E021" data-date="2026-07-20" data-scope="regional" data-prefecture="広島県" data-region="chugoku" data-short-name="第53回クラウン全国吟詠コンクール 中国2地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-20"><span class="event-date__year">2026年</span><span class="event-date__day">7/20</span><span class="event-date__weekday">月曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -876,7 +882,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E020" data-date="2026-07-19" data-scope="regional" data-prefecture="長崎県" data-short-name="第53回クラウン全国吟詠コンクール 九州地区大会" data-past="true">
+<article class="event-card" id="event-E020" data-date="2026-07-19" data-scope="regional" data-prefecture="長崎県" data-region="kyushu" data-short-name="第53回クラウン全国吟詠コンクール 九州地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-19"><span class="event-date__year">2026年</span><span class="event-date__day">7/19</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -891,7 +897,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E072" data-date="2026-07-19" data-scope="regional" data-prefecture="滋賀県" data-short-name="錦城会 滋賀県湖南地区大会" data-past="true">
+<article class="event-card" id="event-E072" data-date="2026-07-19" data-scope="regional" data-prefecture="滋賀県" data-region="kinki" data-short-name="錦城会 滋賀県湖南地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-19"><span class="event-date__year">2026年</span><span class="event-date__day">7/19</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -906,7 +912,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>一般社団法人 詩吟朗詠錦城会</p><ul><li><a href="https://kinjoukai.or.jp/activity/schedule.html" target="_blank" rel="noopener noreferrer">詩吟朗詠錦城会：令和7・8年度活動予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E029" data-date="2026-07-18" data-scope="regional" data-prefecture="茨城県" data-short-name="第53回クラウン全国吟詠コンクール 北関東地区大会" data-past="true">
+<article class="event-card" id="event-E029" data-date="2026-07-18" data-scope="regional" data-prefecture="茨城県" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 北関東地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-18"><span class="event-date__year">2026年</span><span class="event-date__day">7/18</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -921,7 +927,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E028" data-date="2026-07-14" data-scope="regional" data-prefecture="神奈川県" data-short-name="第53回クラウン全国吟詠コンクール 神奈川地区大会" data-past="true">
+<article class="event-card" id="event-E028" data-date="2026-07-14" data-scope="regional" data-prefecture="神奈川県" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 神奈川地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-14"><span class="event-date__year">2026年</span><span class="event-date__day">7/14</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -936,7 +942,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E019" data-date="2026-07-12" data-scope="regional" data-prefecture="広島県" data-short-name="第53回クラウン全国吟詠コンクール 中国1地区大会" data-past="true">
+<article class="event-card" id="event-E019" data-date="2026-07-12" data-scope="regional" data-prefecture="広島県" data-region="chugoku" data-short-name="第53回クラウン全国吟詠コンクール 中国1地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-12"><span class="event-date__year">2026年</span><span class="event-date__day">7/12</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -951,7 +957,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E047" data-date="2026-07-12" data-scope="regional" data-prefecture="大阪府" data-short-name="第62回第二部吟士権者決定詩吟大会" data-past="true">
+<article class="event-card" id="event-E047" data-date="2026-07-12" data-scope="regional" data-prefecture="大阪府" data-region="kinki" data-short-name="第62回第二部吟士権者決定詩吟大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-12"><span class="event-date__year">2026年</span><span class="event-date__day">7/12</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -966,7 +972,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://osaka-gakufukai.jp/tournament_results/?menu=2" target="_blank" rel="noopener noreferrer">大阪岳風会・大会結果</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E018" data-date="2026-07-11" data-scope="regional" data-prefecture="福島県" data-short-name="第53回クラウン全国吟詠コンクール 南東北地区大会" data-past="true">
+<article class="event-card" id="event-E018" data-date="2026-07-11" data-scope="regional" data-prefecture="福島県" data-region="tohoku" data-short-name="第53回クラウン全国吟詠コンクール 南東北地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-11"><span class="event-date__year">2026年</span><span class="event-date__day">7/11</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -981,7 +987,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E027" data-date="2026-07-11" data-scope="regional" data-prefecture="東京都" data-short-name="第53回クラウン全国吟詠コンクール 東京西地区大会" data-past="true">
+<article class="event-card" id="event-E027" data-date="2026-07-11" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 東京西地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-11"><span class="event-date__year">2026年</span><span class="event-date__day">7/11</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -996,7 +1002,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E016" data-date="2026-07-05" data-scope="regional" data-prefecture="愛知県" data-short-name="第53回クラウン全国吟詠コンクール 東海地区大会" data-past="true">
+<article class="event-card" id="event-E016" data-date="2026-07-05" data-scope="regional" data-prefecture="愛知県" data-region="tokai" data-short-name="第53回クラウン全国吟詠コンクール 東海地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-05"><span class="event-date__year">2026年</span><span class="event-date__day">7/5</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1011,7 +1017,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E017" data-date="2026-07-05" data-scope="regional" data-prefecture="富山県" data-short-name="第53回クラウン全国吟詠コンクール 北陸地区大会" data-past="true">
+<article class="event-card" id="event-E017" data-date="2026-07-05" data-scope="regional" data-prefecture="富山県" data-region="hokuriku" data-short-name="第53回クラウン全国吟詠コンクール 北陸地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-07-05"><span class="event-date__year">2026年</span><span class="event-date__day">7/5</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1026,7 +1032,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E026" data-date="2026-06-28" data-scope="regional" data-prefecture="長野県" data-short-name="第53回クラウン全国吟詠コンクール 信州地区大会" data-past="true">
+<article class="event-card" id="event-E026" data-date="2026-06-28" data-scope="regional" data-prefecture="長野県" data-region="koshinetsu" data-short-name="第53回クラウン全国吟詠コンクール 信州地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-28"><span class="event-date__year">2026年</span><span class="event-date__day">6/28</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1041,7 +1047,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E046" data-date="2026-06-28" data-scope="regional" data-prefecture="大阪府" data-short-name="第68回第一部吟士権者決定詩吟大会" data-past="true">
+<article class="event-card" id="event-E046" data-date="2026-06-28" data-scope="regional" data-prefecture="大阪府" data-region="kinki" data-short-name="第68回第一部吟士権者決定詩吟大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-28"><span class="event-date__year">2026年</span><span class="event-date__day">6/28</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -1056,7 +1062,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://osaka-gakufukai.jp/tournament_results/?menu=2" target="_blank" rel="noopener noreferrer">大阪岳風会・大会結果</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E025" data-date="2026-06-27" data-scope="regional" data-prefecture="埼玉県" data-short-name="第53回クラウン全国吟詠コンクール 南関東地区大会" data-past="true">
+<article class="event-card" id="event-E025" data-date="2026-06-27" data-scope="regional" data-prefecture="埼玉県" data-region="kanto" data-short-name="第53回クラウン全国吟詠コンクール 南関東地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-27"><span class="event-date__year">2026年</span><span class="event-date__day">6/27</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1071,7 +1077,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8kanto_8dist_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度関東8地区日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E089" data-date="2026-06-27" data-scope="regional" data-prefecture="兵庫県" data-short-name="令和8年度三田吟剣詩舞連盟 競吟大会" data-past="true">
+<article class="event-card" id="event-E089" data-date="2026-06-27" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="令和8年度三田吟剣詩舞連盟 競吟大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-27"><span class="event-date__year">2026年</span><span class="event-date__day">6/27</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -1086,7 +1092,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>三田吟剣詩舞連盟</p><ul><li><a href="https://sandashibunka.grupo.jp/free6953045" target="_blank" rel="noopener noreferrer">三田市文化協会：2026年度行事予定・行事完了</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E054" data-date="2026-06-21" data-scope="regional" data-prefecture="鹿児島県" data-short-name="詩吟錦城流 市本部総会・温習会" data-past="true">
+<article class="event-card" id="event-E054" data-date="2026-06-21" data-scope="regional" data-prefecture="鹿児島県" data-region="kyushu" data-short-name="詩吟錦城流 市本部総会・温習会" data-past="true">
   <div class="event-date"><time datetime="2026-06-21"><span class="event-date__year">2026年</span><span class="event-date__day">6/21</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">温習会</span></div>
@@ -1101,7 +1107,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>詩吟錦城流市本部</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://r.goope.jp/suguriotome/info/5350195" target="_blank" rel="noopener noreferrer">錦城流関係者・行事案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E015" data-date="2026-06-07" data-scope="regional" data-prefecture="兵庫県" data-short-name="第53回クラウン全国吟詠コンクール 近畿地区大会" data-past="true">
+<article class="event-card" id="event-E015" data-date="2026-06-07" data-scope="regional" data-prefecture="兵庫県" data-region="kinki" data-short-name="第53回クラウン全国吟詠コンクール 近畿地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-07"><span class="event-date__year">2026年</span><span class="event-date__day">6/7</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1116,7 +1122,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E039" data-date="2026-06-07" data-scope="regional" data-prefecture="東京都" data-short-name="日本吟詠総連盟 関東地区吟詠コンクール大会" data-past="true">
+<article class="event-card" id="event-E039" data-date="2026-06-07" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="日本吟詠総連盟 関東地区吟詠コンクール大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-07"><span class="event-date__year">2026年</span><span class="event-date__day">6/7</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1131,7 +1137,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本吟詠総連盟（関東地区）</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E093" data-date="2026-06-07" data-scope="regional" data-prefecture="鳥取県" data-short-name="神心流鳥取吟詠会 吟と舞発表大会" data-past="true">
+<article class="event-card" id="event-E093" data-date="2026-06-07" data-scope="regional" data-prefecture="鳥取県" data-region="chugoku" data-short-name="神心流鳥取吟詠会 吟と舞発表大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-07"><span class="event-date__year">2026年</span><span class="event-date__day">6/7</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -1146,7 +1152,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>神心流尚道館鳥取地区鳥取吟詠会</p><ul><li><a href="https://www.city.tottori.lg.jp/site/newsletter/40951.html" target="_blank" rel="noopener noreferrer">鳥取市：令和8年5月号 各施設の催し</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E042" data-date="2026-06-06" data-scope="regional" data-prefecture="埼玉県" data-short-name="日本伝統文化吟友会 埼玉地区大会" data-past="true">
+<article class="event-card" id="event-E042" data-date="2026-06-06" data-scope="regional" data-prefecture="埼玉県" data-region="kanto" data-short-name="日本伝統文化吟友会 埼玉地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-06-06"><span class="event-date__year">2026年</span><span class="event-date__day">6/6</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選・決勝</span></div>
@@ -1161,7 +1167,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本伝統文化吟友会 各地区組織</p><ul><li><a href="https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1" target="_blank" rel="noopener noreferrer">日本伝統文化吟友会関東地区連合会・大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E041" data-date="2026-05-30" data-scope="regional" data-prefecture="東京都" data-short-name="日本伝統文化吟友会 東京地区大会" data-past="true">
+<article class="event-card" id="event-E041" data-date="2026-05-30" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="日本伝統文化吟友会 東京地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-05-30"><span class="event-date__year">2026年</span><span class="event-date__day">5/30</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選・決勝</span></div>
@@ -1176,7 +1182,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本伝統文化吟友会 各地区組織</p><ul><li><a href="https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1" target="_blank" rel="noopener noreferrer">日本伝統文化吟友会関東地区連合会・大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E006" data-date="2026-05-20" data-scope="national" data-prefecture="東京都" data-short-name="第76回日本吟道全国大会" data-past="true">
+<article class="event-card" id="event-E006" data-date="2026-05-20" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第76回日本吟道全国大会" data-past="true">
   <div class="event-date"><time datetime="2026-05-20"><span class="event-date__year">2026年</span><span class="event-date__day">5/20</span><span class="event-date__weekday">水曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟道大会</span></div>
@@ -1191,7 +1197,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本吟道学院</p><p>会場は参加団体の予定表によります。出演報告で開催日を確認しています。</p><ul><li><a href="https://tansou-shigin.com/3141/" target="_blank" rel="noopener noreferrer">旦早流吟詠会・第76回日本吟道全国大会出演報告</a></li><li><a href="https://xn--6oq16hfral61f0y0b.jp/index.html" target="_blank" rel="noopener noreferrer">南洲吟道会・年間行事予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E044" data-date="2026-05-10" data-scope="regional" data-prefecture="大阪府" data-short-name="第50回全国吟詠コンクール大阪府大会" data-past="true">
+<article class="event-card" id="event-E044" data-date="2026-05-10" data-scope="regional" data-prefecture="大阪府" data-region="kinki" data-short-name="第50回全国吟詠コンクール大阪府大会" data-past="true">
   <div class="event-date"><time datetime="2026-05-10"><span class="event-date__year">2026年</span><span class="event-date__day">5/10</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -1206,7 +1212,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://osaka-gakufukai.jp/tournament_results/?menu=2" target="_blank" rel="noopener noreferrer">大阪岳風会・大会結果</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E040" data-date="2026-05-09" data-scope="regional" data-prefecture="神奈川県" data-short-name="日本伝統文化吟友会 神奈川地区大会" data-past="true">
+<article class="event-card" id="event-E040" data-date="2026-05-09" data-scope="regional" data-prefecture="神奈川県" data-region="kanto" data-short-name="日本伝統文化吟友会 神奈川地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-05-09"><span class="event-date__year">2026年</span><span class="event-date__day">5/9</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選・決勝</span></div>
@@ -1221,7 +1227,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本伝統文化吟友会 各地区組織</p><ul><li><a href="https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1" target="_blank" rel="noopener noreferrer">日本伝統文化吟友会関東地区連合会・大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E050" data-date="2026-04-29" data-scope="regional" data-prefecture="熊本県" data-short-name="令和8年度全国吟詠コンクール熊本県大会・剣詩舞コンクール熊本県大会" data-past="true">
+<article class="event-card" id="event-E050" data-date="2026-04-29" data-scope="regional" data-prefecture="熊本県" data-region="kyushu" data-short-name="令和8年度全国吟詠コンクール熊本県大会・剣詩舞コンクール熊本県大会" data-past="true">
   <div class="event-date"><time datetime="2026-04-29"><span class="event-date__year">2026年</span><span class="event-date__day">4/29</span><span class="event-date__weekday">水曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">県大会・発表会</span></div>
@@ -1236,7 +1242,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>熊本県吟剣詩道総連盟（会場掲載表記）</p><ul><li><a href="https://harmony-mimoza.org/hall_saiji/hall-recital/202603181740" target="_blank" rel="noopener noreferrer">はあもにい・令和8年度熊本県大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E049" data-date="2026-04-20" data-scope="regional" data-prefecture="福島県" data-short-name="令和8年度全国吟詠コンクール福島県予選会" data-past="true">
+<article class="event-card" id="event-E049" data-date="2026-04-20" data-scope="regional" data-prefecture="福島県" data-region="tohoku" data-short-name="令和8年度全国吟詠コンクール福島県予選会" data-past="true">
   <div class="event-date"><time datetime="2026-04-20"><span class="event-date__year">2026年</span><span class="event-date__day">4/20</span><span class="event-date__weekday">月曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">県予選</span></div>
@@ -1251,7 +1257,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>開催案内でご確認ください</p><ul><li><a href="https://www.f-shinkoukousha.or.jp/wp-content/uploads/2026/02/b4a0b2930ead88a55fb150309af45dd7-1.pdf" target="_blank" rel="noopener noreferrer">ふくしん夢の音楽堂・2026年4月催物案内（2ページ目）</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E014" data-date="2026-04-12" data-scope="regional" data-prefecture="山梨県" data-short-name="第53回クラウン全国吟詠コンクール 甲府地区大会" data-past="true">
+<article class="event-card" id="event-E014" data-date="2026-04-12" data-scope="regional" data-prefecture="山梨県" data-region="koshinetsu" data-short-name="第53回クラウン全国吟詠コンクール 甲府地区大会" data-past="true">
   <div class="event-date"><time datetime="2026-04-12"><span class="event-date__year">2026年</span><span class="event-date__day">4/12</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1266,7 +1272,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/wp-content/uploads/2026/02/r8zenkok_schedule.pdf" target="_blank" rel="noopener noreferrer">クラウン吟友会・令和8年度地区大会日程</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E055" data-date="2026-03-15" data-scope="regional" data-prefecture="新潟県" data-short-name="都美会20周年 第15回吟の舞発表会" data-past="true">
+<article class="event-card" id="event-E055" data-date="2026-03-15" data-scope="regional" data-prefecture="新潟県" data-region="koshinetsu" data-short-name="都美会20周年 第15回吟の舞発表会" data-past="true">
   <div class="event-date"><time datetime="2026-03-15"><span class="event-date__year">2026年</span><span class="event-date__day">3/15</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">剣詩舞発表会</span></div>
@@ -1281,7 +1287,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>剣詩舞道都美会</p><p>剣詩舞を中心とした発表会です。</p><ul><li><a href="https://www.ryutopia.or.jp/performance/event/40776/" target="_blank" rel="noopener noreferrer">りゅーとぴあ・都美会吟の舞発表会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E005" data-date="2026-03-08" data-scope="national" data-prefecture="東京都" data-short-name="第2回全国俳句俳諧歌吟詠大会" data-past="true">
+<article class="event-card" id="event-E005" data-date="2026-03-08" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第2回全国俳句俳諧歌吟詠大会" data-past="true">
   <div class="event-date"><time datetime="2026-03-08"><span class="event-date__year">2026年</span><span class="event-date__day">3/8</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟詠大会</span></div>
@@ -1296,7 +1302,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益社団法人日本詩吟学院</p><ul><li><a href="https://www.gakufukai.or.jp/2025/11/01/%E3%80%8C%E7%AC%AC%EF%BC%92%E5%9B%9E-%E5%85%A8%E5%9B%BD%E4%BF%B3%E5%8F%A5%E4%BF%B3%E8%AB%A7%E6%AD%8C%E5%90%9F%E8%A9%A0%E5%A4%A7%E4%BC%9A%E3%80%8D%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/" target="_blank" rel="noopener noreferrer">日本詩吟学院・第2回全国俳句俳諧歌吟詠大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E053" data-date="2026-02-07" data-scope="regional" data-prefecture="鹿児島県" data-short-name="詩吟錦城流 令和8年鹿児島県本部初吟会" data-past="true">
+<article class="event-card" id="event-E053" data-date="2026-02-07" data-scope="regional" data-prefecture="鹿児島県" data-region="kyushu" data-short-name="詩吟錦城流 令和8年鹿児島県本部初吟会" data-past="true">
   <div class="event-date"><time datetime="2026-02-07"><span class="event-date__year">2026年</span><span class="event-date__day">2/7</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">初吟会</span></div>
@@ -1311,7 +1317,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>詩吟錦城流鹿児島県本部</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://r.goope.jp/suguriotome/info/5350195" target="_blank" rel="noopener noreferrer">錦城流関係者・行事案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E095" data-date="2026-02-01" data-scope="regional" data-prefecture="徳島県" data-short-name="徳島市文化協会 芸能祭" data-past="true">
+<article class="event-card" id="event-E095" data-date="2026-02-01" data-scope="regional" data-prefecture="徳島県" data-region="shikoku" data-short-name="徳島市文化協会 芸能祭" data-past="true">
   <div class="event-date"><time datetime="2026-02-01"><span class="event-date__year">2026年</span><span class="event-date__day">2/1</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">文化祭・発表会</span></div>
@@ -1326,7 +1332,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>徳島市文化協会</p><p>吟詠は第2部の演目。表示時刻は芸能祭全体の開演です。</p><ul><li><a href="https://www.civic-center.jp/bunka_kyokai/" target="_blank" rel="noopener noreferrer">徳島市文化協会：令和8年芸能祭</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E038" data-date="2026-01-23" data-scope="regional" data-prefecture="東京都" data-short-name="第37回日本詩吟選手権 東京東部地区予選" data-past="true">
+<article class="event-card" id="event-E038" data-date="2026-01-23" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第37回日本詩吟選手権 東京東部地区予選" data-past="true">
   <div class="event-date"><time datetime="2026-01-23"><span class="event-date__year">2026年</span><span class="event-date__day">1/23</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1341,7 +1347,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E013" data-date="2026-01-11" data-scope="national" data-prefecture="東京都" data-short-name="2026年新春吟詠の集い" data-past="true">
+<article class="event-card" id="event-E013" data-date="2026-01-11" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="2026年新春吟詠の集い" data-past="true">
   <div class="event-date"><time datetime="2026-01-11"><span class="event-date__year">2026年</span><span class="event-date__day">1/11</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟詠公演</span></div>
@@ -1356,7 +1362,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会総本部</p><ul><li><a href="https://nissikyo.jp/%E3%80%8C2026%E5%B9%B4-%E6%96%B0%E6%98%A5%E5%90%9F%E8%A9%A0%E3%81%AE%E9%9B%86%E3%81%84%E3%80%8D%E9%96%8B%E5%82%AC%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/" target="_blank" rel="noopener noreferrer">日本詩吟協会・2026年新春吟詠の集い</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E056" data-date="2026-01-04" data-scope="regional" data-prefecture="沖縄県" data-short-name="新春シャンシャン・ショー2026＆餅つき大会" data-past="true">
+<article class="event-card" id="event-E056" data-date="2026-01-04" data-scope="regional" data-prefecture="沖縄県" data-region="okinawa" data-short-name="新春シャンシャン・ショー2026＆餅つき大会" data-past="true">
   <div class="event-date"><time datetime="2026-01-04"><span class="event-date__year">2026年</span><span class="event-date__day">1/4</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag event-tag--related">関連公演</span><span class="event-tag">詩吟を含む複合催事</span></div>
@@ -1371,7 +1377,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>アトリエ銘苅ベース</p><p>詩吟は複数の演目の一つです。懇親会は別料金です。</p><ul><li><a href="https://www.m-base.okinawa/shinsyun2025/" target="_blank" rel="noopener noreferrer">アトリエ銘苅ベース・新春イベント2026</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E075" data-date="2025-12-07" data-scope="national" data-prefecture="福岡県" data-short-name="錦城会 詩吟全国大会" data-past="true">
+<article class="event-card" id="event-E075" data-date="2025-12-07" data-scope="national" data-prefecture="福岡県" data-region="kyushu" data-short-name="錦城会 詩吟全国大会" data-past="true">
   <div class="event-date"><time datetime="2025-12-07"><span class="event-date__year">2025年</span><span class="event-date__day">12/7</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">大会・発表会</span></div>
@@ -1386,7 +1392,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>一般社団法人 詩吟朗詠錦城会</p><ul><li><a href="https://kinjoukai.or.jp/activity/schedule.html" target="_blank" rel="noopener noreferrer">詩吟朗詠錦城会：令和7・8年度活動予定</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E037" data-date="2025-11-22" data-scope="regional" data-prefecture="埼玉県" data-short-name="第37回日本詩吟選手権 さいたま地区予選" data-past="true">
+<article class="event-card" id="event-E037" data-date="2025-11-22" data-scope="regional" data-prefecture="埼玉県" data-region="kanto" data-short-name="第37回日本詩吟選手権 さいたま地区予選" data-past="true">
   <div class="event-date"><time datetime="2025-11-22"><span class="event-date__year">2025年</span><span class="event-date__day">11/22</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1401,7 +1407,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E036" data-date="2025-11-14" data-scope="regional" data-prefecture="千葉県" data-short-name="第37回日本詩吟選手権 千葉南部地区予選" data-past="true">
+<article class="event-card" id="event-E036" data-date="2025-11-14" data-scope="regional" data-prefecture="千葉県" data-region="kanto" data-short-name="第37回日本詩吟選手権 千葉南部地区予選" data-past="true">
   <div class="event-date"><time datetime="2025-11-14"><span class="event-date__year">2025年</span><span class="event-date__day">11/14</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1416,7 +1422,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E004" data-date="2025-11-11" data-scope="national" data-prefecture="東京都" data-short-name="第55回全国吟剣詩舞道大会／令和7年度全国吟詠合吟コンクール" data-past="true">
+<article class="event-card" id="event-E004" data-date="2025-11-11" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第55回全国吟剣詩舞道大会／令和7年度全国吟詠合吟コンクール" data-past="true">
   <div class="event-date"><time datetime="2025-11-11"><span class="event-date__year">2025年</span><span class="event-date__day">11/11</span><span class="event-date__weekday">火曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">総合大会・合吟コンクール</span></div>
@@ -1431,7 +1437,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益財団法人日本吟剣詩舞振興会</p><ul><li><a href="https://www.ginken.or.jp/index.php/news/news-13556/" target="_blank" rel="noopener noreferrer">日本吟剣詩舞振興会・第55回大会実施報告</a></li><li><a href="https://www.ginken.or.jp/index.php/news/news-13250/" target="_blank" rel="noopener noreferrer">日本吟剣詩舞振興会・第55回大会案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E035" data-date="2025-11-07" data-scope="regional" data-prefecture="神奈川県" data-short-name="第37回日本詩吟選手権 神奈川地区予選" data-past="true">
+<article class="event-card" id="event-E035" data-date="2025-11-07" data-scope="regional" data-prefecture="神奈川県" data-region="kanto" data-short-name="第37回日本詩吟選手権 神奈川地区予選" data-past="true">
   <div class="event-date"><time datetime="2025-11-07"><span class="event-date__year">2025年</span><span class="event-date__day">11/7</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1446,7 +1452,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E003" data-date="2025-10-24" data-scope="national" data-prefecture="長崎県" data-short-name="第135回全国吟道大会" data-past="true">
+<article class="event-card" id="event-E003" data-date="2025-10-24" data-scope="national" data-prefecture="長崎県" data-region="kyushu" data-short-name="第135回全国吟道大会" data-past="true">
   <div class="event-date"><time datetime="2025-10-24"><span class="event-date__year">2025年</span><span class="event-date__day">10/24</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">吟道大会・競吟</span></div>
@@ -1461,7 +1467,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>公益社団法人日本詩吟学院</p><ul><li><a href="https://www.gakufukai.or.jp/2025/01/01/%E3%80%8C%E7%AC%AC-135-%E5%9B%9E%E5%85%A8%E5%9B%BD%E5%90%9F%E9%81%93%E5%A4%A7%E4%BC%9A%E3%80%8D%E9%96%8B%E5%82%AC%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/" target="_blank" rel="noopener noreferrer">日本詩吟学院・第135回全国吟道大会</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E034" data-date="2025-10-24" data-scope="regional" data-prefecture="千葉県" data-short-name="第37回日本詩吟選手権 千葉北部地区予選" data-past="true">
+<article class="event-card" id="event-E034" data-date="2025-10-24" data-scope="regional" data-prefecture="千葉県" data-region="kanto" data-short-name="第37回日本詩吟選手権 千葉北部地区予選" data-past="true">
   <div class="event-date"><time datetime="2025-10-24"><span class="event-date__year">2025年</span><span class="event-date__day">10/24</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1476,7 +1482,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E002" data-date="2025-10-19" data-scope="national" data-prefecture="東京都" data-short-name="第52回クラウン全国吟詠コンクール全国大会" data-past="true">
+<article class="event-card" id="event-E002" data-date="2025-10-19" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第52回クラウン全国吟詠コンクール全国大会" data-past="true">
   <div class="event-date"><time datetime="2025-10-19"><span class="event-date__year">2025年</span><span class="event-date__day">10/19</span><span class="event-date__weekday">日曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -1491,7 +1497,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン株式会社・日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/%E7%AC%AC52%E5%9B%9E%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E5%85%A8%E5%9B%BD%E3%82%B3%E3%83%B3%E3%82%AF%E3%83%BC%E3%83%AB%E5%87%BA%E5%A0%B4%E8%80%85%E4%B8%80%E8%A6%A7/" target="_blank" rel="noopener noreferrer">クラウン吟友会・第52回全国大会出場者一覧</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E033" data-date="2025-10-04" data-scope="regional" data-prefecture="東京都" data-short-name="第37回日本詩吟選手権 東京西部地区予選" data-past="true">
+<article class="event-card" id="event-E033" data-date="2025-10-04" data-scope="regional" data-prefecture="東京都" data-region="kanto" data-short-name="第37回日本詩吟選手権 東京西部地区予選" data-past="true">
   <div class="event-date"><time datetime="2025-10-04"><span class="event-date__year">2025年</span><span class="event-date__day">10/4</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">地域大会・公演</span><span class="event-tag">地区予選</span></div>
@@ -1506,7 +1512,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本詩吟協会</p><p>参加・所属団体の案内による情報です。詳細は主催者にもご確認ください。</p><ul><li><a href="https://rokokai.sakura.ne.jp/event.html" target="_blank" rel="noopener noreferrer">東京芦孝会・コンクール等案内</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E011" data-date="2025-09-26" data-scope="national" data-prefecture="東京都" data-short-name="第47回関東地区ジョイントリサイタル" data-past="true">
+<article class="event-card" id="event-E011" data-date="2025-09-26" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第47回関東地区ジョイントリサイタル" data-past="true">
   <div class="event-date"><time datetime="2025-09-26"><span class="event-date__year">2025年</span><span class="event-date__day">9/26</span><span class="event-date__weekday">金曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">リサイタル</span></div>
@@ -1521,7 +1527,7 @@
     <details class="event-details"><summary>主催者・詳しい案内・出典</summary><p><strong>主催・担当：</strong>日本クラウン吟友会</p><ul><li><a href="https://crown-ginyukai.com/event_info/" target="_blank" rel="noopener noreferrer">クラウン吟友会・イベント情報</a></li></ul><p>情報確認日：2026-09-16 ／ 外部リンクは別のタブで開きます。</p></details>
   </div>
 </article>
-<article class="event-card" id="event-E001" data-date="2025-09-20" data-scope="national" data-prefecture="東京都" data-short-name="第31回全国優秀吟者吟道大会" data-past="true">
+<article class="event-card" id="event-E001" data-date="2025-09-20" data-scope="national" data-prefecture="東京都" data-region="kanto" data-short-name="第31回全国優秀吟者吟道大会" data-past="true">
   <div class="event-date"><time datetime="2025-09-20"><span class="event-date__year">2025年</span><span class="event-date__day">9/20</span><span class="event-date__weekday">土曜日</span></time><span class="event-date__state">過去の開催情報</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag">全国大会・公演</span><span class="event-tag">コンクール</span></div>
@@ -1540,10 +1546,11 @@
         <div class="event-empty" id="event-empty" hidden>
           <h3>この条件で掲載できる情報は、まだありません。</h3>
           <p>大会が開催されないという意味ではありません。別の都道府県を選ぶか、過去の開催情報をご覧ください。</p>
-          <button type="button" id="show-past" class="btn btn-secondary">この地域の過去の開催を見る</button>
+          <button type="button" id="show-past" class="btn btn-secondary">この地域のアーカイブスを見る</button>
         </div>
       </div>
     </section>
+    </div>
 
     <section class="event-notes" aria-labelledby="event-notes-title">
       <h2 id="event-notes-title">見学の前に、もうひとつ</h2>
@@ -1606,7 +1613,7 @@
     <!-- SHARED-FOOTER-END -->
   <script src="../assets/js/links.js" defer></script>
   <script src="../assets/js/site.js" defer></script>
-  <script src="events.5fe86352c729.js" defer></script>
+  <script src="events.ba642ca50eb9.js" defer></script>
   <script src="../assets/js/analytics.js" defer></script>
 </body>
 </html>

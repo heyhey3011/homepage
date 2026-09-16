@@ -47,9 +47,20 @@
       </ol>
     </aside>
 
+    <div class="event-period-tabs" role="tablist" aria-label="開催時期">
+      <button type="button" role="tab" id="period-upcoming" data-period="upcoming" aria-selected="true" aria-controls="event-browse" disabled>これからの予定</button>
+      <button type="button" role="tab" id="period-past" data-period="past" aria-selected="false" aria-controls="event-browse" tabindex="-1" disabled>アーカイブス</button>
+    </div>
+    <div id="event-browse" role="tabpanel" aria-labelledby="period-upcoming">
+    <p id="archive-notice" class="archive-notice" hidden>過去の大会・公演の記録です。2022年1月以降の情報を順次保存しています。料金・観覧条件は、その回の開催当時のものです。</p>
     <section class="event-explorer" aria-labelledby="explorer-title" id="event-explorer">
       <div class="explorer-heading"><h2 id="explorer-title">場所と日付から、吟に出会う</h2><p>{{PREFECTURE_COUNT}}都道府県・{{TOTAL}}件の開催情報</p></div>
-      <p class="explorer-intro">全国大会も、地域の発表会も。まずは今月・来月の予定を見渡してみましょう。</p>
+      <p class="explorer-intro" id="explorer-intro">全国大会も、地域の発表会も。まずは今月・来月の予定を見渡してみましょう。</p>
+      <div class="event-location-filters">
+        <label class="event-field" for="event-region">地方から絞り込む<select id="event-region" disabled><option value="">全国すべて</option><!-- REGIONS --></select></label>
+        <label class="event-field" for="event-prefecture" id="prefecture-field">都道府県から絞り込む<select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select></label>
+        <p id="region-description" class="region-description">地方・都道府県で地図、カレンダー、一覧を絞り込めます。</p>
+      </div>
       <div class="explorer-period">
         <div class="calendar-toolbar">
           <button type="button" id="calendar-prev" aria-label="表示期間を1か月前へ" disabled>‹</button>
@@ -62,7 +73,7 @@
         <section class="explorer-map" aria-labelledby="map-title">
           <div class="explorer-section-heading"><div><p class="explorer-kicker">開催地を見渡す</p><h3 id="map-title">この2か月、どこで吟に出会える？</h3></div><a href="#calendar-title" class="explorer-link">カレンダーへ ↓</a></div>
           <p class="explorer-help" id="map-window-note">地図から伸びる線の先に、日付と催事名を表示します。</p>
-          <div class="map-legend"><span><i class="legend-upcoming"></i>表示期間に予定あり</span><span><i class="legend-none"></i>この期間の予定は未掲載</span><span>催事名を押すと詳しい案内へ</span></div>
+          <div class="map-legend"><span><i class="legend-upcoming"></i>表示期間の掲載あり</span><span><i class="legend-none"></i>この期間の情報は未掲載</span><span>催事名を押すと詳しい案内へ</span></div>
           <div class="map-board" id="map-board">
             <div class="map-callouts map-callouts--left" id="map-callouts-left"></div>
             <div class="japan-map" id="japan-map"><!-- JAPAN-MAP --></div>
@@ -71,9 +82,6 @@
           </div>
           <p class="map-empty" id="map-empty" hidden>この期間の予定は、まだ掲載されていません。カレンダーで過去の情報を見るか、別の月を選んでみてください。</p>
           <div class="map-filter-row">
-          <label class="event-field" for="event-prefecture" id="prefecture-field">県名からも選べます
-            <select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select>
-          </label>
           <p id="map-selection" class="map-selection" role="status" aria-live="polite">掲載情報は順次追加しています。</p>
           <a href="#event-results-heading" class="explorer-link" id="map-results-link">選んだ地域の一覧を見る ↓</a>
           </div>
@@ -82,7 +90,7 @@
         <section class="explorer-calendar" aria-labelledby="calendar-title">
           <div class="explorer-section-heading"><div><p class="explorer-kicker">日付から見つける</p><h3 id="calendar-title">2か月の詩吟カレンダー</h3></div></div>
           <p class="explorer-help" id="calendar-region">全国すべての催事</p>
-          <p class="explorer-help">日付の枠に「開催地・催事名」を掲載。過ぎた日程には「終了」を付けています。</p>
+          <p class="explorer-help" id="calendar-help">日付の枠に「開催地・催事名」を掲載。過去の情報はアーカイブスで見られます。</p>
           <div class="calendar-pair" id="calendar-pair"></div>
           <p class="calendar-status" id="calendar-status" role="status" aria-live="polite"></p>
         </section>
@@ -92,13 +100,11 @@
     <section id="event-search" aria-label="大会・公演を探す">
       <div class="event-tabs" role="tablist" aria-label="探し方">
         <button type="button" role="tab" id="tab-national" aria-selected="true" aria-controls="event-panel" data-scope="national" disabled>全国大会・公演</button>
-        <button type="button" role="tab" id="tab-prefecture" aria-selected="false" aria-controls="event-panel" data-scope="prefecture" tabindex="-1" disabled>都道府県から探す</button>
+        <button type="button" role="tab" id="tab-prefecture" aria-selected="false" aria-controls="event-panel" data-scope="prefecture" tabindex="-1" disabled>地域の催事も含める</button>
       </div>
       <div id="event-panel" role="tabpanel" aria-labelledby="tab-national">
         <div class="event-controls">
-          <label class="event-field" for="event-period">開催時期
-            <select id="event-period" disabled><option value="upcoming">これからの開催予定</option><option value="past">過去の開催情報</option><option value="all">予定と過去の情報すべて</option></select>
-          </label>
+          <p class="event-period-status" id="event-period-status">これからの予定を表示中</p>
           <p class="event-update">情報確認日：<time datetime="{{UPDATED}}">{{UPDATED}}</time></p>
         </div>
         <div class="event-active-filter" id="event-active-filter" hidden><span id="event-date-filter-label"></span><button type="button" id="clear-date">日付の絞り込みを解除</button></div>
@@ -111,10 +117,11 @@
         <div class="event-empty" id="event-empty" hidden>
           <h3>この条件で掲載できる情報は、まだありません。</h3>
           <p>大会が開催されないという意味ではありません。別の都道府県を選ぶか、過去の開催情報をご覧ください。</p>
-          <button type="button" id="show-past" class="btn btn-secondary">この地域の過去の開催を見る</button>
+          <button type="button" id="show-past" class="btn btn-secondary">この地域のアーカイブスを見る</button>
         </div>
       </div>
     </section>
+    </div>
 
     <section class="event-notes" aria-labelledby="event-notes-title">
       <h2 id="event-notes-title">見学の前に、もうひとつ</h2>
