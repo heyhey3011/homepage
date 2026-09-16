@@ -30,21 +30,13 @@
     <!-- デザインシステム -->
     <link rel="stylesheet" href="assets/css/site.css">
 
-    <!-- このページだけの微調整
-         入口カードが7枚になり、最後の行に1枚だけ残るため、
-         その1枚を中央にそろえて余白が片寄って見えないようにしています。
-         （カード1枚分の幅は grid の gap 1.5rem から計算しています） -->
+    <!-- 8枚の入口カード。3列表示の最後の2枚を中央にそろえる。 -->
     <style>
-        .entrance-grid > :last-child {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: 100%;
-        }
-        @media (min-width: 640px) {
-            .entrance-grid > :last-child { max-width: calc((100% - 1.5rem) / 2); }
-        }
         @media (min-width: 960px) {
-            .entrance-grid > :last-child { max-width: calc((100% - 3rem) / 3); }
+            .entrance-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+            .entrance-grid > * { grid-column: span 2; }
+            .entrance-grid > :nth-last-child(2) { grid-column: 2 / span 2; }
+            .entrance-grid > :last-child { grid-column: 4 / span 2; }
         }
     </style>
 
@@ -300,6 +292,7 @@ h2,
             </a>
             <nav class="site-nav" aria-label="メインメニュー">
                 <a href="map/">教室マップ</a>
+                <a href="events/">大会・公演情報</a>
                 <a href="beginner/">始め方ガイド</a>
                 <a href="tools/">学習ツール</a>
                 <a href="community/">コミュニティ</a>
@@ -314,6 +307,7 @@ h2,
         <div class="mobile-menu" id="mobile-menu">
             <ul class="mobile-menu__list">
                 <li><a href="map/">教室マップ</a></li>
+                <li><a href="events/">大会・公演情報</a></li>
                 <li><a href="beginner/">始め方ガイド</a></li>
                 <li><a href="tools/">学習ツール</a></li>
                 <li><a href="community/">コミュニティ</a></li>
@@ -403,6 +397,16 @@ h2,
                             <h3 class="card__title">よい吟を聴きたい</h3>
                             <p class="card__text">実力派吟士の動画を、吟士別・漢詩別に整理した吟士アーカイブスへ。</p>
                             <span class="card__arrow">吟士アーカイブスへ →</span>
+                        </div>
+                    </a>
+                    <a href="events/" class="card reveal">
+                        <div class="card__media">
+                            <img src="assets/img/entrance-listen.webp" alt="詩吟を会場で聴いて楽しむための入口" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">大会・コンサートを見に行きたい</h3>
+                            <p class="card__text">全国大会や各地の発表会の日時・場所・観覧料・見学の案内を確認できます。</p>
+                            <span class="card__arrow">大会・公演情報へ →</span>
                         </div>
                     </a>
                     <a href="tools/index.html#tool-ginneko-conductor" class="card reveal">
@@ -678,6 +682,7 @@ h2,
                     <h2 class="site-footer__heading">探す・始める</h2>
                     <ul class="site-footer__list">
                         <li><a href="map/">全国詩吟教室マップ</a></li>
+                        <li><a href="events/">大会・公演情報</a></li>
                         <li><a href="beginner/">詩吟の始め方ガイド</a></li>
                         <li><a href="newsletter/">初心者向け7日間講座</a></li>
                         <li><a href="index.html#faq">よくある質問</a></li>

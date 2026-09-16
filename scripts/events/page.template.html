@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; upgrade-insecure-requests;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>詩吟の大会・コンサート・発表会を探す | 詩吟の入口</title>
+  <meta name="description" content="全国の詩吟コンクール・コンサート・発表会の開催情報。日時、会場とGoogleマップ、観覧料、一般見学の可否を確認できます。はじめて見学する方の観覧マナーもご案内します。">
+  <link rel="canonical" href="https://shigin-portal.com/events/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="詩吟の入口">
+  <meta property="og:title" content="詩吟の大会・コンサート・発表会を探す">
+  <meta property="og:description" content="全国大会から各地の発表会まで。日時・場所・観覧料・一般見学の案内をまとめています。">
+  <meta property="og:url" content="https://shigin-portal.com/events/">
+  <meta property="og:image" content="https://shigin-portal.com/assets/img/ogp.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#36513b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="events.css">
+  <link rel="icon" type="image/png" href="../assets/img/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"詩吟の大会・コンサート・発表会を探す","url":"https://shigin-portal.com/events/","inLanguage":"ja","dateModified":"{{UPDATED}}","isPartOf":{"@type":"WebSite","name":"詩吟の入口","url":"https://shigin-portal.com/"}}</script>
+</head>
+<body class="events-page">
+  <a href="#event-search" class="event-skip">大会・公演の一覧へ</a>
+  <!-- SHARED-HEADER -->
+  <main class="container event-shell" id="main-content">
+    <div class="event-heading">
+      <p class="breadcrumb"><a href="../">ホーム</a> ＞ 大会・公演情報</p>
+      <h1>詩吟の大会・コンサート・発表会</h1>
+      <p>気になる吟を、会場で。全国大会から各地の発表会まで、見学のための情報をまとめました。</p>
+    </div>
+
+    <aside class="visit-manners" aria-labelledby="manners-title">
+      <h2 id="manners-title">はじめての見学へ。大切にしたい4つのマナー</h2>
+      <ol>
+        <li><div><strong>受付で、ひとこと</strong><small>「詩吟に興味があって見に来ました」とお伝えください。</small></div></li>
+        <li><div><strong>入退場は、吟詠の合間に</strong><small>吟詠中は入場したり、席を立ったりしないようにしましょう。</small></div></li>
+        <li><div><strong>落ち着いた服装で</strong><small>スーツまでは不要です。会場に合った落ち着いた服装でお越しください。</small></div></li>
+        <li><div><strong>吟詠中の私語は厳禁</strong><small>おしゃべりを控え、舞台の声に耳を傾けましょう。</small></div></li>
+      </ol>
+    </aside>
+
+    <section id="event-search" aria-label="大会・公演を探す">
+      <div class="event-tabs" role="tablist" aria-label="探し方">
+        <button type="button" role="tab" id="tab-national" aria-selected="true" aria-controls="event-panel" data-scope="national" disabled>全国大会・公演</button>
+        <button type="button" role="tab" id="tab-prefecture" aria-selected="false" aria-controls="event-panel" data-scope="prefecture" tabindex="-1" disabled>都道府県から探す</button>
+      </div>
+      <div id="event-panel" role="tabpanel" aria-labelledby="tab-national">
+        <div class="event-controls">
+          <label class="event-field" for="event-period">開催時期
+            <select id="event-period" disabled><option value="upcoming">これからの開催予定</option><option value="past">過去の開催情報</option></select>
+          </label>
+          <label class="event-field" for="event-prefecture" id="prefecture-field" hidden>開催する都道府県
+            <select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select>
+          </label>
+          <p class="event-update">情報確認日：<time datetime="{{UPDATED}}">{{UPDATED}}</time></p>
+        </div>
+        <noscript><p class="event-nojs">すべての開催情報を表示しています。都道府県や開催時期で絞り込むには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
+        <div class="event-summary"><h2 id="event-results-heading" tabindex="-1">大会・公演の一覧</h2><span id="event-count" role="status" aria-live="polite" aria-atomic="true">{{TOTAL}}件</span></div>
+        <p class="event-intro" id="event-list-note">観覧料と出場参加費は異なります。お出かけ前に、主催者の最新案内で開催・開演時刻・入場方法をご確認ください。</p>
+        <div id="event-list" class="event-list">
+          <!-- EVENT-CARDS -->
+        </div>
+        <div class="event-empty" id="event-empty" hidden>
+          <h3>この条件で掲載できる情報は、まだありません。</h3>
+          <p>大会が開催されないという意味ではありません。別の都道府県を選ぶか、過去の開催情報をご覧ください。</p>
+          <button type="button" id="show-past" class="btn btn-secondary">この地域の過去の開催を見る</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="event-notes" aria-labelledby="event-notes-title">
+      <h2 id="event-notes-title">見学の前に、もうひとつ</h2>
+      <p>「主催者に確認」は、一般の方が見学できるか、案内に明記されていない催事です。「詩吟に興味があり、見学したいのですが、一般の入場はできますか。予約や入場料は必要ですか」と確認すると安心です。</p>
+      <p>掲載情報は、主催者・会場・参加団体などの公開案内をもとにしています。過去の開催情報には、終了報告のほか、日程が過ぎた告知も含みます。</p>
+      <p>大会・発表会の情報をお持ちの方は、<a href="../contact/">お問い合わせ</a>からお知らせください。主催者サイトのほか、X・Facebookの公開告知のURLも添えていただけます。掲載内容の修正は<a href="../request/">修正・削除依頼</a>へ。</p>
+    </section>
+  </main>
+  <!-- SHARED-FOOTER -->
+  <script src="../assets/js/links.js" defer></script>
+  <script src="../assets/js/site.js" defer></script>
+  <script src="events.js" defer></script>
+  <script src="../assets/js/analytics.js" defer></script>
+</body>
+</html>
