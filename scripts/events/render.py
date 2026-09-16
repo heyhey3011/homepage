@@ -4,6 +4,7 @@ from html import escape
 from datetime import date
 from urllib.parse import urlparse
 import json
+import hashlib
 import re
 import xml.etree.ElementTree as ET
 
@@ -79,6 +80,12 @@ def main():
     # 固定HTMLも、予定→過去の順。表示時にはJSが日本時間の当日で再分類する。
     ordered=sorted(events,key=lambda e:(e['date']<asof,e['date'] if e['date']>=asof else str(99999999-int(e['date'].replace('-','')))))
     html=TEMPLATE.read_text(encoding='utf-8')
+    # クエリ文字列だけでは古いCSSが残る環境があるため、内容に応じたファイル名を使う。
+    for ext in ['css','js']:
+        asset=(ROOT/f'events/events.{ext}').read_bytes()
+        name=f'events.{hashlib.sha256(asset).hexdigest()[:12]}.{ext}'
+        (ROOT/'events'/name).write_bytes(asset)
+        html=html.replace('{{EVENT_'+ext.upper()+'}}',name)
     shared=(ROOT/'tools/index.html').read_text(encoding='utf-8')
     for part in ['HEADER','FOOTER']:
         fragment=re.search(f'<!-- SHARED-{part}-START -->.*?<!-- SHARED-{part}-END -->',shared,re.S).group()

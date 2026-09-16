@@ -81,7 +81,8 @@ assert html.count('id="calendar-month"')==1 and html.count('id="event-prefecture
 assert '<h1>全国詩吟イベントナビ</h1>' in html
 assert 'id="calendar-pair"' in html
 assert 'この月の一覧を見る' in (ROOT/'events/events.js').read_text(encoding='utf-8-sig')
-assert 'events.css?v=' in html and 'events.js?v=' in html
+assert re.search(r'href="events\.[a-f0-9]{12}\.css"',html)
+assert re.search(r'src="events\.[a-f0-9]{12}\.js"',html)
 assert 'id="map-connectors"' in html and 'id="map-callouts-left"' in html
 assert '地形を簡略化した地図' in html
 for e in events:
