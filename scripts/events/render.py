@@ -18,27 +18,23 @@ def secure_link(url):
     return h(url)
 
 def japan_map(events,asof):
-    # CC0の47都道府県の形状のみ採用。スクリプトや外部参照は取り込まない。
-    source=ET.parse(ROOT/'assets/maps/japan-prefectures.svg')
-    paths=[p for p in source.iter() if p.tag.endswith('}path') and p.get('data-name')]
-    assert len(paths)==47 and len({p.get('data-name') for p in paths})==47
-    content=['<svg viewBox="-25 -25 2050 2050" role="group" aria-labelledby="japan-map-title"><title id="japan-map-title">開催地を選ぶ日本地図。下の県名選択でも同じ操作ができます。</title>']
-    for p in paths:
-        name=p.get('data-name'); d=p.get('d')
-        if not re.fullmatch(r'[MLZmlz0-9. ,\-]+',d): raise ValueError('想定外の地図パス')
-        future=sum(e['prefecture']==name and e['date']>=asof for e in events)
-        past=sum(e['prefecture']==name and e['date']<asof for e in events)
-        state='upcoming' if future else 'past' if past else 'none'
-        label=f'{name}：予定{future}件・過去{past}件'
-        # 単純な多角形の面積重心。県名ラベルを形の中央付近に配置する。
-        numbers=list(map(float,re.findall(r'-?\d+(?:\.\d+)?',d)))
-        pts=list(zip(numbers[::2],numbers[1::2])); cross=[a[0]*b[1]-b[0]*a[1] for a,b in zip(pts,pts[1:]+pts[:1])]
-        area=sum(cross)
-        x=sum((a[0]+b[0])*c for a,b,c in zip(pts,pts[1:]+pts[:1],cross))/(3*area)
-        y=sum((a[1]+b[1])*c for a,b,c in zip(pts,pts[1:]+pts[:1],cross))/(3*area)
-        short=name if name=='北海道' else name[:-1]
-        content.append(f'<a href="?view=prefecture&amp;prefecture={h(name)}#event-results-heading" class="map-prefecture" data-prefecture="{h(name)}" data-state="{state}" aria-label="{label}" aria-current="false"><title>{label}</title><path d="{d}"/><text x="{x:.1f}" y="{y:.1f}" aria-hidden="true">{short}</text></a>')
-    content.append('</svg>')
+    # MIT素材から形状だけを抽出。編集ソフトのスタイル・外部参照は取り込まない。
+    source=ET.parse(ROOT/'assets/maps/japan-geographic.svg')
+    label_key='{http://www.inkscape.org/namespaces/inkscape}label'
+    groups={e.get(label_key):e for e in source.iter() if e.get(label_key)}
+    names='北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県'.split()
+    keys='hokkaido aomori iwate miyagi akita yamagata fukushima ibaraki tochigi gunma saitama chiba tokyo kanagawa nigata toyama ishikawa fukui yamanashi nagano gifu shizuoka aichi mie shiga kyoto osaka hyogo nara wakayama tottori shimane okayama hiroshima yamaguchi tokushima kagawa ehime kochi fukuoka saga nagasaki kumamoto oita miyazaki kagoshima okinawa'.split()
+    content=['<svg viewBox="-35 -35 1607 1820" role="group" aria-labelledby="japan-map-title"><title id="japan-map-title">開催地を選ぶ日本地図。県名からも選べます。</title><g transform="translate(-542.3661,-311.44048)">']
+    for name,key in zip(names,keys):
+        paths=[p for p in groups[key].iter() if p.tag.endswith('}path')]
+        shapes=[]
+        for p in paths:
+            d=p.get('d')
+            if not re.fullmatch(r'[MmLlHhVvCcSsQqTtAaZz0-9.eE+ ,\s\-]+',d): raise ValueError('想定外の地図パス')
+            shapes.append(f'<path d="{d}" fill="#dce8dc" stroke="#ffffff" stroke-width="2.5"/>')
+        side='right' if names.index(name)<14 else 'left'
+        content.append(f'<a href="?view=prefecture&amp;prefecture={h(name)}#event-results-heading" class="map-prefecture" data-prefecture="{name}" data-side="{side}" aria-label="{name}の開催情報" aria-current="false"><title>{name}</title>{"".join(shapes)}</a>')
+    content.append('</g></svg>')
     return '\n'.join(content)
 
 def card(e,asof):
@@ -58,7 +54,8 @@ def card(e,asof):
     if e.get('source_note'): extra+=f'<p>{h(e["source_note"])}</p>'
     if e.get('participation_note'): extra+=f'<p><strong>出場・申込について：</strong>{h(e["participation_note"])}</p>'
     kind='関連公演' if e.get('related') else '全国大会・公演' if e['scope']=='national' else '地域大会・公演'
-    return f'''<article class="event-card" id="event-{h(e['id'])}" data-date="{h(e['date'])}" data-scope="{h(e['scope'])}" data-prefecture="{h(e['prefecture'])}" data-past="{str(past).lower()}">
+    short=e.get('short_name') or re.sub(r'（[^）]*）|\([^)]*\)','',e['name']).strip()
+    return f'''<article class="event-card" id="event-{h(e['id'])}" data-date="{h(e['date'])}" data-scope="{h(e['scope'])}" data-prefecture="{h(e['prefecture'])}" data-short-name="{h(short)}" data-past="{str(past).lower()}">
   <div class="event-date"><time datetime="{h(e['date'])}"><span class="event-date__year">{d.year}年</span><span class="event-date__day">{d.month}/{d.day}</span><span class="event-date__weekday">{weekday}曜日</span></time><span class="event-date__state">{label}</span></div>
   <div class="event-body">
     <div class="event-tags"><span class="event-tag{' event-tag--related' if e.get('related') else ''}">{kind}</span><span class="event-tag">{h(e['category'])}</span></div>

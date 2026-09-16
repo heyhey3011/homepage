@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="events.css">
+  <link rel="stylesheet" href="events.css?v=20260917-map2">
   <link rel="icon" type="image/png" href="../assets/img/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="../manifest.json">
@@ -49,35 +49,43 @@
 
     <section class="event-explorer" aria-labelledby="explorer-title" id="event-explorer">
       <div class="explorer-heading"><h2 id="explorer-title">場所と日付から、吟に出会う</h2><p>{{PREFECTURE_COUNT}}都道府県・{{TOTAL}}件の開催情報</p></div>
-      <p class="explorer-intro">地図・カレンダーには、全国大会と地域の催事をまとめて表示します。</p>
-      <div class="explorer-grid">
+      <p class="explorer-intro">全国大会も、地域の発表会も。まずは今月・来月の予定を見渡してみましょう。</p>
+      <div class="explorer-period">
+        <div class="calendar-toolbar">
+          <button type="button" id="calendar-prev" aria-label="表示期間を1か月前へ" disabled>‹</button>
+          <label class="calendar-month-label" for="calendar-month">はじまりの月<select id="calendar-month" disabled><!-- CALENDAR-MONTHS --></select></label>
+          <button type="button" id="calendar-next" aria-label="表示期間を1か月後へ" disabled>›</button>
+        </div>
+        <p id="explorer-range" class="explorer-range" aria-live="polite">今月・来月の予定</p>
+        <button type="button" id="calendar-today" class="explorer-reset" disabled>今月・来月に戻る</button>
+      </div>
         <section class="explorer-map" aria-labelledby="map-title">
-          <h3 id="map-title">日本地図から探す</h3>
-          <p class="explorer-help">都道府県を選ぶと、その地域の一覧に絞れます。</p>
-          <div class="japan-map"><!-- JAPAN-MAP --></div>
-          <div class="map-legend"><span><i class="legend-upcoming"></i>これからの予定あり</span><span><i class="legend-past"></i>過去の情報のみ</span><span><i class="legend-none"></i>情報募集中</span></div>
+          <div class="explorer-section-heading"><div><p class="explorer-kicker">開催地を見渡す</p><h3 id="map-title">この2か月、どこで吟に出会える？</h3></div><a href="#calendar-title" class="explorer-link">カレンダーへ ↓</a></div>
+          <p class="explorer-help" id="map-window-note">地図から伸びる線の先に、日付と催事名を表示します。</p>
+          <div class="map-legend"><span><i class="legend-upcoming"></i>表示期間に予定あり</span><span><i class="legend-none"></i>この期間の予定は未掲載</span><span>催事名を押すと詳しい案内へ</span></div>
+          <div class="map-board" id="map-board">
+            <div class="map-callouts map-callouts--left" id="map-callouts-left"></div>
+            <div class="japan-map" id="japan-map"><!-- JAPAN-MAP --></div>
+            <div class="map-callouts map-callouts--right" id="map-callouts-right"></div>
+            <svg id="map-connectors" class="map-connectors" aria-hidden="true"></svg>
+          </div>
+          <p class="map-empty" id="map-empty" hidden>この期間の予定は、まだ掲載されていません。カレンダーで過去の情報を見るか、別の月を選んでみてください。</p>
+          <div class="map-filter-row">
           <label class="event-field" for="event-prefecture" id="prefecture-field">県名からも選べます
             <select id="event-prefecture" disabled><option value="">全国すべて</option><!-- PREFECTURES --></select>
           </label>
           <p id="map-selection" class="map-selection" role="status" aria-live="polite">掲載情報は順次追加しています。</p>
           <a href="#event-results-heading" class="explorer-link" id="map-results-link">選んだ地域の一覧を見る ↓</a>
-          <p class="map-credit">地形を簡略化した地図です。素材：<a href="https://github.com/lalamalink/japan-map-svg" target="_blank" rel="noopener noreferrer">lalamalink（CC0）</a></p>
+          </div>
+          <p class="map-credit">地形を簡略化した地図です。線は開催する都道府県を示します。地図素材：<a href="https://github.com/PA4KEV/japan-vector-map" target="_blank" rel="noopener noreferrer">Kevin Matsubara（MIT）</a>。離島の一部を省略しています。</p>
         </section>
         <section class="explorer-calendar" aria-labelledby="calendar-title">
-          <h3 id="calendar-title">カレンダーから探す</h3>
+          <div class="explorer-section-heading"><div><p class="explorer-kicker">日付から見つける</p><h3 id="calendar-title">2か月の詩吟カレンダー</h3></div></div>
           <p class="explorer-help" id="calendar-region">全国すべての催事</p>
-          <div class="calendar-toolbar">
-            <button type="button" id="calendar-prev" aria-label="前の月" disabled>‹</button>
-            <label class="calendar-month-label" for="calendar-month">表示する月<select id="calendar-month" disabled><!-- CALENDAR-MONTHS --></select></label>
-            <button type="button" id="calendar-next" aria-label="次の月" disabled>›</button>
-          </div>
-          <table class="event-calendar"><caption id="calendar-caption">開催日カレンダー</caption><thead><tr><th scope="col">日</th><th scope="col">月</th><th scope="col">火</th><th scope="col">水</th><th scope="col">木</th><th scope="col">金</th><th scope="col">土</th></tr></thead><tbody id="calendar-days"></tbody></table>
+          <p class="explorer-help">日付の枠に「開催地・催事名」を掲載。過ぎた日程には「終了」を付けています。</p>
+          <div class="calendar-pair" id="calendar-pair"></div>
           <p class="calendar-status" id="calendar-status" role="status" aria-live="polite"></p>
-          <div class="calendar-actions"><button type="button" id="calendar-today" disabled>今月に戻る</button><button type="button" id="calendar-list" disabled>この月の一覧を見る ↓</button></div>
-          <ul class="calendar-preview" id="calendar-preview" aria-label="表示月の催事の一部"></ul>
-          <p class="explorer-help">件数のある日を押すと、その日の催事が表示されます。過去の日付も調べられます。</p>
         </section>
-      </div>
       <noscript><p class="event-nojs">地図・カレンダーを使うにはJavaScriptを有効にしてください。下の一覧では、すべての開催情報をご覧いただけます。</p></noscript>
     </section>
 
@@ -118,7 +126,7 @@
   <!-- SHARED-FOOTER -->
   <script src="../assets/js/links.js" defer></script>
   <script src="../assets/js/site.js" defer></script>
-  <script src="events.js" defer></script>
+  <script src="events.js?v=20260917-map2" defer></script>
   <script src="../assets/js/analytics.js" defer></script>
 </body>
 </html>

@@ -79,7 +79,10 @@ assert len(map_names)==47 and len(set(map_names))==47
 assert {e['prefecture'] for e in events} <= set(map_names)
 assert html.count('id="calendar-month"')==1 and html.count('id="event-prefecture"')==1
 assert '<h1>全国詩吟イベントナビ</h1>' in html
-assert 'この月の一覧を見る' in html
+assert 'id="calendar-pair"' in html
+assert 'この月の一覧を見る' in (ROOT/'events/events.js').read_text(encoding='utf-8-sig')
+assert 'events.css?v=' in html and 'events.js?v=' in html
+assert 'id="map-connectors"' in html and 'id="map-callouts-left"' in html
 assert '地形を簡略化した地図' in html
 for e in events:
     if '第38回日本詩吟選手権' in e['name']: assert e['fee_status']=='unknown'

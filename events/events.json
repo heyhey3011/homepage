@@ -290,7 +290,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C+%E5%AF%8C%E5%A3%AB%E5%B8%82+%E5%AF%8C%E5%A3%AB%E3%83%AD%E3%82%BC%E3%82%B7%E3%82%A2%E3%82%BF%E3%83%BC+%E5%B0%8F%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C+%E5%AF%8C%E5%A3%AB%E5%B8%82+%E5%AF%8C%E5%A3%AB%E3%83%AD%E3%82%BC%E3%82%B7%E3%82%A2%E3%82%BF%E3%83%BC+%E5%B0%8F%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "全日本歌謡吟詠 全国大会"
     },
     {
       "id": "E009",
@@ -325,7 +326,8 @@
       ],
       "related": false,
       "participation_note": "入場申込締切2026-06-30。競吟出場とは別。",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E6%B8%AF%E5%8C%BA+%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E6%B8%AF%E5%8C%BA+%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "全国優秀吟者吟道大会"
     },
     {
       "id": "E010",
@@ -365,7 +367,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA+%E6%97%A5%E6%9C%AC%E6%95%99%E8%82%B2%E4%BC%9A%E9%A4%A8%E4%B8%80%E3%83%84%E6%A9%8B%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA+%E6%97%A5%E6%9C%AC%E6%95%99%E8%82%B2%E4%BC%9A%E9%A4%A8%E4%B8%80%E3%83%84%E6%A9%8B%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "全国吟詠コンクール 決勝"
     },
     {
       "id": "E011",
@@ -1835,7 +1838,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E5%B7%9D%E7%9C%8C+%E9%87%91%E6%B2%A2%E5%B8%82+ANA%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%97%E3%83%A9%E3%82%B6%E3%83%9B%E3%83%86%E3%83%AB%E9%87%91%E6%B2%A2"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E5%B7%9D%E7%9C%8C+%E9%87%91%E6%B2%A2%E5%B8%82+ANA%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%97%E3%83%A9%E3%82%B6%E3%83%9B%E3%83%86%E3%83%AB%E9%87%91%E6%B2%A2",
+      "short_name": "北陸クラウン コンサート"
     },
     {
       "id": "E053",
@@ -2010,7 +2014,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E5%B7%9D%E7%9C%8C+%E4%B8%83%E5%B0%BE%E5%B8%82+%E4%B8%83%E5%B0%BE%E5%B8%82%E6%96%87%E5%8C%96%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E5%B7%9D%E7%9C%8C+%E4%B8%83%E5%B0%BE%E5%B8%82+%E4%B8%83%E5%B0%BE%E5%B8%82%E6%96%87%E5%8C%96%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "九月十三夜 全国詩吟大会"
     },
     {
       "id": "E058",
@@ -2045,7 +2050,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8F%B0%E6%9D%B1%E5%8C%BA+%E6%B5%85%E8%8D%89%E5%85%AC%E4%BC%9A%E5%A0%82"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8F%B0%E6%9D%B1%E5%8C%BA+%E6%B5%85%E8%8D%89%E5%85%AC%E4%BC%9A%E5%A0%82",
+      "short_name": "クラウン関東リサイタル"
     },
     {
       "id": "E059",
@@ -2080,7 +2086,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%9F%BC%E7%8E%89%E7%9C%8C%E3%81%95%E3%81%84%E3%81%9F%E3%81%BE%E5%B8%82%E5%A4%A7%E5%AE%AE%E5%8C%BA%E6%A1%9C%E6%9C%A8%E7%94%BA1-7-5+%E3%82%BD%E3%83%8B%E3%83%83%E3%82%AF%E3%82%B7%E3%83%86%E3%82%A3%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%9F%BC%E7%8E%89%E7%9C%8C%E3%81%95%E3%81%84%E3%81%9F%E3%81%BE%E5%B8%82%E5%A4%A7%E5%AE%AE%E5%8C%BA%E6%A1%9C%E6%9C%A8%E7%94%BA1-7-5+%E3%82%BD%E3%83%8B%E3%83%83%E3%82%AF%E3%82%B7%E3%83%86%E3%82%A3%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "全国吟道大会（大宮）"
     },
     {
       "id": "E060",
@@ -2115,7 +2122,8 @@
       ],
       "related": false,
       "participation_note": "地区大会経由。全国大会参加費は1部門6,000円。18歳未満無料の条件は要項参照。",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA+%E6%97%A5%E6%9C%AC%E6%95%99%E8%82%B2%E4%BC%9A%E9%A4%A8%E4%B8%80%E3%83%84%E6%A9%8B%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA+%E6%97%A5%E6%9C%AC%E6%95%99%E8%82%B2%E4%BC%9A%E9%A4%A8%E4%B8%80%E3%83%84%E6%A9%8B%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "クラウン全国吟詠 全国大会"
     },
     {
       "id": "E062",
@@ -2295,7 +2303,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8C%97%E6%B5%B7%E9%81%93+%E5%87%BD%E9%A4%A8%E5%B8%82+%E5%87%BD%E9%A4%A8%E5%B8%82%E6%B0%91%E4%BC%9A%E9%A4%A8"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8C%97%E6%B5%B7%E9%81%93+%E5%87%BD%E9%A4%A8%E5%B8%82+%E5%87%BD%E9%A4%A8%E5%B8%82%E6%B0%91%E4%BC%9A%E9%A4%A8",
+      "short_name": "錦城会 道南・函館記念大会"
     },
     {
       "id": "E074",
@@ -2330,7 +2339,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%A4%A7%E7%94%B0%E5%8C%BA+%E5%A4%A7%E7%94%B0%E5%8C%BA%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B3"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E5%A4%A7%E7%94%B0%E5%8C%BA+%E5%A4%A7%E7%94%B0%E5%8C%BA%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B3",
+      "short_name": "錦城会 詩吟全国大会"
     },
     {
       "id": "E075",
@@ -2400,7 +2410,8 @@
       ],
       "related": false,
       "participation_note": "出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E4%B8%AD%E9%87%8E%E5%8C%BA+%E9%87%8E%E6%96%B9%E5%8C%BA%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD+%E4%B8%AD%E9%87%8E%E5%8C%BA+%E9%87%8E%E6%96%B9%E5%8C%BA%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "日本詩吟選手権 東京西部予選"
     },
     {
       "id": "E077",
@@ -2435,7 +2446,8 @@
       ],
       "related": false,
       "participation_note": "出場には応募要項に沿った申込みが必要です。要項の出吟料は観覧料ではありません。",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E8%91%89%E7%9C%8C+%E6%88%91%E5%AD%AB%E5%AD%90%E5%B8%82+%E3%81%91%E3%82%84%E3%81%8D%E3%83%97%E3%83%A9%E3%82%B6+%E3%81%B5%E3%82%8C%E3%81%82%E3%81%84%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E8%91%89%E7%9C%8C+%E6%88%91%E5%AD%AB%E5%AD%90%E5%B8%82+%E3%81%91%E3%82%84%E3%81%8D%E3%83%97%E3%83%A9%E3%82%B6+%E3%81%B5%E3%82%8C%E3%81%82%E3%81%84%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "日本詩吟選手権 千葉北部予選"
     },
     {
       "id": "E078",
@@ -2645,7 +2657,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%83%E6%9C%A8%E7%9C%8C+%E5%AE%87%E9%83%BD%E5%AE%AE%E5%B8%82+%E6%A0%83%E6%9C%A8%E7%9C%8C%E7%B7%8F%E5%90%88%E6%96%87%E5%8C%96%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%83%E6%9C%A8%E7%9C%8C+%E5%AE%87%E9%83%BD%E5%AE%AE%E5%B8%82+%E6%A0%83%E6%9C%A8%E7%9C%8C%E7%B7%8F%E5%90%88%E6%96%87%E5%8C%96%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC",
+      "short_name": "栃木県芸術祭 吟詠剣詩舞"
     },
     {
       "id": "E084",
@@ -2680,7 +2693,8 @@
       ],
       "related": true,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C+%E7%A6%8F%E5%B2%A1%E5%B8%82+%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92%E8%83%BD%E6%A5%BD%E5%A0%82+%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%921-5"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C+%E7%A6%8F%E5%B2%A1%E5%B8%82+%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92%E8%83%BD%E6%A5%BD%E5%A0%82+%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%921-5",
+      "short_name": "福芸2026（詩吟出演）"
     },
     {
       "id": "E085",
@@ -2715,7 +2729,8 @@
       ],
       "related": true,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B2%A9%E6%89%8B%E7%9C%8C+%E9%99%B8%E5%89%8D%E9%AB%98%E7%94%B0%E5%B8%82+%E5%A5%87%E8%B7%A1%E3%81%AE%E4%B8%80%E6%9C%AC%E6%9D%BE%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B2%A9%E6%89%8B%E7%9C%8C+%E9%99%B8%E5%89%8D%E9%AB%98%E7%94%B0%E5%B8%82+%E5%A5%87%E8%B7%A1%E3%81%AE%E4%B8%80%E6%9C%AC%E6%9D%BE%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "陸前高田 芸術祭（詩吟出演）"
     },
     {
       "id": "E086",
@@ -3030,7 +3045,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C+%E5%85%AB%E5%B9%A1%E5%B8%82+%E5%85%AB%E5%B9%A1%E5%B8%82%E6%96%87%E5%8C%96%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E5%B0%8F%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C+%E5%85%AB%E5%B9%A1%E5%B8%82+%E5%85%AB%E5%B9%A1%E5%B8%82%E6%96%87%E5%8C%96%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E5%B0%8F%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "キング吟詠 近畿決勝大会"
     },
     {
       "id": "E095",
@@ -3170,7 +3186,8 @@
       ],
       "related": false,
       "participation_note": null,
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C+%E7%A6%8F%E5%B2%A1%E5%B8%82+%E7%A6%8F%E5%B2%A1%E5%B8%82%E7%AB%8B%E8%A5%BF%E5%B8%82%E6%B0%91%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E5%A4%A7%E3%83%9B%E3%83%BC%E3%83%AB"
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C+%E7%A6%8F%E5%B2%A1%E5%B8%82+%E7%A6%8F%E5%B2%A1%E5%B8%82%E7%AB%8B%E8%A5%BF%E5%B8%82%E6%B0%91%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E5%A4%A7%E3%83%9B%E3%83%BC%E3%83%AB",
+      "short_name": "福岡県吟詠剣詩舞大会"
     }
   ]
 }
