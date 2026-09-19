@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-18T22:32:23Z",
-  "rangeEnd": "2026-09-18",
+  "updatedAt": "2026-09-19T22:18:45Z",
+  "rangeEnd": "2026-09-19",
   "daily": [
-    {
-      "date": "2026-08-22",
-      "screenPageViews": 33,
-      "activeUsers": 11
-    },
     {
       "date": "2026-08-23",
       "screenPageViews": 25,
@@ -140,61 +135,70 @@
     },
     {
       "date": "2026-09-18",
-      "screenPageViews": 23,
+      "screenPageViews": 29,
       "activeUsers": 7
+    },
+    {
+      "date": "2026-09-19",
+      "screenPageViews": 34,
+      "activeUsers": 10
     }
   ],
   "channels": {
     "d7": [
       {
-        "channel": "Direct",
-        "sessions": 48
-      },
-      {
         "channel": "Organic Search",
         "sessions": 38
       },
       {
+        "channel": "Direct",
+        "sessions": 36
+      },
+      {
         "channel": "Organic Video",
-        "sessions": 16
+        "sessions": 15
       },
       {
         "channel": "Organic Social",
-        "sessions": 11
+        "sessions": 10
       },
       {
         "channel": "Unassigned",
-        "sessions": 8
-      },
-      {
-        "channel": "AI Assistant",
-        "sessions": 2
+        "sessions": 7
       },
       {
         "channel": "Referral",
+        "sessions": 4
+      },
+      {
+        "channel": "Cross-network",
         "sessions": 2
+      },
+      {
+        "channel": "AI Assistant",
+        "sessions": 1
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 202
+        "sessions": 201
       },
       {
         "channel": "Organic Search",
-        "sessions": 98
+        "sessions": 105
       },
       {
         "channel": "Organic Video",
-        "sessions": 74
+        "sessions": 75
       },
       {
         "channel": "Organic Social",
-        "sessions": 31
+        "sessions": 27
       },
       {
         "channel": "Referral",
-        "sessions": 21
+        "sessions": 22
       },
       {
         "channel": "Unassigned",
@@ -203,6 +207,10 @@
       {
         "channel": "AI Assistant",
         "sessions": 5
+      },
+      {
+        "channel": "Cross-network",
+        "sessions": 2
       }
     ]
   },
@@ -210,42 +218,37 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 54
-    },
-    {
-      "pagePath": "/",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 37
+      "views": 60
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 34
+      "views": 32
     },
     {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 19
+      "pagePath": "/",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 31
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 18
+      "views": 16
     },
     {
-      "pagePath": "/how-to-record",
-      "pageTitle": "録音データの送り方 | 詩吟の入口",
-      "views": 15
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 16
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 14
+      "views": 16
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 10
+      "views": 12
     },
     {
       "pagePath": "/events/",
@@ -253,19 +256,29 @@
       "views": 9
     },
     {
+      "pagePath": "/how-to-record",
+      "pageTitle": "録音データの送り方 | 詩吟の入口",
+      "views": 8
+    },
+    {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 6
+      "views": 7
     },
     {
       "pagePath": "/profile/",
       "pageTitle": "heyheyプロフィール | 詩吟の入口",
+      "views": 7
+    },
+    {
+      "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
+      "pageTitle": "吟猫ピッチマップ",
       "views": 5
     },
     {
-      "pagePath": "/legal/hakkousha",
-      "pageTitle": "発行者情報（詩吟メルマガ） | 詩吟の入口",
-      "views": 4
+      "pagePath": "/tools/",
+      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
+      "views": 5
     },
     {
       "pagePath": "/newsletter/",
@@ -273,34 +286,29 @@
       "views": 4
     },
     {
-      "pagePath": "/tools/",
-      "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 4
-    },
-    {
-      "pagePath": "/apps/pitchmap/",
-      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
       "views": 3
     }
   ],
   "events": {
     "d7": {
       "mailmag_click": 2,
-      "kindle_click": 3,
-      "dojo_click": 19,
+      "kindle_click": 4,
+      "dojo_click": 18,
       "openchat_click": 0,
-      "tool_open": 28,
+      "tool_open": 29,
       "form_click": 0,
-      "youtube_click": 6
+      "youtube_click": 7
     },
     "d28": {
-      "mailmag_click": 22,
-      "kindle_click": 7,
-      "dojo_click": 45,
+      "mailmag_click": 21,
+      "kindle_click": 8,
+      "dojo_click": 46,
       "openchat_click": 1,
-      "tool_open": 127,
+      "tool_open": 120,
       "form_click": 2,
-      "youtube_click": 20
+      "youtube_click": 22
     }
   }
 }
