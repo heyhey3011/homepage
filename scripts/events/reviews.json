@@ -1,4 +1,1847 @@
 {
   "version": 1,
-  "events": {}
+  "events": {
+    "E058": {
+      "record_sha256": "5dcf470a2aec6ddee26432d0c17aae88fd35351aa7eb58b6e5db63d73c2dce7d",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "イベント日程と主催者トップの新着を照合。同一主催者の資料であり独立した会場資料は未確認。日時・会場以外の時刻、観覧条件は確定していない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "第48回関東地区ジョイントリサイタルとして当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "令和8年イベント欄の第48回関東地区リサイタル、9月26日土曜日。開場・開演・終演は未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "原文の会場は浅草公会堂。東京都・台東区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/",
+            "https://crown-ginyukai.com/"
+          ],
+          "note": "イベント日程とトップの新着を再確認。関東9月26日の掲載を維持し、中止・延期の追記は確認範囲で見当たらない。"
+        }
+      }
+    },
+    "E059": {
+      "record_sha256": "e962897ee8b23f56e7468b1efa72791ad88c7c39efa0da5c86bfa3daed223a40",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "日本詩吟学院・第136回全国吟道大会の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "第136回全国吟道大会（大宮）として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "10月11日日曜日、9時開場、10時開会、16時30分終了予定。申込期限ではなく大会日時を照合。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "原文の会場はソニックシティホール。埼玉県・さいたま市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は埼玉県さいたま市大宮区桜木町1-7-5。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "観覧料6,000円にはプログラム・軽食が付くと大会案内に明記。出場料から推定していない。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "大会案内に、非会員は総本部へ問い合わせる旨の案内があるためcontactを維持。申込なしでの入場可能とはしていない。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakufukai.or.jp/2026/03/01/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E5%8C%96%EF%BC%91%EF%BC%95%E5%91%A8%E5%B9%B4-%E5%89%B5%E7%AB%8B%EF%BC%99%EF%BC%90%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5-%E7%AC%AC%EF%BC%91%EF%BC%93/"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E060": {
+      "record_sha256": "43bfbc17709f935aaeecc0212db2ac74f36fb6e31f63f9a9ace169d90aa3c718",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者のコンクール案内と実施要領PDFを照合。独立資料ではない。全国大会の会場住所は実施要領による。一般観覧条件の第二資料は未確認。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf"
+          ],
+          "note": "第53回クラウン全国吟詠コンクール全国大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf"
+          ],
+          "note": "令和8年度実施要領の全国大会は10月18日日曜日。地区大会の日付と区別。開催時刻は記載なし。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf"
+          ],
+          "note": "原文の会場は日本教育会館一ツ橋ホール。東京都・千代田区の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は東京都千代田区一ツ橋2-6-2。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf"
+          ],
+          "note": "実施要領の6,000円は全国大会の出吟参加費。観覧料の明記はなく、料金はunknown/nullを維持。18歳未満無料も出場条件としてのみ保持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/wp-content/uploads/2026/02/a9b9a74c8b5c3f6c33727ff93ba3c8ae.pdf",
+            "https://crown-ginyukai.com/concours_info/"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E062": {
+      "record_sha256": "7518f67d91f2ea1fc8bcbd1b86fb988304dcee375781f72e9a244a6fa72e8df1",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "公式観覧券と同じ主催者の合吟出場順告知を照合。独立した観覧条件の資料は未確認。時刻・料金は観覧者向けの券案内を採用。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d",
+            "https://www.ginken.or.jp/index.php/news/news-14143/"
+          ],
+          "note": "第56回全国吟剣詩舞道大会／令和8年度全国吟詠合吟コンクールとして当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d"
+          ],
+          "note": "公式観覧券の11月10日火曜日、8時40分開場・9時15分開会、第1部17時20分終了、第2部18～20時を照合。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d"
+          ],
+          "note": "原文の会場は日本武道館。東京都・千代田区の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は東京都千代田区北の丸公園2-3。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d"
+          ],
+          "note": "公式観覧券で一般5,000円、大学生1,000円、高校生以下無料。ただし無料の場合も入場券が必要。全日券と出場料を区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d"
+          ],
+          "note": "主催者が一般向け観覧券を販売。当日券あり、高校生以下も券の発行が必要。公式券の販売期間は10月27日まで。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://ginkenshibushinkokai.stores.jp/items/6a61ceb3d445030072ef2a5d",
+            "https://www.ginken.or.jp/index.php/news/news-14143/"
+          ],
+          "note": "主催者の出場順告知と観覧券ページを再確認。券案内の11月10日・販売10月27日までが維持され、中止・延期の追記は確認範囲で見当たらない。"
+        }
+      }
+    },
+    "E063": {
+      "record_sha256": "5d104a7bc260e01c628672be4fa7eb5bc62dc4debcbfeba01440dcf2bc22c2e3",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "日本伝統文化吟友会関東地区連合会・大会案内の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "日本伝統文化吟友会 吟剣詩舞コンクール全国決勝大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "令和8年の吟詠・剣詩舞の全国決勝はいずれも11月29日日曜日。関東地区大会と区別。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "原文の会場は津島市文化会館。愛知県・津島市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://ginyoujapan.wixsite.com/my-site-1/%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-1"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E064": {
+      "record_sha256": "d4de78047179c209fe9837dc314132d4f543384d939b29ef058067d5ec2672f2",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権全国決選大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回要項の全国決選、令和9年4月25日日曜日。2026年度地区予選の日付と区別。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は荏原文化センター。東京都・品川区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E073": {
+      "record_sha256": "e5c234eba01edb0a02f33f12e8474e325a01e7709be44c496dd719fc12948bed",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "詩吟朗詠錦城会：令和7・8年度活動予定の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "錦城会 道南本部35周年・函館支部65周年記念大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "錦城会の令和8年活動予定、10月11日日曜日。道南本部35周年・函館支部65周年。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "原文の会場は函館市民会館。北海道・函館市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E074": {
+      "record_sha256": "edf775aad14a82b25ff663dc1df569d189e12a8fe1b55b08c665fc164d9905e3",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "詩吟朗詠錦城会：令和7・8年度活動予定の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "錦城会 詩吟全国大会（流祖50回忌・二代宗家襲名50周年・東京都本部65周年記念）として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "錦城会の令和8年活動予定、9月27日日曜日。流祖50回忌・二代襲名50周年・東京都本部65周年。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "原文の会場は大田区民ホール・アプリコ。東京都・大田区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://kinjoukai.or.jp/activity/schedule.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E076": {
+      "record_sha256": "fae7a74df371c2b6a3a4053b7bcf8704b4a89fe8be2cb709d0fe4680b56d207b",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 東京西部地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像の東京西部行、令和8年10月3日土曜日。申込期限の9月9日と区別。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は野方区民ホール。東京都・中野区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E077": {
+      "record_sha256": "c2fe156f6d1e23ff8fa191d99da4d4b8e95bad51fbb672c289933850517d7ed3",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 千葉北部地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像の千葉北部行、令和8年10月30日金曜日。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場はけやきプラザ ふれあいホール。千葉県・我孫子市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E078": {
+      "record_sha256": "e28b5db41a7a044d4b3712a5c94883da7f9fd945faeebdffa9a73dc91f85db4e",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 神奈川地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像の神奈川行、令和8年11月6日金曜日。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は関内ホール 小ホール。神奈川県・横浜市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E079": {
+      "record_sha256": "6db0aa25cc32913c6f170e2730f28e268350cacc8ac72fdedab165d134096b71",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 千葉南部地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像の千葉南部行、令和8年11月13日金曜日。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は船橋市勤労市民センター。千葉県・船橋市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E080": {
+      "record_sha256": "936483b30732bd1fed669e3190b025264ed8ba14cba52ef318987d2ca6db5242",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 さいたま地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像のさいたま行、令和8年11月28日土曜日。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は市民会館おおみや。埼玉県・さいたま市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E081": {
+      "record_sha256": "5191a4726baff02969801e996d7c2ace4739ebbb1699531bbb045db03838003e",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 東京東部地区予選として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの日程表画像の東京東部行、令和9年1月22日金曜日。令和8年と取り違えない。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は江東区文化センター。東京都・江東区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E082": {
+      "record_sha256": "9470d0dc0d9f288c07ae3fe1f5015ae78b59c2a3b820ac47f9c94b2e69957baf",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の第38回応募要項PDFと9月1日最新版の申込ページを照合。地区日程表は画像でも列と行を確認。同じ主催者であり、独立した会場予定表との照合は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回日本詩吟選手権 首都圏決選大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "PDFの首都圏決選、令和9年3月20日土曜日。4月の全国決選とは別。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "原文の会場は荏原文化センター。東京都・品川区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "第38回の要項に記載された地区3,000円・首都圏4,000円・全国5,000円は出場参加費。観覧料は明記がなくunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://nissikyo.jp/wp-content/uploads/2026/06/38ouboyoukounado_s.pdf",
+            "https://nissikyo.jp/38moushikomi/"
+          ],
+          "note": "9月1日最新版の申込案内と要項を再確認。当該会場・日付の変更告知は確認範囲で見当たらない。応募締切の経過を催事中止とは扱わない。"
+        }
+      }
+    },
+    "E083": {
+      "record_sha256": "7aa1bdfe7b4d08322a26ef77e05627e278b8c9efa35e21b64929dedcb9c345b3",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "栃木県：第80回記念栃木県芸術祭の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "第80回記念栃木県芸術祭 吟詠剣詩舞として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "第80回記念県芸術祭の吟詠剣詩舞は10月18日日曜日13時開演。開場・終演未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "原文の会場は栃木県総合文化センター。栃木県・宇都宮市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "県芸術祭のホール公演案内で入場無料。別部門の参加料を転用していない。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "県の催事案内に来場呼びかけと入場無料の明記。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.tochigi.lg.jp/c10/kouhou/r08_geizyutusai_hall_kouhou.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E084": {
+      "record_sha256": "d2104584853a3b9cbf37a0668f4fa0fce5446bd60ba9f0a51b8f11bef5fff1b8",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "福芸2026：開催概要・プログラムの原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "福岡伝統芸能フェスタ 福芸2026（詩吟出演あり）として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "福芸2026の10月17日土曜日、13時開場・14時開演・17時終了を照合。詩吟のみの時刻と全体時刻を区別。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "原文の会場は大濠公園能楽堂。福岡県・福岡市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は福岡市中央区大濠公園1-5。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "公式福芸2026案内に入場無料と明記。予約の有無で別料金との記載なし。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "公式に一般向け来場案内があり、事前予約可能・予約なしでも可、満席の場合入場できないと明記。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://fukugei.com/index.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E085": {
+      "record_sha256": "3176caade949861b670310eef3a9d58c7ae84308e5ff12ea7364daf726bec4be",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "市の9月14日更新日程と添付チラシの表面画像を照合。同じ発行主体の資料であり独立確認ではない。一般観覧・料金は不明のまま。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html"
+          ],
+          "note": "第60回陸前高田市民芸術祭 舞台合同発表会（詩吟出演あり）として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html",
+            "https://www.city.rikuzentakata.iwate.jp/material/files/group/103/butaiomote.pdf"
+          ],
+          "note": "市の第60回日程とチラシ表面画像を照合。10月4日日曜日、午前10～12時・午後13～16時。開場時刻は不明。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html"
+          ],
+          "note": "原文の会場は奇跡の一本松ホール。岩手県・陸前高田市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.rikuzentakata.iwate.jp/kosodate_kyoiku_bunka/shogaigakushu/4817.html",
+            "https://www.city.rikuzentakata.iwate.jp/material/files/group/103/butaiomote.pdf"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E086": {
+      "record_sha256": "01c03f76cb030a842e65c5f7e496a14ed9d9a1f7876d74a5a29702e26ad9b306",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "岩国市文化協会：2026年度イベントカレンダーの原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "岩国地区吟剣詩舞道連盟大会「吟と歌と舞の祭典」として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "2026年度予定表の11月8日日曜日10～16時30分。同一日・同会場の二つの名称の行を一催事として維持。開場時刻は不明。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "原文の会場はシンフォニア岩国 多目的ホール。山口県・岩国市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "文化協会の同日同会場の公演欄で無料と照合。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "文化協会の一般向けイベントカレンダーで日時・会場・入場無料を案内。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://iwakuni-bunka.com/calendar_2026.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E087": {
+      "record_sha256": "c723b0793ef658625153152e8135fc4cef72e2578edf2d5e26327cb31b34d59c",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "町の芸術祭原文一資料による。詩吟の会場は旧コミセンと明記され、同ページの11月7日謡曲大会の新施設と区別した。独立した会場予定表は未確認。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "日本九重流詩吟庄内町詩吟愛好会 吟詠大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "第22回町芸術祭の日本九重流詩吟大会、11月21日土曜日13時30分。開場・終演未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "原文の会場は狩川まちづくりセンター（旧コミセン）。山形県・庄内町の会場として、Googleマップ検索語の県・市・施設名と照合。旧コミセンの指定を保持し、同名の新複合施設と区別。Googleマップは名称検索であり入口座標を保証するものではない。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.town.shonai.lg.jp/kanko/events/geijutusai/shakyo120260813100742555.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E088": {
+      "record_sha256": "f36406082cf2576a0d2c6aa4d7c9e1a97872e8aea722112882136336807167e5",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "三田市文化協会：2026年度行事予定・行事完了の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "第34回さんだ吟剣詩舞道・連盟創立45周年記念大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "文化協会の2026年度予定、11月21日土曜日、第34回・連盟創立45周年大会。時刻未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "原文の会場はフラワータウン市民センター。兵庫県・三田市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://sandashibunka.grupo.jp/free6953045"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E090": {
+      "record_sha256": "7080c7379584a5335a13fb40ee7255cfbb0147d4137caa928c1c73f13708b297",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "よさこい高知文化祭2026：吟と剣と扇との原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "吟と剣と扇と ～よさこい高知文化祭2026 吟剣詩舞の祭典～として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "2026年11月29日日曜日、10時開場・10時30分開演・15時40分終演予定。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "原文の会場は新来島高知重工ホール オレンジホール。高知県・高知市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は高知市本町4丁目3-30。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "公式の観覧案内で入場無料・申込不要と明記。出演募集の条件と区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "公式が観覧無料・申込不要と明記。出演団体の募集終了を観覧受付終了と取り違えない。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://yosakoi-kochi-bunkasai2026.pref.kochi.lg.jp/event.html?id=97"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E091": {
+      "record_sha256": "da5dc3bed7f79496a068c19ae173cf0efa76b80aa64d578867d0c86d675c94f1",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "愛媛県：令和8年度県民総合文化祭（2026年9月10日更新）の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "愛媛県 県民総合文化祭 吟詠剣詩舞公演として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "令和8年度の吟詠剣詩舞公演は11月3日火曜祝日。総合フェスティバル10月31日の時刻を転用せず、時刻nullを維持。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "原文の会場は愛媛県県民文化会館 メインホール。愛媛県・松山市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "県の開催一覧の11月3日「吟詠剣詩舞公演」行は無料。10月31日総合フェスの入場券抽選を転用していない。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "県の一般向け鑑賞案内。託児欄にも11月3日吟詠公演を個別列記し、就学前対象・無料・10月9日締切を確認。10月31日の未就学児入場禁止は転用しない。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.ehime.jp/page/145342.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E092": {
+      "record_sha256": "0c4c66e393ed4ffdad9ae2fee653dbdd143d87e255dc07ca0d04f86b8b977fd7",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "新居浜市：第71回秋の芸術祭（2026年9月1日更新）の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "第71回秋の芸術祭 第3部（吟詠出演あり）として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "第71回秋の芸術祭第3部は11月3日火曜祝日、12時30分開場・13時開演。終演時刻は不明。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "原文の会場は新居浜市市民文化センター 大ホール。愛媛県・新居浜市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "市の案内に5枚綴り300円・当日券1枚100円と明記。出演参加費ではなく入場券。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "一般向け市案内で入場券の購入先が新居浜文化協会または会場と明記。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.niihama.lg.jp/soshiki/bunka/akigeijyutusai.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E094": {
+      "record_sha256": "7790ec8bd4695750e5485f5c4c5504df7b20831e552a08f21da3271a104b3bbe",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "八幡市文化センター：2026年9月催物予定の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "キング吟詠剣詩舞会 全国吟詠コンクール 近畿決勝大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "会場の2026年9月予定表、9月23日水曜祝日、10～16時30分。開場時刻は未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "原文の会場は八幡市文化センター 小ホール。京都府・八幡市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "会場の入場方法は「自由」のみで金額の記載なし。無料とは断定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "会場予定表の入場方法が「自由」。料金の有無は別途不明であることを案内。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.yawata-bunka.jp/center/other_event/"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E096": {
+      "record_sha256": "52ea61954dee1986e42a70f42b9ce914ffdd6c9adef6a1a09703bf1389e51626",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "北区文化振興財団：北区文化芸術祭2026の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "北区文化芸術祭in北とぴあ 吟剣詩舞道大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "財団の2026年文化芸術祭で11月3日火曜祝日、9時30分開場・10時開演・16時30分終了を照合。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "原文の会場は北とぴあ つつじホール。東京都・北区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "財団の文化芸術祭案内の入場無料を確認。別の体験講座参加料500円と区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "財団公式の2026年文化芸術祭案内に入場無料と公演詳細を掲載。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://kitabunka.or.jp/art_festival_2026/"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E097": {
+      "record_sha256": "e77c36071d0b8edeca2e3f3f6e0d30f3d9286b805387c6f3ccd5f907357527aa",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "加古川市：第62回文化まつりの原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "第62回加古川市文化まつり 詩吟と剣詩舞の大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "第62回文化まつりの詩吟と剣詩舞は11月7日土曜日13～16時。開場は未記載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "原文の会場は加古川市総合福祉会館 大ホール。兵庫県・加古川市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "市の該当公演案内で入場無料を確認。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "市公式開催案内の該当公演に日時・場所・入場無料を明記。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.kakogawa.lg.jp/soshikikarasagasu/shiminbu/wellnesssuishinka/32112.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E098": {
+      "record_sha256": "63fed7401279c8b5727dc53ac3a15ee1f8cdc16f14c7197aa041acc29204e214",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "福岡市民芸術祭：令和8年度参加行事一覧の原文一資料で名称・日時・会場と記載された観覧条件を確認。独立した別資料で当該催事までの照合はできていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "第45回福岡県吟詠剣詩舞大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "9月18日時点の令和8年度行事一覧で、第45回は10月25日日曜日10時開始。開場・終演は不明。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "原文の会場は福岡市立西市民センター 大ホール。福岡県・福岡市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "令和8年度参加行事一覧の第45回該当行は無料。別催事の日付・金額と区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "公式の令和8年度参加行事一覧に無料・日時・会場を掲載。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://fcaf.jp/eventlist_print/"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E010": {
+      "record_sha256": "a7526b44d3045cde1e8049367286b3ef8ec0b64a04e7971a4aacb45d9a9e67b2",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催者の出吟順案内・結果発表に加え、岳精流日本吟院の9月16日報告で9月13日の開催を照合。観覧料・当時の一般見学条件の独立資料は得られていない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14159/",
+            "https://www.ginken.or.jp/index.php/news/news-14186/",
+            "https://www.gakuseiryu-gin.jp/information/383"
+          ],
+          "note": "令和8年度全国吟詠コンクール決勝大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14159/",
+            "https://www.ginken.or.jp/index.php/news/news-14186/",
+            "https://www.gakuseiryu-gin.jp/information/383"
+          ],
+          "note": "主催者の9月17日付結果発表で、令和8年9月13日日曜日の開催を確認。出吟順の部門別開始時刻を大会全体の時刻へ転用せずnullを維持。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14159/",
+            "https://www.ginken.or.jp/index.php/news/news-14186/",
+            "https://www.gakuseiryu-gin.jp/information/383"
+          ],
+          "note": "原文の会場は日本教育会館一ツ橋ホール。東京都・千代田区の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14159/"
+          ],
+          "note": "当時の出吟順案内と9月17日の結果発表に観覧料の明記なし。過去の観覧料はunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14159/"
+          ],
+          "note": "出場案内・開催報告から一般見学の条件は確定できない。当時の観覧条件unknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.ginken.or.jp/index.php/news/news-14186/"
+          ],
+          "note": "9月17日付の公式結果が9月13日の実施を明記。予定告知より新しい結果ページを閲覧導線に追加。次年度日程を推定していない。"
+        }
+      }
+    },
+    "E099": {
+      "record_sha256": "436db78da4f020ea9408a8b064bfc37f79683266d183b4d0723c199eade24bef",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "催事日時・入場条件は福井県の公式一覧一資料による。鯖江市の別事業案内で文化センターの住所だけを照合。別事業の日時・対象者は転用しておらず、催事自体の第二資料とは数えない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html"
+          ],
+          "note": "第21回吟詠剣詩舞の祭典として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html"
+          ],
+          "note": "令和8年度県事業一覧の第21回吟詠剣詩舞の祭典、11月22日日曜日10～12時。開場時刻は未掲載。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html",
+            "https://www.city.sabae.fukui.jp/kosodate_kyoiku/shogaigakushu/oshirase/Shogai20260111.html"
+          ],
+          "note": "原文の会場は鯖江市文化センター。福井県・鯖江市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は鯖江市東鯖江3-7-1。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html"
+          ],
+          "note": "県の該当行の入場料は無料。隣接する美術展の700円と区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html"
+          ],
+          "note": "県が県民に来場を呼びかけた文化祭一覧の該当事業。単に無料であることだけを根拠にしていない。予約不要との明記はなく断定しない。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.fukui.lg.jp/doc/bunshin/fukuikenminsougoubunkasai2026.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E100": {
+      "record_sha256": "619c81dc9ea708e222af34f15669ac20e5157cd0241a25f587cdf42d453d0302",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "会場の11月予定と同じ会場のアクセスを照合。同一発行主体であり独立確認ではない。所在地は園城寺町246-24、開催条件は当該11月15日の項目に限定。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php"
+          ],
+          "note": "大津市文化祭参加 吟詠と剣詩舞の集いとして当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php"
+          ],
+          "note": "会場の2026年11月欄で11月15日日曜日、開場・開演とも10時。終演時刻は未掲載。隣接する別公演の時刻・料金を混ぜていない。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php",
+            "https://www.otsu-dengei.jp/access.php"
+          ],
+          "note": "原文の会場は大津市伝統芸能会館。滋賀県・大津市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は大津市園城寺町246-24。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php"
+          ],
+          "note": "11月15日の「吟詠と剣詩舞の集い」項目で入場無料。隣接する11月14日の公演料金と区別。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php"
+          ],
+          "note": "会場の一般向け公演カレンダーの入場案内を根拠にopen。別催事にある申込制等の条件は当該行に記載なし。予約不要とは断定しない。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.otsu-dengei.jp/eventcalender.php"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E101": {
+      "record_sha256": "c08fa4a51fc93fad505320931a66c4eafd592e281ff559811cb5daf370e11418",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "東大阪市の市政だよりと会場公式の別資料で日付・開演・多目的室・一般観覧が一致。開場9時30分と無料は会場、終演16時30分は市案内から補完。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html",
+            "https://www.city.higashiosaka.lg.jp/0000045073.html"
+          ],
+          "note": "東大阪市詩吟連盟 第59回秋季吟詠大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html",
+            "https://www.city.higashiosaka.lg.jp/0000045073.html"
+          ],
+          "note": "会場9月欄の第59回大会は9月23日水曜祝日、9時30分開場・10時開演。市政だよりで同日10～16時30分と照合。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html",
+            "https://www.city.higashiosaka.lg.jp/0000045073.html"
+          ],
+          "note": "原文の会場は東大阪市文化創造館 多目的室。大阪府・東大阪市の会場として、Googleマップ検索語の県・市・施設名と照合。"
+        },
+        "admission": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html"
+          ],
+          "note": "会場9月23日第59回該当欄で無料（入場自由）と明記。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html",
+            "https://www.city.higashiosaka.lg.jp/0000045073.html"
+          ],
+          "note": "市政だよりの文化祭日程表に「どなたでも観覧可能」、会場に「入場自由」とあり一般可。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://higashiosaka.hall-info.jp/event-guide/schedule/202609.html",
+            "https://www.city.higashiosaka.lg.jp/0000045073.html"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E102": {
+      "record_sha256": "a39503cda388656e3e83f13083728d12fef847975cd264f95ddabd59c59eaa1f",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "主催する富士宮市の原文と静岡県の事業紹介で日付・時間・会場が一致。チラシ画像も照合したが、同じ事業情報の転載が含まれるため完全に独立した主催者確認とは数えない。どの資料にも料金は未記載。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.fujinomiya.lg.jp/3010400000/p003609.html",
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html",
+            "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/081/291/r8.jpg"
+          ],
+          "note": "第46回富士宮市民芸術祭 詩吟とダンスとして当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.fujinomiya.lg.jp/3010400000/p003609.html",
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html",
+            "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/081/291/r8.jpg"
+          ],
+          "note": "市・県の原文とチラシ画像の第46回で11月22日日曜日14時30分～16時30分が一致。開場時刻は記載なし。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.fujinomiya.lg.jp/3010400000/p003609.html",
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html",
+            "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/081/291/r8.jpg"
+          ],
+          "note": "原文の会場は富士宮市民文化会館。静岡県・富士宮市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は富士宮市宮町14番2号。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.city.fujinomiya.lg.jp/3010400000/p003609.html",
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html",
+            "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/081/291/r8.jpg"
+          ],
+          "note": "市・県の原文とチラシ画像に観覧料金の記載なし。一般向け催事であることから無料とは推定せずunknown/null。"
+        },
+        "audience": {
+          "result": "verified",
+          "urls": [
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html"
+          ],
+          "note": "県の当該事業ページに一般向け鑑賞の呼びかけがある。観覧料・予約要否は書かれておらず要確認と併記。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.city.fujinomiya.lg.jp/3010400000/p003609.html",
+            "https://www.pref.shizuoka.jp/kankosports/bunkageijutsu/bunkaevent/1080440/1081286/1081291.html",
+            "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/081/291/r8.jpg"
+          ],
+          "note": "今回再度開いた当該年度の公開案内には、当該催事の中止・延期・変更の追記は見当たらなかった。確認した案内の範囲に限る。"
+        }
+      }
+    },
+    "E103": {
+      "record_sha256": "f54b50013f413224a0d94c68ebf5473344e4081bd35108d2fa89e35c0aa1005c",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "日程・大会名は主催者の6月18日告知一資料による。会場公式でエポックなかはらの所在地を独立照合。会場の2027年6月催事予定による日程確認は未実施。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "岳精流日本吟院 創流50周年記念全国吟道大会として当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "2026年6月18日告知の「令和9年」は2027年。創流50周年大会の6月19日土曜日を照合。時刻は未告知。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378",
+            "https://sfc-kawasaki.jp/"
+          ],
+          "note": "原文の会場はエポックなかはら。神奈川県・川崎市の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は川崎市中原区上小田中6-22-5。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378",
+            "https://www.gakuseiryu-gin.jp/information"
+          ],
+          "note": "6月18日の翌年告知と主催者のお知らせ一覧を再度開いた。9月16日までの新着の確認範囲で、2027年当該大会の変更案内は見当たらない。詳細観覧案内は未確認。"
+        }
+      }
+    },
+    "E104": {
+      "record_sha256": "def012ba50b25caa84d1ae7d170c38fef0b1865774fe31c79d417bde251da855",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "cross_check": "日程・流統独吟コンクールの告知は主催者一資料による。品川区の施設案内で荏原文化センターの所在地のみ照合。プール利用料・利用条件を大会に転用していない。",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "岳精流日本吟院 独吟コンクールとして当該開催年の原文と照合。別年度・別地区・別部門の名称と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "2026年6月18日告知の「来年」は2027年。独吟コンクールは3月28日日曜日。研修会の前日3月27日と区別。時刻は未告知。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378",
+            "https://www.city.shinagawa.tokyo.jp/PC/shisetsu/shisetsu-bunka/shisetsu-bunka-pool/hpg000012789.html"
+          ],
+          "note": "原文の会場は荏原文化センター。東京都・品川区の会場として、Googleマップ検索語の県・市・施設名と照合。所在地は品川区中延1-9-15。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "開催日・会場の原文に観覧料の明記なし。出場者向け告知や恒例開催から推定せずunknown/nullを維持。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378"
+          ],
+          "note": "開催日・会場の案内には一般見学可否・観覧申込条件の明記なし。出場者・会員向け開催案内だけでは一般入場可と判断せずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://www.gakuseiryu-gin.jp/information/378",
+            "https://www.gakuseiryu-gin.jp/information"
+          ],
+          "note": "6月18日の翌年告知と主催者のお知らせ一覧を再度開いた。9月16日までの新着の確認範囲で、2027年当該大会の変更案内は見当たらない。詳細観覧案内は未確認。"
+        }
+      }
+    },
+    "E105": {
+      "record_sha256": "1f9d09d6150c78b91f8a4eba22ab066bcab1e4d17f1e3f782a7717eb2ac6d0cb",
+      "reviewed_at": "2026-09-21",
+      "decision": "verified",
+      "checks": {
+        "identity": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "主催者の令和7年度欄にある第38回関西地区ジョイントリサイタルと照合。令和8年度の第39回や関東地区と区別。"
+        },
+        "schedule": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "令和7年8月31日日曜日を2025-08-31と照合。曜日も一致。開催時刻は原文にないため全てnull。"
+        },
+        "location": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/",
+            "https://www.archaic.or.jp/guide/access.html"
+          ],
+          "note": "当時の主催者案内は、あましんアルカイックホール。会場公式アクセスで兵庫県尼崎市の施設と確認し、Googleマップ検索語を照合。2026年のオクトホールを転用しない。"
+        },
+        "admission": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "令和7年度の終了イベント欄に当時の観覧料金の記載なし。現在の施設料金から推定せずunknown/null。"
+        },
+        "audience": {
+          "result": "unknown",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "主催者の終了案内だけでは当時の一般入場・事前申込条件を確定できずunknownを維持。"
+        },
+        "latest_notice": {
+          "result": "verified",
+          "urls": [
+            "https://crown-ginyukai.com/event_info/"
+          ],
+          "note": "主催者の現行イベントページを再度開き、令和7年8月31日の当該公演に終了済みとの表示を確認。会場の2026年4月以降の休館告知を2025年の中止とは扱わない。"
+        }
+      },
+      "cross_check": "開催年・日・会場は主催者の令和7年度終了案内一資料。現在の会場アクセスで所在地のみ照合したが、独立した当時の催事資料や観覧条件は得られていない。"
+    }
+  }
 }
