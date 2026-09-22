@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-21T23:14:18Z",
-  "rangeEnd": "2026-09-21",
+  "updatedAt": "2026-09-22T22:54:47Z",
+  "rangeEnd": "2026-09-22",
   "daily": [
-    {
-      "date": "2026-08-25",
-      "screenPageViews": 42,
-      "activeUsers": 16
-    },
     {
       "date": "2026-08-26",
       "screenPageViews": 27,
@@ -140,31 +135,36 @@
     },
     {
       "date": "2026-09-21",
-      "screenPageViews": 45,
-      "activeUsers": 16
+      "screenPageViews": 49,
+      "activeUsers": 17
+    },
+    {
+      "date": "2026-09-22",
+      "screenPageViews": 25,
+      "activeUsers": 11
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 44
+        "sessions": 49
       },
       {
         "channel": "Direct",
-        "sessions": 36
+        "sessions": 34
       },
       {
         "channel": "Organic Video",
-        "sessions": 23
-      },
-      {
-        "channel": "Organic Social",
-        "sessions": 10
+        "sessions": 21
       },
       {
         "channel": "Unassigned",
-        "sessions": 7
+        "sessions": 13
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 11
       },
       {
         "channel": "Referral",
@@ -178,19 +178,19 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 200
+        "sessions": 191
       },
       {
         "channel": "Organic Search",
-        "sessions": 112
+        "sessions": 118
       },
       {
         "channel": "Organic Video",
-        "sessions": 74
+        "sessions": 75
       },
       {
         "channel": "Organic Social",
-        "sessions": 26
+        "sessions": 25
       },
       {
         "channel": "Referral",
@@ -198,7 +198,7 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 12
+        "sessions": 17
       },
       {
         "channel": "AI Assistant",
@@ -214,46 +214,46 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 92
+      "views": 97
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 38
-    },
-    {
-      "pagePath": "/dojo-details",
-      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 33
+      "views": 37
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 24
+      "views": 26
+    },
+    {
+      "pagePath": "/dojo-details",
+      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
+      "views": 25
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 23
+      "views": 21
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 17
+      "views": 20
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 12
-    },
-    {
-      "pagePath": "/events/",
-      "pageTitle": "詩吟の大会・コンサート・発表会を探す | 詩吟の入口",
-      "views": 9
+      "views": 10
     },
     {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 10
+    },
+    {
+      "pagePath": "/events/",
+      "pageTitle": "詩吟の大会・コンサート・発表会を探す | 詩吟の入口",
       "views": 9
     },
     {
@@ -264,7 +264,7 @@
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 6
+      "views": 7
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
@@ -272,37 +272,37 @@
       "views": 5
     },
     {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 4
-    },
-    {
       "pagePath": "/homepage/index.html",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 5
+    },
+    {
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
       "views": 4
     },
     {
-      "pagePath": "/how-to-record",
-      "pageTitle": "録音データの送り方 | 詩吟の入口",
+      "pagePath": "/apps/shigin-jiten/",
+      "pageTitle": "詩吟大辞典 | 詩吟の入口",
       "views": 3
     }
   ],
   "events": {
     "d7": {
       "mailmag_click": 3,
-      "kindle_click": 4,
-      "dojo_click": 19,
-      "openchat_click": 0,
+      "kindle_click": 5,
+      "dojo_click": 12,
+      "openchat_click": 1,
       "tool_open": 45,
       "form_click": 1,
-      "youtube_click": 7
+      "youtube_click": 8
     },
     "d28": {
       "mailmag_click": 23,
-      "kindle_click": 8,
-      "dojo_click": 47,
-      "openchat_click": 1,
-      "tool_open": 132,
+      "kindle_click": 9,
+      "dojo_click": 48,
+      "openchat_click": 2,
+      "tool_open": 136,
       "form_click": 3,
       "youtube_click": 23
     }
