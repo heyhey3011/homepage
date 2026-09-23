@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-22T22:54:47Z",
-  "rangeEnd": "2026-09-22",
+  "updatedAt": "2026-09-23T22:54:57Z",
+  "rangeEnd": "2026-09-23",
   "daily": [
-    {
-      "date": "2026-08-26",
-      "screenPageViews": 27,
-      "activeUsers": 7
-    },
     {
       "date": "2026-08-27",
       "screenPageViews": 8,
@@ -140,35 +135,40 @@
     },
     {
       "date": "2026-09-22",
-      "screenPageViews": 25,
+      "screenPageViews": 31,
       "activeUsers": 11
+    },
+    {
+      "date": "2026-09-23",
+      "screenPageViews": 19,
+      "activeUsers": 9
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 49
+        "sessions": 42
       },
       {
         "channel": "Direct",
-        "sessions": 34
+        "sessions": 33
       },
       {
         "channel": "Organic Video",
-        "sessions": 21
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 13
+        "sessions": 22
       },
       {
         "channel": "Organic Social",
-        "sessions": 11
+        "sessions": 10
+      },
+      {
+        "channel": "Unassigned",
+        "sessions": 7
       },
       {
         "channel": "Referral",
-        "sessions": 6
+        "sessions": 4
       },
       {
         "channel": "Cross-network",
@@ -178,15 +178,15 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 191
+        "sessions": 190
       },
       {
         "channel": "Organic Search",
-        "sessions": 118
+        "sessions": 119
       },
       {
         "channel": "Organic Video",
-        "sessions": 75
+        "sessions": 77
       },
       {
         "channel": "Organic Social",
@@ -194,11 +194,11 @@
       },
       {
         "channel": "Referral",
-        "sessions": 23
+        "sessions": 22
       },
       {
         "channel": "Unassigned",
-        "sessions": 17
+        "sessions": 12
       },
       {
         "channel": "AI Assistant",
@@ -214,57 +214,47 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 97
+      "views": 100
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 37
+      "views": 40
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 26
-    },
-    {
-      "pagePath": "/dojo-details",
-      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
       "views": 25
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 21
+      "views": 19
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 20
+      "views": 19
+    },
+    {
+      "pagePath": "/dojo-details",
+      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
+      "views": 13
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 10
+      "views": 8
     },
     {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 10
-    },
-    {
-      "pagePath": "/events/",
-      "pageTitle": "詩吟の大会・コンサート・発表会を探す | 詩吟の入口",
-      "views": 9
-    },
-    {
-      "pagePath": "/profile/",
-      "pageTitle": "heyheyプロフィール | 詩吟の入口",
-      "views": 8
+      "views": 6
     },
     {
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
-      "views": 7
+      "views": 6
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
@@ -277,34 +267,44 @@
       "views": 5
     },
     {
-      "pagePath": "/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
-      "views": 4
+      "pagePath": "/profile/",
+      "pageTitle": "heyheyプロフィール | 詩吟の入口",
+      "views": 5
     },
     {
       "pagePath": "/apps/shigin-jiten/",
       "pageTitle": "詩吟大辞典 | 詩吟の入口",
+      "views": 3
+    },
+    {
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
+      "views": 3
+    },
+    {
+      "pagePath": "/newsletter/",
+      "pageTitle": "無料メール講座 | 詩吟の入口",
       "views": 3
     }
   ],
   "events": {
     "d7": {
       "mailmag_click": 3,
-      "kindle_click": 5,
-      "dojo_click": 12,
+      "kindle_click": 2,
+      "dojo_click": 8,
       "openchat_click": 1,
-      "tool_open": 45,
+      "tool_open": 40,
       "form_click": 1,
-      "youtube_click": 8
+      "youtube_click": 7
     },
     "d28": {
-      "mailmag_click": 23,
+      "mailmag_click": 24,
       "kindle_click": 9,
-      "dojo_click": 48,
+      "dojo_click": 47,
       "openchat_click": 2,
-      "tool_open": 136,
+      "tool_open": 128,
       "form_click": 3,
-      "youtube_click": 23
+      "youtube_click": 22
     }
   }
 }
