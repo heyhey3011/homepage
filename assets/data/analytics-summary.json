@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-09-29T23:39:57Z",
-  "rangeEnd": "2026-09-29",
+  "updatedAt": "2026-09-30T23:43:46Z",
+  "rangeEnd": "2026-09-30",
   "daily": [
-    {
-      "date": "2026-09-02",
-      "screenPageViews": 28,
-      "activeUsers": 12
-    },
     {
       "date": "2026-09-03",
       "screenPageViews": 8,
@@ -140,34 +135,39 @@
     },
     {
       "date": "2026-09-29",
-      "screenPageViews": 165,
+      "screenPageViews": 164,
       "activeUsers": 25
+    },
+    {
+      "date": "2026-09-30",
+      "screenPageViews": 141,
+      "activeUsers": 10
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 38
+        "sessions": 53
       },
       {
         "channel": "Direct",
-        "sessions": 36
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 22
-      },
-      {
-        "channel": "Cross-network",
-        "sessions": 13
+        "sessions": 34
       },
       {
         "channel": "Organic Video",
-        "sessions": 10
+        "sessions": 8
+      },
+      {
+        "channel": "Cross-network",
+        "sessions": 5
       },
       {
         "channel": "Organic Social",
+        "sessions": 5
+      },
+      {
+        "channel": "Unassigned",
         "sessions": 5
       },
       {
@@ -178,19 +178,15 @@
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 177
+        "sessions": 179
       },
       {
         "channel": "Organic Search",
-        "sessions": 142
+        "sessions": 151
       },
       {
         "channel": "Organic Video",
-        "sessions": 74
-      },
-      {
-        "channel": "Unassigned",
-        "sessions": 28
+        "sessions": 71
       },
       {
         "channel": "Organic Social",
@@ -201,11 +197,15 @@
         "sessions": 20
       },
       {
-        "channel": "Cross-network",
-        "sessions": 13
+        "channel": "Unassigned",
+        "sessions": 12
       },
       {
         "channel": "AI Assistant",
+        "sessions": 5
+      },
+      {
+        "channel": "Cross-network",
         "sessions": 5
       }
     ]
@@ -214,27 +214,27 @@
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 78
+      "views": 207
     },
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 58
+      "views": 59
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 48
+      "views": 44
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 41
+      "views": 37
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 16
+      "views": 17
     },
     {
       "pagePath": "/apps/shigin-jiten/",
@@ -259,16 +259,11 @@
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 6
+      "views": 5
     },
     {
       "pagePath": "/community/",
       "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
-      "views": 5
-    },
-    {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
       "views": 4
     },
     {
@@ -277,32 +272,37 @@
       "views": 3
     },
     {
+      "pagePath": "/newsletter/register/",
+      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
+      "views": 3
+    },
+    {
       "pagePath": "/homepage/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
       "views": 2
     },
     {
-      "pagePath": "/newsletter/",
-      "pageTitle": "無料メール講座 | 詩吟の入口",
+      "pagePath": "/profile/",
+      "pageTitle": "heyheyプロフィール | 詩吟の入口",
       "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 4,
+      "mailmag_click": 3,
       "kindle_click": 0,
       "dojo_click": 2,
       "openchat_click": 0,
-      "tool_open": 54,
+      "tool_open": 52,
       "form_click": 1,
       "youtube_click": 1
     },
     "d28": {
-      "mailmag_click": 24,
+      "mailmag_click": 22,
       "kindle_click": 9,
       "dojo_click": 38,
       "openchat_click": 1,
-      "tool_open": 162,
+      "tool_open": 153,
       "form_click": 2,
       "youtube_click": 20
     }
