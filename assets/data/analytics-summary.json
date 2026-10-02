@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-10-01T23:51:32Z",
-  "rangeEnd": "2026-10-01",
+  "updatedAt": "2026-10-02T23:44:33Z",
+  "rangeEnd": "2026-10-02",
   "daily": [
-    {
-      "date": "2026-09-04",
-      "screenPageViews": 30,
-      "activeUsers": 13
-    },
     {
       "date": "2026-09-05",
       "screenPageViews": 64,
@@ -140,49 +135,54 @@
     },
     {
       "date": "2026-10-01",
-      "screenPageViews": 302,
+      "screenPageViews": 315,
       "activeUsers": 16
+    },
+    {
+      "date": "2026-10-02",
+      "screenPageViews": 26,
+      "activeUsers": 12
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 62
+        "sessions": 64
       },
       {
         "channel": "Direct",
-        "sessions": 39
+        "sessions": 38
       },
       {
         "channel": "Unassigned",
-        "sessions": 12
+        "sessions": 10
       },
       {
         "channel": "Organic Video",
-        "sessions": 8
-      },
-      {
-        "channel": "Organic Social",
-        "sessions": 4
+        "sessions": 9
       },
       {
         "channel": "Cross-network",
-        "sessions": 2
+        "sessions": 4
       },
       {
         "channel": "Referral",
-        "sessions": 2
+        "sessions": 4
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 3
       }
     ],
     "d28": [
       {
         "channel": "Direct",
-        "sessions": 184
+        "sessions": 189
       },
       {
         "channel": "Organic Search",
-        "sessions": 161
+        "sessions": 162
       },
       {
         "channel": "Organic Video",
@@ -190,15 +190,15 @@
       },
       {
         "channel": "Organic Social",
-        "sessions": 24
+        "sessions": 20
       },
       {
         "channel": "Referral",
-        "sessions": 20
+        "sessions": 19
       },
       {
         "channel": "Unassigned",
-        "sessions": 20
+        "sessions": 18
       },
       {
         "channel": "AI Assistant",
@@ -206,7 +206,7 @@
       },
       {
         "channel": "Cross-network",
-        "sessions": 2
+        "sessions": 4
       }
     ]
   },
@@ -214,27 +214,22 @@
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 482
+      "views": 491
     },
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 60
+      "views": 67
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 42
+      "views": 44
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 39
-    },
-    {
-      "pagePath": "/dojo-details",
-      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 16
+      "views": 40
     },
     {
       "pagePath": "/apps/shigin-jiten/",
@@ -247,19 +242,24 @@
       "views": 14
     },
     {
+      "pagePath": "/dojo-details",
+      "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
+      "views": 12
+    },
+    {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 13
+      "views": 12
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 10
+      "views": 11
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 5
+      "views": 6
     },
     {
       "pagePath": "/community/",
@@ -269,42 +269,42 @@
     {
       "pagePath": "/legal/hakkousha",
       "pageTitle": "発行者情報（詩吟メルマガ） | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/privacy/",
+      "pageTitle": "プライバシーポリシー | 詩吟の入口",
       "views": 3
+    },
+    {
+      "pagePath": "/apps/pitchmap/",
+      "pageTitle": "吟猫ピッチマップ | 詩吟の入口",
+      "views": 2
     },
     {
       "pagePath": "/homepage/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
       "views": 2
-    },
-    {
-      "pagePath": "/homepage/index.html",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 2
-    },
-    {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 4,
+      "mailmag_click": 2,
       "kindle_click": 0,
       "dojo_click": 2,
       "openchat_click": 0,
-      "tool_open": 57,
+      "tool_open": 54,
       "form_click": 1,
       "youtube_click": 3
     },
     "d28": {
       "mailmag_click": 24,
       "kindle_click": 9,
-      "dojo_click": 38,
+      "dojo_click": 35,
       "openchat_click": 1,
-      "tool_open": 160,
+      "tool_open": 157,
       "form_click": 2,
-      "youtube_click": 21
+      "youtube_click": 20
     }
   }
 }
