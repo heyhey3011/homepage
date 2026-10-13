@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-10-11T23:37:29Z",
-  "rangeEnd": "2026-10-11",
+  "updatedAt": "2026-10-13T01:59:08Z",
+  "rangeEnd": "2026-10-12",
   "daily": [
-    {
-      "date": "2026-09-14",
-      "screenPageViews": 23,
-      "activeUsers": 11
-    },
     {
       "date": "2026-09-15",
       "screenPageViews": 26,
@@ -140,73 +135,70 @@
     },
     {
       "date": "2026-10-11",
-      "screenPageViews": 46,
+      "screenPageViews": 51,
       "activeUsers": 20
+    },
+    {
+      "date": "2026-10-12",
+      "screenPageViews": 59,
+      "activeUsers": 31
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 72
+        "sessions": 83
       },
       {
         "channel": "Direct",
-        "sessions": 25
-      },
-      {
-        "channel": "Organic Video",
-        "sessions": 14
+        "sessions": 29
       },
       {
         "channel": "Unassigned",
-        "sessions": 13
+        "sessions": 26
+      },
+      {
+        "channel": "Organic Video",
+        "sessions": 17
       },
       {
         "channel": "Organic Social",
-        "sessions": 4
-      },
-      {
-        "channel": "Cross-network",
-        "sessions": 3
+        "sessions": 6
       },
       {
         "channel": "Referral",
-        "sessions": 1
+        "sessions": 4
       }
     ],
     "d28": [
       {
         "channel": "Organic Search",
-        "sessions": 225
+        "sessions": 242
       },
       {
         "channel": "Direct",
-        "sessions": 137
+        "sessions": 138
       },
       {
         "channel": "Organic Video",
-        "sessions": 59
-      },
-      {
-        "channel": "Organic Social",
-        "sessions": 22
+        "sessions": 62
       },
       {
         "channel": "Unassigned",
-        "sessions": 18
+        "sessions": 31
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 23
       },
       {
         "channel": "Referral",
-        "sessions": 14
+        "sessions": 17
       },
       {
         "channel": "AI Assistant",
-        "sessions": 3
-      },
-      {
-        "channel": "Cross-network",
-        "sessions": 3
+        "sessions": 2
       }
     ]
   },
@@ -214,27 +206,22 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 102
+      "views": 131
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 33
+      "views": 39
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 21
+      "views": 24
     },
     {
       "pagePath": "/apps/kanshi-jiten/",
       "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 18
-    },
-    {
-      "pagePath": "/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 14
+      "views": 17
     },
     {
       "pagePath": "/tools/",
@@ -244,12 +231,12 @@
     {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 12
+      "views": 13
     },
     {
-      "pagePath": "/beginner/",
-      "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 8
+      "pagePath": "/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "views": 12
     },
     {
       "pagePath": "/apps/pitchmap/",
@@ -257,8 +244,8 @@
       "views": 5
     },
     {
-      "pagePath": "/community/",
-      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
+      "pagePath": "/contact/",
+      "pageTitle": "お問い合わせ | 詩吟の入口",
       "views": 5
     },
     {
@@ -272,13 +259,18 @@
       "views": 5
     },
     {
-      "pagePath": "/profile/",
-      "pageTitle": "heyheyプロフィール | 詩吟の入口",
-      "views": 5
+      "pagePath": "/community/",
+      "pageTitle": "もっと深く学びたい方へ | 詩吟の入口",
+      "views": 4
     },
     {
-      "pagePath": "/contact/",
-      "pageTitle": "お問い合わせ | 詩吟の入口",
+      "pagePath": "/profile/",
+      "pageTitle": "heyheyプロフィール | 詩吟の入口",
+      "views": 4
+    },
+    {
+      "pagePath": "/beginner/",
+      "pageTitle": "始め方ガイド | 詩吟の入口",
       "views": 3
     },
     {
@@ -292,8 +284,8 @@
       "mailmag_click": 3,
       "kindle_click": 0,
       "dojo_click": 4,
-      "openchat_click": 0,
-      "tool_open": 29,
+      "openchat_click": 1,
+      "tool_open": 31,
       "form_click": 4,
       "youtube_click": 0
     },
@@ -301,10 +293,10 @@
       "mailmag_click": 14,
       "kindle_click": 6,
       "dojo_click": 30,
-      "openchat_click": 2,
-      "tool_open": 163,
+      "openchat_click": 3,
+      "tool_open": 168,
       "form_click": 8,
-      "youtube_click": 17
+      "youtube_click": 15
     }
   }
 }
