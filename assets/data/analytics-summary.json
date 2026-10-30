@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-10-29T23:54:44Z",
-  "rangeEnd": "2026-10-29",
+  "updatedAt": "2026-10-30T23:41:13Z",
+  "rangeEnd": "2026-10-30",
   "daily": [
-    {
-      "date": "2026-10-02",
-      "screenPageViews": 25,
-      "activeUsers": 12
-    },
     {
       "date": "2026-10-03",
       "screenPageViews": 112,
@@ -142,6 +137,11 @@
       "date": "2026-10-29",
       "screenPageViews": 18,
       "activeUsers": 11
+    },
+    {
+      "date": "2026-10-30",
+      "screenPageViews": 32,
+      "activeUsers": 16
     }
   ],
   "channels": {
@@ -152,7 +152,7 @@
       },
       {
         "channel": "Direct",
-        "sessions": 22
+        "sessions": 26
       },
       {
         "channel": "Organic Video",
@@ -161,6 +161,10 @@
       {
         "channel": "Referral",
         "sessions": 2
+      },
+      {
+        "channel": "AI Assistant",
+        "sessions": 1
       },
       {
         "channel": "Organic Social",
@@ -174,19 +178,19 @@
     "d28": [
       {
         "channel": "Organic Search",
-        "sessions": 313
+        "sessions": 318
       },
       {
         "channel": "Direct",
-        "sessions": 104
+        "sessions": 101
       },
       {
         "channel": "Organic Video",
-        "sessions": 59
+        "sessions": 60
       },
       {
         "channel": "Referral",
-        "sessions": 19
+        "sessions": 17
       },
       {
         "channel": "Organic Social",
@@ -194,11 +198,11 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 5
+        "sessions": 4
       },
       {
         "channel": "AI Assistant",
-        "sessions": 2
+        "sessions": 3
       }
     ]
   },
@@ -206,27 +210,27 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 74
+      "views": 82
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 30
+      "views": 33
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 27
+      "views": 26
     },
     {
       "pagePath": "/map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 12
+      "views": 10
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 11
+      "views": 9
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
@@ -234,13 +238,13 @@
       "views": 8
     },
     {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 4
-    },
-    {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
+      "views": 6
+    },
+    {
+      "pagePath": "/homepage/apps/ginshi-archives/",
+      "pageTitle": "吟士アーカイブス | 詩吟の入口",
       "views": 4
     },
     {
@@ -249,9 +253,14 @@
       "views": 3
     },
     {
-      "pagePath": "/homepage/apps/ginshi-archives/",
-      "pageTitle": "吟士アーカイブス | 詩吟の入口",
+      "pagePath": "/newsletter/register/",
+      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
       "views": 3
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 2
     },
     {
       "pagePath": "/community/",
@@ -261,11 +270,6 @@
     {
       "pagePath": "/how-to-record",
       "pageTitle": "録音データの送り方 | 詩吟の入口",
-      "views": 2
-    },
-    {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
       "views": 2
     },
     {
@@ -281,22 +285,22 @@
   ],
   "events": {
     "d7": {
-      "mailmag_click": 2,
+      "mailmag_click": 3,
       "kindle_click": 0,
       "dojo_click": 1,
       "openchat_click": 0,
-      "tool_open": 23,
+      "tool_open": 24,
       "form_click": 0,
-      "youtube_click": 1
+      "youtube_click": 2
     },
     "d28": {
-      "mailmag_click": 9,
+      "mailmag_click": 10,
       "kindle_click": 2,
       "dojo_click": 31,
       "openchat_click": 3,
-      "tool_open": 138,
+      "tool_open": 144,
       "form_click": 6,
-      "youtube_click": 7
+      "youtube_click": 8
     }
   }
 }
