@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-10-30T23:41:13Z",
-  "rangeEnd": "2026-10-30",
+  "updatedAt": "2026-10-31T23:19:19Z",
+  "rangeEnd": "2026-10-31",
   "daily": [
-    {
-      "date": "2026-10-03",
-      "screenPageViews": 112,
-      "activeUsers": 17
-    },
     {
       "date": "2026-10-04",
       "screenPageViews": 16,
@@ -142,13 +137,18 @@
       "date": "2026-10-30",
       "screenPageViews": 32,
       "activeUsers": 16
+    },
+    {
+      "date": "2026-10-31",
+      "screenPageViews": 32,
+      "activeUsers": 14
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 62
+        "sessions": 60
       },
       {
         "channel": "Direct",
@@ -156,11 +156,7 @@
       },
       {
         "channel": "Organic Video",
-        "sessions": 10
-      },
-      {
-        "channel": "Referral",
-        "sessions": 2
+        "sessions": 12
       },
       {
         "channel": "AI Assistant",
@@ -171,6 +167,10 @@
         "sessions": 1
       },
       {
+        "channel": "Referral",
+        "sessions": 1
+      },
+      {
         "channel": "Unassigned",
         "sessions": 1
       }
@@ -178,19 +178,19 @@
     "d28": [
       {
         "channel": "Organic Search",
-        "sessions": 318
+        "sessions": 314
       },
       {
         "channel": "Direct",
-        "sessions": 101
+        "sessions": 99
       },
       {
         "channel": "Organic Video",
-        "sessions": 60
+        "sessions": 62
       },
       {
         "channel": "Referral",
-        "sessions": 17
+        "sessions": 15
       },
       {
         "channel": "Organic Social",
@@ -202,7 +202,7 @@
       },
       {
         "channel": "AI Assistant",
-        "sessions": 3
+        "sessions": 2
       }
     ]
   },
@@ -210,17 +210,17 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 82
+      "views": 81
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 33
+      "views": 30
     },
     {
       "pagePath": "/",
       "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 26
+      "views": 24
     },
     {
       "pagePath": "/map/",
@@ -230,7 +230,7 @@
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 9
+      "views": 8
     },
     {
       "pagePath": "/apps/pitchmap-app-ddf2GJlGkp8c/",
@@ -240,27 +240,22 @@
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
-      "views": 6
+      "views": 8
     },
     {
       "pagePath": "/homepage/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 4
+      "views": 5
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 3
+      "views": 4
     },
     {
       "pagePath": "/newsletter/register/",
       "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 3
-    },
-    {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 2
+      "views": 4
     },
     {
       "pagePath": "/community/",
@@ -281,26 +276,31 @@
       "pagePath": "/tools/",
       "pageTitle": "詩吟学習ツール一覧 | 詩吟の入口",
       "views": 2
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 1
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 3,
-      "kindle_click": 0,
-      "dojo_click": 1,
+      "mailmag_click": 4,
+      "kindle_click": 2,
+      "dojo_click": 2,
       "openchat_click": 0,
-      "tool_open": 24,
+      "tool_open": 23,
       "form_click": 0,
       "youtube_click": 2
     },
     "d28": {
-      "mailmag_click": 10,
-      "kindle_click": 2,
-      "dojo_click": 31,
-      "openchat_click": 3,
-      "tool_open": 144,
-      "form_click": 6,
-      "youtube_click": 8
+      "mailmag_click": 9,
+      "kindle_click": 3,
+      "dojo_click": 28,
+      "openchat_click": 2,
+      "tool_open": 130,
+      "form_click": 4,
+      "youtube_click": 5
     }
   }
 }
