@@ -45,7 +45,7 @@ REGIONS.forEach(region => region.prefs.forEach(pref => { PREF_TO_REGION[pref] = 
 const PREF_ORDER = REGIONS.flatMap(region => region.prefs);
 
 // 流派（表示順）
-const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "紫洲流", "國風流", "吟道館流", "哲山流", "洌風流"];
+const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "紫洲流", "國風流", "吟道館流", "哲山流", "洌風流", "翠芳流"];
 
 // 出典（source → 団体名）
 const SOURCE_NAMES = {
@@ -59,6 +59,7 @@ const SOURCE_NAMES = {
   tetsuzan: "吟道哲山流興風吟詠会",
   reppuuryu: "詩吟洌風流",
   suzuhanaryu: "吟道鈴華流",
+  suihouryu: "翠芳流鳥栖吟詠会",
   web_research: "Web調査（出典付き・要確認）",
 };
 
