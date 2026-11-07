@@ -106,6 +106,13 @@ const TIME_SLOT_LABELS = {
   "時間未定": "時間未定",
 };
 
+// ホームページの有無（教室自身のwebsite／所属団体のORG_WEBSITES）
+const WEB_KINDS = ["教室", "団体"];
+const WEB_KIND_LABELS = {
+  "教室": "教室のHPあり",
+  "団体": "所属団体のHPあり",
+};
+
 const JAPAN_BOUNDS = [[24.0, 122.5], [45.8, 146.5]]; // 日本全体
 const LIST_STEP = 200; // 一覧の初期表示件数（「さらに表示」で増える）
 
@@ -122,6 +129,7 @@ const state = {
   selectedStyles: [],    // 流派・複数選択
   selectedDays: [],      // 曜日・複数選択
   selectedTimes: [],     // 時間帯・複数選択
+  selectedWebs: [],      // ホームページ有無・複数選択
   search: "",
   selectedId: "",
   userLocation: null,    // {lat, lng}
@@ -229,6 +237,7 @@ function buildAllFilters() {
   buildStyleFilters();
   buildDayFilters();
   buildTimeFilters();
+  buildWebFilters();
 }
 
 // 手動編集を反映した後、画面全体を作り直す
@@ -245,7 +254,7 @@ function cacheElements() {
   const ids = [
     "searchInput", "resetButton", "locateButton",
     "regionFilters", "prefBlock", "prefectureFilters",
-    "cityBlock", "cityFilters", "styleFilters", "dayFilters", "timeFilters",
+    "cityBlock", "cityFilters", "styleFilters", "dayFilters", "timeFilters", "webFilters",
     "filtersToggle", "filterBadge", "filtersBar",
     "resultLabel", "resultList", "mapNotice",
     "tabList", "tabMap",
@@ -303,6 +312,9 @@ function normalizeRecord(record) {
     days: extractDays(record.practice_day_raw),
     // 稽古時間から読み取った時間帯（午前／午後／夜／時間未定・必ず1つ以上入る）
     timeSlots: extractTimeSlots(record.practice_time_raw),
+    // ホームページの種類（詳細画面のリンク表示と同じ優先順位: 教室 → 所属団体）
+    webKind: record.website ? "教室"
+      : (record.organization && ORG_WEBSITES[record.organization]) ? "団体" : "",
     // 検索用の正規化インデックス（NFKC＋カタカナ→ひらがな＋小文字）
     searchIndex: normalizeForSearch(searchSource),
     distance: null,
@@ -708,6 +720,28 @@ function buildTimeFilters() {
   });
 }
 
+function buildWebFilters() {
+  const counts = new Map(WEB_KINDS.map(kind => [
+    kind,
+    state.records.filter(r => r.webKind === kind).length,
+  ]));
+
+  elements.webFilters.innerHTML = WEB_KINDS
+    .map(kind => chipHtml(WEB_KIND_LABELS[kind], counts.get(kind) || 0, "web", kind))
+    .join("");
+
+  elements.webFilters.querySelectorAll(".chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const value = btn.dataset.value;
+      const idx = state.selectedWebs.indexOf(value);
+      if (idx === -1) state.selectedWebs.push(value);
+      else state.selectedWebs.splice(idx, 1);
+      state.listLimit = LIST_STEP;
+      applyFilters();
+    });
+  });
+}
+
 function chipHtml(label, count, type, value) {
   return `<button class="chip" type="button" data-type="${type}" data-value="${escapeHtml(value)}">`
     + `${escapeHtml(label)} <span>${count}</span></button>`;
@@ -732,6 +766,9 @@ function updateActiveChips() {
   elements.timeFilters.querySelectorAll(".chip").forEach(btn => {
     btn.classList.toggle("active", state.selectedTimes.includes(btn.dataset.value));
   });
+  elements.webFilters.querySelectorAll(".chip").forEach(btn => {
+    btn.classList.toggle("active", state.selectedWebs.includes(btn.dataset.value));
+  });
 }
 
 /* ---------- 絞り込み ---------- */
@@ -752,6 +789,7 @@ function applyFilters() {
       const hit = state.selectedTimes.some(t => record.timeSlots.includes(t));
       if (!hit) return false;
     }
+    if (state.selectedWebs.length && !state.selectedWebs.includes(record.webKind)) return false;
     if (query && !record.searchIndex.includes(query)) return false;
     return true;
   });
@@ -774,6 +812,7 @@ function updateFilterBadge() {
   count += state.selectedStyles.length;
   count += state.selectedDays.length;
   count += state.selectedTimes.length;
+  count += state.selectedWebs.length;
   if (state.search) count += 1;
 
   if (count > 0) {
@@ -1399,6 +1438,7 @@ function resetFilters() {
   state.selectedStyles = [];
   state.selectedDays = [];
   state.selectedTimes = [];
+  state.selectedWebs = [];
   state.search = "";
   state.selectedId = "";
   state.sortByDistance = false;
@@ -1423,6 +1463,7 @@ function updateHash() {
   if (state.selectedStyles.length) params.set("styles", state.selectedStyles.join(","));
   if (state.selectedDays.length) params.set("days", state.selectedDays.join(","));
   if (state.selectedTimes.length) params.set("times", state.selectedTimes.join(","));
+  if (state.selectedWebs.length) params.set("web", state.selectedWebs.join(","));
   if (state.search) params.set("q", state.search);
 
   const hash = params.toString();
@@ -1457,6 +1498,7 @@ function restoreFromHash() {
   state.selectedDays = days;
   const times = (params.get("times") || "").split(",").filter(t => TIME_SLOTS.includes(t));
   state.selectedTimes = times;
+  state.selectedWebs = (params.get("web") || "").split(",").filter(w => WEB_KINDS.includes(w));
   state.search = params.get("q") || "";
   elements.searchInput.value = state.search;
   buildPrefectureFilters();
