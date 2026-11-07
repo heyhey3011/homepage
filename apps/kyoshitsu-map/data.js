@@ -44,6 +44,10 @@
 //   - 「翠芳流鳥栖吟詠会」の3件を新規追加（source: "suihouryu" / school_style: "翠芳流"）。出典サイトなしのため source_url は空欄。
 //   - 鳥栖教室（個人宅）・曽根崎教室は町名レベルの近似座標。基山教室は既存の基山町民会館と同じ座標。
 //   - この結果、現在の総件数は 5150 件（5147件 + 新規3件）。
+// ↑に加えて 2026-11-07 付で教室からの掲載依頼により手動追加:
+//   - 「吟道賀城流 鳳城吟詠会 夕陽丘支部」の2件を新規追加（source: "gajoryu" / school_style: "賀城流"）。出典は教室の公式ページ。
+//   - 2件とも町名レベルの近似座標。連絡先は教室のページへ案内するため空欄。
+//   - この結果、現在の総件数は 5152 件（5150件 + 新規2件）。
 // fetch を使わず <script> タグで読み込むため、ダブルクリック（file://）でも動きます。
 // トップレベル const は window に載らないため、window への代入で公開しています。
 
@@ -164853,6 +164857,72 @@ window.CLASSROOM_DATA = [
   "contact_person": "",
   "contact_email": "hiropiro2022@gmail.com",
   "source_updated_at": null
+ },
+ {
+  "id": "7aae4852928d",
+  "source": "gajoryu",
+  "source_no": "1",
+  "prefecture": "大阪府",
+  "city": "大阪市天王寺区",
+  "city_yomi": "おおさかしてんのうじ",
+  "address_raw": "大阪市天王寺区六万体町1",
+  "address_normalized": "大阪府大阪市天王寺区六万体町1",
+  "venue_name": "",
+  "organization": "吟道賀城流 鳳城吟詠会 夕陽丘支部",
+  "classroom_name": "夕陽丘支部 天王寺の稽古場",
+  "representative": "岡本 璞城",
+  "practice_day_raw": "第2・第4水曜",
+  "practice_time_raw": "19:00-21:00",
+  "note": "教室からの掲載依頼により登録（2026-11-07）。",
+  "school_style": "賀城流",
+  "latitude": "34.659439",
+  "longitude": "135.51474",
+  "geocode_status": "gsi_approx",
+  "geocode_precision": "町名までの近似座標（建物は見学の方に個別にご案内）",
+  "data_quality_status": "ok",
+  "needs_review": "0",
+  "review_reason": "",
+  "source_url": "https://shigin-portal.com/kyoshitsu/yuhigaoka/",
+  "scraped_at": "2026-11-07",
+  "address_precision": "machi",
+  "contact_phone": "",
+  "contact_person": "",
+  "contact_email": "",
+  "source_updated_at": null,
+  "website": "https://shigin-portal.com/kyoshitsu/yuhigaoka/"
+ },
+ {
+  "id": "c486137a37a4",
+  "source": "gajoryu",
+  "source_no": "2",
+  "prefecture": "大阪府",
+  "city": "大阪市中央区",
+  "city_yomi": "おおさかしちゅうおう",
+  "address_raw": "大阪市中央区北浜東1",
+  "address_normalized": "大阪府大阪市中央区北浜東1",
+  "venue_name": "",
+  "organization": "吟道賀城流 鳳城吟詠会 夕陽丘支部",
+  "classroom_name": "夕陽丘支部 天満橋の稽古場",
+  "representative": "岡本 璞城",
+  "practice_day_raw": "日曜 月2回（月によって変わります）",
+  "practice_time_raw": "17:00-19:00",
+  "note": "教室からの掲載依頼により登録（2026-11-07）。",
+  "school_style": "賀城流",
+  "latitude": "34.690361",
+  "longitude": "135.512329",
+  "geocode_status": "gsi_approx",
+  "geocode_precision": "町名までの近似座標（建物は見学の方に個別にご案内）",
+  "data_quality_status": "ok",
+  "needs_review": "0",
+  "review_reason": "",
+  "source_url": "https://shigin-portal.com/kyoshitsu/yuhigaoka/",
+  "scraped_at": "2026-11-07",
+  "address_precision": "machi",
+  "contact_phone": "",
+  "contact_person": "",
+  "contact_email": "",
+  "source_updated_at": null,
+  "website": "https://shigin-portal.com/kyoshitsu/yuhigaoka/"
  }
 ];
 

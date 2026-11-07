@@ -45,7 +45,7 @@ REGIONS.forEach(region => region.prefs.forEach(pref => { PREF_TO_REGION[pref] = 
 const PREF_ORDER = REGIONS.flatMap(region => region.prefs);
 
 // 流派（表示順）
-const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "紫洲流", "國風流", "吟道館流", "哲山流", "洌風流", "翠芳流"];
+const SCHOOL_STYLE_ORDER = ["岳風流", "関西吟詩", "岳精流", "吟道学院", "紫洲流", "國風流", "吟道館流", "哲山流", "洌風流", "翠芳流", "賀城流"];
 
 // 出典（source → 団体名）
 const SOURCE_NAMES = {
@@ -60,6 +60,7 @@ const SOURCE_NAMES = {
   reppuuryu: "詩吟洌風流",
   suzuhanaryu: "吟道鈴華流",
   suihouryu: "翠芳流鳥栖吟詠会",
+  gajoryu: "吟道賀城流 鳳城吟詠会",
   web_research: "Web調査（出典付き・要確認）",
 };
 
@@ -1113,7 +1114,7 @@ function contactHtml(record) {
 
   // 2. 所属団体（教室に直接の連絡先が無いときは本部へ誘導）
   if (record.organization) {
-    const note = record.contact_phone || record.contact_email
+    const note = record.contact_phone || record.contact_email || record.website
       ? ""
       : '<span class="org-note">（連絡先は下記の本部へ）</span>';
     parts.push(`<p class="org-line">所属: ${escapeHtml(record.organization)}${note}</p>`);
