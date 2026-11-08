@@ -986,7 +986,8 @@ function renderMarkers() {
 /* ---------- 件数 ---------- */
 
 function updateCount() {
-  elements.resultLabel.textContent = `${state.filtered.length}件見つかりました`;
+  // スマホでは「見つかりました」を隠して件数だけ見せる（絞り込みボタンを大きく取るため）
+  elements.resultLabel.innerHTML = `${state.filtered.length}件<span class="result-suffix">見つかりました</span>`;
 }
 
 /* ---------- 詳細パネル ---------- */

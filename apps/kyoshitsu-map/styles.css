@@ -1209,23 +1209,26 @@ a:focus-visible {
     gap: 5px;
     flex: 0 0 auto;
     min-height: 44px;
-    border: 2px solid var(--accent);
-    border-radius: 999px;
-    background: var(--accent);
-    color: #fffdf7;
+    border: 2px solid #f4b740;
+    border-radius: 10px;
+    background: #f4b740;   /* 「近く」ボタンと同じ金色 */
+    color: #3a2b00;
     font-weight: 800;
-    font-size: 14px;
-    padding: 0 14px 0 12px;
-    box-shadow: 0 3px 8px rgba(22, 63, 48, 0.28);
+    font-size: 15px;
+    padding: 0 12px;
+    box-shadow: 0 2px 0 #cf9a26;
+    white-space: nowrap;
     cursor: pointer;
   }
-  .filters-toggle:active { transform: translateY(1px); box-shadow: 0 1px 4px rgba(22, 63, 48, 0.28); }
+  .filters-toggle:active { transform: translateY(1px); box-shadow: 0 1px 0 #cf9a26; }
   /* 開いている間は白抜きにして「今開いている」ことが分かるようにする */
   .filters-toggle.open {
     background: var(--panel);
-    color: var(--accent-strong);
     box-shadow: none;
   }
+  /* 金色のボタン上では、選択中の条件数を深緑で目立たせる */
+  .filters-toggle .filter-badge { background: var(--accent); color: #fffdf7; }
+  .result-suffix { display: none; }
 
   .view-switch { display: inline-flex; flex: 0 0 auto; }
   .view-tab { min-height: 44px; padding: 0 13px; font-size: 14px; }
