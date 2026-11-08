@@ -282,6 +282,8 @@ a:focus-visible {
   font-weight: 800;
   padding: 0 6px;
 }
+/* display指定で hidden 属性が効かなくなるのを防ぐ（条件0件のとき「0」を出さない） */
+.filter-badge[hidden] { display: none; }
 
 .filters-toggle-caret { transition: transform 0.18s ease; }
 .filters-toggle.open .filters-toggle-caret { transform: rotate(180deg); }
@@ -1207,14 +1209,26 @@ a:focus-visible {
     gap: 5px;
     flex: 0 0 auto;
     min-height: 44px;
-    border: none;
+    border: 2px solid #f4b740;
     border-radius: 10px;
-    background: transparent;
-    color: var(--accent-strong);
+    background: #f4b740;   /* 「近く」ボタンと同じ金色 */
+    color: #3a2b00;
     font-weight: 800;
-    font-size: 14px;
-    padding: 0 8px;
+    font-size: 15px;
+    padding: 0 12px;
+    box-shadow: 0 2px 0 #cf9a26;
+    white-space: nowrap;
+    cursor: pointer;
   }
+  .filters-toggle:active { transform: translateY(1px); box-shadow: 0 1px 0 #cf9a26; }
+  /* 開いている間は白抜きにして「今開いている」ことが分かるようにする */
+  .filters-toggle.open {
+    background: var(--panel);
+    box-shadow: none;
+  }
+  /* 金色のボタン上では、選択中の条件数を深緑で目立たせる */
+  .filters-toggle .filter-badge { background: var(--accent); color: #fffdf7; }
+  .result-suffix { display: none; }
 
   .view-switch { display: inline-flex; flex: 0 0 auto; }
   .view-tab { min-height: 44px; padding: 0 13px; font-size: 14px; }
