@@ -85,9 +85,47 @@ const ORG_WEBSITES = {
   // 2026-07-16 Web調査（H班レポート）で追加
   "夢風会": "https://shiginmufukai.wixsite.com/mysite",
   "玉龍吟道会": "https://ameblo.jp/bossabaixo/",
-  "南洲吟道会": "https://xn--6oq16hfral61f0y0b.jp/",
+  // 南洲吟道会（https://xn--6oq16hfral61f0y0b.jp/）は 2026-11-08 の再確認でドメインが消滅していたため削除
   // 津岳風会は公式サイトURL(http://tsugaku.html.xdomain.jp/index.html)を確認したが、
   // 統合時の再確認でも接続不可（ECONNREFUSED）だったため見送り。復旧確認でき次第追加を検討。
+  // （2026-11-08 の再確認でも接続タイムアウトのため見送り）
+  // 2026-11-08 HP・SNS再調査で追加（すべて実際に開いて団体名を確認済み）
+  "宮崎吟詠会": "https://miyazakiginei.pro/",
+  "緑神会": "https://ryokushin-kai.sakura.ne.jp/",
+  "寒河江吟友会": "http://sagae.no.coocan.jp/",
+  "臥風流吟詠会": "http://www.sigin-gahuu.jp/",
+  "香雲堂吟詠会": "http://ko-un-do.com/",
+  "東武岳風会": "http://blog.livedoor.jp/nmr1403/",            // 公式ブログ
+  "翔風吟道会": "https://group.anjintei.jp/a-30-shofu.html",   // 按針亭サイト内の会専用ページ
+  "全日本詩吟道連盟 詩吟神風流": "https://shigin-shinpuryu.com/",
+  "全日本詩吟道連盟 詩吟神風流 涛声会": "https://shigin-shinpuryu.com/class/", // 流派サイトの教室案内に掲載
+  "清吟堂吟友会": "http://s-ginyukai-izumo.la.coocan.jp/",     // 出雲ブロックのサイト
+  "吟道藤星流 鹿児島藤星会": "https://kagoshimatosei.amebaownd.com/",
+  "東新岳風会": "http://www.kawabegakuryu.com/",               // 会長の教室サイト
+  // 所属団体＝流派の本部の場合は本部サイトを登録（「所属団体のHPあり」に数えるため）
+  "関西吟詩文化協会": "http://www.kangin.or.jp/",
+  "岳精流日本吟院": "https://www.gakuseiryu-gin.jp/",
+  "詩吟洌風流総本部": "https://sites.google.com/view/shigin-reppuuryuu/",
+  "吟道鈴華流": "https://suzuhanaryu.jp/",
+  "吟道館流": "https://www.gindoukan.com/",
+  "紫洲流日本明吟会": "http://ci-fourtion.com/meigin/",
+  "日本國風流詩吟吟舞会": "https://nihonkokufu.jp/",
+  "吟道哲山流興風吟詠会": "https://tetsuzan.com/",
+};
+
+// 主催団体 → 公式SNS（団体自身の運営と確認できたもののみ。HPが無い団体はSNSだけでも可）
+const ORG_SNS = {
+  "宮崎吟詠会": [
+    { label: "Instagram", url: "https://www.instagram.com/miyazakiginei" },
+    { label: "Facebook", url: "https://www.facebook.com/profile.php?id=61566344405288" },
+  ],
+  "岳玲会": [
+    { label: "Facebook", url: "https://www.facebook.com/people/%E5%85%AC%E7%9B%8A%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%E6%97%A5%E6%9C%AC%E8%A9%A9%E5%90%9F%E5%AD%A6%E9%99%A2%E8%AA%8D%E5%8F%AF-%E5%B2%B3%E7%8E%B2%E4%BC%9A/100092304270679/" },
+  ],
+  "全日本詩吟道連盟 詩吟神風流": [
+    { label: "YouTube", url: "https://www.youtube.com/@%E8%A9%A9%E5%90%9F%E7%A5%9E%E9%A2%A8%E6%B5%81%E7%B7%8F%E6%9C%AC%E9%83%A8%E5%85%AC%E5%BC%8F" },
+    { label: "X", url: "https://x.com/shinpu_ryu" },
+  ],
 };
 const DATA_DATE = "2026年7月10日";
 
@@ -106,7 +144,7 @@ const TIME_SLOT_LABELS = {
   "時間未定": "時間未定",
 };
 
-// ホームページの有無（教室自身のwebsite／所属団体のORG_WEBSITES）
+// ホームページの有無（教室自身のwebsite／所属団体のORG_WEBSITES・ORG_SNS）
 const WEB_KINDS = ["教室", "団体"];
 const WEB_KIND_LABELS = {
   "教室": "教室のHPあり",
@@ -314,7 +352,7 @@ function normalizeRecord(record) {
     timeSlots: extractTimeSlots(record.practice_time_raw),
     // ホームページの種類（詳細画面のリンク表示と同じ優先順位: 教室 → 所属団体）
     webKind: record.website ? "教室"
-      : (record.organization && ORG_WEBSITES[record.organization]) ? "団体" : "",
+      : (record.organization && (ORG_WEBSITES[record.organization] || ORG_SNS[record.organization])) ? "団体" : "",
     // 検索用の正規化インデックス（NFKC＋カタカナ→ひらがな＋小文字）
     searchIndex: normalizeForSearch(searchSource),
     distance: null,
@@ -1148,6 +1186,16 @@ function contactHtml(record) {
       `<p class="hq-row"><span aria-hidden="true">🔗</span> ` +
       `<a href="${escapeHtml(ORG_WEBSITES[record.organization])}" target="_blank" rel="noopener">` +
       `所属団体（${escapeHtml(record.organization)}）の公式サイトを見る</a></p>`
+    );
+  }
+  const snsLinks = record.organization ? (ORG_SNS[record.organization] || []) : [];
+  if (snsLinks.length) {
+    parts.push(
+      `<p class="hq-row"><span aria-hidden="true">📱</span> 所属団体のSNS: ` +
+      snsLinks.map(sns =>
+        `<a href="${escapeHtml(sns.url)}" target="_blank" rel="noopener">${escapeHtml(sns.label)}</a>`
+      ).join(" ・ ") +
+      `</p>`
     );
   }
 
