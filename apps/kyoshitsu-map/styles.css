@@ -282,6 +282,8 @@ a:focus-visible {
   font-weight: 800;
   padding: 0 6px;
 }
+/* display指定で hidden 属性が効かなくなるのを防ぐ（条件0件のとき「0」を出さない） */
+.filter-badge[hidden] { display: none; }
 
 .filters-toggle-caret { transition: transform 0.18s ease; }
 .filters-toggle.open .filters-toggle-caret { transform: rotate(180deg); }
@@ -1207,13 +1209,22 @@ a:focus-visible {
     gap: 5px;
     flex: 0 0 auto;
     min-height: 44px;
-    border: none;
-    border-radius: 10px;
-    background: transparent;
-    color: var(--accent-strong);
+    border: 2px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fffdf7;
     font-weight: 800;
     font-size: 14px;
-    padding: 0 8px;
+    padding: 0 14px 0 12px;
+    box-shadow: 0 3px 8px rgba(22, 63, 48, 0.28);
+    cursor: pointer;
+  }
+  .filters-toggle:active { transform: translateY(1px); box-shadow: 0 1px 4px rgba(22, 63, 48, 0.28); }
+  /* 開いている間は白抜きにして「今開いている」ことが分かるようにする */
+  .filters-toggle.open {
+    background: var(--panel);
+    color: var(--accent-strong);
+    box-shadow: none;
   }
 
   .view-switch { display: inline-flex; flex: 0 0 auto; }
