@@ -1,13 +1,8 @@
 {
   "isSample": false,
-  "updatedAt": "2026-11-21T01:26:06Z",
-  "rangeEnd": "2026-11-20",
+  "updatedAt": "2026-11-22T00:18:03Z",
+  "rangeEnd": "2026-11-21",
   "daily": [
-    {
-      "date": "2026-10-24",
-      "screenPageViews": 36,
-      "activeUsers": 17
-    },
     {
       "date": "2026-10-25",
       "screenPageViews": 29,
@@ -142,51 +137,52 @@
       "date": "2026-11-20",
       "screenPageViews": 38,
       "activeUsers": 18
+    },
+    {
+      "date": "2026-11-21",
+      "screenPageViews": 62,
+      "activeUsers": 21
     }
   ],
   "channels": {
     "d7": [
       {
         "channel": "Organic Search",
-        "sessions": 74
+        "sessions": 71
       },
       {
         "channel": "Direct",
-        "sessions": 38
+        "sessions": 49
       },
       {
         "channel": "Organic Video",
-        "sessions": 22
+        "sessions": 24
       },
       {
         "channel": "Referral",
         "sessions": 3
       },
       {
-        "channel": "Unassigned",
-        "sessions": 2
-      },
-      {
         "channel": "AI Assistant",
         "sessions": 1
       },
       {
-        "channel": "Organic Social",
+        "channel": "Unassigned",
         "sessions": 1
       }
     ],
     "d28": [
       {
         "channel": "Organic Search",
-        "sessions": 266
+        "sessions": 263
       },
       {
         "channel": "Direct",
-        "sessions": 172
+        "sessions": 183
       },
       {
         "channel": "Organic Video",
-        "sessions": 53
+        "sessions": 54
       },
       {
         "channel": "AI Assistant",
@@ -194,7 +190,7 @@
       },
       {
         "channel": "Referral",
-        "sessions": 9
+        "sessions": 8
       },
       {
         "channel": "Organic Social",
@@ -202,7 +198,7 @@
       },
       {
         "channel": "Unassigned",
-        "sessions": 4
+        "sessions": 3
       }
     ]
   },
@@ -210,31 +206,41 @@
     {
       "pagePath": "/events/",
       "pageTitle": "全国詩吟イベントナビ | 詩吟の入口",
-      "views": 95
-    },
-    {
-      "pagePath": "/",
-      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
-      "views": 47
+      "views": 103
     },
     {
       "pagePath": "/apps/ginshi-archives/",
       "pageTitle": "吟士アーカイブス | 詩吟の入口",
-      "views": 37
+      "views": 50
+    },
+    {
+      "pagePath": "/",
+      "pageTitle": "詩吟の入口 | 詩吟ポータルサイト",
+      "views": 48
     },
     {
       "pagePath": "/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 30
+      "views": 34
+    },
+    {
+      "pagePath": "/apps/kanshi-jiten/",
+      "pageTitle": "漢詩の図書館 | 詩吟の入口",
+      "views": 13
     },
     {
       "pagePath": "/beginner/",
       "pageTitle": "始め方ガイド | 詩吟の入口",
+      "views": 11
+    },
+    {
+      "pagePath": "/map/",
+      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
       "views": 10
     },
     {
-      "pagePath": "/legal/hakkousha",
-      "pageTitle": "発行者情報（詩吟メルマガ） | 詩吟の入口",
+      "pagePath": "/newsletter/register/",
+      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
       "views": 10
     },
     {
@@ -243,24 +249,14 @@
       "views": 10
     },
     {
-      "pagePath": "/map/",
-      "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
-      "views": 8
-    },
-    {
-      "pagePath": "/newsletter/register/",
-      "pageTitle": "詩吟の始め方・7日間講座（無料）登録 | 詩吟の入口",
-      "views": 8
-    },
-    {
-      "pagePath": "/apps/kanshi-jiten/",
-      "pageTitle": "漢詩の図書館 | 詩吟の入口",
-      "views": 6
+      "pagePath": "/legal/hakkousha",
+      "pageTitle": "発行者情報（詩吟メルマガ） | 詩吟の入口",
+      "views": 7
     },
     {
       "pagePath": "/dojo-details",
       "pageTitle": "吟猫道場ってなに？ | オンライン詩吟教室の詳細・入会方法 | 詩吟の入口",
-      "views": 6
+      "views": 5
     },
     {
       "pagePath": "/community/",
@@ -273,34 +269,34 @@
       "views": 3
     },
     {
-      "pagePath": "/profile/",
-      "pageTitle": "heyheyプロフィール | 詩吟の入口",
-      "views": 3
-    },
-    {
       "pagePath": "/homepage/apps/kyoshitsu-map/",
       "pageTitle": "全国詩吟教室マップ | 詩吟の入口",
+      "views": 2
+    },
+    {
+      "pagePath": "/homepage/beginner/",
+      "pageTitle": "始め方ガイド | 詩吟の入口",
       "views": 2
     }
   ],
   "events": {
     "d7": {
-      "mailmag_click": 7,
+      "mailmag_click": 9,
       "kindle_click": 0,
-      "dojo_click": 3,
+      "dojo_click": 2,
       "openchat_click": 0,
-      "tool_open": 31,
-      "form_click": 1,
+      "tool_open": 34,
+      "form_click": 0,
       "youtube_click": 1
     },
     "d28": {
-      "mailmag_click": 31,
+      "mailmag_click": 33,
       "kindle_click": 4,
       "dojo_click": 12,
       "openchat_click": 0,
-      "tool_open": 133,
+      "tool_open": 132,
       "form_click": 1,
-      "youtube_click": 15
+      "youtube_click": 14
     }
   }
 }
